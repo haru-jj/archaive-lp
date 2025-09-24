@@ -1,0 +1,33 @@
+/* ... 既存のグローバルCSS ... */
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: none; }
+}
+.animate-fade-in {
+  animation: fade-in 0.9s cubic-bezier(0.4,0,0.2,1) both;
+}
+
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-32px); }
+  to { opacity: 1; transform: none; }
+}
+.animate-slide-in-left {
+  animation: slide-in-left 0.9s cubic-bezier(0.4,0,0.2,1) both;
+}
+
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(32px); }
+  to { opacity: 1; transform: none; }
+}
+.animate-slide-in-right {
+  animation: slide-in-right 0.9s cubic-bezier(0.4,0,0.2,1) both;
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 0 0 #37B7C4; }
+  50% { box-shadow: 0 0 32px 8px #37B7C4; }
+}
+.animate-glow {
+  animation: glow 2s infinite;
+} 

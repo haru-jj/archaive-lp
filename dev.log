@@ -1,0 +1,55 @@
+
+> lp-1@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.3.4
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.11.7:3000
+
+ ✓ Starting...
+ ✓ Ready in 1443ms
+ ○ Compiling / ...
+ ✓ Compiled / in 1893ms (751 modules)
+ GET / 200 in 2304ms
+ ✓ Compiled in 222ms (323 modules)
+ ○ Compiling /lp3 ...
+ ✓ Compiled /lp3 in 674ms (826 modules)
+ GET /lp3 200 in 784ms
+ ✓ Compiled in 744ms (360 modules)
+ GET /lp3 200 in 41ms
+ ✓ Compiled in 239ms (360 modules)
+ GET /lp3 200 in 12ms
+ ✓ Compiled in 160ms (360 modules)
+ GET /lp3 200 in 58ms
+ ✓ Compiled in 164ms (360 modules)
+ GET /lp3 200 in 10ms
+ ✓ Compiled in 170ms (360 modules)
+ GET /lp3 200 in 11ms
+ ✓ Compiled in 165ms (360 modules)
+ GET /lp3 200 in 14ms
+ ✓ Compiled in 183ms (360 modules)
+ GET /lp3 200 in 33ms
+ ✓ Compiled in 192ms (360 modules)
+ GET /lp3 200 in 15ms
+ ✓ Compiled in 169ms (360 modules)
+ GET /lp3 200 in 15ms
+ ✓ Compiled in 193ms (360 modules)
+ GET /lp3 200 in 11ms
+ ✓ Compiled in 154ms (360 modules)
+ GET /lp3 200 in 15ms
+ ✓ Compiled in 202ms (360 modules)
+ GET /lp3 200 in 64ms
+ ✓ Compiled in 201ms (826 modules)
+ GET /lp3 200 in 229ms
+ GET /lp3 200 in 8ms
+ GET / 200 in 531ms
+ ○ Compiling /lp11 ...
+ ✓ Compiled /lp11 in 1155ms (935 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /lp1 200 in 1608ms
+ GET /lp11 200 in 1299ms
+ ✓ Compiled in 880ms (917 modules)
+ GET /lp11 200 in 93ms
+ ✓ Compiled in 460ms (917 modules)
+ GET /lp11 200 in 120ms
+[?25h
