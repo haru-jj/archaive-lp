@@ -2,45 +2,60 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { Resend } from 'resend';
 
-// Supabase初期化
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+// 環境変数のチェック
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-// Resend初期化
-const resend = new Resend(process.env.RESEND_API_KEY);
+if (!supabaseUrl || !supabaseAnonKey) {
+  console.error('Supabase環境変数が設定されていません');
+}
+
+// Supabase初期化（環境変数が存在する場合のみ）
+const supabase = supabaseUrl && supabaseAnonKey 
+  ? createClient(supabaseUrl, supabaseAnonKey)
+  : null;
+
+// Resend初期化（環境変数が存在する場合のみ）
+const resendApiKey = process.env.RESEND_API_KEY;
+const resend = resendApiKey ? new Resend(resendApiKey) : null;
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     
-    // 1. Supabaseにデータを保存
-    const { data, error } = await supabase
-      .from('leads') // 'leads'というテーブル名（Supabaseで作成する必要あり）
-      .insert([
-        {
-          company_name: body.companyName,
-          name: body.name,
-          department: body.department || null,
-          position: body.position || null,
-          email: body.email,
-          phone: body.phone,
-          employee_count: body.employeeCount,
-          purpose: body.purpose,
-          message: body.message || null,
-          form_type: body.formType || 'apply',
-          created_at: new Date().toISOString()
-        }
-      ]);
+    // 1. Supabaseにデータを保存（環境変数が設定されている場合のみ）
+    let supabaseError = null;
+    if (supabase) {
+      const { data, error } = await supabase
+        .from('leads') // 'leads'というテーブル名（Supabaseで作成する必要あり）
+        .insert([
+          {
+            company_name: body.companyName,
+            name: body.name,
+            department: body.department || null,
+            position: body.position || null,
+            email: body.email,
+            phone: body.phone,
+            employee_count: body.employeeCount,
+            purpose: body.purpose,
+            message: body.message || null,
+            form_type: body.formType || 'apply',
+            created_at: new Date().toISOString()
+          }
+        ]);
 
-    if (error) {
-      console.error('Supabase保存エラー:', error);
-      throw new Error('データベースへの保存に失敗しました');
+      if (error) {
+        console.error('Supabase保存エラー:', error);
+        supabaseError = error;
+      }
+    } else {
+      console.warn('Supabase環境変数が設定されていないため、データベース保存をスキップします');
     }
 
-    // 2. 管理者へメール通知
-    const emailResult = await resend.emails.send({
+    // 2. 管理者へメール通知（環境変数が設定されている場合のみ）
+    let emailResult = null;
+    if (resend && process.env.ADMIN_EMAIL) {
+      emailResult = await resend.emails.send({
       from: 'ARCHAIVE <noreply@your-domain.com>', // あなたのドメインに変更
       to: process.env.ADMIN_EMAIL!,
       subject: body.formType === 'download' 
@@ -130,11 +145,14 @@ export async function POST(request: NextRequest) {
         </body>
         </html>
       `
-    });
+      });
 
-    if (emailResult.error) {
-      console.error('メール送信エラー:', emailResult.error);
-      // メール送信に失敗してもデータは保存されているので、処理は続行
+      if (emailResult.error) {
+        console.error('メール送信エラー:', emailResult.error);
+        // メール送信に失敗してもデータは保存されているので、処理は続行
+      }
+    } else {
+      console.warn('Resend環境変数または管理者メールアドレスが設定されていないため、メール送信をスキップします');
     }
 
     return NextResponse.json(
