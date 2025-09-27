@@ -1,7 +1,7 @@
 'use client';
 
 import {
-  HeroSectionSplit,
+  HeroSection,
   ArchaiveIntroSection,
   BeforeAfterSection,
   FeaturesSection,
@@ -15,7 +15,6 @@ import {
 import {
   Header,
   Footer,
-  HeroQuickNav,
 } from '@/components/layout';
 
 export default function Home() {
@@ -24,8 +23,7 @@ export default function Home() {
     <div className="font-noto-sans-jp">
       <Header />
       <main className="pt-20">
-        <HeroSectionSplit />
-        <HeroQuickNav />
+        <HeroSection />
         <ArchaiveIntroSection />
         <BeforeAfterSection />
         <FeaturesSection />

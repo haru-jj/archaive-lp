@@ -1,4 +1,4 @@
-export { default as HeroSectionSplit } from './HeroSectionSplit';
+export { default as HeroSection } from './HeroSection';
 export { default as ArchaiveIntroSection } from './ArchaiveIntroSection';
 export { default as BeforeAfterSection } from './BeforeAfterSection';
 export { default as FeaturesSection } from './FeaturesSection';
