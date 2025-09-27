@@ -1,5 +1,7 @@
 export { default as HeroSection } from './HeroSection';
 export { default as ArchaiveIntroSection } from './ArchaiveIntroSection';
+export { default as ArchaiveIntroSection2 } from './ArchaiveIntroSection2';
+
 export { default as BeforeAfterSection } from './BeforeAfterSection';
 export { default as FeaturesSection } from './FeaturesSection';
 export { default as ProcessSection } from './ProcessSection';

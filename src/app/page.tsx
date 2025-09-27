@@ -2,7 +2,8 @@
 
 import {
   HeroSection,
-  ArchaiveIntroSection,
+  // ArchaiveIntroSection,
+  ArchaiveIntroSection2,
   BeforeAfterSection,
   FeaturesSection,
   ProcessSection,
@@ -24,7 +25,8 @@ export default function Home() {
       <Header />
       <main className="pt-20">
         <HeroSection />
-        <ArchaiveIntroSection />
+        {/* <ArchaiveIntroSection /> */}
+        <ArchaiveIntroSection2 />
         <BeforeAfterSection />
         <FeaturesSection />
         <CaseSection />
