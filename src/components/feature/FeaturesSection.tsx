@@ -242,7 +242,7 @@ export default function FeaturesSection() {
   }
 
   return (
-    <div className="py-12 sm:py-16 md:py-20 px-4 bg-gradient-to-br from-gray-50 via-white to-[#37B7C4]/5 relative overflow-hidden">
+    <div className="py-12 sm:py-16 md:py-20 px-4 bg-gradient-to-br from-gray-50 via-white to-[#37B7C4]/5 relative overflow-hidden" id="features">
 
       {/* 製造業データフロー背景 */}
       <div className="absolute inset-0 pointer-events-none">

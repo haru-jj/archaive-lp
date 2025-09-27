@@ -47,7 +47,7 @@ export default function SecuritySection() {
   ];
 
   return (
-    <section className="py-16 sm:py-20 md:py-24 px-4 bg-gradient-to-br from-gray-900 via-gray-800 to-slate-900 relative overflow-hidden">
+    <section className="py-16 sm:py-20 md:py-24 px-4 bg-gradient-to-br from-gray-900 via-gray-800 to-slate-900 relative overflow-hidden" id="security">
       {/* 背景の装飾要素 */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-20 left-10 w-40 h-40 bg-[#37B7C4]/5 rounded-full blur-3xl" />

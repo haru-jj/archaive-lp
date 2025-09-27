@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function CTASection() {
   return (
-    <section className="py-24 px-4 bg-[#37B7C4] relative overflow-hidden">
+    <section className="py-24 px-4 bg-[#37B7C4] relative overflow-hidden" id="cta">
       {/* 背景パターン */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-10 left-10 w-20 h-20 border-2 border-white rounded-full"></div>

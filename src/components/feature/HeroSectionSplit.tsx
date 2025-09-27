@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function HeroSectionSplit() {
   return (
-    <div className="transition-all duration-500">
+    <div className="transition-all duration-500" id="hero">
       <section className="relative h-[calc(80vh-64px)] bg-[#37B7C4]">
         {/* 背景画像 */}
         <div 

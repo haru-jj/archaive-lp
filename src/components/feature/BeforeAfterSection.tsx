@@ -48,7 +48,7 @@ export default function BeforeAfterSection() {
   }, [mounted]);
 
   return (
-    <section id="before-after-section" className="py-20 relative overflow-hidden">
+    <section id="before-after" className="py-20 relative overflow-hidden">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-gray-50 to-white"></div>
 

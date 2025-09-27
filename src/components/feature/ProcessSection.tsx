@@ -58,7 +58,7 @@ export default function ProcessSection() {
   ];
 
   return (
-    <section className="py-8 sm:py-12 md:py-16 px-4 bg-gray-100 relative overflow-hidden">
+    <section className="py-8 sm:py-12 md:py-16 px-4 bg-gray-100 relative overflow-hidden" id="process">
       {/* 控えめな背景装飾 */}
       <div className="absolute inset-0 pointer-events-none opacity-50">
         <div className="absolute top-10 left-10 w-24 h-24 bg-[#37B7C4]/5 rounded-full blur-2xl" />

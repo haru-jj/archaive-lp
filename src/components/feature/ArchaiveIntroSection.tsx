@@ -4,7 +4,7 @@ import React from 'react';
 
 export default function ArchaiveIntroSection() {
   return (
-    <div className="bg-[#37B7C4] px-4 relative overflow-hidden" style={{paddingTop: '38.4px', paddingBottom: '38.4px', minHeight: '80vh'}}>
+    <div className="bg-[#37B7C4] px-4 relative overflow-hidden" id="demo" style={{paddingTop: '38.4px', paddingBottom: '38.4px', minHeight: '80vh'}}>
       {/* Background Pattern - Based on SVG structure */}
       <div className="absolute inset-0">
         {/* Grid of rounded rectangles like in the SVG */}

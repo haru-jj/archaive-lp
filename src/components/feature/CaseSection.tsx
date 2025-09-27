@@ -115,7 +115,7 @@ export default function CaseSection() {
 
 
   return (
-    <section className="pt-12 sm:pt-16 md:pt-20 pb-6 sm:pb-8 md:pb-10 px-4 bg-white">
+    <section className="pt-12 sm:pt-16 md:pt-20 pb-6 sm:pb-8 md:pb-10 px-4 bg-white" id="case">
       <div className="container mx-auto max-w-6xl">
         {/* セクションタイトル */}
         <div className="text-center mb-8 sm:mb-12 md:mb-16">
