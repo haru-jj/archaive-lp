@@ -28,13 +28,13 @@ export default function HeroSection() {
 
         {/* Content Container */}
         <div className="container mx-auto px-4 py-16 relative z-10 h-full">
-          <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[500px]">
+          <div className="grid lg:grid-cols-2 gap-12 items-end min-h-[500px]">
             {/* Left Content */}
             <div className="text-center lg:text-left max-w-2xl mx-auto lg:ml-16 lg:mr-0">
               {/* Headline */}
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 tracking-tight leading-[1.5]">
                 1枚の図面/帳票から<br />
-                社内の全ナレッジをAI活用
+                社内の全ナレッジを<span className="text-[#f44a4e]">AI</span>活用
               </h1>
               
               {/* Subheadline */}
@@ -71,15 +71,13 @@ export default function HeroSection() {
             </div>
             
             {/* Right Content - Product Image */}
-            <div className="hidden lg:flex relative justify-center items-center overflow-visible">
-              <div className="relative scale-[0.9] -translate-x-28" style={{ transformOrigin: 'center' }}>
-                <img
-                  src="/images/image2.png"
-                  alt="ARCHAIVEのAI見積システムのダッシュボード画面。図面検索と見積作成機能を表示"
-                  className="w-full h-auto rounded-xl shadow-2xl"
-                  loading="lazy"
-                />
-              </div>
+            <div className="hidden lg:block">
+              <img
+                src="/images/image2.png"
+                alt="ARCHAIVEのAI見積システムのダッシュボード画面。図面検索と見積作成機能を表示"
+                className="w-4/5 h-auto rounded-xl shadow-2xl"
+                loading="lazy"
+              />
             </div>
           </div>
         </div>
