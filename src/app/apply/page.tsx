@@ -2,8 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import Header from '@/components/lp_new/Header';
-import Footer from '@/components/lp_new/Footer';
+import { Header, Footer } from '@/components/layout';
 
 export default function LPNewApply() {
   const [formData, setFormData] = useState({

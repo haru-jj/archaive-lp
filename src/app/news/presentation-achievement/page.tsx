@@ -1,7 +1,6 @@
 'use client';
 
-import Header from '@/components/lp_new/Header';
-import Footer from '@/components/lp_new/Footer';
+import { Header, Footer } from '@/components/layout';
 import Link from 'next/link';
 
 export default function PresentationAchievementNews() {
