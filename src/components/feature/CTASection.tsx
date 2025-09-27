@@ -30,7 +30,7 @@ export default function CTASection() {
 
           {/* CTA buttons */}
           <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
-            <Link href="/download" className="bg-white border-2 border-white rounded-lg text-[#37B7C4] px-8 py-4 text-lg font-bold cursor-pointer flex items-center justify-center min-w-[280px] hover:bg-gray-50 hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+            <Link href="/download" className="bg-white border-2 border-white rounded-lg text-[#37B7C4] px-8 py-4 text-lg font-bold cursor-pointer flex items-center justify-center min-w-[280px] hover:bg-gray-50 btn-hover">
               <span className="flex items-center gap-2">
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
@@ -38,7 +38,7 @@ export default function CTASection() {
                 資料ダウンロード
               </span>
             </Link>
-            <Link href="/apply" className="bg-transparent border-2 border-white text-white rounded-lg px-8 py-4 text-lg font-bold cursor-pointer flex items-center justify-center min-w-[280px] hover:bg-white/10 hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+            <Link href="/apply" className="bg-transparent border-2 border-white text-white rounded-lg px-8 py-4 text-lg font-bold cursor-pointer flex items-center justify-center min-w-[280px] hover:bg-white/10 btn-hover">
               <span className="flex items-center gap-2">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>

@@ -124,14 +124,14 @@ export default function NewsSection() {
           <div className="text-center mt-12">
             <a
               href="/news"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-white border-2 border-[#37B7C4] text-[#37B7C4] rounded-xl font-bold hover:bg-[#37B7C4] hover:text-white hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group relative overflow-hidden"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-white border-2 border-[#37B7C4] text-[#37B7C4] rounded-xl font-bold hover:bg-[#37B7C4] hover:text-white btn-hover group relative overflow-hidden"
             >
               {/* ボタン内装飾 */}
               <div className="absolute inset-0 bg-gradient-to-r from-[#37B7C4]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
 
               <span className="relative z-10">すべてのニュースを見る</span>
               <svg
-                className="w-5 h-5 group-hover:translate-x-1 transition-transform relative z-10"
+                className="w-5 h-5 group-icon-right relative z-10"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"

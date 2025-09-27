@@ -616,7 +616,7 @@ export default function FeaturesSection() {
             {subFeatures.map((feature, index) => (
               <div
                 key={index}
-                className="bg-gradient-to-br from-gray-50 to-white rounded-2xl border border-gray-300/50 p-8 hover:shadow-2xl hover:border-gray-500/50 transition-all duration-300 group relative overflow-hidden"
+                className="bg-gradient-to-br from-gray-50 to-white rounded-2xl border border-gray-300/50 p-8 hover:border-gray-500/50 card-hover group relative overflow-hidden"
                 style={{ minHeight: '300px' }}
               >
                 {/* ホバー時の装飾 */}

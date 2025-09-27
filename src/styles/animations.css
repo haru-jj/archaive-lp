@@ -1,0 +1,60 @@
+/* 
+* 統一アニメーションユーティリティ
+* シンプルで再利用可能なアニメーションクラス
+*/
+
+/* ===== ボタンアニメーション ===== */
+.btn-hover {
+  @apply hover:scale-105 hover:-translate-y-1 hover:shadow-lg transition-all duration-300;
+}
+
+.btn-hover-subtle {
+  @apply hover:scale-[1.02] hover:shadow-md transition-all duration-300;
+}
+
+/* ===== カードアニメーション ===== */
+.card-hover {
+  @apply hover:-translate-y-1 hover:shadow-xl transition-all duration-300;
+}
+
+.card-hover-scale {
+  @apply hover:scale-[1.02] hover:shadow-xl transition-all duration-300;
+}
+
+/* ===== グループホバーアニメーション ===== */
+.group-icon-right {
+  @apply group-hover:translate-x-1 group-hover:scale-110 transition-transform duration-300;
+}
+
+.group-icon-rotate {
+  @apply group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300;
+}
+
+.group-text-wide {
+  @apply group-hover:tracking-wide transition-all duration-300;
+}
+
+/* ===== 基本的なフェードアニメーション ===== */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.6s ease-out;
+}

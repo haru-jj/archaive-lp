@@ -1,5 +1,4 @@
 import './globals.css';
-import '@/styles/lp1-animations.css';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {

@@ -79,7 +79,7 @@ export default function Header() {
           <div className="hidden lg:flex items-center space-x-4 flex-shrink-0">
             <Link 
               href="/download"
-              className="bg-white border-2 border-gray-300 rounded-lg text-black px-6 py-3 text-sm font-bold cursor-pointer flex items-center justify-center hover:bg-gray-50 hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+              className="bg-white border-2 border-gray-300 rounded-lg text-black px-6 py-3 text-sm font-bold cursor-pointer flex items-center justify-center hover:bg-gray-50 btn-hover"
             >
               <span className="flex items-center gap-2">
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -90,7 +90,7 @@ export default function Header() {
             </Link>
             <Link 
               href="/apply"
-              className="bg-transparent border-2 border-[#37B7C4] text-[#37B7C4] rounded-lg px-6 py-3 text-sm font-bold cursor-pointer flex items-center justify-center hover:bg-[#37B7C4]/10 hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+              className="bg-transparent border-2 border-[#37B7C4] text-[#37B7C4] rounded-lg px-6 py-3 text-sm font-bold cursor-pointer flex items-center justify-center hover:bg-[#37B7C4]/10 btn-hover"
             >
               <span className="flex items-center gap-2">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -142,7 +142,7 @@ export default function Header() {
             <div className="flex flex-col space-y-3 mt-6">
               <Link 
                 href="/download"
-                className="bg-white border-2 border-gray-300 rounded-lg text-black px-6 py-3 text-base font-bold cursor-pointer flex items-center justify-center hover:bg-gray-50 hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+                className="bg-white border-2 border-gray-300 rounded-lg text-black px-6 py-3 text-base font-bold cursor-pointer flex items-center justify-center hover:bg-gray-50 btn-hover"
               >
                 <span className="flex items-center gap-2">
                   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -153,7 +153,7 @@ export default function Header() {
               </Link>
               <Link 
                 href="/apply"
-                className="bg-transparent border-2 border-[#37B7C4] text-[#37B7C4] rounded-lg px-6 py-3 text-base font-bold cursor-pointer flex items-center justify-center hover:bg-[#37B7C4]/10 hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+                className="bg-transparent border-2 border-[#37B7C4] text-[#37B7C4] rounded-lg px-6 py-3 text-base font-bold cursor-pointer flex items-center justify-center hover:bg-[#37B7C4]/10 btn-hover"
               >
                 <span className="flex items-center gap-2">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

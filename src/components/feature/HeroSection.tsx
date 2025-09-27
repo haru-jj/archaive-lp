@@ -49,21 +49,21 @@ export default function HeroSection() {
               
               {/* CTA Buttons */}
               <div className="flex flex-col gap-4 max-w-md mx-auto lg:ml-0 lg:mr-auto">
-                <Link href="/download" className="bg-white border-2 border-white rounded-lg text-[#37B7C4] px-12 py-4 text-lg font-bold flex items-center justify-center w-full hover:bg-gray-50 hover:shadow-lg hover:-translate-y-1 hover:scale-105 transition-all duration-300 group">
-                  <span className="flex items-center gap-2 group-hover:translate-x-1 transition-transform duration-300">
-                    <svg className="w-5 h-5 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300" fill="currentColor" viewBox="0 0 24 24">
+                <Link href="/download" className="bg-white border-2 border-white rounded-lg text-[#37B7C4] px-12 py-4 text-lg font-bold flex items-center justify-center w-full hover:bg-gray-50 btn-hover group">
+                  <span className="flex items-center gap-2 group-icon-right">
+                    <svg className="w-5 h-5 group-icon-rotate" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
                     </svg>
-                    <span className="group-hover:tracking-wide transition-all duration-300">メールで資料を受け取る</span>
+                    <span className="group-text-wide">メールで資料を受け取る</span>
                   </span>
                 </Link>
-                <Link href="/apply" className="bg-transparent border-2 border-white text-white rounded-lg px-12 py-4 text-lg font-bold flex items-center justify-center w-full hover:bg-white/20 hover:border-white/80 hover:shadow-lg hover:-translate-y-1 hover:scale-105 transition-all duration-300 group relative overflow-hidden">
+                <Link href="/apply" className="bg-transparent border-2 border-white text-white rounded-lg px-12 py-4 text-lg font-bold flex items-center justify-center w-full hover:bg-white/20 hover:border-white/80 btn-hover group relative overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-                  <span className="flex items-center gap-2 group-hover:translate-x-1 transition-transform duration-300 relative z-10">
-                    <svg className="w-5 h-5 group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <span className="flex items-center gap-2 group-icon-right relative z-10">
+                    <svg className="w-5 h-5 group-icon-rotate" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                     </svg>
-                    <span className="group-hover:tracking-wide transition-all duration-300">デモを無料体験！</span>
+                    <span className="group-text-wide">デモを無料体験！</span>
                   </span>
                 </Link>
               </div>
