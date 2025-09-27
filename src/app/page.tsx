@@ -5,7 +5,8 @@ import {
   // ArchaiveIntroSection,
   ArchaiveIntroSection2,
   BeforeAfterSection,
-  FeaturesSection,
+  MainFeaturesSection,
+  SubFeaturesSection,
   ProcessSection,
   CaseSection,
   NewsSection,
@@ -28,7 +29,8 @@ export default function Home() {
         {/* <ArchaiveIntroSection /> */}
         <ArchaiveIntroSection2 />
         <BeforeAfterSection />
-        <FeaturesSection />
+        <MainFeaturesSection />
+        <SubFeaturesSection />
         <CaseSection />
         <ProcessSection />
         <NewsSection />

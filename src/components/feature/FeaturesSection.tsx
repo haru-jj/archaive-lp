@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { ManufacturingDataFlow } from '@/components/animation-components';
 
 export default function FeaturesSection() {
   const [mounted, setMounted] = useState(false);
@@ -233,7 +234,7 @@ export default function FeaturesSection() {
           <div className="text-center mb-8 sm:mb-12 md:mb-16">
             <p className="text-sm text-[#37B7C4] font-semibold mb-6">Key Feature for ARCHAIVE</p>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#333333] mb-4 sm:mb-6">
-              図面起点で、データを資産にするための３つの力
+              図面起点で、データを資産にするための4つの力
             </h2>
           </div>
         </div>
@@ -245,97 +246,7 @@ export default function FeaturesSection() {
     <div className="py-12 sm:py-16 md:py-20 px-4 bg-gradient-to-br from-gray-50 via-white to-[#37B7C4]/5 relative overflow-hidden" id="features">
 
       {/* 製造業データフロー背景 */}
-      <div className="absolute inset-0 pointer-events-none">
-        {/* データベースハブのイメージ */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <div className="w-32 h-32 bg-gradient-to-br from-[#37B7C4]/10 to-[#37B7C4]/5 rounded-full blur-xl opacity-60" />
-          <div className="absolute inset-0 w-20 h-20 m-auto bg-[#37B7C4]/10 rounded-full animate-pulse" style={{animationDuration: '3s'}} />
-        </div>
-
-        {/* データ連携線 - 製造業システム間の接続を表現 */}
-        <svg className="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 1200 800" preserveAspectRatio="none">
-          <defs>
-            <linearGradient id="dataFlow1" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#37B7C4" stopOpacity="0"/>
-              <stop offset="50%" stopColor="#37B7C4" stopOpacity="0.6"/>
-              <stop offset="100%" stopColor="#37B7C4" stopOpacity="0"/>
-            </linearGradient>
-            <linearGradient id="dataFlow2" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#37B7C4" stopOpacity="0"/>
-              <stop offset="50%" stopColor="#37B7C4" stopOpacity="0.4"/>
-              <stop offset="100%" stopColor="#37B7C4" stopOpacity="0"/>
-            </linearGradient>
-          </defs>
-
-          {/* ERP、PLM、ファイルサーバー等の接続線 */}
-          <path d="M100,200 Q300,100 600,200 Q900,300 1100,200" stroke="url(#dataFlow1)" strokeWidth="2" fill="none" strokeDasharray="5,5">
-            <animate attributeName="stroke-dashoffset" values="0;20" dur="4s" repeatCount="indefinite"/>
-          </path>
-
-          <path d="M200,600 Q400,400 600,500 Q800,600 1000,400" stroke="url(#dataFlow1)" strokeWidth="2" fill="none" strokeDasharray="3,7">
-            <animate attributeName="stroke-dashoffset" values="20;0" dur="3s" repeatCount="indefinite"/>
-          </path>
-
-          <path d="M200,100 L600,200 L200,300 L600,400 L200,500" stroke="url(#dataFlow2)" strokeWidth="1.5" fill="none" strokeDasharray="8,4">
-            <animate attributeName="stroke-dashoffset" values="0;12" dur="5s" repeatCount="indefinite"/>
-          </path>
-
-          <path d="M1000,100 L600,200 L1000,300 L600,400 L1000,500" stroke="url(#dataFlow2)" strokeWidth="1.5" fill="none" strokeDasharray="6,6">
-            <animate attributeName="stroke-dashoffset" values="12;0" dur="4s" repeatCount="indefinite"/>
-          </path>
-        </svg>
-
-        {/* データノード（PLM、ERP等のシステムを表現） */}
-        <div className="absolute top-16 left-16">
-          <div className="w-16 h-16 bg-gradient-to-br from-[#37B7C4]/20 to-transparent rounded-lg transform rotate-12 animate-pulse" style={{animationDelay: '1s', animationDuration: '4s'}} />
-          <div className="absolute inset-2 bg-[#37B7C4]/10 rounded-md" />
-        </div>
-
-        <div className="absolute top-20 right-20">
-          <div className="w-12 h-12 bg-gradient-to-bl from-[#37B7C4]/15 to-transparent rounded-full animate-pulse" style={{animationDelay: '2s', animationDuration: '3s'}} />
-        </div>
-
-        <div className="absolute bottom-32 left-1/4">
-          <div className="w-14 h-14 bg-gradient-to-tr from-[#37B7C4]/12 to-transparent transform rotate-45 animate-pulse" style={{animationDelay: '0.5s', animationDuration: '5s'}} />
-        </div>
-
-        <div className="absolute bottom-24 right-1/3">
-          <div className="w-18 h-18 bg-gradient-to-tl from-[#37B7C4]/18 to-transparent rounded-lg transform -rotate-12 animate-pulse" style={{animationDelay: '3s', animationDuration: '3.5s'}} />
-        </div>
-
-        {/* 製造データの流れを表現する粒子エフェクト */}
-        <div className="absolute inset-0">
-          <div className="absolute w-2 h-2 bg-[#37B7C4]/30 rounded-full animate-pulse" style={{ left: '10%', top: '20%', animationDelay: '0s', animationDuration: '2s' }} />
-          <div className="absolute w-2 h-2 bg-[#37B7C4]/30 rounded-full animate-pulse" style={{ left: '17%', top: '38%', animationDelay: '0.3s', animationDuration: '2s' }} />
-          <div className="absolute w-2 h-2 bg-[#37B7C4]/30 rounded-full animate-pulse" style={{ left: '24%', top: '18%', animationDelay: '0.6s', animationDuration: '2s' }} />
-          <div className="absolute w-2 h-2 bg-[#37B7C4]/30 rounded-full animate-pulse" style={{ left: '31%', top: '5%', animationDelay: '0.9s', animationDuration: '2s' }} />
-          <div className="absolute w-2 h-2 bg-[#37B7C4]/30 rounded-full animate-pulse" style={{ left: '38%', top: '1%', animationDelay: '1.2s', animationDuration: '2s' }} />
-          <div className="absolute w-2 h-2 bg-[#37B7C4]/30 rounded-full animate-pulse" style={{ left: '45%', top: '14%', animationDelay: '1.5s', animationDuration: '2s' }} />
-          <div className="absolute w-2 h-2 bg-[#37B7C4]/30 rounded-full animate-pulse" style={{ left: '52%', top: '32%', animationDelay: '1.8s', animationDuration: '2s' }} />
-          <div className="absolute w-2 h-2 bg-[#37B7C4]/30 rounded-full animate-pulse" style={{ left: '59%', top: '39%', animationDelay: '2.1s', animationDuration: '2s' }} />
-          <div className="absolute w-2 h-2 bg-[#37B7C4]/30 rounded-full animate-pulse" style={{ left: '66%', top: '27%', animationDelay: '2.4s', animationDuration: '2s' }} />
-          <div className="absolute w-2 h-2 bg-[#37B7C4]/30 rounded-full animate-pulse" style={{ left: '73%', top: '9%', animationDelay: '2.7s', animationDuration: '2s' }} />
-          <div className="absolute w-2 h-2 bg-[#37B7C4]/30 rounded-full animate-pulse" style={{ left: '80%', top: '2%', animationDelay: '3s', animationDuration: '2s' }} />
-          <div className="absolute w-2 h-2 bg-[#37B7C4]/30 rounded-full animate-pulse" style={{ left: '87%', top: '15%', animationDelay: '3.3s', animationDuration: '2s' }} />
-        </div>
-
-        {/* グリッドパターン - デジタル製造環境を表現 */}
-        <div className="absolute inset-0 opacity-5">
-          <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <defs>
-              <pattern id="manufacturingGrid" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
-                <path d="M 10 0 L 0 0 0 10" fill="none" stroke="#37B7C4" strokeWidth="0.5"/>
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#manufacturingGrid)"/>
-          </svg>
-        </div>
-
-        {/* 深度感のある背景レイヤー */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/30 to-transparent" />
-        <div className="absolute top-0 left-0 w-full h-1/3 bg-gradient-to-b from-[#37B7C4]/5 to-transparent" />
-        <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-[#37B7C4]/5 to-transparent" />
-      </div>
+      <ManufacturingDataFlow />
 
       <div className="container mx-auto max-w-6xl relative z-10">
         <div className="text-center mb-8 sm:mb-12 md:mb-16">
