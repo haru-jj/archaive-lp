@@ -1,8 +1,8 @@
 'use client';
 
-import Header from '@/components/lp_new/Header';
-import Footer from '@/components/lp_new/Footer';
+import { Header, Footer } from '@/components/layout';
 import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
 
 export default function LogisticsNewspaperNews() {
   return (
@@ -29,11 +29,11 @@ export default function LogisticsNewspaperNews() {
                 2/25日付け 日本物流新聞<br />
                 <strong>京都ビジネス交流フェア 京大発ベンチャーなど多彩な出展者</strong>
               </p>
-              <a href="https://www.nb-shinbun.co.jp/" className="text-[#00a9c9] no-underline hover:underline">
+              <a href="https://www.nb-shinbun.co.jp/" className="text-[#37B7C4] no-underline hover:underline">
                 https://www.nb-shinbun.co.jp/
               </a>
               <p className="text-base leading-6 mt-8 mb-6">
-                ARCHAIVEについては<Link href="/" className="text-[#00a9c9] no-underline hover:underline">こちら</Link>
+                ARCHAIVEについては<Link href="/" className="text-[#37B7C4] no-underline hover:underline">こちら</Link>
               </p>
               {/* 新聞記事画像 */}
               <img 
@@ -48,8 +48,9 @@ export default function LogisticsNewspaperNews() {
             <div className="mt-20 text-center">
               <Link 
                 href="/news" 
-                className="inline-flex items-center gap-2 px-6 py-3 border-2 border-[#00a9c9] text-[#00a9c9] rounded-lg font-bold hover:bg-[#00a9c9] hover:text-white transition-all duration-300"
+                className="inline-flex items-center gap-2 px-6 py-3 border-2 border-[#37B7C4] text-[#37B7C4] rounded-lg font-bold hover:bg-[#37B7C4] hover:text-white transition-all duration-300"
               >
+                <ArrowLeft className="w-5 h-5" />
                 お知らせ一覧に戻る
               </Link>
             </div>
