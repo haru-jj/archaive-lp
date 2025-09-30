@@ -10,7 +10,7 @@ export default function Footer() {
 
   const links = [
     { label: "ARCHAIVEとは", href: "#demo" },
-    { label: "課題と解決", href: "#problem-solution" },
+    { label: "課題と解決", href: "#before-after" },
     { label: "主要機能", href: "#features" },
     { label: "導入事例", href: "#case" },
     { label: "導入ステップ", href: "#process" },
@@ -27,13 +27,20 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
           {/* ロゴ */}
           <div className="max-w-md">
-            <Link href="/" className="inline-block">
+            <Link href="/" className="inline-flex items-center gap-3">
               <Image
-                src="/images/ARCHAIVE_logo.png"
-                alt="ARCHAIVE"
-                width={140}
-                height={46}
+                src="/svg/logo.svg"
+                alt="ARCHAIVE Logo"
+                width={32}
+                height={32}
                 className="cursor-pointer"
+              />
+              <Image
+                src="/svg/logo-text.svg"
+                alt="ARCHAIVE"
+                width={100}
+                height={28}
+                className="cursor-pointer h-7 filter brightness-0 invert"
               />
             </Link>
           </div>
@@ -83,18 +90,10 @@ export default function Footer() {
       {/* コピーライト */}
       <div className="border-t border-gray-800">
         <div className="container mx-auto px-8 py-4">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="flex justify-center items-center">
             <p className="text-gray-500 text-xs">
-              © 2024 STAR UP All Right Reserved.
+              © 2025 STAR UP All Right Reserved.
             </p>
-            <div className="flex gap-6">
-              <a href="#privacy" className="text-gray-500 hover:text-gray-300 text-xs transition-colors duration-200">
-                プライバシーポリシー
-              </a>
-              <a href="#terms" className="text-gray-500 hover:text-gray-300 text-xs transition-colors duration-200">
-                利用規約
-              </a>
-            </div>
           </div>
         </div>
       </div>

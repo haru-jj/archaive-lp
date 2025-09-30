@@ -32,9 +32,9 @@ export default function HeroSection() {
             {/* Left Content */}
             <div className="text-center lg:text-left max-w-2xl mx-auto lg:ml-16 lg:mr-0">
               {/* Headline */}
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 tracking-tight leading-[1.5]">
-                1枚の図面/帳票から<br />
-                社内の全ナレッジを<span className="text-[#f44a4e]">AI</span>活用
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 tracking-tight">
+                <div className="leading-relaxed">1枚の図面/帳票から</div>
+                <div className="leading-relaxed">社内の全ナレッジをAI活用</div>
               </h1>
               
               {/* Subheadline */}

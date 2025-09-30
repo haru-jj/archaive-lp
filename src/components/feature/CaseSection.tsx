@@ -33,7 +33,7 @@ export default function CaseSection() {
     },
     {
       id: 3,
-      image: "/api/placeholder/300/180",
+      image: "/images/yokoyama_1.png",
       title: "多数の図面を一括で処理し、概算見積もりをCSVで出力できる機能は、私たちの業務を効率化してくれています。",
       subtitle: "スエナミ工業株式会社",
       author: "横山 智一 様",
@@ -48,7 +48,7 @@ export default function CaseSection() {
     setTranslateX(-slideDistance * caseStudies.length);
   }, [slideDistance, caseStudies.length]);
 
-  const goToSlide = (index) => {
+  const goToSlide = (index: number) => {
     setCurrentIndex(index);
     setIsTransitioning(true);
     // 中央セットの該当インデックスに移動
@@ -324,79 +324,6 @@ export default function CaseSection() {
             →
           </button>
         </div>
-
-        {/* その他の導入企業 */}
-        <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-8 mb-8 sm:mb-12 md:mb-16 mt-12 sm:mt-16 md:mt-20">
-          <h3 className="text-xl sm:text-2xl font-bold text-[#333333] mb-4 sm:mb-6 text-center">他の導入企業様</h3>
-          <div className="overflow-hidden">
-            <div className="flex animate-scroll items-center" style={{ gap: '32px' }}>
-              {/* ロゴセット1 */}
-              <div className="flex items-center justify-center w-32 h-16 flex-shrink-0">
-                <img src="/case_logo/logo_omron.png" alt="オムロン" className="max-w-full max-h-full object-contain" />
-              </div>
-              <div className="flex items-center justify-center w-32 h-16 flex-shrink-0">
-                <img src="/case_logo/nadaka_corporation_logo_blue_line.png" alt="NADAKA" className="max-w-full max-h-full object-contain" />
-              </div>
-              <div className="flex items-center justify-center w-32 h-16 flex-shrink-0">
-                <img src="/case_logo/5c8a922b-1a7e-46d2-a606-da3d7afc066a.png" alt="企業ロゴ" className="max-w-full max-h-full object-contain" />
-              </div>
-              <div className="flex items-center justify-center w-32 h-16 flex-shrink-0">
-                <img src="/case_logo/images (2).png" alt="企業ロゴ" className="max-w-full max-h-full object-contain" />
-              </div>
-              <div className="flex items-center justify-center w-32 h-16 flex-shrink-0">
-                <img src="/case_logo/iScreen Shoter - Google Chrome - 250821220405.jpg" alt="企業ロゴ" className="max-w-full max-h-full object-contain" />
-              </div>
-              <div className="flex items-center justify-center w-32 h-16 flex-shrink-0">
-                <img src="/case_logo/iScreen Shoter - Google Chrome - 250821221340.jpg" alt="企業ロゴ" className="max-w-full max-h-full object-contain" />
-              </div>
-              <div className="flex items-center justify-center w-32 h-16 flex-shrink-0">
-                <img src="/case_logo/iScreen Shoter - Google Chrome - 250821221634.jpg" alt="企業ロゴ" className="max-w-full max-h-full object-contain" />
-              </div>
-              <div className="flex items-center justify-center w-32 h-16 flex-shrink-0">
-                <img src="/case_logo/iScreen Shoter - Google Chrome - 250901002207.jpg" alt="企業ロゴ" className="max-w-full max-h-full object-contain" />
-              </div>
-              <div className="flex items-center justify-center w-32 h-16 flex-shrink-0">
-                <img src="/case_logo/iScreen Shoter - Google Chrome - 250908035038.jpg" alt="企業ロゴ" className="max-w-full max-h-full object-contain" />
-              </div>
-              <div className="flex items-center justify-center w-32 h-16 flex-shrink-0">
-                <img src="/case_logo/iScreen Shoter - Google Chrome - 250908035321.jpg" alt="企業ロゴ" className="max-w-full max-h-full object-contain" />
-              </div>
-              
-              {/* ロゴセット2（重複） */}
-              <div className="flex items-center justify-center w-32 h-16 flex-shrink-0">
-                <img src="/case_logo/logo_omron.png" alt="オムロン" className="max-w-full max-h-full object-contain" />
-              </div>
-              <div className="flex items-center justify-center w-32 h-16 flex-shrink-0">
-                <img src="/case_logo/nadaka_corporation_logo_blue_line.png" alt="NADAKA" className="max-w-full max-h-full object-contain" />
-              </div>
-              <div className="flex items-center justify-center w-32 h-16 flex-shrink-0">
-                <img src="/case_logo/5c8a922b-1a7e-46d2-a606-da3d7afc066a.png" alt="企業ロゴ" className="max-w-full max-h-full object-contain" />
-              </div>
-              <div className="flex items-center justify-center w-32 h-16 flex-shrink-0">
-                <img src="/case_logo/images (2).png" alt="企業ロゴ" className="max-w-full max-h-full object-contain" />
-              </div>
-              <div className="flex items-center justify-center w-32 h-16 flex-shrink-0">
-                <img src="/case_logo/iScreen Shoter - Google Chrome - 250821220405.jpg" alt="企業ロゴ" className="max-w-full max-h-full object-contain" />
-              </div>
-              <div className="flex items-center justify-center w-32 h-16 flex-shrink-0">
-                <img src="/case_logo/iScreen Shoter - Google Chrome - 250821221340.jpg" alt="企業ロゴ" className="max-w-full max-h-full object-contain" />
-              </div>
-              <div className="flex items-center justify-center w-32 h-16 flex-shrink-0">
-                <img src="/case_logo/iScreen Shoter - Google Chrome - 250821221634.jpg" alt="企業ロゴ" className="max-w-full max-h-full object-contain" />
-              </div>
-              <div className="flex items-center justify-center w-32 h-16 flex-shrink-0">
-                <img src="/case_logo/iScreen Shoter - Google Chrome - 250901002207.jpg" alt="企業ロゴ" className="max-w-full max-h-full object-contain" />
-              </div>
-              <div className="flex items-center justify-center w-32 h-16 flex-shrink-0">
-                <img src="/case_logo/iScreen Shoter - Google Chrome - 250908035038.jpg" alt="企業ロゴ" className="max-w-full max-h-full object-contain" />
-              </div>
-              <div className="flex items-center justify-center w-32 h-16 flex-shrink-0">
-                <img src="/case_logo/iScreen Shoter - Google Chrome - 250908035321.jpg" alt="企業ロゴ" className="max-w-full max-h-full object-contain" />
-              </div>
-            </div>
-          </div>
-        </div>
-
       </div>
     </section>
   );

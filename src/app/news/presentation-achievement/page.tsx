@@ -2,6 +2,7 @@
 
 import { Header, Footer } from '@/components/layout';
 import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
 
 export default function PresentationAchievementNews() {
   return (
@@ -79,8 +80,9 @@ export default function PresentationAchievementNews() {
             <div className="mt-20 text-center">
               <Link 
                 href="/news" 
-                className="inline-flex items-center gap-2 px-6 py-3 border-2 border-[#00a9c9] text-[#00a9c9] rounded-lg font-bold hover:bg-[#00a9c9] hover:text-white transition-all duration-300"
+                className="inline-flex items-center gap-2 px-6 py-3 border-2 border-[#37B7C4] text-[#37B7C4] rounded-lg font-bold hover:bg-[#37B7C4] hover:text-white transition-all duration-300"
               >
+                <ArrowLeft className="w-5 h-5" />
                 お知らせ一覧に戻る
               </Link>
             </div>

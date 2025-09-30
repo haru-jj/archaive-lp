@@ -2,6 +2,7 @@
 
 import { Header, Footer } from '@/components/layout';
 import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
 
 export default function IndustrialNewspaperNews() {
   return (
@@ -28,11 +29,11 @@ export default function IndustrialNewspaperNews() {
                 2/18日付け　日刊工業新聞<br />
                 <strong>関西新興、製造業のDX支援　中小の導入遅れ改善に商機</strong>
               </p>
-              <a href="https://www.nikkan.co.jp/articles/view/00740261" className="text-[#00a9c9] no-underline hover:underline">
+              <a href="https://www.nikkan.co.jp/articles/view/00740261" className="text-[#37B7C4] no-underline hover:underline">
                 https://www.nikkan.co.jp/articles/view/00740261
               </a>
               <p className="text-base leading-6 mt-8 mb-6">
-                ARCHAIVEについては<Link href="/" className="text-[#00a9c9] no-underline hover:underline">こちら</Link>
+                ARCHAIVEについては<Link href="/" className="text-[#37B7C4] no-underline hover:underline">こちら</Link>
               </p>
             </div>
             </div>
@@ -41,8 +42,9 @@ export default function IndustrialNewspaperNews() {
             <div className="mt-20 text-center">
               <Link 
                 href="/news" 
-                className="inline-flex items-center gap-2 px-6 py-3 border-2 border-[#00a9c9] text-[#00a9c9] rounded-lg font-bold hover:bg-[#00a9c9] hover:text-white transition-all duration-300"
+                className="inline-flex items-center gap-2 px-6 py-3 border-2 border-[#37B7C4] text-[#37B7C4] rounded-lg font-bold hover:bg-[#37B7C4] hover:text-white transition-all duration-300"
               >
+                <ArrowLeft className="w-5 h-5" />
                 お知らせ一覧に戻る
               </Link>
             </div>

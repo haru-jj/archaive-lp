@@ -1,5 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
+import { ChevronRight, ChevronDown } from 'lucide-react';
 
 export default function ProcessSection() {
   const [visibleSteps, setVisibleSteps] = useState<number[]>([]);
@@ -78,31 +79,28 @@ export default function ProcessSection() {
 
         {/* 3ステッププロセス - 横方向フェーズ移行 */}
         <div className="relative">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8">
             {steps.map((step, index) => (
-              <div key={index} className="flex items-center">
+              <>
                 {/* ステップコンテンツ */}
                 <div
-                  className={`flex flex-col items-center h-80 transform transition-all duration-700 ${
+                  key={index}
+                  className={`flex flex-col items-start transform transition-all duration-700 ${
                     visibleSteps.includes(index)
                       ? 'translate-x-0 opacity-100'
                       : 'translate-x-8 opacity-0'
                   }`}
                   style={{transitionDelay: `${index * 200}ms`}}
                 >
-                  {/* フェーズ番号 */}
-                  <div className="flex justify-center mb-4">
-                    <div className="relative">
-                      <div className="w-16 h-16 bg-gradient-to-br from-[#37B7C4] to-[#2ea3b5] rounded-full flex items-center justify-center shadow-lg">
-                        <span className="text-xl font-bold text-white">{step.number}</span>
-                      </div>
-                      {/* 装飾リング */}
-                      <div className="absolute inset-0 rounded-full border-2 border-[#37B7C4]/30"></div>
-                    </div>
+                  {/* STEP番号 - カード上の左 */}
+                  <div className="mb-4 self-start">
+                    <div className="text-[#37B7C4] text-xs font-semibold tracking-wider mb-1">STEP</div>
+                    <div className="text-[#37B7C4] text-3xl font-bold leading-none">{step.number}</div>
+                    <div className="w-8 h-0.5 bg-[#37B7C4] mt-1"></div>
                   </div>
 
                   {/* プロセスカード */}
-                  <div className="bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 w-80 h-64">
+                  <div className="bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 w-80">
                     {/* ヘッダー */}
                     <div className={`bg-gradient-to-r ${step.bgGradient} p-4 text-white text-center`}>
                       <h3 className="text-lg font-bold mb-2">
@@ -123,7 +121,7 @@ export default function ProcessSection() {
                       <div className="flex gap-1 justify-center">
                         {step.benefits.map((benefit, bIndex) => (
                           <div key={bIndex} className="bg-[#37B7C4]/10 text-[#37B7C4] text-xs font-medium px-2 py-1 rounded">
-                            {benefit}
+                            # {benefit}
                           </div>
                         ))}
                       </div>
@@ -133,16 +131,11 @@ export default function ProcessSection() {
 
                 {/* 矢印 - ステップ間 */}
                 {index < steps.length - 1 && (
-                  <div className="hidden md:flex items-center justify-center mx-4">
-                    <div className="flex items-center">
-                      <div className="w-12 h-0.5 bg-[#37B7C4]"></div>
-                      <svg className="w-6 h-6 text-[#37B7C4] -ml-1" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M10 17l5-5-5-5v10z"/>
-                      </svg>
-                    </div>
+                  <div className="hidden md:flex items-center justify-center">
+                    <ChevronRight className="w-8 h-8 text-[#37B7C4]" />
                   </div>
                 )}
-              </div>
+              </>
             ))}
           </div>
 
@@ -150,12 +143,7 @@ export default function ProcessSection() {
           <div className="md:hidden space-y-4">
             {steps.slice(0, -1).map((_, index) => (
               <div key={index} className="flex justify-center">
-                <div className="flex flex-col items-center">
-                  <div className="w-0.5 h-6 bg-[#37B7C4]"></div>
-                  <svg className="w-6 h-6 text-[#37B7C4]" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M7 10l5 5 5-5z"/>
-                  </svg>
-                </div>
+                <ChevronDown className="w-8 h-8 text-[#37B7C4]" />
               </div>
             ))}
           </div>

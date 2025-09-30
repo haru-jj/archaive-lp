@@ -3,6 +3,22 @@
 export default function NewsSection() {
   const newsItems = [
     {
+      date: '2025年09月08日',
+      tags: [
+        { label: 'プレスリリース', type: 'press' }
+      ],
+      content: '製造業のDXを加速するAIプラットフォーム「ARCHAIVE 2.1」を2025年10月1日より提供開始',
+      link: '/news/archaive-2-1-release'
+    },
+    {
+      date: '2025年07月28日',
+      tags: [
+        { label: 'プレスリリース', type: 'press' }
+      ],
+      content: '業界初、「探す」から「話す」へ。ARCHAIVE、製造業AIエージェント「チャット型データ検索機能」をリリース',
+      link: '/news/ai-agent-release'
+    },
+    {
       date: '2025年03月05日',
       tags: [
         { label: '新聞', type: 'newspaper' }

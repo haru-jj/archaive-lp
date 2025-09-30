@@ -90,7 +90,7 @@ export default function ArchaiveIntroSection2() {
           </div>
 
           {/* Floating Benefit Keywords */}
-          <div className="absolute bottom-0 left-2/4 opacity-0 animate-fade-in-up" style={{animationDelay: '3s'}}>
+          <div className="absolute top-0 right-30 opacity-0 animate-fade-in-up" style={{animationDelay: '3s'}}>
             <div className="relative">
               <div className="w-56 h-48 bg-white/10 rounded-3xl animate-morph"></div>
               <div className="absolute inset-0 flex items-center justify-center z-10">
@@ -99,7 +99,7 @@ export default function ArchaiveIntroSection2() {
             </div>
           </div>
 
-          <div className="absolute bottom-20 left-[20%] opacity-0 animate-fade-in-up" style={{animationDelay: '4s'}}>
+          <div className="absolute bottom-20 left-10 opacity-0 animate-fade-in-up" style={{animationDelay: '4s'}}>
             <div className="relative">
               <div className="w-48 h-48 bg-white/10 rounded-3xl animate-morph-reverse"></div>
               <div className="absolute inset-0 flex items-center justify-center z-10">
@@ -108,11 +108,19 @@ export default function ArchaiveIntroSection2() {
             </div>
           </div>
 
-          <div className="absolute bottom-0 left-1/3 transform -translate-x-1/2 -translate-y-40 opacity-0 animate-fade-in-up" style={{animationDelay: '5s'}}>
+          <div className="absolute top-20 right-20 transform -translate-x-1/2 -translate-y-40 opacity-0 animate-fade-in-up" style={{animationDelay: '5s'}}>
             <div className="relative">
               <div className="w-64 h-48 bg-white/10 rounded-3xl animate-morph" style={{animationDelay: '2s'}}></div>
               <div className="absolute inset-0 flex items-center justify-center z-10">
                 <span className="text-lg font-light text-white">システム全体最適</span>
+              </div>
+            </div>
+          </div>
+          <div className="absolute bottom-0 left-1/3 transform -translate-x-1/2 -translate-y-40 opacity-0 animate-fade-in-up" style={{animationDelay: '5s'}}>
+            <div className="relative">
+              <div className="w-64 h-48 bg-white/10 rounded-3xl animate-morph" style={{animationDelay: '2s'}}></div>
+              <div className="absolute inset-0 flex items-center justify-center z-10">
+                <span className="text-lg font-light text-white">技術伝承</span>
               </div>
             </div>
           </div>

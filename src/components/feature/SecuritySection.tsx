@@ -1,6 +1,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
+
+const Player = dynamic(() => import('@lottiefiles/react-lottie-player').then(mod => mod.Player), {
+  ssr: false,
+});
 
 export default function SecuritySection() {
   const securityMeasures = [
@@ -50,10 +55,7 @@ export default function SecuritySection() {
     <section className="py-16 sm:py-20 md:py-24 px-4 bg-gradient-to-br from-gray-900 via-gray-800 to-slate-900 relative overflow-hidden" id="security">
       {/* 背景の装飾要素 */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-20 left-10 w-40 h-40 bg-[#37B7C4]/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-32 h-32 bg-[#37B7C4]/8 rounded-full blur-2xl" />
-
-        {/* 幾何学パターン */}
+        {/* グリッドパターン */}
         <svg className="absolute inset-0 w-full h-full opacity-5" viewBox="0 0 800 600" preserveAspectRatio="none">
           <defs>
             <pattern id="securityGrid" width="40" height="40" patternUnits="userSpaceOnUse">
@@ -62,14 +64,32 @@ export default function SecuritySection() {
           </defs>
           <rect width="100%" height="100%" fill="url(#securityGrid)" />
         </svg>
+
+        {/* 追加の背景エフェクト */}
+        <div className="absolute top-20 right-10 w-40 h-40 bg-[#37B7C4]/5 rounded-full blur-3xl animate-pulse" style={{animationDuration: '4s'}} />
+        <div className="absolute bottom-20 right-20 w-32 h-32 bg-[#37B7C4]/8 rounded-full blur-2xl animate-pulse" style={{animationDelay: '2s', animationDuration: '3s'}} />
+      </div>
+
+      {/* 左側に大きなLottieアニメーション - absolute配置 */}
+      <div className="absolute left-1/4 top-1/3 w-[400px] h-[400px] lg:w-[800px] lg:h-[800px] transform -translate-x-1/2 -translate-y-1/2 z-5">
+        <Player
+          autoplay
+          loop
+          src="/lottie/uuQjgmQJ4g.json"
+          style={{ 
+            height: '100%', 
+            width: '100%'
+          }}
+          speed={0.3}
+        />
       </div>
 
       <div className="container mx-auto max-w-6xl relative z-10">
-        <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight">
+        <div className="mb-12 sm:mb-8 ml-60">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2 tracking-tight">
             エンタープライズ水準のセキュリティ
           </h2>
-          <p className="text-gray-300 max-w-3xl mx-auto text-lg leading-relaxed">
+          <p className="text-gray-300 max-w-3xl text-lg leading-relaxed">
             高水準のセキュリティ/コンプライアンスによって、お客様の重要な資産を守ります
           </p>
         </div>

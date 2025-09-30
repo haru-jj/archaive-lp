@@ -11,7 +11,7 @@ export default function Header() {
 
   const navigationItems = [
     { href: "#demo", label: "ARCHAIVEとは" },
-    { href: "#problem-solution", label: "課題と解決" },
+    { href: "#before-after", label: "課題と解決" },
     { href: "#features", label: "主要機能" },
     { href: "#case", label: "導入事例" },
     { href: "#process", label: "導入ステップ" },
@@ -27,6 +27,8 @@ export default function Header() {
     }
     
     e.preventDefault();
+    setIsMenuOpen(false);
+    
     const element = document.querySelector(href);
     if (element) {
       const offset = 80; // ヘッダーの高さ分のオフセット
@@ -35,8 +37,9 @@ export default function Header() {
         top: elementPosition - offset,
         behavior: 'smooth'
       });
+    } else {
+      console.warn(`Element with ID ${href} not found`);
     }
-    setIsMenuOpen(false);
   };
 
   return (
@@ -47,14 +50,22 @@ export default function Header() {
           <div className="flex items-center flex-shrink-0 ml-4">
             <Link 
               href="/" 
-              className="flex items-center"
+              className="flex items-center gap-2"
             >
               <Image
-                src="/images/Group.png"
-                alt="ARCHAIVE"
-                width={180}
-                height={60}
+                src="/svg/logo.svg"
+                alt="ARCHAIVE Logo"
+                width={40}
+                height={40}
                 priority
+              />
+              <Image
+                src="/svg/logo-text.svg"
+                alt="ARCHAIVE"
+                width={120}
+                height={32}
+                priority
+                className="h-8"
               />
             </Link>
           </div>

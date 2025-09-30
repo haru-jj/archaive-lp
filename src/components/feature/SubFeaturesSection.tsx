@@ -233,7 +233,7 @@ export default function SubFeaturesSection() {
       <div className="container mx-auto max-w-7xl relative z-10 px-4">
         <div className="text-center mb-12">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-8">
-            ARCHAIVEの主な機能
+            ARCHAIVEのその他の機能
           </h2>
           <div className="max-w-4xl mx-auto space-y-4">
             <p className="text-white/90 leading-relaxed">

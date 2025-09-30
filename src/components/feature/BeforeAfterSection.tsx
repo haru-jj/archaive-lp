@@ -15,28 +15,37 @@ export default function BeforeAfterSection() {
     if (!mounted) return;
 
     const handleScroll = () => {
-      const section = document.getElementById('before-after-section');
+      const section = document.getElementById('before-after');
       if (!section) return;
 
       const rect = section.getBoundingClientRect();
       const windowHeight = window.innerHeight;
       const sectionHeight = rect.height;
 
-      // Calculate progress from 0 to 1 based on scroll position
-      // Start tracking when section enters viewport
-      const scrollStart = rect.top - windowHeight * 0.8;
-      // Complete when section is mostly scrolled through
-      const scrollEnd = rect.top - windowHeight * 0.2 + sectionHeight * 0.6;
-      const progress = Math.max(0, Math.min(1, -scrollStart / (scrollEnd - scrollStart)));
+      // セクションがビューポートに入り始めてから出るまでの進捗を計算
+      const sectionTop = rect.top;
+      const sectionBottom = rect.bottom;
+      
+      // セクションの上端がビューポートの80%の位置に来た時を開始点とする
+      const triggerStart = windowHeight * 0.8;
+      // セクションの下端がビューポートの20%の位置に来た時を終了点とする
+      const triggerEnd = windowHeight * 0.2;
+      
+      let progress = 0;
+      
+      if (sectionTop <= triggerStart && sectionBottom >= triggerEnd) {
+        // セクションがトリガー範囲内にある場合の進捗計算
+        const totalScrollDistance = sectionHeight + (triggerStart - triggerEnd);
+        const currentScrolled = triggerStart - sectionTop;
+        progress = Math.max(0, Math.min(1, currentScrolled / totalScrollDistance));
+      }
 
       setScrollProgress(progress);
 
-      // Switch to "after" when scroll progress exceeds 70%
-      // This requires more scrolling to trigger the change
-      if (progress > 0.7) {
+      // タブ切り替えのロジックをシンプルに
+      if (progress > 0.5) {
         setActiveTab('after');
-      } else if (progress < 0.3) {
-        // Add hysteresis to prevent flickering
+      } else {
         setActiveTab('before');
       }
     };
@@ -114,8 +123,8 @@ export default function BeforeAfterSection() {
             activeTab === 'before' ? 'opacity-100' : 'opacity-0 pointer-events-none absolute inset-0'
           }`}>
             {/* Problem 1 */}
-            <div className="relative">
-              <div className="relative bg-white rounded-2xl p-6 border border-gray-200" style={{
+            <div className="relative h-full">
+              <div className="relative bg-white rounded-2xl p-6 border border-gray-200 h-full flex flex-col" style={{
                 boxShadow: '4px 4px 0px #EF4444'
               }}>
                 <div className="w-14 h-14 bg-red-100 rounded-xl flex items-center justify-center mb-4">
@@ -126,7 +135,7 @@ export default function BeforeAfterSection() {
                 <h3 className="text-xl font-bold text-gray-800 mb-3">
                   検索に時間がかかり、コストが増大
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-600 leading-relaxed flex-grow">
                   図面や価格・仕様書などの検索に時間がかかり、過去の類似実績や仕様を再利用できず、毎回ゼロからの調査に多大な時間が費やされている。
                 </p>
                 <div className="mt-4 pt-4 border-t border-gray-100">
@@ -141,8 +150,8 @@ export default function BeforeAfterSection() {
             </div>
 
             {/* Problem 2 */}
-            <div className="relative">
-              <div className="relative bg-white rounded-2xl p-6 border border-gray-200" style={{
+            <div className="relative h-full">
+              <div className="relative bg-white rounded-2xl p-6 border border-gray-200 h-full flex flex-col" style={{
                 boxShadow: '4px 4px 0px #EF4444'
               }}>
                 <div className="w-14 h-14 bg-red-100 rounded-xl flex items-center justify-center mb-4">
@@ -153,7 +162,7 @@ export default function BeforeAfterSection() {
                 <h3 className="text-xl font-bold text-gray-800 mb-3">
                   業務やデータが属人化
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-600 leading-relaxed flex-grow">
                   見積もり根拠やトラブル対処法などの重要な情報が、特定の担当者の経験や記憶に依存し、会社のノウハウが失われ続けている。
                 </p>
                 <div className="mt-4 pt-4 border-t border-gray-100">
@@ -168,8 +177,8 @@ export default function BeforeAfterSection() {
             </div>
 
             {/* Problem 3 */}
-            <div className="relative">
-              <div className="relative bg-white rounded-2xl p-6 border border-gray-200" style={{
+            <div className="relative h-full">
+              <div className="relative bg-white rounded-2xl p-6 border border-gray-200 h-full flex flex-col" style={{
                 boxShadow: '4px 4px 0px #EF4444'
               }}>
                 <div className="w-14 h-14 bg-red-100 rounded-xl flex items-center justify-center mb-4">
@@ -180,7 +189,7 @@ export default function BeforeAfterSection() {
                 <h3 className="text-xl font-bold text-gray-800 mb-3">
                   部門間の確認作業と手戻り
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-600 leading-relaxed flex-grow">
                   「設計」「調達」「営業」「製造」等で繰り返される部門間のやり取りや手戻りにかかる見えにくい時間が、確実にコストを圧迫。
                 </p>
                 <div className="mt-4 pt-4 border-t border-gray-100">
@@ -200,8 +209,8 @@ export default function BeforeAfterSection() {
             activeTab === 'after' ? 'opacity-100' : 'opacity-0 pointer-events-none absolute inset-0'
           }`}>
             {/* Solution 1 */}
-            <div className="relative">
-              <div className="relative bg-white rounded-2xl p-6 border-2 border-[#37B7C4]/30" style={{
+            <div className="relative h-full">
+              <div className="relative bg-white rounded-2xl p-6 border-2 border-[#37B7C4]/30 h-full flex flex-col" style={{
                 boxShadow: '4px 4px 0px #37B7C4'
               }}>
                 <div className="w-14 h-14 bg-[#37B7C4]/10 rounded-xl flex items-center justify-center mb-4">
@@ -212,7 +221,7 @@ export default function BeforeAfterSection() {
                 <h3 className="text-xl font-bold text-gray-800 mb-3">
                   欲しいデータが<span className="text-[#37B7C4]">5秒</span>で見つかる
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-600 leading-relaxed flex-grow">
                   「厚さ5mmのSUS304を使ったブラケット図面は？」といった自然な対話で、AIが意図を汲み取り、最適な候補を瞬時に提示。
                 </p>
                 <div className="mt-4 pt-4 border-t border-[#37B7C4]/20">
@@ -227,8 +236,8 @@ export default function BeforeAfterSection() {
             </div>
 
             {/* Solution 2 */}
-            <div className="relative">
-              <div className="relative bg-white rounded-2xl p-6 border-2 border-[#37B7C4]/30" style={{
+            <div className="relative h-full">
+              <div className="relative bg-white rounded-2xl p-6 border-2 border-[#37B7C4]/30 h-full flex flex-col" style={{
                 boxShadow: '4px 4px 0px #37B7C4'
               }}>
                 <div className="w-14 h-14 bg-[#37B7C4]/10 rounded-xl flex items-center justify-center mb-4">
@@ -239,7 +248,7 @@ export default function BeforeAfterSection() {
                 <h3 className="text-xl font-bold text-gray-800 mb-3">
                   全員が同じ情報にアクセス可能
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-600 leading-relaxed flex-grow">
                   ベテランの頭の中にあった知見を、誰もがアクセスできる「会社の資産」に変え、新任者でも的確な判断を可能に。
                 </p>
                 <div className="mt-4 pt-4 border-t border-[#37B7C4]/20">
@@ -254,8 +263,8 @@ export default function BeforeAfterSection() {
             </div>
 
             {/* Solution 3 */}
-            <div className="relative">
-              <div className="relative bg-white rounded-2xl p-6 border-2 border-[#37B7C4]/30" style={{
+            <div className="relative h-full">
+              <div className="relative bg-white rounded-2xl p-6 border-2 border-[#37B7C4]/30 h-full flex flex-col" style={{
                 boxShadow: '4px 4px 0px #37B7C4'
               }}>
                 <div className="w-14 h-14 bg-[#37B7C4]/10 rounded-xl flex items-center justify-center mb-4">
@@ -266,7 +275,7 @@ export default function BeforeAfterSection() {
                 <h3 className="text-xl font-bold text-gray-800 mb-3">
                   部門間の壁を超える連携
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-600 leading-relaxed flex-grow">
                   ARCHAIVEがハブとなり、全部門の情報がリアルタイムに連携。開発スピードを劇的に向上。
                 </p>
                 <div className="mt-4 pt-4 border-t border-[#37B7C4]/20">
