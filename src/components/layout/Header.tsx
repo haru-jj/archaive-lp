@@ -44,7 +44,7 @@ export default function Header() {
 
   return (
     <header className="bg-white shadow-md fixed w-full top-0 z-50">
-      <div className="w-full px-8 py-4">
+      <div className="w-full px-2 md:px-8 py-4">
         <div className="flex items-center justify-between">
           {/* ロゴ */}
           <div className="flex items-center flex-shrink-0 ml-4">

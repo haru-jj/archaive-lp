@@ -84,24 +84,24 @@ export default function MainFeaturesSection() {
           {keyFeatures.map((feature) => (
             <div
               key={feature.id}
-              className={`flex items-center justify-between w-full gap-2 transition-all duration-300 relative ${
+              className={`flex flex-col lg:flex-row lg:items-center lg:justify-between w-full gap-6 lg:gap-2 transition-all duration-300 relative ${
                 hoveredCard === feature.id ? 'z-40' : 'z-10'
               }`}
               onMouseEnter={() => setHoveredCard(feature.id)}
               onMouseLeave={() => setHoveredCard(null)}
             >
               {/* テキストコンテンツ */}
-              <div className={`w-[40%] -mt-12 ${feature.imagePosition === 'left' ? 'order-2' : 'order-1'}`}>
+              <div className={`w-full lg:w-[40%] lg:-mt-12 ${feature.imagePosition === 'left' ? 'lg:order-2' : 'lg:order-1'}`}>
                 <div className="mb-3 sm:mb-4">
-                  <span className="text-2xl sm:text-3xl font-bold text-[#37B7C4] block mb-4">{feature.number}</span>
-                  <h4 className={`text-2xl sm:text-3xl font-bold text-gray-700 leading-loose ${feature.titleStyle || ''}`}>
+                  <span className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#37B7C4] block mb-4">{feature.number}</span>
+                  <h4 className={`text-xl sm:text-2xl lg:text-3xl font-bold text-gray-700 leading-relaxed lg:leading-loose ${feature.titleStyle || ''}`}>
                     <span className="block">{feature.title}</span>
                     <span className="block">{feature.subtitle}</span>
                   </h4>
                 </div>
                 <div className="w-full h-px bg-gray-300 mb-4"></div>
                 <div className="ml-0">
-                  <p className="text-base sm:text-lg text-gray-700 leading-relaxed font-normal">
+                  <p className="text-sm sm:text-base lg:text-lg text-gray-700 leading-relaxed font-normal">
                     {feature.description.split('\n').map((line, index) => (
                       <span key={index}>
                         {line}
@@ -113,7 +113,7 @@ export default function MainFeaturesSection() {
               </div>
 
               {/* 画像コンテンツ */}
-              <div className={`w-[55%] relative ${feature.imagePosition === 'left' ? 'order-1' : 'order-2'}`}>
+              <div className={`w-full lg:w-[55%] relative ${feature.imagePosition === 'left' ? 'lg:order-1' : 'lg:order-2'}`}>
                 <img
                   src={feature.image}
                   alt={feature.imageAlt}
@@ -122,8 +122,8 @@ export default function MainFeaturesSection() {
                   }`}
                   loading="lazy"
                 />
-                {/* 吹き出し群 */}
-                <div className={`absolute top-8 space-y-2 z-50 ${
+                {/* 吹き出し群 - デスクトップのみ */}
+                <div className={`absolute top-8 space-y-2 z-50 hidden lg:block ${
                   feature.tooltipPosition === 'left' ? '-left-12' : '-right-12'
                 }`}>
                   {feature.tooltips.map((tooltip, index) => (

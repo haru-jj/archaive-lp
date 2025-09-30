@@ -7,7 +7,7 @@ export default function HeroSection() {
   return (
     <section id="hero" className="transition-all duration-500">
       {/* Hero Main Content */}
-      <div className="relative h-[calc(80vh-64px)] bg-[#37B7C4] overflow-hidden flex items-center justify-center">
+      <div className="relative h-[calc(100vh-64px)] sm:h-[calc(80vh-64px)] bg-[#37B7C4] overflow-hidden flex items-center justify-center">
         {/* Background Layers */}
         <div className="absolute inset-0">
           {/* 背景画像 */}
@@ -17,9 +17,9 @@ export default function HeroSection() {
           />
           {/* メインカラーの半透明オーバーレイ */}
           <div className="absolute inset-0 bg-[#2A8B96]/40 z-[1]" />
-          {/* 白い台形エリア */}
+          {/* 白い台形エリア - デスクトップのみ */}
           <div 
-            className="absolute inset-0 bg-white z-[2]"
+            className="absolute inset-0 bg-white z-[2] hidden lg:block"
             style={{
               clipPath: 'polygon(60% 0%, 100% 0%, 100% 100%, 80% 100%)'
             }}
@@ -39,10 +39,10 @@ export default function HeroSection() {
               
               {/* Subheadline */}
               <div className="mb-10 space-y-4">
-                <p className="text-xl md:text-2xl text-white font-semibold leading-[1.5]">
+                <p className="text-sm md:text-xl lg:text-2xl text-white font-semibold leading-[1.5]">
                   AIにより、「誰でも」「早く」「正確な」見積りを実現。
                 </p>
-                <p className="text-base md:text-lg text-white/90 font-semibold leading-[1.5]">
+                <p className="text-sm md:text-base lg:text-lg text-white/90 font-semibold leading-[1.5]">
                   眠るデータを"資産"へ。製造業DXの新常識、はじまる。
                 </p>
               </div>

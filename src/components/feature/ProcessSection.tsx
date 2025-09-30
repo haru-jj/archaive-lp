@@ -138,15 +138,6 @@ export default function ProcessSection() {
               </>
             ))}
           </div>
-
-          {/* モバイル用の縦矢印 */}
-          <div className="md:hidden space-y-4">
-            {steps.slice(0, -1).map((_, index) => (
-              <div key={index} className="flex justify-center">
-                <ChevronDown className="w-8 h-8 text-[#37B7C4]" />
-              </div>
-            ))}
-          </div>
         </div>
 
         {/* ARCHAIVEアプローチ - 他セクションと統一 */}

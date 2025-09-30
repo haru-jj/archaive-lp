@@ -3,7 +3,7 @@
 import {
   HeroSection,
   // ArchaiveIntroSection,
-  ArchaiveIntroSection2,
+  ArchaiveIntroSection,
   BeforeAfterSection,
   MainFeaturesSection,
   SubFeaturesSection,
@@ -27,7 +27,7 @@ export default function Home() {
       <main className="pt-20">
         <HeroSection />
         {/* <ArchaiveIntroSection /> */}
-        <ArchaiveIntroSection2 />
+        <ArchaiveIntroSection />
         <BeforeAfterSection />
         <MainFeaturesSection />
         <SubFeaturesSection />

@@ -85,7 +85,7 @@ export default function SecuritySection() {
       </div>
 
       <div className="container mx-auto max-w-6xl relative z-10">
-        <div className="mb-12 sm:mb-8 ml-60">
+        <div className="mb-12 sm:mb-8 ml-0 lg:ml-60">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2 tracking-tight">
             エンタープライズ水準のセキュリティ
           </h2>

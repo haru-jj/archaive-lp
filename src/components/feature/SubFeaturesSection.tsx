@@ -245,13 +245,13 @@ export default function SubFeaturesSection() {
           </div>
         </div>
 
-        {/* 機能カード - 2行×4列のグリッド */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-10 max-w-7xl mx-auto px-4">
+        {/* 機能カード - レスポンシブグリッド */}
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 xl:gap-10 max-w-7xl mx-auto">
           {subFeatures.map((feature, index) => (
             <div
               key={index}
-              className="bg-gradient-to-br from-gray-50 to-white rounded-2xl border border-gray-300/50 p-8 group relative overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
-              style={{ minHeight: '300px' }}
+              className="bg-gradient-to-br from-gray-50 to-white rounded-2xl border border-gray-300/50 p-3 sm:p-6 lg:p-8 group relative overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
+              style={{ minHeight: '200px' }}
             >
               {/* 段階的ボーダー展開 - 四隅から展開 */}
               <div className="absolute top-0 left-0 w-0 h-0.5 bg-[#37B7C4] group-hover:w-full transition-all duration-300 delay-75 rounded-full"></div>
@@ -278,12 +278,12 @@ export default function SubFeaturesSection() {
                 </div>
 
                 {/* タイトル - 段階的変化 */}
-                <h4 className="text-lg font-bold text-gray-700 mb-2 group-hover:text-[#37B7C4] group-hover:scale-105 transition-all duration-300 delay-150 text-center">
+                <h4 className="text-base sm:text-lg font-bold text-gray-700 mb-2 group-hover:text-[#37B7C4] group-hover:scale-105 transition-all duration-300 delay-150 text-center">
                   {feature.title}
                 </h4>
 
                 {/* サブタイトル - 遅延変化 */}
-                <p className="text-sm text-gray-500 leading-relaxed text-center px-2 group-hover:text-gray-700 transition-all duration-300 delay-200">
+                <p className="text-xs sm:text-sm text-gray-500 leading-relaxed text-center px-1 sm:px-2 group-hover:text-gray-700 transition-all duration-300 delay-200">
                   {feature.subtitle}
                 </p>
               </div>

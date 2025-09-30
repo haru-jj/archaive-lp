@@ -142,31 +142,73 @@ export default function AmcCase() {
       <style jsx>{`
         .interview-section {
           background-color: #37B7C4;
-          padding: 60px 20px 40px;
+          padding: 40px 20px 30px;
           text-align: center;
         }
 
+        @media (min-width: 640px) {
+          .interview-section {
+            padding: 60px 20px 40px;
+          }
+        }
+
         .interview-header h1 {
-          font-size: 48px;
+          font-size: 32px;
           color: white;
           margin: 0;
         }
 
+        @media (min-width: 640px) {
+          .interview-header h1 {
+            font-size: 40px;
+          }
+        }
+
+        @media (min-width: 1024px) {
+          .interview-header h1 {
+            font-size: 48px;
+          }
+        }
+
         .interview-header h2 {
-          font-size: 24px;
+          font-size: 18px;
           color: white;
           margin: 0;
+        }
+
+        @media (min-width: 640px) {
+          .interview-header h2 {
+            font-size: 20px;
+          }
+        }
+
+        @media (min-width: 1024px) {
+          .interview-header h2 {
+            font-size: 24px;
+          }
         }
 
         .interview-content-wrapper {
           background-color: #37B7C4;
           margin: 0;
-          padding: 40px 20px 60px;
+          padding: 20px 10px 40px;
+        }
+
+        @media (min-width: 640px) {
+          .interview-content-wrapper {
+            padding: 30px 20px 50px;
+          }
+        }
+
+        @media (min-width: 1024px) {
+          .interview-content-wrapper {
+            padding: 40px 20px 60px;
+          }
         }
 
         .interview-content {
           background-color: white;
-          padding: 60px 80px;
+          padding: 30px 20px;
           text-align: left;
           max-width: 1200px;
           margin: 0 auto;
@@ -174,17 +216,60 @@ export default function AmcCase() {
           box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
+        @media (min-width: 640px) {
+          .interview-content {
+            padding: 40px 30px;
+          }
+        }
+
+        @media (min-width: 768px) {
+          .interview-content {
+            padding: 50px 40px;
+          }
+        }
+
+        @media (min-width: 1024px) {
+          .interview-content {
+            padding: 60px 80px;
+          }
+        }
+
         .interview-content h3 {
-          font-size: 20px;
+          font-size: 16px;
           font-weight: bold;
           margin: 0 0 10px;
           text-align: center;
+          line-height: 1.4;
+        }
+
+        @media (min-width: 640px) {
+          .interview-content h3 {
+            font-size: 18px;
+          }
+        }
+
+        @media (min-width: 1024px) {
+          .interview-content h3 {
+            font-size: 20px;
+          }
         }
 
         .interview-content hr {
           border: none;
           border-top: 1px solid #333;
-          margin: 30px 0;
+          margin: 20px 0;
+        }
+
+        @media (min-width: 640px) {
+          .interview-content hr {
+            margin: 25px 0;
+          }
+        }
+
+        @media (min-width: 1024px) {
+          .interview-content hr {
+            margin: 30px 0;
+          }
         }
 
         .interview-content img {
@@ -194,39 +279,122 @@ export default function AmcCase() {
         }
 
         .interview-content p {
-          font-size: 16px;
+          font-size: 14px;
           color: #333;
-          margin: 15px 0;
-          line-height: 1.8;
+          margin: 12px 0;
+          line-height: 1.7;
+        }
+
+        @media (min-width: 640px) {
+          .interview-content p {
+            font-size: 15px;
+            margin: 14px 0;
+            line-height: 1.8;
+          }
+        }
+
+        @media (min-width: 1024px) {
+          .interview-content p {
+            font-size: 16px;
+            margin: 15px 0;
+          }
         }
 
         .interview-question {
           color: #37B7C4;
-          margin-top: 30px;
+          margin-top: 20px;
+        }
+
+        @media (min-width: 640px) {
+          .interview-question {
+            margin-top: 25px;
+          }
+        }
+
+        @media (min-width: 1024px) {
+          .interview-question {
+            margin-top: 30px;
+          }
         }
 
         .section-title {
-          font-size: 18px;
+          font-size: 16px;
           font-weight: bold;
           color: #333;
           text-align: center;
-          margin: 80px 0 20px;
+          margin: 60px 0 15px;
+        }
+
+        @media (min-width: 640px) {
+          .section-title {
+            font-size: 17px;
+            margin: 70px 0 18px;
+          }
+        }
+
+        @media (min-width: 1024px) {
+          .section-title {
+            font-size: 18px;
+            margin: 80px 0 20px;
+          }
         }
 
         .company-info {
-          margin-top: 60px;
-          padding: 20px;
+          margin-top: 40px;
+          padding: 15px;
           background-color: #f9f9f9;
           border-radius: 8px;
         }
 
+        @media (min-width: 640px) {
+          .company-info {
+            margin-top: 50px;
+            padding: 18px;
+          }
+        }
+
+        @media (min-width: 1024px) {
+          .company-info {
+            margin-top: 60px;
+            padding: 20px;
+          }
+        }
+
         .company-info h3 {
-          font-size: 18px;
-          margin-bottom: 10px;
+          font-size: 16px;
+          margin-bottom: 8px;
+        }
+
+        @media (min-width: 640px) {
+          .company-info h3 {
+            font-size: 17px;
+            margin-bottom: 9px;
+          }
+        }
+
+        @media (min-width: 1024px) {
+          .company-info h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+          }
         }
 
         .company-info p {
-          margin: 5px 0;
+          margin: 4px 0;
+          font-size: 14px;
+        }
+
+        @media (min-width: 640px) {
+          .company-info p {
+            margin: 5px 0;
+            font-size: 15px;
+          }
+        }
+
+        @media (min-width: 1024px) {
+          .company-info p {
+            font-size: 16px;
+          }
         }
 
         .company-info a {

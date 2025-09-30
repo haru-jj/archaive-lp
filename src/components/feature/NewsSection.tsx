@@ -92,41 +92,44 @@ export default function NewsSection() {
               <a
                 key={index}
                 href={item.link}
-                className="block border-b border-gray-200/50 last:border-b-0 py-6 hover:bg-[#37B7C4]/5 transition-all duration-300 px-6 group relative overflow-hidden"
+                className="block border-b border-gray-200/50 last:border-b-0 py-4 sm:py-6 hover:bg-[#37B7C4]/5 transition-all duration-300 px-4 sm:px-6 group relative overflow-hidden"
               >
                 {/* ホバー時の装飾 */}
                 <div className="absolute left-0 top-0 h-full w-1 bg-[#37B7C4] transform scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-top"></div>
 
                 <div className="news-item relative z-10">
-                  {/* 日付、タグ、タイトルを1列に */}
-                  <div className="flex items-center gap-6">
-                    {/* 日付 */}
-                    <div className="font-bold text-gray-800 flex-shrink-0 relative">
-                      <div className="bg-[#37B7C4]/10 rounded-lg px-3 py-2 group-hover:bg-[#37B7C4]/20 transition-colors">
-                        {item.date}
+                  {/* レスポンシブレイアウト */}
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
+                    {/* 日付とタグ（スマホでは上部に横並び） */}
+                    <div className="flex items-center gap-3 sm:gap-6 flex-shrink-0">
+                      {/* 日付 */}
+                      <div className="font-bold text-gray-800 flex-shrink-0 relative">
+                        <div className="bg-[#37B7C4]/10 rounded-lg px-2 py-1 sm:px-3 sm:py-2 group-hover:bg-[#37B7C4]/20 transition-colors text-xs sm:text-sm">
+                          {item.date}
+                        </div>
+                      </div>
+
+                      {/* タグ */}
+                      <div className="flex gap-2 flex-shrink-0">
+                        {item.tags.map((tag, tagIndex) => (
+                          <span
+                            key={tagIndex}
+                            className={`inline-block px-2 py-1 sm:px-4 sm:py-2 rounded-full text-white text-xs min-w-[80px] sm:min-w-[120px] text-center ${getTagColor(tag.type)} shadow-sm group-hover:shadow-md transition-shadow relative overflow-hidden whitespace-nowrap`}
+                          >
+                            {/* タグ内装飾 */}
+                            <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                            <span className="relative z-10">{tag.label}</span>
+                          </span>
+                        ))}
                       </div>
                     </div>
 
-                    {/* タグ */}
-                    <div className="flex gap-2 flex-shrink-0">
-                      {item.tags.map((tag, tagIndex) => (
-                        <span
-                          key={tagIndex}
-                          className={`inline-block px-4 py-2 rounded-full text-white text-xs w-32 text-center ${getTagColor(tag.type)} shadow-sm group-hover:shadow-md transition-shadow relative overflow-hidden`}
-                        >
-                          {/* タグ内装飾 */}
-                          <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                          <span className="relative z-10">{tag.label}</span>
-                        </span>
-                      ))}
-                    </div>
-
                     {/* コンテンツ（タイトル） */}
-                    <div className="text-lg font-bold text-gray-700 group-hover:text-[#37B7C4] transition-colors flex-1 relative">
+                    <div className="text-sm sm:text-lg font-bold text-gray-700 group-hover:text-[#37B7C4] transition-colors flex-1 relative">
                       {item.content}
 
                       {/* 矢印アイコン */}
-                      <svg className="inline-block ml-2 w-5 h-5 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="inline-block ml-2 w-4 h-4 sm:w-5 sm:h-5 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
                     </div>
@@ -137,10 +140,10 @@ export default function NewsSection() {
           </div>
 
           {/* もっと見るボタン */}
-          <div className="text-center mt-12">
+          <div className="text-center mt-8 sm:mt-12">
             <a
               href="/news"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-white border-2 border-[#37B7C4] text-[#37B7C4] rounded-xl font-bold hover:bg-[#37B7C4] hover:text-white btn-hover group relative overflow-hidden"
+              className="inline-flex items-center gap-2 px-6 py-3 sm:px-8 sm:py-4 bg-white border-2 border-[#37B7C4] text-[#37B7C4] rounded-xl font-bold hover:bg-[#37B7C4] hover:text-white btn-hover group relative overflow-hidden text-sm sm:text-base"
             >
               {/* ボタン内装飾 */}
               <div className="absolute inset-0 bg-gradient-to-r from-[#37B7C4]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>

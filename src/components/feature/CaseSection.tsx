@@ -164,7 +164,7 @@ export default function CaseSection() {
                   
                   {/* コンテンツ */}
                   <div className="px-2">
-                    <p className="text-base font-bold text-[#333333] leading-relaxed min-h-[3rem] flex items-center">
+                    <p className="text-sm font-bold text-[#333333] leading-relaxed min-h-[4rem] flex items-center">
                       {caseItem.title}
                     </p>
                   </div>
