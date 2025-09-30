@@ -14,42 +14,36 @@ export default function LPNewApply() {
     phone: '',
     employeeCount: '',
     purpose: '',
-    message: '',
-    privacyPolicy: false
+    message: ''
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value, type } = e.target;
-    if (type === 'checkbox') {
-      const target = e.target as HTMLInputElement;
-      setFormData(prev => ({ ...prev, [name]: target.checked }));
-    } else {
-      setFormData(prev => ({ ...prev, [name]: value }));
-    }
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitMessage, setSubmitMessage] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
     setIsSubmitting(true);
-    setSubmitMessage('');
-    
+
     try {
       const response = await fetch('/api/submit-form', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          formType: 'apply'
+        }),
       });
-      
+
       const result = await response.json();
-      
-      if (response.ok) {
-        setSubmitMessage('お申し込みありがとうございます。担当者より連絡させていただきます。');
+
+      if (result.success) {
+        alert(result.message);
         // フォームをリセット
         setFormData({
           companyName: '',
@@ -60,15 +54,14 @@ export default function LPNewApply() {
           phone: '',
           employeeCount: '',
           purpose: '',
-          message: '',
-          privacyPolicy: false
+          message: ''
         });
       } else {
-        setSubmitMessage('エラーが発生しました。もう一度お試しください。');
+        alert(result.error || 'エラーが発生しました');
       }
     } catch (error) {
-      console.error('送信エラー:', error);
-      setSubmitMessage('通信エラーが発生しました。しばらくしてからお試しください。');
+      console.error('Form submission error:', error);
+      alert('送信に失敗しました。しばらく経ってから再度お試しください。');
     } finally {
       setIsSubmitting(false);
     }
@@ -159,14 +152,28 @@ export default function LPNewApply() {
               <label className="block text-gray-700 font-semibold mb-2">
                 役職
               </label>
-              <input
-                type="text"
-                name="position"
-                value={formData.position}
-                onChange={handleInputChange}
-                placeholder="例 | 部長"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#37B7C4] focus:border-transparent"
-              />
+              <div className="relative">
+                <select
+                  name="position"
+                  value={formData.position}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#37B7C4] focus:border-transparent appearance-none bg-white"
+                >
+                  <option value="">選択してください</option>
+                  <option value="取締役">取締役</option>
+                  <option value="執行役員">執行役員</option>
+                  <option value="部門長">部門長</option>
+                  <option value="課長">課長</option>
+                  <option value="リーダー/主任">リーダー/主任</option>
+                  <option value="一般社員">一般社員</option>
+                  <option value="その他">その他</option>
+                </select>
+                <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                  <svg className="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg>
+                </div>
+              </div>
             </div>
 
             {/* Email */}
@@ -238,27 +245,15 @@ export default function LPNewApply() {
                 無料トライアルの目的
                 <span className="text-red-500 ml-1">*</span>
               </label>
-              <div className="relative">
-                <select
-                  name="purpose"
-                  value={formData.purpose}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#37B7C4] focus:border-transparent appearance-none bg-white"
-                  required
-                >
-                  <option value="">選択してください</option>
-                  <option value="知見を深める">ご自身の知見を深めるため</option>
-                  <option value="仕様を知る">仕様を知るため</option>
-                  <option value="課題解決">課題解決に向けた情報収集のため</option>
-                  <option value="比較検討">他社サービスと比較検討するため</option>
-                  <option value="興味">興味があったため</option>
-                </select>
-                <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-                  <svg className="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-                  </svg>
-                </div>
-              </div>
+              <textarea
+                name="purpose"
+                value={formData.purpose}
+                onChange={handleInputChange}
+                placeholder="無料トライアルを申し込む目的や背景をご記入ください"
+                rows={4}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#37B7C4] focus:border-transparent resize-none"
+                required
+              />
             </div>
 
             {/* ご質問・ご要望 */}
@@ -276,49 +271,23 @@ export default function LPNewApply() {
               />
             </div>
 
-            {/* プライバシーポリシー */}
-            <div className="mb-8">
-              <label className="flex items-center">
-                <input
-                  type="checkbox"
-                  name="privacyPolicy"
-                  checked={formData.privacyPolicy}
-                  onChange={handleInputChange}
-                  className="mr-3 w-5 h-5 text-[#37B7C4] border-gray-300 rounded focus:ring-[#37B7C4]"
-                  required
-                />
-                <span className="text-sm text-gray-700">
-                  <Link href="/privacy-policy" className="text-[#37B7C4] hover:underline">
-                    プライバシーポリシー
-                  </Link>
-                  を確認しました。
-                  <span className="text-red-500 ml-1">*</span>
-                </span>
-              </label>
-            </div>
-
-            {/* エラー・成功メッセージ */}
-            {submitMessage && (
-              <div className={`p-4 rounded-lg mb-4 ${
-                submitMessage.includes('ありがとうございます') 
-                  ? 'bg-green-100 text-green-700 border border-green-400' 
-                  : 'bg-red-100 text-red-700 border border-red-400'
-              }`}>
-                {submitMessage}
-              </div>
-            )}
-
             {/* 送信ボタン */}
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`w-full font-bold py-4 px-6 rounded-lg transition-all duration-200 text-lg shadow-lg transform ${
-                isSubmitting 
-                  ? 'bg-gray-400 cursor-not-allowed' 
-                  : 'bg-[#37B7C4] hover:bg-[#2a9aa5] hover:shadow-xl hover:-translate-y-0.5'
-              } text-white`}
+              className="w-full font-bold py-4 px-6 rounded-lg transition-all duration-200 text-lg shadow-lg transform bg-[#37B7C4] hover:bg-[#2a9aa5] hover:shadow-xl hover:-translate-y-0.5 text-white disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2"
             >
-              {isSubmitting ? '送信中...' : '送信する'}
+              {isSubmitting ? (
+                <>
+                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="m4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  送信中...
+                </>
+              ) : (
+                '送信する'
+              )}
             </button>
           </form>
 

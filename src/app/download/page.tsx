@@ -7,68 +7,62 @@ import { Header, Footer } from '@/components/layout';
 export default function DownloadPage() {
   const [formData, setFormData] = useState({
     companyName: '',
-    name: '',
+    lastName: '',
+    firstName: '',
     department: '',
     position: '',
     email: '',
     phone: '',
-    employeeCount: '',
-    purpose: '',
-    message: '',
-    privacyPolicy: false
+    inquiryContent: '',
+    inquiryDetails: ''
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value, type } = e.target;
-    if (type === 'checkbox') {
-      const target = e.target as HTMLInputElement;
-      setFormData(prev => ({ ...prev, [name]: target.checked }));
-    } else {
-      setFormData(prev => ({ ...prev, [name]: value }));
-    }
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitMessage, setSubmitMessage] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
     setIsSubmitting(true);
-    setSubmitMessage('');
-    
+
     try {
       const response = await fetch('/api/submit-form', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({...formData, formType: 'download'}),
+        body: JSON.stringify({
+          ...formData,
+          formType: 'download'
+        }),
       });
-      
+
       const result = await response.json();
-      
-      if (response.ok) {
-        setSubmitMessage('資料のダウンロードリンクをメールでお送りします。');
+
+      if (result.success) {
+        alert(result.message);
         // フォームをリセット
         setFormData({
           companyName: '',
-          name: '',
+          lastName: '',
+          firstName: '',
           department: '',
           position: '',
           email: '',
           phone: '',
-          employeeCount: '',
-          purpose: '',
-          message: '',
-          privacyPolicy: false
+          inquiryContent: '',
+          inquiryDetails: ''
         });
       } else {
-        setSubmitMessage('エラーが発生しました。もう一度お試しください。');
+        alert(result.error || 'エラーが発生しました');
       }
     } catch (error) {
-      console.error('送信エラー:', error);
-      setSubmitMessage('通信エラーが発生しました。しばらくしてからお試しください。');
+      console.error('Form submission error:', error);
+      alert('送信に失敗しました。しばらく経ってから再度お試しください。');
     } finally {
       setIsSubmitting(false);
     }
@@ -110,7 +104,8 @@ export default function DownloadPage() {
                 資料ダウンロードフォーム
               </h2>
               <p className="text-gray-600">
-                以下の項目をご入力ください。資料をすぐにダウンロードいただけます。
+                資料の送付先とマーケティング調査の一環として、会社名・部署名・役職のご回答をお願いいたします<br />
+                <span className="text-red-500">*</span>は必須
               </p>
             </div>
 
@@ -131,27 +126,48 @@ export default function DownloadPage() {
               />
             </div>
 
-            {/* 氏名 */}
-            <div className="mb-6">
-              <label className="block text-gray-700 font-semibold mb-2">
-                氏名
-                <span className="text-red-500 ml-1">*</span>
-              </label>
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                placeholder="例 | 山田太郎"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#37B7C4] focus:border-transparent"
-                required
-              />
+            {/* 姓名 */}
+            <div className="mb-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* 姓 */}
+              <div>
+                <label className="block text-gray-700 font-semibold mb-2">
+                  姓
+                  <span className="text-red-500 ml-1">*</span>
+                </label>
+                <input
+                  type="text"
+                  name="lastName"
+                  value={formData.lastName}
+                  onChange={handleInputChange}
+                  placeholder="例 | 山田"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#37B7C4] focus:border-transparent"
+                  required
+                />
+              </div>
+
+              {/* 名 */}
+              <div>
+                <label className="block text-gray-700 font-semibold mb-2">
+                  名
+                  <span className="text-red-500 ml-1">*</span>
+                </label>
+                <input
+                  type="text"
+                  name="firstName"
+                  value={formData.firstName}
+                  onChange={handleInputChange}
+                  placeholder="例 | 太郎"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#37B7C4] focus:border-transparent"
+                  required
+                />
+              </div>
             </div>
 
             {/* 部署 */}
             <div className="mb-6">
               <label className="block text-gray-700 font-semibold mb-2">
                 部署
+                <span className="text-red-500 ml-1">*</span>
               </label>
               <input
                 type="text"
@@ -160,89 +176,94 @@ export default function DownloadPage() {
                 onChange={handleInputChange}
                 placeholder="例 | 図面管理部"
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#37B7C4] focus:border-transparent"
-              />
-            </div>
-
-            {/* Email */}
-            <div className="mb-6">
-              <label className="block text-gray-700 font-semibold mb-2">
-                Email
-                <span className="text-red-500 ml-1">*</span>
-              </label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                placeholder="例 | example@starup01.jp"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#37B7C4] focus:border-transparent"
                 required
               />
-              <p className="text-xs text-gray-500 mt-1">資料のダウンロードリンクをお送りします</p>
             </div>
 
-            {/* 電話番号 */}
+            {/* 役職 */}
             <div className="mb-6">
               <label className="block text-gray-700 font-semibold mb-2">
-                電話番号
-              </label>
-              <input
-                type="tel"
-                name="phone"
-                value={formData.phone}
-                onChange={handleInputChange}
-                placeholder="例 | 03-1234-5678"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#37B7C4] focus:border-transparent"
-              />
-            </div>
-
-            {/* 従業員数 */}
-            <div className="mb-6">
-              <label className="block text-gray-700 font-semibold mb-2">
-                従業員数
-                <span className="text-red-500 ml-1">*</span>
+                役職
               </label>
               <div className="relative">
                 <select
-                  name="employeeCount"
-                  value={formData.employeeCount}
+                  name="position"
+                  value={formData.position}
                   onChange={handleInputChange}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#37B7C4] focus:border-transparent appearance-none bg-white"
+                >
+                  <option value="">選択してください</option>
+                  <option value="取締役">取締役</option>
+                  <option value="執行役員">執行役員</option>
+                  <option value="部門長">部門長</option>
+                  <option value="課長">課長</option>
+                  <option value="リーダー/主任">リーダー/主任</option>
+                  <option value="一般社員">一般社員</option>
+                  <option value="その他">その他</option>
+                </select>
+                <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                  <svg className="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            {/* Eメール・電話番号 */}
+            <div className="mb-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Eメール */}
+              <div>
+                <label className="block text-gray-700 font-semibold mb-2">
+                  Eメール
+                  <span className="text-red-500 ml-1">*</span>
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  placeholder="例 | example@starup01.jp"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#37B7C4] focus:border-transparent"
                   required
-                >
-                  <option value="">選択してください</option>
-                  <option value="1-5">1名以上 - 5名以下</option>
-                  <option value="6-20">6名以上 - 20名以下</option>
-                  <option value="21-50">21名以上 - 50名以下</option>
-                  <option value="51-100">51名以上 - 100名以下</option>
-                  <option value="101+">101名以上</option>
-                </select>
-                <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-                  <svg className="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-                  </svg>
-                </div>
+                />
+              </div>
+
+              {/* 電話番号 */}
+              <div>
+                <label className="block text-gray-700 font-semibold mb-2">
+                  電話番号
+                  <span className="text-red-500 ml-1">*</span>
+                </label>
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  placeholder="例 | 03-1234-5678"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#37B7C4] focus:border-transparent"
+                  required
+                />
               </div>
             </div>
 
-            {/* 資料ダウンロードの目的 */}
+            {/* お問合わせ内容 */}
             <div className="mb-6">
               <label className="block text-gray-700 font-semibold mb-2">
-                資料ダウンロードの目的
+                お問合わせ内容
               </label>
               <div className="relative">
                 <select
-                  name="purpose"
-                  value={formData.purpose}
+                  name="inquiryContent"
+                  value={formData.inquiryContent}
                   onChange={handleInputChange}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#37B7C4] focus:border-transparent appearance-none bg-white"
                 >
                   <option value="">選択してください</option>
-                  <option value="知見を深める">ご自身の知見を深めるため</option>
-                  <option value="仕様を知る">仕様を知るため</option>
-                  <option value="課題解決">課題解決に向けた情報収集のため</option>
-                  <option value="比較検討">他社サービスと比較検討するため</option>
-                  <option value="興味">興味があったため</option>
+                  <option value="機能について">機能について</option>
+                  <option value="導入について">導入について</option>
+                  <option value="料金について">料金について</option>
+                  <option value="お客様へのご提案について">お客様へのご提案について</option>
+                  <option value="その他">その他</option>
                 </select>
                 <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
                   <svg className="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
@@ -252,65 +273,35 @@ export default function DownloadPage() {
               </div>
             </div>
 
-            {/* ご質問・ご要望 */}
+            {/* お問い合わせ内容詳細 */}
             <div className="mb-6">
               <label className="block text-gray-700 font-semibold mb-2">
-                ご質問・ご要望
+                お問い合わせ内容詳細
               </label>
               <textarea
-                name="message"
-                value={formData.message}
+                name="inquiryDetails"
+                value={formData.inquiryDetails}
                 onChange={handleInputChange}
-                placeholder="その他お問い合わせ内容がございましたらご記入ください"
+                placeholder="詳細なお問い合わせ内容がございましたらご記入ください"
                 rows={4}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#37B7C4] focus:border-transparent resize-none"
               />
             </div>
 
-            {/* プライバシーポリシー */}
-            <div className="mb-8">
-              <label className="flex items-center">
-                <input
-                  type="checkbox"
-                  name="privacyPolicy"
-                  checked={formData.privacyPolicy}
-                  onChange={handleInputChange}
-                  className="mr-3 w-5 h-5 text-[#37B7C4] border-gray-300 rounded focus:ring-[#37B7C4]"
-                  required
-                />
-                <span className="text-sm text-gray-700">
-                  <Link href="/privacy-policy" className="text-[#37B7C4] hover:underline">
-                    プライバシーポリシー
-                  </Link>
-                  を確認し、同意しました。
-                  <span className="text-red-500 ml-1">*</span>
-                </span>
-              </label>
-            </div>
-
-            {/* エラー・成功メッセージ */}
-            {submitMessage && (
-              <div className={`p-4 rounded-lg mb-4 ${
-                submitMessage.includes('送ります') 
-                  ? 'bg-green-100 text-green-700 border border-green-400' 
-                  : 'bg-red-100 text-red-700 border border-red-400'
-              }`}>
-                {submitMessage}
-              </div>
-            )}
-
             {/* ダウンロードボタン */}
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`w-full font-bold py-4 px-6 rounded-lg transition-all duration-300 text-lg shadow-lg transform flex items-center justify-center gap-2 ${
-                isSubmitting 
-                  ? 'bg-gray-400 cursor-not-allowed' 
-                  : 'bg-gradient-to-r from-[#37B7C4] to-[#2a9aa5] hover:from-[#2a9aa5] hover:to-[#37B7C4] hover:shadow-xl hover:-translate-y-0.5'
-              } text-white`}
+              className="w-full font-bold py-4 px-6 rounded-lg transition-all duration-300 text-lg shadow-lg transform flex items-center justify-center gap-2 bg-gradient-to-r from-[#37B7C4] to-[#2a9aa5] hover:from-[#2a9aa5] hover:to-[#37B7C4] hover:shadow-xl hover:-translate-y-0.5 text-white disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
             >
               {isSubmitting ? (
-                '送信中...'
+                <>
+                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="m4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  送信中...
+                </>
               ) : (
                 <>
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
