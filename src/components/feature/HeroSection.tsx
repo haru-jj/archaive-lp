@@ -73,7 +73,7 @@ export default function HeroSection() {
             {/* Right Content - Product Image */}
             <div className="hidden lg:block">
               <img
-                src="/images/image2.png"
+                src="/lp/HeroPicture.png"
                 alt="ARCHAIVEのAI見積システムのダッシュボード画面。図面検索と見積作成機能を表示"
                 className="w-4/5 h-auto rounded-xl shadow-2xl"
                 loading="lazy"
