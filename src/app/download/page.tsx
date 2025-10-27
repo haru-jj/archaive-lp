@@ -7,8 +7,7 @@ import { Header, Footer } from '@/components/layout';
 export default function DownloadPage() {
   const [formData, setFormData] = useState({
     companyName: '',
-    lastName: '',
-    firstName: '',
+    name: '',
     department: '',
     position: '',
     email: '',
@@ -48,8 +47,7 @@ export default function DownloadPage() {
         // フォームをリセット
         setFormData({
           companyName: '',
-          lastName: '',
-          firstName: '',
+          name: '',
           department: '',
           position: '',
           email: '',
@@ -88,27 +86,17 @@ export default function DownloadPage() {
         
         <div className="container mx-auto px-4 max-w-3xl py-8 sm:py-12 relative">
           {/* 背景画像 - フォームの後ろに配置 */}
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none hidden sm:block" style={{ zIndex: 1 }}>
+          <div className="absolute inset-0 pointer-events-none hidden sm:block overflow-hidden" style={{ zIndex: 1 }}>
             <img 
               src="/images/sub_ui.png" 
               alt="" 
-              className="opacity-60 blur-sm"
-              style={{ width: '80vw', maxWidth: '80vw', height: 'auto' }}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-60 blur-sm max-w-none"
+              style={{ width: '175%', minWidth: '980px', height: 'auto' }}
             />
           </div>
           
           {/* フォーム */}
           <form onSubmit={handleSubmit} className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-200 p-4 sm:p-6 lg:p-8 xl:p-12 relative z-10">
-            <div className="text-center mb-6 sm:mb-8">
-              <h2 className="text-xl sm:text-2xl font-bold text-[#333333] mb-2">
-                資料ダウンロードフォーム
-              </h2>
-              <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-                資料の送付先とマーケティング調査の一環として、会社名・部署名・役職のご回答をお願いいたします<br className="hidden sm:block" />
-                <span className="text-red-500">*</span>は必須
-              </p>
-            </div>
-
             {/* 会社名 */}
             <div className="mb-4 sm:mb-6">
               <label className="block text-gray-700 font-semibold mb-2 text-sm sm:text-base">
@@ -126,41 +114,21 @@ export default function DownloadPage() {
               />
             </div>
 
-            {/* 姓名 */}
-            <div className="mb-4 sm:mb-6 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-              {/* 姓 */}
-              <div>
-                <label className="block text-gray-700 font-semibold mb-2 text-sm sm:text-base">
-                  姓
-                  <span className="text-red-500 ml-1">*</span>
-                </label>
-                <input
-                  type="text"
-                  name="lastName"
-                  value={formData.lastName}
-                  onChange={handleInputChange}
-                  placeholder="例 | 山田"
-                  className="w-full px-3 py-2 sm:px-4 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#37B7C4] focus:border-transparent text-sm sm:text-base"
-                  required
-                />
-              </div>
-
-              {/* 名 */}
-              <div>
-                <label className="block text-gray-700 font-semibold mb-2 text-sm sm:text-base">
-                  名
-                  <span className="text-red-500 ml-1">*</span>
-                </label>
-                <input
-                  type="text"
-                  name="firstName"
-                  value={formData.firstName}
-                  onChange={handleInputChange}
-                  placeholder="例 | 太郎"
-                  className="w-full px-3 py-2 sm:px-4 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#37B7C4] focus:border-transparent text-sm sm:text-base"
-                  required
-                />
-              </div>
+            {/* 氏名 */}
+            <div className="mb-4 sm:mb-6">
+              <label className="block text-gray-700 font-semibold mb-2 text-sm sm:text-base">
+                氏名
+                <span className="text-red-500 ml-1">*</span>
+              </label>
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleInputChange}
+                placeholder="例 | 山田 太郎"
+                className="w-full px-3 py-2 sm:px-4 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#37B7C4] focus:border-transparent text-sm sm:text-base"
+                required
+              />
             </div>
 
             {/* 部署 */}

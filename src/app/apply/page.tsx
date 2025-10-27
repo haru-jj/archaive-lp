@@ -87,12 +87,12 @@ export default function LPNewApply() {
         
         <div className="container mx-auto px-4 max-w-3xl py-8 sm:py-12 relative">
           {/* 背景画像 - フォームの後ろに配置 */}
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none hidden sm:block" style={{ zIndex: 1 }}>
+          <div className="absolute inset-0 pointer-events-none hidden sm:block overflow-hidden" style={{ zIndex: 1 }}>
             <img 
               src="/images/sub_ui.png" 
               alt="" 
-              className="opacity-60 blur-sm"
-              style={{ width: '80vw', maxWidth: '80vw', height: 'auto' }}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-60 blur-sm max-w-none"
+              style={{ width: '175%', minWidth: '980px', height: 'auto' }}
             />
           </div>
           
@@ -176,10 +176,10 @@ export default function LPNewApply() {
               </div>
             </div>
 
-            {/* Email */}
+            {/* Eメール */}
             <div className="mb-4 sm:mb-6">
               <label className="block text-gray-700 font-semibold mb-2 text-sm sm:text-base">
-                Email
+                Eメール
                 <span className="text-red-500 ml-1">*</span>
               </label>
               <input

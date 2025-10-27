@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import { ChevronRight, ChevronDown } from 'lucide-react';
 
 export default function ProcessSection() {
@@ -81,10 +81,9 @@ export default function ProcessSection() {
         <div className="relative">
           <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8">
             {steps.map((step, index) => (
-              <>
+              <Fragment key={step.number}>
                 {/* ステップコンテンツ */}
                 <div
-                  key={index}
                   className={`flex flex-col items-start transform transition-all duration-700 ${
                     visibleSteps.includes(index)
                       ? 'translate-x-0 opacity-100'
@@ -135,7 +134,7 @@ export default function ProcessSection() {
                     <ChevronRight className="w-8 h-8 text-[#37B7C4]" />
                   </div>
                 )}
-              </>
+              </Fragment>
             ))}
           </div>
         </div>
