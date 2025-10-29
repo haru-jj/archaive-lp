@@ -1,17 +1,108 @@
-'use client';
-
 import { Header, Footer } from '@/components/layout';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
+import type { Metadata } from 'next';
+
+const article = {
+  title:
+    '業界初、「探す」から「話す」へ。ARCHAIVE、製造業AIエージェント「チャット型データ検索機能」をリリース',
+  description:
+    'ARCHAIVEが社内データを会話形式で活用できる製造業向けAIエージェントをリリース。図面検索や見積作成を対話で実現し、属人化を解消します。',
+  url: 'https://archaive.jp/news/ai-agent-release',
+  publishDate: '2025-07-28',
+  image: 'https://archaive.jp/news/142139-11-5216d3335c660b5c6b7e0ceaae4f56d0-2068x1160.jpeg',
+};
+
+export const metadata: Metadata = {
+  title: `${article.title}｜ARCHAIVEニュース`,
+  description: article.description,
+  keywords: ['AIエージェント', 'チャット型検索', '製造業DX', 'ARCHAIVEニュース'],
+  alternates: {
+    canonical: article.url,
+  },
+  openGraph: {
+    title: article.title,
+    description: article.description,
+    url: article.url,
+    type: 'article',
+    publishedTime: `${article.publishDate}T00:00:00+09:00`,
+    images: [
+      {
+        url: article.image,
+        width: 2068,
+        height: 1160,
+        alt: 'AIエージェント機能のリリース告知',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: article.title,
+    description: article.description,
+    images: [article.image],
+  },
+};
 
 export default function AiAgentReleaseNews() {
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'NewsArticle',
+    headline: article.title,
+    description: article.description,
+    datePublished: `${article.publishDate}T00:00:00+09:00`,
+    dateModified: `${article.publishDate}T00:00:00+09:00`,
+    mainEntityOfPage: article.url,
+    image: [article.image],
+    author: {
+      '@type': 'Organization',
+      name: 'ARCHAIVE',
+      url: 'https://archaive.jp/',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'ARCHAIVE',
+      url: 'https://archaive.jp/',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://archaive.jp/images/og-image.png',
+      },
+    },
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'トップ',
+        item: 'https://archaive.jp/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'お知らせ',
+        item: 'https://archaive.jp/news',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: article.title,
+        item: article.url,
+      },
+    ],
+  };
+
   return (
     <div className="font-noto-sans-jp">
       <Header />
       <main className="pt-20">
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
         {/* News Header */}
         <div className="bg-[#37B7C4] text-white text-center py-12">
-          <h1 className="m-0 text-5xl font-bold">NEWS</h1>
+          <p className="m-0 text-5xl font-bold">NEWS</p>
           <p className="m-0 text-2xl">お知らせ</p>
         </div>
 
@@ -19,14 +110,16 @@ export default function AiAgentReleaseNews() {
         <div className="bg-[#f4f4f4] py-20 flex justify-center min-h-screen">
           <div className="w-[70%] max-w-none mx-auto">
             <p className="text-[#888] text-sm mb-6">2025/7/28</p>
-            <h2 className="text-2xl mt-6 mb-12 font-bold">業界初、「探す」から「話す」へ。ARCHAIVE、製造業AIエージェント「チャット型データ検索機能」をリリース</h2>
+            <h1 className="text-2xl mt-6 mb-12 font-bold">
+              業界初、「探す」から「話す」へ。ARCHAIVE、製造業AIエージェント「チャット型データ検索機能」をリリース
+            </h1>
             <div className="bg-white p-12 shadow-lg rounded-lg h-fit">
             <div className="news-article">
               {/* AIエージェント機能の画像 */}
               <div className="text-center my-8">
                 <img 
                   src="/news/142139-11-5216d3335c660b5c6b7e0ceaae4f56d0-2068x1160.jpeg" 
-                  alt="AIエージェント機能のリリース" 
+                  alt="ARCHAIVEのAIエージェント機能のリリースイメージ" 
                   className="w-full h-auto rounded-lg shadow-md"
                 />
               </div>

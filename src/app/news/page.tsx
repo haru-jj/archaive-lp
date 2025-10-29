@@ -1,7 +1,27 @@
-'use client';
-
 import { Header, Footer } from '@/components/layout';
 import Link from 'next/link';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'お知らせ一覧｜ARCHAIVE最新情報',
+  description:
+    'ARCHAIVEのプレスリリースやメディア掲載、イベント情報をまとめた最新ニュース一覧ページです。',
+  keywords: ['ARCHAIVEニュース', 'プレスリリース', '製造業DXニュース', 'AI見積最新情報'],
+  alternates: {
+    canonical: '/news',
+  },
+  openGraph: {
+    title: 'お知らせ一覧｜ARCHAIVE最新情報',
+    description:
+      '製造業DXを支援するARCHAIVEの最新情報を掲載。新機能リリースやメディア掲載をいち早くご確認ください。',
+    url: 'https://archaive.jp/news',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'お知らせ一覧｜ARCHAIVE最新情報',
+    description: 'ARCHAIVEのプレスリリース・イベント・メディア掲載情報を一覧で紹介しています。',
+  },
+};
 
 export default function NewsListPage() {
   const allNewsItems = [
@@ -51,10 +71,30 @@ export default function NewsListPage() {
     return 'bg-[#37B7C4]';
   };
 
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'トップ',
+        item: 'https://archaive.jp/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'お知らせ',
+        item: 'https://archaive.jp/news',
+      },
+    ],
+  };
+
   return (
     <div className="font-noto-sans-jp">
       <Header />
       <main className="pt-20">
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
         <div className="container mx-auto max-w-6xl px-4 py-8 sm:py-16">
           {/* パンくずナビ */}
           <nav className="mb-6 sm:mb-8">

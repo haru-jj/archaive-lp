@@ -1,17 +1,107 @@
-'use client';
-
 import { Header, Footer } from '@/components/layout';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
+import type { Metadata } from 'next';
+
+const article = {
+  title: '製造業のDXを加速するAIプラットフォーム「ARCHAIVE 2.1」を2025年10月1日より提供開始',
+  description:
+    'AI図面解析・見積、顧客管理、カスタムAI開発を統合した「ARCHAIVE 2.1」の提供開始を発表。製造業DXを包括的に支援します。',
+  url: 'https://archaive.jp/news/archaive-2-1-release',
+  publishDate: '2025-09-08',
+  image: 'https://archaive.jp/news/142139-12-db5647717e97f2603463709ff7136c46-1600x900.jpeg',
+};
+
+export const metadata: Metadata = {
+  title: `${article.title}｜ARCHAIVEニュース`,
+  description: article.description,
+  keywords: ['ARCHAIVE 2.1', '製造業DX', 'AIプラットフォーム', 'AI図面解析'],
+  alternates: {
+    canonical: article.url,
+  },
+  openGraph: {
+    title: article.title,
+    description: article.description,
+    url: article.url,
+    type: 'article',
+    publishedTime: `${article.publishDate}T00:00:00+09:00`,
+    images: [
+      {
+        url: article.image,
+        width: 1600,
+        height: 900,
+        alt: 'ARCHAIVE 2.1の機能概要イメージ',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: article.title,
+    description: article.description,
+    images: [article.image],
+  },
+};
 
 export default function Archaive21ReleaseNews() {
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'NewsArticle',
+    headline: article.title,
+    description: article.description,
+    datePublished: `${article.publishDate}T00:00:00+09:00`,
+    dateModified: `${article.publishDate}T00:00:00+09:00`,
+    mainEntityOfPage: article.url,
+    image: [article.image],
+    author: {
+      '@type': 'Organization',
+      name: 'ARCHAIVE',
+      url: 'https://archaive.jp/',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'ARCHAIVE',
+      url: 'https://archaive.jp/',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://archaive.jp/images/og-image.png',
+      },
+    },
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'トップ',
+        item: 'https://archaive.jp/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'お知らせ',
+        item: 'https://archaive.jp/news',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: article.title,
+        item: article.url,
+      },
+    ],
+  };
+
   return (
     <div className="font-noto-sans-jp">
       <Header />
       <main className="pt-20">
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
         {/* News Header */}
         <div className="bg-[#37B7C4] text-white text-center py-8 sm:py-12">
-          <h1 className="m-0 text-3xl sm:text-4xl lg:text-5xl font-bold">NEWS</h1>
+          <p className="m-0 text-3xl sm:text-4xl lg:text-5xl font-bold">NEWS</p>
           <p className="m-0 text-lg sm:text-xl lg:text-2xl">お知らせ</p>
         </div>
 
@@ -19,14 +109,16 @@ export default function Archaive21ReleaseNews() {
         <div className="bg-[#f4f4f4] py-8 sm:py-12 lg:py-20 flex justify-center min-h-screen">
           <div className="w-full sm:w-[90%] lg:w-[80%] xl:w-[70%] max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <p className="text-[#888] text-sm mb-4 sm:mb-6">2025/9/8</p>
-            <h2 className="text-lg sm:text-xl lg:text-2xl mt-4 sm:mt-6 mb-8 sm:mb-12 font-bold leading-relaxed">製造業のDXを加速するAIプラットフォーム「ARCHAIVE 2.1」を2025年10月1日より提供開始</h2>
+            <h1 className="text-lg sm:text-xl lg:text-2xl mt-4 sm:mt-6 mb-8 sm:mb-12 font-bold leading-relaxed">
+              製造業のDXを加速するAIプラットフォーム「ARCHAIVE 2.1」を2025年10月1日より提供開始
+            </h1>
             <div className="bg-white p-4 sm:p-6 lg:p-12 shadow-lg rounded-lg h-fit">
             <div className="news-article">
               {/* 機能詳細画像 */}
               <div className="text-center my-6 sm:my-8">
                 <img 
                   src="/news/142139-12-db5647717e97f2603463709ff7136c46-1600x900.jpeg" 
-                  alt="ARCHAIVE 2.1機能詳細" 
+                  alt="ARCHAIVE 2.1の主要機能を紹介するダッシュボード画面" 
                   className="w-full h-auto rounded-lg shadow-md"
                 />
               </div>
@@ -55,7 +147,7 @@ export default function Archaive21ReleaseNews() {
               <div className="text-center my-6 sm:my-8">
                 <img 
                   src="/news/142139-12-d7188450a70ef6fb74db8c95685ecb31-1600x900.jpg" 
-                  alt="ARCHAIVE 2.1プラットフォーム概要" 
+                  alt="ARCHAIVE 2.1プラットフォーム構成図"
                   className="w-full h-auto rounded-lg shadow-md"
                 />
               </div>

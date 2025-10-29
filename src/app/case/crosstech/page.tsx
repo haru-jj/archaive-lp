@@ -1,32 +1,117 @@
-'use client';
-
 import { Header, Footer } from '@/components/layout';
 import Link from 'next/link';
 import Image from 'next/image';
+import type { Metadata } from 'next';
+
+const caseData = {
+  title: '株式会社クロステック様インタビュー｜ARCHAIVE導入事例',
+  summary:
+    '図面検索と見積業務の効率化に取り組む株式会社クロステック様に、ARCHAIVE導入の背景と効果を伺いました。',
+  url: 'https://archaive.jp/case/crosstech',
+  image: 'https://archaive.jp/images/matsuda.png',
+};
+
+export const metadata: Metadata = {
+  title: caseData.title,
+  description: caseData.summary,
+  keywords: ['導入事例', 'クロステック', '製造業DX', 'ARCHAIVE'],
+  alternates: {
+    canonical: caseData.url,
+  },
+  openGraph: {
+    title: caseData.title,
+    description: caseData.summary,
+    url: caseData.url,
+    type: 'article',
+    images: [
+      {
+        url: caseData.image,
+        width: 1200,
+        height: 630,
+        alt: '株式会社クロステック様インタビューの様子',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: caseData.title,
+    description: caseData.summary,
+    images: [caseData.image],
+  },
+};
 
 export default function CrosstechCase() {
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: caseData.title,
+    description: caseData.summary,
+    mainEntityOfPage: caseData.url,
+    image: [caseData.image],
+    author: {
+      '@type': 'Organization',
+      name: 'ARCHAIVE',
+      url: 'https://archaive.jp/',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'ARCHAIVE',
+      url: 'https://archaive.jp/',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://archaive.jp/images/og-image.png',
+      },
+    },
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'トップ',
+        item: 'https://archaive.jp/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: '導入事例',
+        item: 'https://archaive.jp/case',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: '株式会社クロステック様インタビュー',
+        item: caseData.url,
+      },
+    ],
+  };
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
       
       <main className="pt-20">
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
         {/* インタビューセクション */}
         <div className="interview-section">
           <div className="interview-header">
-            <h1>Interview</h1>
-            <h2>インタビュー</h2>
+            <p className="interview-label-en">Interview</p>
+            <p className="interview-label-ja">インタビュー</p>
           </div>
         </div>
 
         {/* インタビューコンテンツ */}
         <div className="interview-content-wrapper">
           <div className="interview-content">
-            <h3>株式会社クロステック/松田忠明様 ✖️ STAR UP/吉川岳宏</h3>
+            <h1>株式会社クロステック/松田忠明様 ✖️ STAR UP/吉川岳宏</h1>
             <hr />
             <div className="relative w-2/3 h-64 md:h-96 mb-6 mx-auto">
               <Image
                 src="/images/matsuda.png"
-                alt="Interview Image 1"
+                alt="株式会社クロステック松田忠明様のポートレート"
                 fill
                 className="object-cover"
               />
@@ -40,7 +125,7 @@ export default function CrosstechCase() {
             <div className="relative w-2/3 h-64 md:h-96 mb-6 mx-auto">
               <Image
                 src="/images/matsuda_2.jpg"
-                alt="Interview Image 2"
+                alt="クロステックとSTAR UPが協働する様子を写した写真"
                 fill
                 className="object-cover"
               />
@@ -77,7 +162,7 @@ export default function CrosstechCase() {
             <div className="relative w-2/3 h-64 md:h-96 mb-6 mx-auto">
               <Image
                 src="/images/matsuda_3.jpg"
-                alt="Interview Image 3"
+                alt="ARCHAIVE導入前の課題について語る松田様"
                 fill
                 className="object-cover"
               />
@@ -104,7 +189,7 @@ export default function CrosstechCase() {
             <div className="relative w-2/3 h-64 md:h-96 mb-6 mx-auto">
               <Image
                 src="/images/matsuda_4.jpg"
-                alt="Interview Image 4"
+                alt="製造業の未来について語る松田様のインタビューシーン"
                 fill
                 className="object-cover"
               />
@@ -131,7 +216,7 @@ export default function CrosstechCase() {
             <div className="relative w-2/3 h-64 md:h-96 mb-6 mx-auto">
               <Image
                 src="/images/matsuda_5.jpg"
-                alt="Interview Image 5"
+                alt="STAR UPへの期待を語る松田様のインタビューシーン"
                 fill
                 className="object-cover"
               />
@@ -189,38 +274,38 @@ export default function CrosstechCase() {
           }
         }
 
-        .interview-header h1 {
+        .interview-label-en {
           font-size: 32px;
           color: white;
           margin: 0;
         }
 
         @media (min-width: 640px) {
-          .interview-header h1 {
+          .interview-label-en {
             font-size: 40px;
           }
         }
 
         @media (min-width: 1024px) {
-          .interview-header h1 {
+          .interview-label-en {
             font-size: 48px;
           }
         }
 
-        .interview-header h2 {
+        .interview-label-ja {
           font-size: 18px;
           color: white;
           margin: 0;
         }
 
         @media (min-width: 640px) {
-          .interview-header h2 {
+          .interview-label-ja {
             font-size: 20px;
           }
         }
 
         @media (min-width: 1024px) {
-          .interview-header h2 {
+          .interview-label-ja {
             font-size: 24px;
           }
         }

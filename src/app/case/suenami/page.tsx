@@ -1,32 +1,117 @@
-'use client';
-
 import { Header, Footer } from '@/components/layout';
 import Link from 'next/link';
 import Image from 'next/image';
+import type { Metadata } from 'next';
+
+const caseData = {
+  title: 'スエナミ工業株式会社様インタビュー｜ARCHAIVE導入事例',
+  summary:
+    '大量の図面見積業務を効率化したスエナミ工業株式会社様に、ARCHAIVE導入の背景と期待する未来像を伺いました。',
+  url: 'https://archaive.jp/case/suenami',
+  image: 'https://archaive.jp/images/yokoyama_1.png',
+};
+
+export const metadata: Metadata = {
+  title: caseData.title,
+  description: caseData.summary,
+  keywords: ['導入事例', 'スエナミ工業', 'AI見積', 'ARCHAIVE'],
+  alternates: {
+    canonical: caseData.url,
+  },
+  openGraph: {
+    title: caseData.title,
+    description: caseData.summary,
+    url: caseData.url,
+    type: 'article',
+    images: [
+      {
+        url: caseData.image,
+        width: 1200,
+        height: 630,
+        alt: 'スエナミ工業株式会社様インタビューの様子',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: caseData.title,
+    description: caseData.summary,
+    images: [caseData.image],
+  },
+};
 
 export default function SuenamiCase() {
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: caseData.title,
+    description: caseData.summary,
+    mainEntityOfPage: caseData.url,
+    image: [caseData.image],
+    author: {
+      '@type': 'Organization',
+      name: 'ARCHAIVE',
+      url: 'https://archaive.jp/',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'ARCHAIVE',
+      url: 'https://archaive.jp/',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://archaive.jp/images/og-image.png',
+      },
+    },
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'トップ',
+        item: 'https://archaive.jp/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: '導入事例',
+        item: 'https://archaive.jp/case',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: 'スエナミ工業株式会社様インタビュー',
+        item: caseData.url,
+      },
+    ],
+  };
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
       
       <main className="pt-20">
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
         {/* インタビューセクション */}
         <div className="interview-section">
           <div className="interview-header">
-            <h1>Interview</h1>
-            <h2>インタビュー</h2>
+            <p className="interview-label-en">Interview</p>
+            <p className="interview-label-ja">インタビュー</p>
           </div>
         </div>
 
         {/* インタビューコンテンツ */}
         <div className="interview-content-wrapper">
           <div className="interview-content">
-            <h3>スエナミ工業株式会社/営業 兼 開発 横山智一様 ✖️ STAR UP/稲元 海翔</h3>
+            <h1>スエナミ工業株式会社/営業 兼 開発 横山智一様 ✖️ STAR UP/稲元 海翔</h1>
             <hr />
             <div className="relative w-2/3 h-64 md:h-96 mb-6 mx-auto">
               <Image
                 src="/images/yokoyama_1.png"
-                alt="Interview Image 1"
+                alt="スエナミ工業株式会社 横山智一様のインタビュー写真"
                 fill
                 className="object-cover"
               />
@@ -119,38 +204,38 @@ export default function SuenamiCase() {
           }
         }
 
-        .interview-header h1 {
+        .interview-label-en {
           font-size: 32px;
           color: white;
           margin: 0;
         }
 
         @media (min-width: 640px) {
-          .interview-header h1 {
+          .interview-label-en {
             font-size: 40px;
           }
         }
 
         @media (min-width: 1024px) {
-          .interview-header h1 {
+          .interview-label-en {
             font-size: 48px;
           }
         }
 
-        .interview-header h2 {
+        .interview-label-ja {
           font-size: 18px;
           color: white;
           margin: 0;
         }
 
         @media (min-width: 640px) {
-          .interview-header h2 {
+          .interview-label-ja {
             font-size: 20px;
           }
         }
 
         @media (min-width: 1024px) {
-          .interview-header h2 {
+          .interview-label-ja {
             font-size: 24px;
           }
         }
