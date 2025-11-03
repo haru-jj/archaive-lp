@@ -18,10 +18,10 @@ export default function ArchaiveIntroSection() {
               className="h-10"
             />
           </div>
-          <h1 className="text-white text-3xl md:text-4xl font-bold" style={{lineHeight: '1.6'}}>
+          <h2 className="text-white text-3xl md:text-4xl font-bold" style={{lineHeight: '1.6'}}>
             点在したデータや暗黙知を繋ぎ合わせ、<br/>
             ひとつなぎの「ものづくり」を創造する。
-          </h1>
+          </h2>
         </div>
 
         {/* Main Content */}
