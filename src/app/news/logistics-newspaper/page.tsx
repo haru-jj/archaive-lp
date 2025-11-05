@@ -5,6 +5,7 @@ import type { Metadata } from 'next';
 
 const article = {
   title: '日本物流新聞で取り上げられました',
+  subtitle: '',
   description:
     '製造業向け図面管理プロダクト「ARCHAIVE」が日本物流新聞に掲載され、京都ビジネス交流フェアでの注目企業として紹介されました。',
   url: 'https://archaive.jp/news/logistics-newspaper',
@@ -99,45 +100,59 @@ export default function LogisticsNewspaperNews() {
       <main className="pt-20">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
-        {/* News Header */}
+
         <div className="bg-[#37B7C4] text-white text-center py-12">
           <p className="m-0 text-5xl font-bold">NEWS</p>
           <p className="m-0 text-2xl">お知らせ</p>
         </div>
 
-        {/* News Page */}
         <div className="bg-[#f4f4f4] py-20 flex justify-center min-h-screen">
           <div className="w-[70%] max-w-none mx-auto">
             <p className="text-[#888] text-sm mb-6">2025/3/5</p>
-            <h1 className="text-2xl mt-6 mb-12 font-bold">日本物流新聞で取り上げられました</h1>
-            <div className="bg-white p-12 shadow-lg rounded-lg h-fit">
-            <div className="news-article">
-              <p className="text-base leading-6 mb-6">
-                弊社の製造業向け図面管理プロダクトである「ARCHAIVE」について、日本物流新聞で取り上げられました。
-              </p>
-              <p className="text-base leading-6 mb-6">
-                2/25日付け 日本物流新聞<br />
-                <strong>京都ビジネス交流フェア 京大発ベンチャーなど多彩な出展者</strong>
-              </p>
-              <a href="https://www.nb-shinbun.co.jp/" className="text-[#37B7C4] no-underline hover:underline">
-                https://www.nb-shinbun.co.jp/
-              </a>
-              <p className="text-base leading-6 mt-8 mb-6">
-                ARCHAIVEについては<Link href="/" className="text-[#37B7C4] no-underline hover:underline">こちら</Link>
-              </p>
-              {/* 新聞記事画像 */}
-              <img 
-                src="/images/nihon_butsuryu_shinbun_1.png" 
-                alt="日本物流新聞に掲載されたARCHAIVEの記事紙面" 
-                className="w-full max-w-[600px] mt-8"
-              />
-            </div>
+            <div className="mt-6 mb-12">
+              <h1 className="text-2xl md:text-3xl font-bold leading-relaxed text-gray-900">{article.title}</h1>
             </div>
 
-            {/* 戻るリンク */}
+            <div className="bg-white p-8 sm:p-12 shadow-lg rounded-lg h-fit space-y-10">
+              <div className="space-y-6 text-base leading-7 text-gray-700">
+                <p>弊社の製造業向け図面管理プロダクトである「ARCHAIVE」について、日本物流新聞で取り上げられました。</p>
+                <p>
+                  2/25日付け 日本物流新聞<br />
+                  <strong>京都ビジネス交流フェア 京大発ベンチャーなど多彩な出展者</strong>
+                </p>
+                <p>
+                  記事は以下よりご覧いただけます：
+                  <br />
+                  <a
+                    href="https://www.nb-shinbun.co.jp/"
+                    className="text-[#37B7C4] hover:underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    https://www.nb-shinbun.co.jp/
+                  </a>
+                </p>
+                <p>
+                  ARCHAIVEについては
+                  <Link href="/" className="text-[#37B7C4] hover:underline">
+                    こちら
+                  </Link>
+                  をご覧ください。
+                </p>
+              </div>
+
+              <div className="flex justify-center">
+                <img
+                  src="/images/nihon_butsuryu_shinbun_1.png"
+                  alt="日本物流新聞に掲載されたARCHAIVEの記事紙面"
+                  className="w-full max-w-xl h-auto rounded-md shadow-md"
+                />
+              </div>
+            </div>
+
             <div className="mt-20 text-center">
-              <Link 
-                href="/news" 
+              <Link
+                href="/news"
                 className="inline-flex items-center gap-2 px-6 py-3 border-2 border-[#37B7C4] text-[#37B7C4] rounded-lg font-bold hover:bg-[#37B7C4] hover:text-white transition-all duration-300"
               >
                 <ArrowLeft className="w-5 h-5" />

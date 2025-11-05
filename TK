@@ -1,0 +1,206 @@
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+## Getting Started
+
+First, run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+# ARCHAIVE_LP
+
+## ディレクトリ構成と役割
+
+- `src/` : アプリケーション本体のソースコードを格納します。
+  - `src/components/` : 複数のページや機能で再利用するUIコンポーネント（例：ボタン、ヘッダー、フッターなど）を配置します。
+  - `src/features/` : 特定の機能やドメインごとにまとめたロジックやコンポーネントを配置します（例：ユーザー管理、LP生成機能など）。
+- `docs/` : 仕様や設計、提案内容などのドキュメントを格納します。
+- `public/` : 画像やフォントなどの静的ファイルを格納します。
+- `pages/` または `src/pages/` : Next.jsのルーティングに使われるページコンポーネントを配置します。
+
+---
+
+### ディレクトリの使い方例
+
+- `src/components/` : Button.tsx, Header.tsx, Footer.tsx など汎用UI
+- `src/features/` : lp/（LP生成機能）、auth/（認証機能）など機能単位でディレクトリを分ける
+
+---
+
+## ARCHAIVE LP 開発ガイド
+
+ARCHAIVE LP (Next.js 15 / App Router) のローカル開発・運用手順と、プロジェクト構成の一覧です。
+別のコーディングエージェントや開発者がこのリポジトリを取得してすぐに作業できるようにまとめています。
+
+---
+
+## 必要環境
+
+- Node.js 18 以上（開発確認済み: Node 20）
+- npm 10 以上（本ドキュメントは npm を前提に記載）
+- Git
+
+---
+
+## 初期セットアップ
+
+1. 依存パッケージをインストールします。
+   ```bash
+   npm install
+   ```
+
+2. 環境変数を設定します。
+   プロジェクト直下に `.env.local` を作成（存在する場合は追記）し、Google Apps Script Web App のエンドポイントを登録します。
+   ```dotenv
+   GAS_WEB_APP_URL=https://script.google.com/macros/s/XXXXXXXXXXXXXXXXXXXXXXXX/exec
+   ```
+   - GAS 側は `formType` を見て該当スプレッドシートへ追記し、Slack 通知を送る構成です。
+   - Web App は「全員（匿名ユーザー）」アクセスを許可して公開してください。
+
+---
+
+## ローカル開発の起動方法
+
+権限の都合で 3000 番ポートを利用できない環境があるため、以下のように `127.0.0.1:4000` での起動を推奨します。
+
+```bash
+npm run dev -- --hostname 127.0.0.1 --port 4000
+```
+
+ブラウザで [http://127.0.0.1:4000](http://127.0.0.1:4000) にアクセスすると LP を確認できます。終了は `Ctrl + C`。
+
+### 本番相当ビルド
+
+```bash
+npm run build
+npm run start -- --hostname 127.0.0.1 --port 4000
+```
+
+`npm run build` 前に `.next` ディレクトリの所有権が現在のユーザーにあることを確認してください。`sudo` 実行歴がある場合は `sudo chown -R $USER:$USER .next` で戻せます。
+
+---
+
+## フォーム送信フロー
+
+1. `/download`（資料ダウンロード）と `/apply`（無料デモ）フォームが `/api/submit-form` へ JSON を POST。
+2. `src/app/api/submit-form/route.ts` が `.env.local` の `GAS_WEB_APP_URL` へリレー。
+3. Google Apps Script 側で `formType` を判定し、スプレッドシートへ追記。
+   - シート名: `サービス紹介資料`
+   - シート名: `無料デモ申込み`
+4. GAS 内で Slack Incoming Webhook を叩き、指定チャンネルに通知。
+
+テスト用に以下の GAS サンプル関数があります。
+```js
+function testSubmitDownload() { /* POST 想定データ */ }
+function testSubmitApply() { /* POST 想定データ */ }
+```
+
+---
+
+## プロジェクト構成
+
+```
+./
+├── docs/                        # 仕様・提案ドキュメント
+│   ├── define/
+│   └── suggest/
+├── public/                      # 画像・Lottie・SVG など静的アセット
+├── src/
+│   ├── app/                     # Next.js App Router
+│   │   ├── page.tsx             # LP トップページ
+│   │   ├── download/            # 資料ダウンロードフォーム
+│   │   ├── apply/               # 無料デモ申込みフォーム
+│   │   ├── case/・news/         # 事例・ニュース
+│   │   ├── api/submit-form      # GAS 連携 API Route
+│   │   ├── layout.tsx / globals.css
+│   │   └── error.tsx など共通ファイル
+│   ├── components/
+│   │   ├── feature/             # LP 各セクション (Hero, Process, CTA 等)
+│   │   ├── layout/              # Header / Footer / HeroQuickNav
+│   │   └── animation-components # BubbleAnimation など動きのあるコンポーネント
+│   ├── hooks/                   # カスタムフック
+│   ├── lib/                     # ユーティリティ
+│   └── styles/                  # Tailwind 補助CSS
+├── tailwind.config.ts
+├── next.config.ts
+├── serve.js                     # ポート 8080 で Next を起動する簡易スクリプト
+├── start-server.sh              # 起動補助スクリプト
+└── README.md
+```
+
+---
+
+## 最近の主な変更点
+
+- 資料ダウンロードフォーム: 姓名入力を単一 `氏名` フィールドに統合、案内文削除。
+- 無料デモ申込みフォーム: メールラベルを `Eメール` に変更。
+- 両フォームの背景画像 (`public/images/sub_ui.png`) を中央基準で大きく表示。
+- `BubbleAnimation` を `useEffect` で初期化し Hydration エラーを解消。
+- `ProcessSection` の map にキーを付与し警告を排除。
+
+---
+
+## Git 運用
+
+1. ブランチを切って作業（例: `feature/xxxx`）。
+   ```bash
+   git checkout -b feature/my-update
+   ```
+2. 作業後にコミット。
+   ```bash
+   git add .
+   git commit -m "..."
+   git push -u origin feature/my-update
+   ```
+3. GitHub 上で Pull Request を作成しレビュー / マージ。
+
+作業フォルダは `~/Desktop/archaive-lp-main-branch`。旧フォルダは削除済みです。
+
+---
+
+## よくあるトラブルと対処
+
+| 事象 | 対処 |
+| ---- | ---- |
+| `listen EPERM 0.0.0.0:3000` | `npm run dev -- --hostname 127.0.0.1 --port 4000` で代替ポートを利用 |
+| `EACCES unlink .next/...` | `.next` の所有権を現在ユーザーに戻す (`sudo chown -R $USER:$USER .next`) または削除後に再ビルド |
+| Slack 通知 `no_team` | Webhook URL が無効。Slack App の Incoming Webhooks を再発行して GAS に設定 |
+| GAS から 403 | Web App の公開設定が「全員（匿名ユーザー）」になっていない |
+
+---
+
+## 連絡・補足
+
+- GAS・Slack Webhook の管理は運用担当者に確認してください。
+- LP の文言や画像の差し替えは `src/components/feature` と `public/images` を更新します。
+- その他の仕様・提案は `docs/` 以下を参照してください。
+
+本 README に変更があれば、手順の更新内容を必ず追記してください。

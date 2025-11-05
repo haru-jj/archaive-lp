@@ -29,6 +29,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: 'https://archaive.jp/news/tokyo-project-adoption',
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.75,
+    },
+    {
       url: 'https://archaive.jp/news/ai-agent-release',
       lastModified,
       changeFrequency: 'monthly',
