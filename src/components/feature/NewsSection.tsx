@@ -3,6 +3,14 @@
 export default function NewsSection() {
   const newsItems = [
     {
+      date: '2025年10月30日',
+      tags: [
+        { label: 'プレスリリース', type: 'press' }
+      ],
+      content: 'ARCHAIVEが東京都スタートアップ協働プロジェクトに採択 〜公共事業DXと建築土木業・製造業のデータ活用を推進〜',
+      link: '/news/tokyo-project-adoption'
+    },
+    {
       date: '2025年09月08日',
       tags: [
         { label: 'プレスリリース', type: 'press' }
