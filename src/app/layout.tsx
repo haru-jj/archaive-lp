@@ -16,6 +16,10 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://archaive.jp'),
   alternates: {
     canonical: '/',
+    languages: {
+      'ja-JP': '/',
+      en: 'https://archaive.jp/en/',
+    },
   },
   openGraph: {
     title: 'ARCHAIVE - 製造業向けAIナレッジ検索システム',
@@ -24,10 +28,11 @@ export const metadata: Metadata = {
     siteName: 'ARCHAIVE',
     images: [
       {
-        url: '/images/og-image.png',
+        url: 'https://archaive.jp/images/hero-dashboard.png',
         width: 1200,
         height: 630,
         alt: 'ARCHAIVE - 製造業DXを実現するAI見積システム',
+        type: 'image/png',
       }
     ],
     locale: 'ja_JP',
@@ -50,11 +55,12 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 5,
-  },
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -104,6 +110,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

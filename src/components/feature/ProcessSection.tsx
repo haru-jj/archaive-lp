@@ -58,6 +58,22 @@ export default function ProcessSection() {
     }
   ];
 
+  const howToJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'ARCHAIVE導入ステップ',
+    description: 'SaaS導入からカスタマイズ開発までの3ステップ伴走支援',
+    step: steps.map((step, index) => ({
+      '@type': 'HowToStep',
+      position: index + 1,
+      name: `${step.number} ${step.title}`,
+      itemListElement: step.benefits.map((benefit) => ({
+        '@type': 'HowToDirection',
+        text: benefit,
+      })),
+    })),
+  };
+
   return (
     <section className="py-8 sm:py-12 md:py-16 px-4 bg-gray-100 relative overflow-hidden" id="process">
       {/* 控えめな背景装飾 */}
@@ -67,6 +83,7 @@ export default function ProcessSection() {
       </div>
 
       <div className="container mx-auto max-w-6xl relative z-10">
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }} />
         {/* セクションタイトル - 他セクションと統一 */}
         <div className="text-center mb-8 sm:mb-12">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#333333] mb-4 leading-tight">

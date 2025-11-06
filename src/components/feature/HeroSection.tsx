@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { HeroQuickNav } from '@/components/layout';
 
 export default function HeroSection() {
@@ -42,8 +43,8 @@ export default function HeroSection() {
                 <p className="text-sm md:text-xl lg:text-2xl text-white font-semibold leading-[1.5]">
                   AIにより、「誰でも」「早く」「正確な」見積りを実現。
                 </p>
-                <p className="text-sm md:text-base lg:text-lg text-white/90 font-semibold leading-[1.5]">
-                  眠るデータを"資産"へ。製造業DXの新常識、はじまる。
+                <p className="text-white/90 font-semibold leading-[1.5] text-[clamp(13px,1.6vw,18px)]">
+                  眠るデータを「資産」へ。製造業DXの新常識、はじまる。
                 </p>
               </div>
               
@@ -71,12 +72,15 @@ export default function HeroSection() {
             </div>
             
             {/* Right Content - Product Image */}
-            <div className="hidden lg:block">
-              <img
-                src="/images/image2.png"
+            <div className="hidden lg:flex items-end justify-center lg:justify-end">
+              <Image
+                src="/images/hero-dashboard.png"
                 alt="ARCHAIVEのAI見積システムのダッシュボード画面。図面検索と見積作成機能を表示"
-                className="w-4/5 h-auto rounded-xl shadow-2xl"
-                loading="lazy"
+                width={1040}
+                height={720}
+                sizes="(min-width: 1024px) 40vw, 100vw"
+                priority
+                className="w-full max-w-[clamp(320px,40vw,520px)] h-auto rounded-xl shadow-2xl"
               />
             </div>
           </div>
