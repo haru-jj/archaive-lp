@@ -9,9 +9,9 @@ const article = {
   subtitle: '〜公共事業DXと建築土木業・製造業のデータ活用を推進〜',
   description:
     'ARCHAIVEが東京都の現場対話型スタートアップ協働プロジェクト（令和7年度第2期）に採択。公共事業DXを推進し、建築土木業・製造業のデータ活用基盤を構築します。',
-  url: 'https://archaive.jp/news/tokyo-project-adoption',
+  url: 'https://archaive.net/news/tokyo-project-adoption',
   publishDate: '2025-10-30',
-  image: 'https://archaive.jp/news/ARCHAIVE_Tokyo.webp',
+  image: 'https://archaive.net/news/ARCHAIVE_Tokyo.webp',
 };
 
 export const metadata: Metadata = {
@@ -65,15 +65,15 @@ export default function TokyoProjectAdoptionNews() {
     author: {
       '@type': 'Organization',
       name: 'ARCHAIVE',
-      url: 'https://archaive.jp/',
+      url: 'https://archaive.net/',
     },
     publisher: {
       '@type': 'Organization',
       name: 'ARCHAIVE',
-      url: 'https://archaive.jp/',
+      url: 'https://archaive.net/',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://archaive.jp/images/og-image.png',
+        url: 'https://archaive.net/images/og-image.png',
       },
     },
   };
@@ -86,13 +86,13 @@ export default function TokyoProjectAdoptionNews() {
         '@type': 'ListItem',
         position: 1,
         name: 'トップ',
-        item: 'https://archaive.jp/',
+        item: 'https://archaive.net/',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'お知らせ',
-        item: 'https://archaive.jp/news',
+        item: 'https://archaive.net/news',
       },
       {
         '@type': 'ListItem',

@@ -9,9 +9,9 @@ const article = {
   subtitle: '',
   description:
     '製造業向け図面管理プロダクト「ARCHAIVE」が日刊工業新聞に掲載され、製造業DX支援の取り組みが紹介されました。',
-  url: 'https://archaive.jp/news/industrial-newspaper',
+  url: 'https://archaive.net/news/industrial-newspaper',
   publishDate: '2025-03-01',
-  image: 'https://archaive.jp/images/og-image.png',
+  image: 'https://archaive.net/images/og-image.png',
 };
 
 export const metadata: Metadata = {
@@ -64,15 +64,15 @@ export default function IndustrialNewspaperNews() {
     author: {
       '@type': 'Organization',
       name: 'ARCHAIVE',
-      url: 'https://archaive.jp/',
+      url: 'https://archaive.net/',
     },
     publisher: {
       '@type': 'Organization',
       name: 'ARCHAIVE',
-      url: 'https://archaive.jp/',
+      url: 'https://archaive.net/',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://archaive.jp/images/og-image.png',
+        url: 'https://archaive.net/images/og-image.png',
       },
     },
   };
@@ -85,13 +85,13 @@ export default function IndustrialNewspaperNews() {
         '@type': 'ListItem',
         position: 1,
         name: 'トップ',
-        item: 'https://archaive.jp/',
+        item: 'https://archaive.net/',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'お知らせ',
-        item: 'https://archaive.jp/news',
+        item: 'https://archaive.net/news',
       },
       {
         '@type': 'ListItem',

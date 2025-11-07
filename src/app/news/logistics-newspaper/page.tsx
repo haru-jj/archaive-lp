@@ -9,9 +9,9 @@ const article = {
   subtitle: '',
   description:
     '製造業向け図面管理プロダクト「ARCHAIVE」が日本物流新聞に掲載され、京都ビジネス交流フェアでの注目企業として紹介されました。',
-  url: 'https://archaive.jp/news/logistics-newspaper',
+  url: 'https://archaive.net/news/logistics-newspaper',
   publishDate: '2025-03-05',
-  image: 'https://archaive.jp/images/nihon_butsuryu_shinbun_1.png',
+  image: 'https://archaive.net/images/nihon_butsuryu_shinbun_1.png',
 };
 
 export const metadata: Metadata = {
@@ -64,15 +64,15 @@ export default function LogisticsNewspaperNews() {
     author: {
       '@type': 'Organization',
       name: 'ARCHAIVE',
-      url: 'https://archaive.jp/',
+      url: 'https://archaive.net/',
     },
     publisher: {
       '@type': 'Organization',
       name: 'ARCHAIVE',
-      url: 'https://archaive.jp/',
+      url: 'https://archaive.net/',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://archaive.jp/images/og-image.png',
+        url: 'https://archaive.net/images/og-image.png',
       },
     },
   };
@@ -85,13 +85,13 @@ export default function LogisticsNewspaperNews() {
         '@type': 'ListItem',
         position: 1,
         name: 'トップ',
-        item: 'https://archaive.jp/',
+        item: 'https://archaive.net/',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'お知らせ',
-        item: 'https://archaive.jp/news',
+        item: 'https://archaive.net/news',
       },
       {
         '@type': 'ListItem',

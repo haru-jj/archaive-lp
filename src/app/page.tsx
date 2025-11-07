@@ -32,13 +32,13 @@ export const metadata: Metadata = {
     '図面管理SaaS',
   ],
   alternates: {
-    canonical: '/',
+    canonical: 'https://archaive.net/',
   },
   openGraph: {
     title: 'ARCHAIVE｜製造業DXを実現するAI図面検索・見積プラットフォーム',
     description:
       '図面データを資産化し、誰でも素早く正確な見積りを。ARCHAIVEは製造業DXを加速させるAIプラットフォームです。',
-    url: 'https://archaive.jp/',
+    url: 'https://archaive.net/',
   },
   twitter: {
     card: 'summary_large_image',
@@ -83,7 +83,7 @@ export default function Home() {
   const heroImageJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'ImageObject',
-    contentUrl: 'https://archaive.jp/images/hero-dashboard.png',
+    contentUrl: 'https://archaive.net/images/hero-dashboard.png',
     creditText: 'ARCHAIVE product UI',
     creator: {
       '@type': 'Organization',

@@ -8,8 +8,8 @@ const caseData = {
   title: '株式会社クロステック様インタビュー｜ARCHAIVE導入事例',
   summary:
     '図面検索と見積業務の効率化に取り組む株式会社クロステック様に、ARCHAIVE導入の背景と効果を伺いました。',
-  url: 'https://archaive.jp/case/crosstech',
-  image: 'https://archaive.jp/images/matsuda.png',
+  url: 'https://archaive.net/case/crosstech',
+  image: 'https://archaive.net/images/matsuda.png',
 };
 
 const reviewData = {
@@ -92,15 +92,15 @@ export default function CrosstechCase() {
     author: {
       '@type': 'Organization',
       name: 'ARCHAIVE',
-      url: 'https://archaive.jp/',
+      url: 'https://archaive.net/',
     },
     publisher: {
       '@type': 'Organization',
       name: 'ARCHAIVE',
-      url: 'https://archaive.jp/',
+      url: 'https://archaive.net/',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://archaive.jp/images/og-image.png',
+        url: 'https://archaive.net/images/og-image.png',
       },
     },
   };
@@ -113,13 +113,13 @@ export default function CrosstechCase() {
         '@type': 'ListItem',
         position: 1,
         name: 'トップ',
-        item: 'https://archaive.jp/',
+        item: 'https://archaive.net/',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: '導入事例',
-        item: 'https://archaive.jp/case',
+        item: 'https://archaive.net/case',
       },
       {
         '@type': 'ListItem',

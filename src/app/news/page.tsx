@@ -8,16 +8,16 @@ export const metadata: Metadata = {
     'ARCHAIVEのプレスリリース・メディア掲載・イベント登壇など最新ニュースをまとめました。自治体DXや製造業AIアップデートを最速でチェックできます。',
   keywords: ['ARCHAIVEプレスリリース', '製造業DXニュース', 'AI図面検索アップデート', '自治体DXニュース'],
   alternates: {
-    canonical: '/news',
+    canonical: 'https://archaive.net/news',
   },
   openGraph: {
     title: 'お知らせ一覧｜ARCHAIVE最新情報',
     description:
       '製造業DXを支援するARCHAIVEの新機能リリース・自治体連携・メディア掲載情報をまとめて確認できます。',
-    url: 'https://archaive.jp/news',
+    url: 'https://archaive.net/news',
     images: [
       {
-        url: 'https://archaive.jp/images/top_ui.png',
+        url: 'https://archaive.net/images/top_ui.png',
         width: 1200,
         height: 630,
         alt: 'ARCHAIVEニュース一覧のOGイメージ',
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     card: 'summary',
     title: 'お知らせ一覧｜ARCHAIVE最新情報',
     description: 'ARCHAIVEのプレスリリース、自治体連携、イベント登壇など最新ニュースを一覧で紹介しています。',
-    images: ['https://archaive.jp/images/top_ui.png'],
+    images: ['https://archaive.net/images/top_ui.png'],
   },
 };
 
@@ -102,13 +102,13 @@ export default function NewsListPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'トップ',
-        item: 'https://archaive.jp/',
+        item: 'https://archaive.net/',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'お知らせ',
-        item: 'https://archaive.jp/news',
+        item: 'https://archaive.net/news',
       },
     ],
   };
@@ -117,12 +117,12 @@ export default function NewsListPage() {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: 'ARCHAIVEニュース一覧',
-    url: 'https://archaive.jp/news',
+    url: 'https://archaive.net/news',
     hasPart: allNewsItems.map((item) => ({
       '@type': 'NewsArticle',
       headline: item.content,
       datePublished: `${item.isoDate}T00:00:00+09:00`,
-      url: `https://archaive.jp${item.link}`,
+      url: `https://archaive.net${item.link}`,
       keywords: item.tags.map((tag) => tag.label).join(', '),
       about: item.tags.map((tag) => ({
         '@type': 'Thing',

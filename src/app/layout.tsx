@@ -13,22 +13,22 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://archaive.jp'),
+  metadataBase: new URL('https://archaive.net'),
   alternates: {
-    canonical: '/',
+    canonical: 'https://archaive.net/',
     languages: {
-      'ja-JP': '/',
-      en: 'https://archaive.jp/en/',
+      'ja-JP': 'https://archaive.net/',
+      en: 'https://archaive.net/en/',
     },
   },
   openGraph: {
     title: 'ARCHAIVE - 製造業向けAIナレッジ検索システム',
     description: '見積作成の属人化を解消。AIで過去の図面・見積データを瞬時に検索し、正確な見積を自動生成。',
-    url: 'https://archaive.jp',
+    url: 'https://archaive.net',
     siteName: 'ARCHAIVE',
     images: [
       {
-        url: 'https://archaive.jp/images/hero-dashboard.png',
+        url: 'https://archaive.net/images/hero-dashboard.png',
         width: 1200,
         height: 630,
         alt: 'ARCHAIVE - 製造業DXを実現するAI見積システム',
@@ -87,7 +87,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     publisher: {
       '@type': 'Organization',
       name: 'ARCHAIVE',
-      url: 'https://archaive.jp',
+      url: 'https://archaive.net',
     },
   };
 
@@ -95,8 +95,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'ARCHAIVE',
-    url: 'https://archaive.jp',
-    logo: 'https://archaive.jp/images/ARCHAIVE_logo.png',
+    url: 'https://archaive.net',
+    logo: 'https://archaive.net/images/ARCHAIVE_logo.png',
     description: '製造業DXを実現するAIソリューション企業',
     contactPoint: {
       '@type': 'ContactPoint',
