@@ -8,8 +8,8 @@ const caseData = {
   title: 'スエナミ工業株式会社様インタビュー｜ARCHAIVE導入事例',
   summary:
     '大量の図面見積業務を効率化したスエナミ工業株式会社様に、ARCHAIVE導入の背景と期待する未来像を伺いました。',
-  url: 'https://archaive.jp/case/suenami',
-  image: 'https://archaive.jp/images/yokoyama_1.png',
+  url: 'https://archaive.net/case/suenami',
+  image: 'https://archaive.net/images/yokoyama_1.png',
 };
 
 const reviewData = {
@@ -92,15 +92,15 @@ export default function SuenamiCase() {
     author: {
       '@type': 'Organization',
       name: 'ARCHAIVE',
-      url: 'https://archaive.jp/',
+      url: 'https://archaive.net/',
     },
     publisher: {
       '@type': 'Organization',
       name: 'ARCHAIVE',
-      url: 'https://archaive.jp/',
+      url: 'https://archaive.net/',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://archaive.jp/images/og-image.png',
+        url: 'https://archaive.net/images/og-image.png',
       },
     },
   };
@@ -113,13 +113,13 @@ export default function SuenamiCase() {
         '@type': 'ListItem',
         position: 1,
         name: 'トップ',
-        item: 'https://archaive.jp/',
+        item: 'https://archaive.net/',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: '導入事例',
-        item: 'https://archaive.jp/case',
+        item: 'https://archaive.net/case',
       },
       {
         '@type': 'ListItem',

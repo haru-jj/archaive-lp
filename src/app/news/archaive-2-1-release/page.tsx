@@ -9,9 +9,9 @@ const article = {
   subtitle: 'AI図面解析・見積から顧客管理まで一気通貫で支援',
   description:
     'AI図面解析・見積、顧客管理、カスタムAI開発を統合した「ARCHAIVE 2.1」の提供開始を発表。製造業DXを包括的に支援します。',
-  url: 'https://archaive.jp/news/archaive-2-1-release',
+  url: 'https://archaive.net/news/archaive-2-1-release',
   publishDate: '2025-09-08',
-  image: 'https://archaive.jp/news/142139-12-db5647717e97f2603463709ff7136c46-1600x900.jpeg',
+  image: 'https://archaive.net/news/142139-12-db5647717e97f2603463709ff7136c46-1600x900.jpeg',
 };
 
 export const metadata: Metadata = {
@@ -65,15 +65,15 @@ export default function Archaive21ReleaseNews() {
     author: {
       '@type': 'Organization',
       name: 'ARCHAIVE',
-      url: 'https://archaive.jp/',
+      url: 'https://archaive.net/',
     },
     publisher: {
       '@type': 'Organization',
       name: 'ARCHAIVE',
-      url: 'https://archaive.jp/',
+      url: 'https://archaive.net/',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://archaive.jp/images/og-image.png',
+        url: 'https://archaive.net/images/og-image.png',
       },
     },
   };
@@ -86,13 +86,13 @@ export default function Archaive21ReleaseNews() {
         '@type': 'ListItem',
         position: 1,
         name: 'トップ',
-        item: 'https://archaive.jp/',
+        item: 'https://archaive.net/',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'お知らせ',
-        item: 'https://archaive.jp/news',
+        item: 'https://archaive.net/news',
       },
       {
         '@type': 'ListItem',

@@ -8,8 +8,8 @@ const caseData = {
   title: '株式会社エイ・エム・シィ様インタビュー｜ARCHAIVE導入事例',
   summary:
     '図面管理の属人化を解消した株式会社エイ・エム・シィ様に、ARCHAIVE導入の決め手と効果を伺いました。',
-  url: 'https://archaive.jp/case/amc',
-  image: 'https://archaive.jp/images/nakanishi.jpg',
+  url: 'https://archaive.net/case/amc',
+  image: 'https://archaive.net/images/nakanishi.jpg',
 };
 
 const reviewData = {
@@ -92,15 +92,15 @@ export default function AmcCase() {
     author: {
       '@type': 'Organization',
       name: 'ARCHAIVE',
-      url: 'https://archaive.jp/',
+      url: 'https://archaive.net/',
     },
     publisher: {
       '@type': 'Organization',
       name: 'ARCHAIVE',
-      url: 'https://archaive.jp/',
+      url: 'https://archaive.net/',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://archaive.jp/images/og-image.png',
+        url: 'https://archaive.net/images/og-image.png',
       },
     },
   };
@@ -113,13 +113,13 @@ export default function AmcCase() {
         '@type': 'ListItem',
         position: 1,
         name: 'トップ',
-        item: 'https://archaive.jp/',
+        item: 'https://archaive.net/',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: '導入事例',
-        item: 'https://archaive.jp/case',
+        item: 'https://archaive.net/case',
       },
       {
         '@type': 'ListItem',
