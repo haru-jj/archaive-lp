@@ -2,6 +2,7 @@ import { Header, Footer } from '@/components/layout';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import type { Metadata } from 'next';
+import { RelatedArticles } from '@/components/news/RelatedArticles';
 
 const article = {
   title: '製造業のDXを加速するAIプラットフォーム「ARCHAIVE 2.1」を2025年10月1日より提供開始',
@@ -53,7 +54,14 @@ export default function Archaive21ReleaseNews() {
     datePublished: `${article.publishDate}T00:00:00+09:00`,
     dateModified: `${article.publishDate}T00:00:00+09:00`,
     mainEntityOfPage: article.url,
-    image: [article.image],
+    image: [
+      {
+        '@type': 'ImageObject',
+        url: article.image,
+        caption: 'ARCHAIVE 2.1リリース告知ビジュアル',
+        creditText: 'ARCHAIVE',
+      },
+    ],
     author: {
       '@type': 'Organization',
       name: 'ARCHAIVE',
@@ -110,6 +118,15 @@ export default function Archaive21ReleaseNews() {
         <div className="bg-[#f4f4f4] py-20 flex justify-center min-h-screen">
           <div className="w-[70%] max-w-none mx-auto">
             <p className="text-[#888] text-sm mb-6">2025/9/8</p>
+            <nav aria-label="breadcrumb" className="mb-4 text-sm text-gray-600">
+              <ol className="flex gap-2">
+                <li><Link href="/" className="hover:text-[#37B7C4]">トップ</Link></li>
+                <li>/</li>
+                <li><Link href="/news" className="hover:text-[#37B7C4]">お知らせ</Link></li>
+                <li>/</li>
+                <li className="text-gray-900">{article.title}</li>
+              </ol>
+            </nav>
             <div className="mt-6 mb-12">
               <h1 className="text-2xl md:text-3xl font-bold leading-relaxed text-gray-900">{article.title}</h1>
               <p className="mt-3 text-base md:text-lg text-[#37B7C4] font-semibold">{article.subtitle}</p>
@@ -216,8 +233,8 @@ export default function Archaive21ReleaseNews() {
           </div>
         </div>
       </main>
+      <RelatedArticles currentSlug="archaive-2-1-release" />
       <Footer />
     </div>
   );
 }
-

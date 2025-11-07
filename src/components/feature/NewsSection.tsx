@@ -52,7 +52,7 @@ export default function NewsSection() {
     }
   ];
 
-  const getTagColor = (type: string) => {
+  const getTagColor = (_type: string) => {
     return 'bg-[#37B7C4]';
   };
 

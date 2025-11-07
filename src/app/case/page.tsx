@@ -34,6 +34,7 @@ export const metadata: Metadata = {
   title: '導入事例一覧｜ARCHAIVEお客様インタビュー',
   description:
     'ARCHAIVEを活用する製造業各社の導入背景や効果をまとめた事例集。図面検索やAI見積の定着方法をご紹介します。',
+  keywords: ['製造業導入事例', 'AI見積事例', '図面管理成功事例', '製造業DXインタビュー'],
   alternates: {
     canonical: '/case',
   },
@@ -42,11 +43,20 @@ export const metadata: Metadata = {
     description:
       '製造業のお客様がARCHAIVEで図面管理・見積業務をどう変革したのか、導入事例をまとめました。',
     url: 'https://archaive.jp/case',
+    images: [
+      {
+        url: 'https://archaive.jp/images/ui_display.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'ARCHAIVE導入事例一覧のOGイメージ',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: '導入事例一覧｜ARCHAIVEお客様インタビュー',
     description: 'ARCHAIVE導入企業の声をまとめた事例集です。',
+    images: ['https://archaive.jp/images/ui_display.jpg'],
   },
 };
 
@@ -98,6 +108,13 @@ export default function CaseIndexPage() {
         </section>
 
         <section className="container mx-auto px-4 max-w-5xl py-10 sm:py-16">
+          <nav aria-label="breadcrumb" className="text-sm text-gray-500 mb-6">
+            <ol className="flex gap-2">
+              <li><Link href="/" className="hover:text-[#37B7C4]">トップ</Link></li>
+              <li>/</li>
+              <li className="text-gray-900">導入事例</li>
+            </ol>
+          </nav>
           <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
             {cases.map((item) => (
               <article
