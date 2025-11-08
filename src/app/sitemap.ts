@@ -1,92 +1,30 @@
 import { MetadataRoute } from 'next';
 
+const pages = [
+  { path: '/', changeFrequency: 'weekly', priority: 1 },
+  { path: '/apply', changeFrequency: 'monthly', priority: 0.9 },
+  { path: '/download', changeFrequency: 'monthly', priority: 0.9 },
+  { path: '/case', changeFrequency: 'weekly', priority: 0.8 },
+  { path: '/case/crosstech', changeFrequency: 'monthly', priority: 0.7 },
+  { path: '/case/amc', changeFrequency: 'monthly', priority: 0.7 },
+  { path: '/case/suenami', changeFrequency: 'monthly', priority: 0.7 },
+  { path: '/news', changeFrequency: 'weekly', priority: 0.8 },
+  { path: '/news/tokyo-project-adoption', changeFrequency: 'monthly', priority: 0.75 },
+  { path: '/news/archaive-2-1-release', changeFrequency: 'monthly', priority: 0.7 },
+  { path: '/news/ai-agent-release', changeFrequency: 'monthly', priority: 0.7 },
+  { path: '/news/logistics-newspaper', changeFrequency: 'yearly', priority: 0.6 },
+  { path: '/news/industrial-newspaper', changeFrequency: 'yearly', priority: 0.6 },
+  { path: '/news/presentation-achievement', changeFrequency: 'yearly', priority: 0.6 },
+];
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
+  const baseUrl = 'https://archaive.net';
 
-  return [
-    {
-      url: 'https://archaive.jp',
-      lastModified,
-      changeFrequency: 'weekly',
-      priority: 1,
-    },
-    {
-      url: 'https://archaive.jp/apply',
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: 'https://archaive.jp/download',
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: 'https://archaive.jp/news',
-      lastModified,
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: 'https://archaive.jp/news/tokyo-project-adoption',
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.75,
-    },
-    {
-      url: 'https://archaive.jp/news/ai-agent-release',
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: 'https://archaive.jp/news/archaive-2-1-release',
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: 'https://archaive.jp/news/logistics-newspaper',
-      lastModified,
-      changeFrequency: 'yearly',
-      priority: 0.6,
-    },
-    {
-      url: 'https://archaive.jp/news/industrial-newspaper',
-      lastModified,
-      changeFrequency: 'yearly',
-      priority: 0.6,
-    },
-    {
-      url: 'https://archaive.jp/news/presentation-achievement',
-      lastModified,
-      changeFrequency: 'yearly',
-      priority: 0.6,
-    },
-    {
-      url: 'https://archaive.jp/case',
-      lastModified,
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: 'https://archaive.jp/case/crosstech',
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: 'https://archaive.jp/case/amc',
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: 'https://archaive.jp/case/suenami',
-      lastModified,
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-  ];
+  return pages.map((page) => ({
+    url: `${baseUrl}${page.path}`,
+    lastModified,
+    changeFrequency: page.changeFrequency as MetadataRoute.Sitemap[number]['changeFrequency'],
+    priority: page.priority,
+  }));
 }

@@ -128,7 +128,7 @@ export default function CaseSection() {
         </div>
 
         {/* カルーセル */}
-        <div className="relative w-full max-w-7xl mx-auto mb-8 sm:mb-12 md:mb-16 overflow-hidden">
+        <div className="relative w-full max-w-7xl mx-auto mb-5 sm:mb-8 md:mb-10 overflow-hidden">
           {/* モバイル表示 (sm未満) */}
           <div className="block sm:hidden">
             <div 
@@ -294,7 +294,7 @@ export default function CaseSection() {
         </div>
 
         {/* カルーセルコントロール */}
-        <div className="flex justify-center items-center gap-3 sm:gap-5 mt-6 sm:mt-8">
+        <div className="flex justify-center items-center gap-3 sm:gap-5 mt-2 sm:mt-3">
           <button 
             onClick={prevSlide}
             aria-label="Previous slide"
@@ -326,7 +326,7 @@ export default function CaseSection() {
         </div>
       </div>
 
-      <div className="mt-10 text-center">
+      <div className="mt-8 text-center mb-10 sm:mb-12 lg:mb-14">
         <Link
           href="/case"
           className="inline-flex items-center gap-2 px-6 py-3 border-2 border-[#37B7C4] text-[#37B7C4] rounded-lg font-bold hover:bg-[#37B7C4] hover:text-white transition-all duration-300"
