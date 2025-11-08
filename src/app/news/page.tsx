@@ -5,30 +5,21 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'お知らせ一覧｜ARCHAIVE最新情報',
   description:
-    'ARCHAIVEのプレスリリース・メディア掲載・イベント登壇など最新ニュースをまとめました。自治体DXや製造業AIアップデートを最速でチェックできます。',
-  keywords: ['ARCHAIVEプレスリリース', '製造業DXニュース', 'AI図面検索アップデート', '自治体DXニュース'],
+    'ARCHAIVEのプレスリリースやメディア掲載、イベント情報をまとめた最新ニュース一覧ページです。',
+  keywords: ['ARCHAIVEニュース', 'プレスリリース', '製造業DXニュース', 'AI見積最新情報'],
   alternates: {
-    canonical: 'https://archaive.net/news',
+    canonical: '/news',
   },
   openGraph: {
     title: 'お知らせ一覧｜ARCHAIVE最新情報',
     description:
-      '製造業DXを支援するARCHAIVEの新機能リリース・自治体連携・メディア掲載情報をまとめて確認できます。',
-    url: 'https://archaive.net/news',
-    images: [
-      {
-        url: 'https://archaive.net/images/top_ui.png',
-        width: 1200,
-        height: 630,
-        alt: 'ARCHAIVEニュース一覧のOGイメージ',
-      },
-    ],
+      '製造業DXを支援するARCHAIVEの最新情報を掲載。新機能リリースやメディア掲載をいち早くご確認ください。',
+    url: 'https://archaive.jp/news',
   },
   twitter: {
     card: 'summary',
     title: 'お知らせ一覧｜ARCHAIVE最新情報',
-    description: 'ARCHAIVEのプレスリリース、自治体連携、イベント登壇など最新ニュースを一覧で紹介しています。',
-    images: ['https://archaive.net/images/top_ui.png'],
+    description: 'ARCHAIVEのプレスリリース・イベント・メディア掲載情報を一覧で紹介しています。',
   },
 };
 
@@ -36,7 +27,6 @@ export default function NewsListPage() {
   const allNewsItems = [
     {
       date: '2025年10月30日',
-      isoDate: '2025-10-30',
       tags: [
         { label: 'プレスリリース', type: 'press' }
       ],
@@ -45,7 +35,6 @@ export default function NewsListPage() {
     },
     {
       date: '2025年09月08日',
-      isoDate: '2025-09-08',
       tags: [
         { label: 'プレスリリース', type: 'press' }
       ],
@@ -54,7 +43,6 @@ export default function NewsListPage() {
     },
     {
       date: '2025年07月28日',
-      isoDate: '2025-07-28',
       tags: [
         { label: 'プレスリリース', type: 'press' }
       ],
@@ -63,7 +51,6 @@ export default function NewsListPage() {
     },
     {
       date: '2025年03月05日',
-      isoDate: '2025-03-05',
       tags: [
         { label: '新聞', type: 'newspaper' }
       ],
@@ -72,7 +59,6 @@ export default function NewsListPage() {
     },
     {
       date: '2025年03月01日',
-      isoDate: '2025-03-01',
       tags: [
         { label: '新聞', type: 'newspaper' }
       ],
@@ -81,7 +67,6 @@ export default function NewsListPage() {
     },
     {
       date: '2024年12月21日',
-      isoDate: '2024-12-21',
       tags: [
         { label: 'プレスリリース', type: 'press' }
       ],
@@ -90,7 +75,7 @@ export default function NewsListPage() {
     }
   ];
 
-  const getTagColor = (_type: string) => {
+  const getTagColor = (type: string) => {
     return 'bg-[#37B7C4]';
   };
 
@@ -102,33 +87,15 @@ export default function NewsListPage() {
         '@type': 'ListItem',
         position: 1,
         name: 'トップ',
-        item: 'https://archaive.net/',
+        item: 'https://archaive.jp/',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'お知らせ',
-        item: 'https://archaive.net/news',
+        item: 'https://archaive.jp/news',
       },
     ],
-  };
-
-  const collectionJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'CollectionPage',
-    name: 'ARCHAIVEニュース一覧',
-    url: 'https://archaive.net/news',
-    hasPart: allNewsItems.map((item) => ({
-      '@type': 'NewsArticle',
-      headline: item.content,
-      datePublished: `${item.isoDate}T00:00:00+09:00`,
-      url: `https://archaive.net${item.link}`,
-      keywords: item.tags.map((tag) => tag.label).join(', '),
-      about: item.tags.map((tag) => ({
-        '@type': 'Thing',
-        name: tag.label,
-      })),
-    })),
   };
 
   return (
@@ -136,10 +103,9 @@ export default function NewsListPage() {
       <Header />
       <main className="pt-20">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }} />
         <div className="container mx-auto max-w-6xl px-4 py-8 sm:py-16">
           {/* パンくずナビ */}
-          <nav className="mb-6 sm:mb-8" aria-label="breadcrumb">
+          <nav className="mb-6 sm:mb-8">
             <div className="flex items-center space-x-2 text-sm text-gray-600">
               <Link href="/" className="hover:text-[#37B7C4]">トップ</Link>
               <span>/</span>

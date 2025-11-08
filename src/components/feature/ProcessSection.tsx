@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect, Fragment } from 'react';
-import { ChevronRight, ChevronDown } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 
 export default function ProcessSection() {
   const [visibleSteps, setVisibleSteps] = useState<number[]>([]);
@@ -75,11 +75,42 @@ export default function ProcessSection() {
   };
 
   return (
-    <section className="py-8 sm:py-12 md:py-16 px-4 bg-gray-100 relative overflow-hidden" id="process">
-      {/* 控えめな背景装飾 */}
-      <div className="absolute inset-0 pointer-events-none opacity-50">
-        <div className="absolute top-10 left-10 w-24 h-24 bg-[#37B7C4]/5 rounded-full blur-2xl" />
-        <div className="absolute bottom-10 right-10 w-20 h-20 bg-[#37B7C4]/8 rounded-full blur-xl" />
+    <section className="py-8 sm:py-12 md:py-16 px-4 bg-[#eaedf2] relative overflow-hidden" id="process">
+      {/* Digital Blueprint Background */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#f1f3f7] via-[#e0e5ed] to-[#cfd8e3]" />
+
+        <svg className="absolute inset-0 w-full h-full opacity-15" viewBox="0 0 1200 600" preserveAspectRatio="none">
+          <defs>
+            <pattern id="processGrid" width="60" height="60" patternUnits="userSpaceOnUse">
+              <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#2a5c7e" strokeWidth="0.5" />
+            </pattern>
+          </defs>
+          <rect width="1200" height="600" fill="url(#processGrid)" />
+        </svg>
+
+        <svg className="absolute inset-0 w-full h-full opacity-25 mix-blend-screen" viewBox="0 0 1200 600" preserveAspectRatio="none">
+          <path
+            className="blueprint-path"
+            d="M80 520 C220 480 260 360 360 340 C520 300 520 440 660 380 C780 330 820 220 960 240"
+            fill="none"
+            stroke="rgba(61,195,216,0.45)"
+            strokeWidth="1.5"
+            strokeDasharray="10 12"
+          />
+          <path
+            className="blueprint-path"
+            d="M180 160 L340 240 L520 120 L680 220 L860 140 L1040 220"
+            fill="none"
+            stroke="rgba(61,195,216,0.35)"
+            strokeWidth="1"
+            strokeDasharray="6 10"
+          />
+        </svg>
+
+        <div className="pulse-orb absolute -top-24 left-[12%] w-72 h-72 bg-[#37B7C4]/14 rounded-full blur-3xl" />
+        <div className="pulse-orb delay absolute bottom-[-4rem] right-[14%] w-80 h-80 bg-[#1FA9C9]/12 rounded-full blur-3xl" />
+        <div className="rotate-squares absolute top-1/4 right-[8%] w-48 h-48 border border-[#37B7C4]/20 rounded-3xl" />
       </div>
 
       <div className="container mx-auto max-w-6xl relative z-10">
@@ -173,6 +204,48 @@ export default function ProcessSection() {
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes dashFlow {
+          0% {
+            stroke-dashoffset: 0;
+          }
+          100% {
+            stroke-dashoffset: -400;
+          }
+        }
+        @keyframes pulseGlow {
+          0%,
+          100% {
+            opacity: 0.25;
+            transform: scale(0.95);
+          }
+          50% {
+            opacity: 0.55;
+            transform: scale(1.05);
+          }
+        }
+        @keyframes rotateSlow {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+        .blueprint-path {
+          animation: dashFlow 18s linear infinite;
+        }
+        .pulse-orb {
+          animation: pulseGlow 12s ease-in-out infinite;
+        }
+        .pulse-orb.delay {
+          animation-delay: 4s;
+        }
+        .rotate-squares {
+          animation: rotateSlow 28s linear infinite;
+        }
+      `}</style>
     </section>
   );
 }

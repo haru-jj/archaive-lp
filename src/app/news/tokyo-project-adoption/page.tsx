@@ -2,16 +2,15 @@ import { Header, Footer } from '@/components/layout';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import type { Metadata } from 'next';
-import { RelatedArticles } from '@/components/news/RelatedArticles';
 
 const article = {
   title: '株式会社STARUPが提供する図面帳票活用AIデータハブ「ARCHAIVE」が東京都スタートアップ協働プロジェクトに採択',
   subtitle: '〜公共事業DXと建築土木業・製造業のデータ活用を推進〜',
   description:
     'ARCHAIVEが東京都の現場対話型スタートアップ協働プロジェクト（令和7年度第2期）に採択。公共事業DXを推進し、建築土木業・製造業のデータ活用基盤を構築します。',
-  url: 'https://archaive.net/news/tokyo-project-adoption',
+  url: 'https://archaive.jp/news/tokyo-project-adoption',
   publishDate: '2025-10-30',
-  image: 'https://archaive.net/news/ARCHAIVE_Tokyo.webp',
+  image: 'https://archaive.jp/news/ARCHAIVE_Tokyo.webp',
 };
 
 export const metadata: Metadata = {
@@ -54,26 +53,19 @@ export default function TokyoProjectAdoptionNews() {
     datePublished: `${article.publishDate}T00:00:00+09:00`,
     dateModified: `${article.publishDate}T00:00:00+09:00`,
     mainEntityOfPage: article.url,
-    image: [
-      {
-        '@type': 'ImageObject',
-        url: article.image,
-        caption: '東京都スタートアップ協働プロジェクト採択のビジュアル',
-        creditText: 'ARCHAIVE',
-      },
-    ],
+    image: [article.image],
     author: {
       '@type': 'Organization',
       name: 'ARCHAIVE',
-      url: 'https://archaive.net/',
+      url: 'https://archaive.jp/',
     },
     publisher: {
       '@type': 'Organization',
       name: 'ARCHAIVE',
-      url: 'https://archaive.net/',
+      url: 'https://archaive.jp/',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://archaive.net/images/og-image.png',
+        url: 'https://archaive.jp/images/og-image.png',
       },
     },
   };
@@ -86,13 +78,13 @@ export default function TokyoProjectAdoptionNews() {
         '@type': 'ListItem',
         position: 1,
         name: 'トップ',
-        item: 'https://archaive.net/',
+        item: 'https://archaive.jp/',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'お知らせ',
-        item: 'https://archaive.net/news',
+        item: 'https://archaive.jp/news',
       },
       {
         '@type': 'ListItem',
@@ -118,15 +110,6 @@ export default function TokyoProjectAdoptionNews() {
         <div className="bg-[#f4f4f4] py-20 flex justify-center min-h-screen">
           <div className="w-[70%] max-w-none mx-auto">
             <p className="text-[#888] text-sm mb-6">2025/10/30</p>
-            <nav aria-label="breadcrumb" className="mb-4 text-sm text-gray-600">
-              <ol className="flex gap-2">
-                <li><Link href="/" className="hover:text-[#37B7C4]">トップ</Link></li>
-                <li>/</li>
-                <li><Link href="/news" className="hover:text-[#37B7C4]">お知らせ</Link></li>
-                <li>/</li>
-                <li className="text-gray-900">{article.title}</li>
-              </ol>
-            </nav>
             <div className="mt-6 mb-12">
               <h1 className="text-2xl md:text-3xl font-bold leading-relaxed">{article.title}</h1>
               <p className="mt-3 text-base md:text-lg text-[#37B7C4] font-semibold">{article.subtitle}</p>
@@ -240,7 +223,6 @@ export default function TokyoProjectAdoptionNews() {
           </div>
         </div>
       </main>
-      <RelatedArticles currentSlug="tokyo-project-adoption" />
       <Footer />
     </div>
   );

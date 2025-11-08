@@ -2,9 +2,9 @@
 
 export default function HeroQuickNav() {
   return (
-    <section className="bg-white min-h-[calc(20vh-16px)] lg:h-[calc(20vh-16px)] border-t border-gray-200 hidden sm:block">
-      <div className="container mx-auto px-4 h-full">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 divide-y sm:divide-y-0 sm:divide-x divide-gray-200 h-full">
+    <section className="bg-white h-full w-full border-t border-gray-200 hidden sm:flex">
+      <div className="container mx-auto px-4 h-full flex-1 flex">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 divide-y sm:divide-y-0 sm:divide-x divide-gray-200 h-full w-full">
           <QuickNavItem href="#demo" title="ARCHAIVEとは" label="サービス紹介" />
           <QuickNavItem href="#before-after" title="ARCHAIVEが解決する" label="課題と解決策" />
           <QuickNavItem href="#features" title="ARCHAIVEの" label="主要機能" />
@@ -36,7 +36,7 @@ function QuickNavItem({ href, title, label }: { href: string; title: string; lab
     <a
       href={href}
       onClick={handleClick}
-      className="group flex items-center justify-between h-full min-h-[80px] px-3 py-4 hover:bg-gray-50 transition-all duration-300 relative overflow-hidden"
+      className="group flex h-full w-full items-center justify-between min-h-[80px] px-3 py-4 hover:bg-gray-50 transition-all duration-300 relative overflow-hidden"
     >
       {/* Ripple wave animation */}
       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">

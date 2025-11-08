@@ -2,16 +2,15 @@ import { Header, Footer } from '@/components/layout';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import type { Metadata } from 'next';
-import { RelatedArticles } from '@/components/news/RelatedArticles';
 
 const article = {
   title: '製造業のDXを加速するAIプラットフォーム「ARCHAIVE 2.1」を2025年10月1日より提供開始',
   subtitle: 'AI図面解析・見積から顧客管理まで一気通貫で支援',
   description:
     'AI図面解析・見積、顧客管理、カスタムAI開発を統合した「ARCHAIVE 2.1」の提供開始を発表。製造業DXを包括的に支援します。',
-  url: 'https://archaive.net/news/archaive-2-1-release',
+  url: 'https://archaive.jp/news/archaive-2-1-release',
   publishDate: '2025-09-08',
-  image: 'https://archaive.net/news/142139-12-db5647717e97f2603463709ff7136c46-1600x900.jpeg',
+  image: 'https://archaive.jp/news/142139-12-db5647717e97f2603463709ff7136c46-1600x900.jpeg',
 };
 
 export const metadata: Metadata = {
@@ -54,26 +53,19 @@ export default function Archaive21ReleaseNews() {
     datePublished: `${article.publishDate}T00:00:00+09:00`,
     dateModified: `${article.publishDate}T00:00:00+09:00`,
     mainEntityOfPage: article.url,
-    image: [
-      {
-        '@type': 'ImageObject',
-        url: article.image,
-        caption: 'ARCHAIVE 2.1リリース告知ビジュアル',
-        creditText: 'ARCHAIVE',
-      },
-    ],
+    image: [article.image],
     author: {
       '@type': 'Organization',
       name: 'ARCHAIVE',
-      url: 'https://archaive.net/',
+      url: 'https://archaive.jp/',
     },
     publisher: {
       '@type': 'Organization',
       name: 'ARCHAIVE',
-      url: 'https://archaive.net/',
+      url: 'https://archaive.jp/',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://archaive.net/images/og-image.png',
+        url: 'https://archaive.jp/images/og-image.png',
       },
     },
   };
@@ -86,13 +78,13 @@ export default function Archaive21ReleaseNews() {
         '@type': 'ListItem',
         position: 1,
         name: 'トップ',
-        item: 'https://archaive.net/',
+        item: 'https://archaive.jp/',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'お知らせ',
-        item: 'https://archaive.net/news',
+        item: 'https://archaive.jp/news',
       },
       {
         '@type': 'ListItem',
@@ -118,15 +110,6 @@ export default function Archaive21ReleaseNews() {
         <div className="bg-[#f4f4f4] py-20 flex justify-center min-h-screen">
           <div className="w-[70%] max-w-none mx-auto">
             <p className="text-[#888] text-sm mb-6">2025/9/8</p>
-            <nav aria-label="breadcrumb" className="mb-4 text-sm text-gray-600">
-              <ol className="flex gap-2">
-                <li><Link href="/" className="hover:text-[#37B7C4]">トップ</Link></li>
-                <li>/</li>
-                <li><Link href="/news" className="hover:text-[#37B7C4]">お知らせ</Link></li>
-                <li>/</li>
-                <li className="text-gray-900">{article.title}</li>
-              </ol>
-            </nav>
             <div className="mt-6 mb-12">
               <h1 className="text-2xl md:text-3xl font-bold leading-relaxed text-gray-900">{article.title}</h1>
               <p className="mt-3 text-base md:text-lg text-[#37B7C4] font-semibold">{article.subtitle}</p>
@@ -233,8 +216,8 @@ export default function Archaive21ReleaseNews() {
           </div>
         </div>
       </main>
-      <RelatedArticles currentSlug="archaive-2-1-release" />
       <Footer />
     </div>
   );
 }
+

@@ -2,16 +2,15 @@ import { Header, Footer } from '@/components/layout';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import type { Metadata } from 'next';
-import { RelatedArticles } from '@/components/news/RelatedArticles';
 
 const article = {
   title: '登壇実績',
   subtitle: '',
   description:
     'ARCHAIVEを運営する株式会社STAR UPの最新登壇実績を紹介。各種イベントで製造業DXのノウハウを共有しました。',
-  url: 'https://archaive.net/news/presentation-achievement',
+  url: 'https://archaive.jp/news/presentation-achievement',
   publishDate: '2024-12-21',
-  image: 'https://archaive.net/images/KYOTO%20SMARTCITY%20EXPO.webp',
+  image: 'https://archaive.jp/images/KYOTO%20SMARTCITY%20EXPO.webp',
 };
 
 export const metadata: Metadata = {
@@ -54,43 +53,23 @@ export default function PresentationAchievementNews() {
     dateModified: `${article.publishDate}T00:00:00+09:00`,
     mainEntityOfPage: article.url,
     image: [
-      {
-        '@type': 'ImageObject',
-        url: 'https://archaive.net/images/KYOTO%20SMARTCITY%20EXPO.webp',
-        caption: 'KYOTO SMARTCITY EXPO登壇の様子',
-        creditText: 'ARCHAIVE',
-      },
-      {
-        '@type': 'ImageObject',
-        url: 'https://archaive.net/images/MI-NET%20DXセミナー.webp',
-        caption: 'MI-NET DXセミナー登壇の様子',
-        creditText: 'ARCHAIVE',
-      },
-      {
-        '@type': 'ImageObject',
-        url: 'https://archaive.net/images/TRY%20ANGLE%20EHIME.webp',
-        caption: 'TRY ANGLE EHIMEイベント登壇の様子',
-        creditText: 'ARCHAIVE',
-      },
-      {
-        '@type': 'ImageObject',
-        url: 'https://archaive.net/images/岐阜県DX推進コンソーシアム.webp',
-        caption: '岐阜県DX推進コンソーシアム登壇の様子',
-        creditText: 'ARCHAIVE',
-      },
+      'https://archaive.jp/images/KYOTO%20SMARTCITY%20EXPO.webp',
+      'https://archaive.jp/images/MI-NET%20DXセミナー.webp',
+      'https://archaive.jp/images/TRY%20ANGLE%20EHIME.webp',
+      'https://archaive.jp/images/岐阜県DX推進コンソーシアム.webp',
     ],
     author: {
       '@type': 'Organization',
       name: 'ARCHAIVE',
-      url: 'https://archaive.net/',
+      url: 'https://archaive.jp/',
     },
     publisher: {
       '@type': 'Organization',
       name: 'ARCHAIVE',
-      url: 'https://archaive.net/',
+      url: 'https://archaive.jp/',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://archaive.net/images/og-image.png',
+        url: 'https://archaive.jp/images/og-image.png',
       },
     },
   };
@@ -103,13 +82,13 @@ export default function PresentationAchievementNews() {
         '@type': 'ListItem',
         position: 1,
         name: 'トップ',
-        item: 'https://archaive.net/',
+        item: 'https://archaive.jp/',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'お知らせ',
-        item: 'https://archaive.net/news',
+        item: 'https://archaive.jp/news',
       },
       {
         '@type': 'ListItem',
@@ -135,15 +114,6 @@ export default function PresentationAchievementNews() {
         <div className="bg-[#f4f4f4] py-20 flex justify-center min-h-screen">
           <div className="w-[70%] max-w-none mx-auto">
             <p className="text-[#888] text-sm mb-6">2024/12/21</p>
-            <nav aria-label="breadcrumb" className="mb-4 text-sm text-gray-600">
-              <ol className="flex gap-2">
-                <li><Link href="/" className="hover:text-[#37B7C4]">トップ</Link></li>
-                <li>/</li>
-                <li><Link href="/news" className="hover:text-[#37B7C4]">お知らせ</Link></li>
-                <li>/</li>
-                <li className="text-gray-900">{article.title}</li>
-              </ol>
-            </nav>
             <div className="mt-6 mb-12">
               <h1 className="text-2xl md:text-3xl font-bold leading-relaxed text-gray-900">{article.title}</h1>
             </div>
@@ -224,8 +194,8 @@ export default function PresentationAchievementNews() {
           </div>
         </div>
       </main>
-      <RelatedArticles currentSlug="presentation-achievement" />
       <Footer />
     </div>
   );
 }
+

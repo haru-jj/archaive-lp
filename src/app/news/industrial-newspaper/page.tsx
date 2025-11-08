@@ -2,16 +2,15 @@ import { Header, Footer } from '@/components/layout';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import type { Metadata } from 'next';
-import { RelatedArticles } from '@/components/news/RelatedArticles';
 
 const article = {
   title: '日刊工業新聞で取り上げられました',
   subtitle: '',
   description:
     '製造業向け図面管理プロダクト「ARCHAIVE」が日刊工業新聞に掲載され、製造業DX支援の取り組みが紹介されました。',
-  url: 'https://archaive.net/news/industrial-newspaper',
+  url: 'https://archaive.jp/news/industrial-newspaper',
   publishDate: '2025-03-01',
-  image: 'https://archaive.net/images/og-image.png',
+  image: 'https://archaive.jp/images/og-image.png',
 };
 
 export const metadata: Metadata = {
@@ -53,26 +52,19 @@ export default function IndustrialNewspaperNews() {
     datePublished: `${article.publishDate}T00:00:00+09:00`,
     dateModified: `${article.publishDate}T00:00:00+09:00`,
     mainEntityOfPage: article.url,
-    image: [
-      {
-        '@type': 'ImageObject',
-        url: article.image,
-        caption: '日刊工業新聞掲載時のビジュアル',
-        creditText: 'ARCHAIVE',
-      },
-    ],
+    image: [article.image],
     author: {
       '@type': 'Organization',
       name: 'ARCHAIVE',
-      url: 'https://archaive.net/',
+      url: 'https://archaive.jp/',
     },
     publisher: {
       '@type': 'Organization',
       name: 'ARCHAIVE',
-      url: 'https://archaive.net/',
+      url: 'https://archaive.jp/',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://archaive.net/images/og-image.png',
+        url: 'https://archaive.jp/images/og-image.png',
       },
     },
   };
@@ -85,13 +77,13 @@ export default function IndustrialNewspaperNews() {
         '@type': 'ListItem',
         position: 1,
         name: 'トップ',
-        item: 'https://archaive.net/',
+        item: 'https://archaive.jp/',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'お知らせ',
-        item: 'https://archaive.net/news',
+        item: 'https://archaive.jp/news',
       },
       {
         '@type': 'ListItem',
@@ -117,15 +109,6 @@ export default function IndustrialNewspaperNews() {
         <div className="bg-[#f4f4f4] py-20 flex justify-center min-h-screen">
           <div className="w-[70%] max-w-none mx-auto">
             <p className="text-[#888] text-sm mb-6">2025/3/1</p>
-            <nav aria-label="breadcrumb" className="mb-4 text-sm text-gray-600">
-              <ol className="flex gap-2">
-                <li><Link href="/" className="hover:text-[#37B7C4]">トップ</Link></li>
-                <li>/</li>
-                <li><Link href="/news" className="hover:text-[#37B7C4]">お知らせ</Link></li>
-                <li>/</li>
-                <li className="text-gray-900">{article.title}</li>
-              </ol>
-            </nav>
             <div className="mt-6 mb-12">
               <h1 className="text-2xl md:text-3xl font-bold leading-relaxed text-gray-900">{article.title}</h1>
             </div>
@@ -171,8 +154,8 @@ export default function IndustrialNewspaperNews() {
           </div>
         </div>
       </main>
-      <RelatedArticles currentSlug="industrial-newspaper" />
       <Footer />
     </div>
   );
 }
+

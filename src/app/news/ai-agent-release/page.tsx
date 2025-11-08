@@ -2,7 +2,6 @@ import { Header, Footer } from '@/components/layout';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import type { Metadata } from 'next';
-import { RelatedArticles } from '@/components/news/RelatedArticles';
 
 const article = {
   title:
@@ -10,9 +9,9 @@ const article = {
   subtitle: '',
   description:
     'ARCHAIVEが社内データを会話形式で活用できる製造業向けAIエージェントをリリース。図面検索や見積作成を対話で実現し、属人化を解消します。',
-  url: 'https://archaive.net/news/ai-agent-release',
+  url: 'https://archaive.jp/news/ai-agent-release',
   publishDate: '2025-07-28',
-  image: 'https://archaive.net/news/142139-11-5216d3335c660b5c6b7e0ceaae4f56d0-2068x1160.jpeg',
+  image: 'https://archaive.jp/news/142139-11-5216d3335c660b5c6b7e0ceaae4f56d0-2068x1160.jpeg',
 };
 
 export const metadata: Metadata = {
@@ -54,26 +53,19 @@ export default function AiAgentReleaseNews() {
     datePublished: `${article.publishDate}T00:00:00+09:00`,
     dateModified: `${article.publishDate}T00:00:00+09:00`,
     mainEntityOfPage: article.url,
-    image: [
-      {
-        '@type': 'ImageObject',
-        url: article.image,
-        caption: 'ARCHAIVEのAIエージェント機能告知ビジュアル',
-        creditText: 'ARCHAIVE',
-      },
-    ],
+    image: [article.image],
     author: {
       '@type': 'Organization',
       name: 'ARCHAIVE',
-      url: 'https://archaive.net/',
+      url: 'https://archaive.jp/',
     },
     publisher: {
       '@type': 'Organization',
       name: 'ARCHAIVE',
-      url: 'https://archaive.net/',
+      url: 'https://archaive.jp/',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://archaive.net/images/og-image.png',
+        url: 'https://archaive.jp/images/og-image.png',
       },
     },
   };
@@ -86,13 +78,13 @@ export default function AiAgentReleaseNews() {
         '@type': 'ListItem',
         position: 1,
         name: 'トップ',
-        item: 'https://archaive.net/',
+        item: 'https://archaive.jp/',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'お知らせ',
-        item: 'https://archaive.net/news',
+        item: 'https://archaive.jp/news',
       },
       {
         '@type': 'ListItem',
@@ -118,15 +110,6 @@ export default function AiAgentReleaseNews() {
         <div className="bg-[#f4f4f4] py-20 flex justify-center min-h-screen">
           <div className="w-[70%] max-w-none mx-auto">
             <p className="text-[#888] text-sm mb-6">2025/7/28</p>
-            <nav aria-label="breadcrumb" className="mb-4 text-sm text-gray-600">
-              <ol className="flex gap-2">
-                <li><Link href="/" className="hover:text-[#37B7C4]">トップ</Link></li>
-                <li>/</li>
-                <li><Link href="/news" className="hover:text-[#37B7C4]">お知らせ</Link></li>
-                <li>/</li>
-                <li className="text-gray-900">{article.title}</li>
-              </ol>
-            </nav>
             <div className="mt-6 mb-12">
               <h1 className="text-2xl md:text-3xl font-bold leading-relaxed text-gray-900">{article.title}</h1>
             </div>
@@ -259,7 +242,6 @@ export default function AiAgentReleaseNews() {
           </div>
         </div>
       </main>
-      <RelatedArticles currentSlug="ai-agent-release" />
       <Footer />
     </div>
   );

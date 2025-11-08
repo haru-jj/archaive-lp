@@ -2,16 +2,15 @@ import { Header, Footer } from '@/components/layout';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import type { Metadata } from 'next';
-import { RelatedArticles } from '@/components/news/RelatedArticles';
 
 const article = {
   title: '日本物流新聞で取り上げられました',
   subtitle: '',
   description:
     '製造業向け図面管理プロダクト「ARCHAIVE」が日本物流新聞に掲載され、京都ビジネス交流フェアでの注目企業として紹介されました。',
-  url: 'https://archaive.net/news/logistics-newspaper',
+  url: 'https://archaive.jp/news/logistics-newspaper',
   publishDate: '2025-03-05',
-  image: 'https://archaive.net/images/nihon_butsuryu_shinbun_1.png',
+  image: 'https://archaive.jp/images/nihon_butsuryu_shinbun_1.png',
 };
 
 export const metadata: Metadata = {
@@ -53,26 +52,19 @@ export default function LogisticsNewspaperNews() {
     datePublished: `${article.publishDate}T00:00:00+09:00`,
     dateModified: `${article.publishDate}T00:00:00+09:00`,
     mainEntityOfPage: article.url,
-    image: [
-      {
-        '@type': 'ImageObject',
-        url: article.image,
-        caption: '日本物流新聞掲載時のビジュアル',
-        creditText: 'ARCHAIVE',
-      },
-    ],
+    image: [article.image],
     author: {
       '@type': 'Organization',
       name: 'ARCHAIVE',
-      url: 'https://archaive.net/',
+      url: 'https://archaive.jp/',
     },
     publisher: {
       '@type': 'Organization',
       name: 'ARCHAIVE',
-      url: 'https://archaive.net/',
+      url: 'https://archaive.jp/',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://archaive.net/images/og-image.png',
+        url: 'https://archaive.jp/images/og-image.png',
       },
     },
   };
@@ -85,13 +77,13 @@ export default function LogisticsNewspaperNews() {
         '@type': 'ListItem',
         position: 1,
         name: 'トップ',
-        item: 'https://archaive.net/',
+        item: 'https://archaive.jp/',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'お知らせ',
-        item: 'https://archaive.net/news',
+        item: 'https://archaive.jp/news',
       },
       {
         '@type': 'ListItem',
@@ -117,15 +109,6 @@ export default function LogisticsNewspaperNews() {
         <div className="bg-[#f4f4f4] py-20 flex justify-center min-h-screen">
           <div className="w-[70%] max-w-none mx-auto">
             <p className="text-[#888] text-sm mb-6">2025/3/5</p>
-            <nav aria-label="breadcrumb" className="mb-4 text-sm text-gray-600">
-              <ol className="flex gap-2">
-                <li><Link href="/" className="hover:text-[#37B7C4]">トップ</Link></li>
-                <li>/</li>
-                <li><Link href="/news" className="hover:text-[#37B7C4]">お知らせ</Link></li>
-                <li>/</li>
-                <li className="text-gray-900">{article.title}</li>
-              </ol>
-            </nav>
             <div className="mt-6 mb-12">
               <h1 className="text-2xl md:text-3xl font-bold leading-relaxed text-gray-900">{article.title}</h1>
             </div>
@@ -179,7 +162,6 @@ export default function LogisticsNewspaperNews() {
           </div>
         </div>
       </main>
-      <RelatedArticles currentSlug="logistics-newspaper" />
       <Footer />
     </div>
   );
