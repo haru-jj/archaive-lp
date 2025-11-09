@@ -49,7 +49,7 @@ const subFeatures: SubFeature[] = [
             {[0, 1].map((index) => (
               <div
                 key={`customer-card-${index}`}
-                className="flex items-center rounded-xl border border-[#37B7C4]/25 bg-white/90 shadow-sm"
+                className="flex items-center rounded-none border border-[#37B7C4]/25 bg-white/90 shadow-sm"
                 style={{ padding: '12px 14px', gap: 14 }}
               >
                 <div
@@ -101,7 +101,7 @@ const subFeatures: SubFeature[] = [
       <SubFeatureCardFrame>
         <div className="flex h-full flex-col justify-between gap-3 pt-2" aria-hidden="true">
           <div
-            className="relative mx-auto flex items-center justify-center overflow-visible rounded-xl border border-[#37B7C4]/30 bg-white shadow-sm"
+            className="relative mx-auto flex items-center justify-center overflow-visible rounded-none border border-[#37B7C4]/30 bg-white shadow-sm"
             style={{ width: 132, height: 96, padding: '12px 14px' }}
           >
             <svg viewBox="0 0 92 64" className="h-full w-full text-[#2A8B96]" role="img" aria-hidden="true">
@@ -189,7 +189,7 @@ const subFeatures: SubFeature[] = [
             {[0, 1].map((index) => (
               <div
                 key={`permission-card-${index}`}
-                className="flex items-center rounded-xl border border-[#37B7C4]/25 bg-white/90 px-4 py-3"
+                className="flex items-center rounded-none border border-[#37B7C4]/25 bg-white/90 px-4 py-3"
                 style={{ gap: 14 }}
               >
                 <div
@@ -218,7 +218,7 @@ const subFeatures: SubFeature[] = [
                   />
                 </div>
                 <div
-                  className="flex items-center justify-center rounded-lg border border-[#37B7C4]/35 bg-white"
+                  className="flex items-center justify-center rounded-none border border-[#37B7C4]/35 bg-white"
                   style={{ width: 32, height: 32 }}
                 >
                   {index === 0 ? (
@@ -259,11 +259,11 @@ const subFeatures: SubFeature[] = [
         <div className="flex h-full flex-col justify-center" aria-hidden="true">
           <div className="relative mx-auto" style={{ width: 132, height: 102 }}>
             <div
-              className="absolute inset-0 rounded-xl border border-[#37B7C4]/25 bg-[#EAF7FA]/85 shadow-sm"
+              className="absolute inset-0 rounded-none border border-[#37B7C4]/25 bg-[#EAF7FA]/85 shadow-sm"
               style={{ boxShadow: '0 8px 18px rgba(21, 85, 106, 0.12)' }}
             >
               <div
-                className="absolute inset-[12px] rounded-lg border border-[#37B7C4]/25 bg-white/90 overflow-hidden"
+                className="absolute inset-[12px] rounded-none border border-[#37B7C4]/25 bg-white/90 overflow-hidden"
                 style={{ boxShadow: 'inset 0 0 0 1px rgba(55,183,196,0.1)' }}
               >
                 <div
@@ -354,7 +354,7 @@ const subFeatures: SubFeature[] = [
             </div>
           </div>
           <div
-            className="rounded-lg border border-[#37B7C4]/25 bg-[#E4F6FA]/70"
+            className="rounded-none border border-[#37B7C4]/25 bg-[#E4F6FA]/70"
             style={{ padding: '14px', display: 'flex', flexDirection: 'column', gap: 10, width: 132 }}
           >
             {[0, 1, 2].map((row) => (
@@ -384,7 +384,7 @@ const subFeatures: SubFeature[] = [
             {[0, 1].map((index) => (
               <div
                 key={`project-card-${index}`}
-                className="flex items-center rounded-xl border border-[#37B7C4]/25 bg-white/90 shadow-sm"
+                className="flex items-center rounded-none border border-[#37B7C4]/25 bg-white/90 shadow-sm"
                 style={{ padding: '12px 14px', gap: 14 }}
               >
                 <div
@@ -450,14 +450,14 @@ const subFeatures: SubFeature[] = [
       <SubFeatureCardFrame>
         <div className="relative flex h-full items-center justify-center" aria-hidden="true">
           <div className="relative" style={{ width: 96, height: 64 }}>
-            <div className="absolute inset-0 rounded-lg border border-[#37B7C4]/25 bg-gradient-to-br from-[#37B7C4] to-[#1F7D8C]" />
-            <div className="absolute rounded-lg border border-white/30" style={{ inset: 8 }} />
+            <div className="absolute inset-0 rounded-none border border-[#37B7C4]/25 bg-gradient-to-br from-[#37B7C4] to-[#1F7D8C]" />
+            <div className="absolute rounded-none border border-white/30" style={{ inset: 8 }} />
             <div
-              className="absolute rounded-lg border border-[#37B7C4]/35 bg-gradient-to-br from-[#4AC7D4] to-[#37B7C4] animate-bounce"
+              className="absolute rounded-none border border-[#37B7C4]/35 bg-gradient-to-br from-[#4AC7D4] to-[#37B7C4] animate-bounce"
               style={{ width: 56, height: 36, top: -8, left: 12 }}
             />
             <div
-              className="absolute rounded-lg border border-[#37B7C4]/35 bg-gradient-to-br from-[#2A9BA8] to-[#1F7D8C] animate-pulse"
+              className="absolute rounded-none border border-[#37B7C4]/35 bg-gradient-to-br from-[#2A9BA8] to-[#1F7D8C] animate-pulse"
               style={{ width: 56, height: 36, top: 8, right: -12 }}
             />
             <div
@@ -542,16 +542,16 @@ export default function SubFeaturesSection() {
 
         <div className="mx-auto grid max-w-7xl grid-cols-1 justify-items-center gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4 lg:gap-8 xl:gap-10">
           {subFeatures.map((feature) => (
-            <div
-              key={feature.title}
-              className="group relative w-full rounded-2xl border border-gray-300/50 bg-gradient-to-br from-gray-50 to-white p-3 sm:p-6 lg:p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
-              style={{ minHeight: '220px' }}
-            >
+              <div
+                key={feature.title}
+                className="group relative w-full rounded-none border border-gray-300/50 bg-gradient-to-br from-gray-50 to-white p-3 sm:p-6 lg:p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
+                style={{ minHeight: '220px' }}
+              >
               <div className="absolute top-0 left-0 h-0.5 w-0 rounded-full bg-[#37B7C4] transition-all duration-300 group-hover:w-full" />
               <div className="absolute top-0 right-0 h-0 w-0.5 rounded-full bg-[#37B7C4] transition-all duration-300 delay-100 group-hover:h-full" />
               <div className="absolute bottom-0 right-0 h-0.5 w-0 rounded-full bg-[#37B7C4] transition-all duration-300 delay-200 group-hover:w-full" />
               <div className="absolute bottom-0 left-0 h-0 w-0.5 rounded-full bg-[#37B7C4] transition-all duration-300 delay-300 group-hover:h-full" />
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#37B7C4]/5 via-transparent to-[#37B7C4]/3 opacity-0 transition-opacity duration-500 delay-200 group-hover:opacity-100" />
+              <div className="absolute inset-0 rounded-none bg-gradient-to-br from-[#37B7C4]/5 via-transparent to-[#37B7C4]/3 opacity-0 transition-opacity duration-500 delay-200 group-hover:opacity-100" />
 
               <div className="relative z-10 flex h-full flex-col items-center justify-center">
                 <div className="mb-4 w-full transition-all duration-300 group-hover:-translate-y-1 group-hover:scale-105">
