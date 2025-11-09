@@ -119,7 +119,7 @@ const subFeatures: SubFeature[] = [
             </svg>
             <svg
               viewBox="0 0 48 48"
-              className="absolute rotate-6 text-[#4B5563]"
+              className="absolute rotate-6 text-[#4B5563] animate-pen-sway"
               style={{ width: 48, height: 48, right: -10, bottom: -2, zIndex: 10 }}
             >
               <path

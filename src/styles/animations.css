@@ -159,6 +159,19 @@
   animation: connectorPulse var(--connector-duration, 2.8s) ease-in-out infinite;
 }
 
+@keyframes penSway {
+  0% {
+    transform: translateX(-4px);
+  }
+  100% {
+    transform: translateX(4px);
+  }
+}
+
+.animate-pen-sway {
+  animation: penSway 1.4s ease-in-out infinite alternate;
+}
+
 @keyframes stackBuild {
   0% {
     transform: translateY(10px) scale(0.92);
