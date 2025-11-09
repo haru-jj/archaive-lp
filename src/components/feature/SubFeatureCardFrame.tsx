@@ -8,7 +8,7 @@ type SubFeatureCardFrameProps = {
 };
 
 const HeaderBar = () => (
-  <div className="flex h-[40px] w-full items-center px-4 bg-[#1F2937]">
+  <div className="flex h-[40px] w-full items-center px-4 bg-[#4B5563]">
     <div className="flex items-center gap-1.5">
       <div className="w-2.5 h-2.5 rounded-full bg-white/80" />
       <div className="w-2.5 h-2.5 rounded-full bg-white/50" />
