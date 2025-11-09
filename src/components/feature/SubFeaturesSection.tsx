@@ -151,30 +151,34 @@ const subFeatures: SubFeature[] = [
     subtitle: '組立図と部品図の階層構造管理',
     illustration: (
       <SubFeatureCardFrame>
-        <div className="flex h-full items-center justify-center gap-8" aria-hidden="true">
-          <svg viewBox="0 0 80 80" className="h-20 w-20 text-[#1F2937]">
-            <rect x="20" y="8" width="40" height="12" rx="2" fill="currentColor" />
-            <rect x="26" y="20" width="28" height="40" rx="3" fill="none" stroke="currentColor" strokeWidth="3" />
-            {[0, 1, 2, 3].map((index) => (
-              <line
-                key={index}
-                x1="26"
-                y1={28 + index * 8}
-                x2="54"
-                y2={26 + index * 8}
-                stroke="#4B5563"
-                strokeWidth="2"
-              />
-            ))}
-            <circle cx="40" cy="62" r="6" fill="none" stroke="currentColor" strokeWidth="3" />
-          </svg>
-          <svg viewBox="0 0 80 80" className="h-20 w-20 text-[#4B5563]">
-            <polygon points="22,12 58,12 68,24 68,30 12,30 12,24" fill="currentColor" />
-            <rect x="24" y="30" width="32" height="6" fill="currentColor" />
-            <rect x="30" y="36" width="20" height="30" rx="4" fill="none" stroke="currentColor" strokeWidth="4" />
-            <line x1="30" y1="46" x2="50" y2="46" stroke="#1F2937" strokeWidth="3" />
-            <line x1="30" y1="54" x2="50" y2="54" stroke="#1F2937" strokeWidth="3" />
-          </svg>
+        <div className="flex h-full flex-col justify-center" aria-hidden="true">
+          <div className="mx-auto flex w-full max-w-[200px] flex-col gap-3">
+            <div className="flex items-center gap-3">
+              <div className="rounded-none border border-[#4B5563]/40 bg-white px-3 py-2 text-sm font-semibold text-[#1F2937]">
+                組立図
+              </div>
+              <div className="text-xs text-[#9CA3AF]">親レベル</div>
+            </div>
+            <div className="flex items-center gap-2 text-[#9CA3AF] text-xs">
+              <div className="h-px flex-1 bg-[#9CA3AF]" />
+              階層
+              <div className="h-px flex-1 bg-[#9CA3AF]" />
+            </div>
+            <div className="flex flex-col gap-2 rounded-none border border-[#E5E7EB] bg-[#F9FAFB] p-3">
+              {[0, 1, 2].map((index) => (
+                <div key={`part-${index}`} className="flex items-center justify-between text-sm text-[#1F2937]">
+                  <div className="flex items-center gap-2">
+                    <div className="h-2 w-2 bg-[#9CA3AF]" />
+                    部品 {String.fromCharCode(65 + index)}
+                  </div>
+                  <div className="text-xs text-[#9CA3AF]">更新済</div>
+                </div>
+              ))}
+            </div>
+            <div className="ml-4 border-l border-dashed border-[#D1D5DB] pl-4 text-xs text-[#6B7280]">
+              追加部品 +3
+            </div>
+          </div>
         </div>
       </SubFeatureCardFrame>
     ),
