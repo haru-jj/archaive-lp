@@ -516,7 +516,7 @@ export default function SubFeaturesSection() {
       <div className="absolute inset-0 opacity-30">
         <svg className="h-full w-full" viewBox="0 0 400 300" preserveAspectRatio="none">
           <defs>
-            <pattern id="mesh" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+            <pattern id="mesh-primary" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
               <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#4B5563" strokeWidth="0.5" opacity="0.3" />
             </pattern>
             <linearGradient id="meshGradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -525,15 +525,15 @@ export default function SubFeaturesSection() {
               <stop offset="100%" stopColor="#4B5563" stopOpacity="0.1" />
             </linearGradient>
           </defs>
-          <rect width="100%" height="100%" fill="url(#mesh)" />
+          <rect width="100%" height="100%" fill="url(#mesh-secondary)" />
           <rect width="100%" height="100%" fill="url(#meshGradient)" />
         </svg>
       </div>
       <div className="absolute inset-0">
         <svg className="h-full w-full" viewBox="0 0 400 300" preserveAspectRatio="none">
           <defs>
-            <pattern id="mesh" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-              <path d="M 40 0 L 0 0 0 40" fill="none" stroke=#37B7C4 strokeWidth="0.6" />
+            <pattern id="mesh-secondary" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#37B7C4" strokeWidth="0.6" />
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#mesh)" />
