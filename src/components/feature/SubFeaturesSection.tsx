@@ -200,7 +200,6 @@ const subFeatures: SubFeature[] = [
       </SubFeatureCardFrame>
     ),
   },
-  },
   {
     title: '権限管理',
     subtitle: 'ユーザーごとのアクセス権限設定',
