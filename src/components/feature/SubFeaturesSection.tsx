@@ -151,31 +151,39 @@ const subFeatures: SubFeature[] = [
     subtitle: '組立図と部品図の階層構造管理',
     illustration: (
       <SubFeatureCardFrame>
-        <div className="flex h-full flex-col justify-center" aria-hidden="true">
-          <div className="mx-auto flex w-full max-w-[200px] flex-col gap-4">
-            <svg viewBox="0 0 120 80" className="w-full text-[#4B5563]">
-              <rect x="10" y="8" width="100" height="20" fill="#fff" stroke="currentColor" strokeWidth="2" />
-              <circle cx="24" cy="18" r="4" fill="#4B5563" />
-              <line x1="42" y1="18" x2="94" y2="18" stroke="#9CA3AF" strokeWidth="2" />
-              <line x1="60" y1="28" x2="60" y2="60" stroke="#D1D5DB" strokeWidth="1.5" strokeDasharray="3 3" />
-              <rect x="26" y="38" width="32" height="22" fill="#F3F4F6" stroke="#D1D5DB" />
-              <rect x="62" y="38" width="32" height="22" fill="#F9FAFB" stroke="#D1D5DB" />
-              <polyline points="42,38 42,32 60,32 60,38" fill="none" stroke="#D1D5DB" strokeWidth="1.5" />
-              <polyline points="76,38 76,32 60,32" fill="none" stroke="#D1D5DB" strokeWidth="1.5" />
-            </svg>
-            <div className="flex items-center gap-2 px-3 py-2 border border-[#E5E7EB] bg-[#F9FAFB] text-[#6B7280] text-xs">
-              <div className="h-2 w-2 bg-[#9CA3AF]" />
-              <div className="flex-1 h-px bg-[#E5E7EB]" />
-              <div className="h-2 w-2 bg-[#9CA3AF]" />
-            </div>
-            <div className="flex flex-col gap-2 rounded-none border border-[#E5E7EB] bg-white/90 p-3">
+        <div className="flex h-full items-center justify-center" aria-hidden="true">
+          <div className="flex w-full max-w-[220px] gap-3">
+            <svg viewBox="0 0 100 90" className="h-32 w-1/2 text-[#4B5563]">
+              <rect x="8" y="8" width="84" height="70" fill="#fff" stroke="currentColor" strokeWidth="2" />
+              <rect x="18" y="18" width="64" height="10" fill="#E5E7EB" />
+              <line x1="18" y1="34" x2="82" y2="34" stroke="#D1D5DB" strokeWidth="1.5" strokeDasharray="3 3" />
               {[0, 1, 2].map((index) => (
-                <div key={`tree-node-${index}`} className="flex items-center gap-2 text-[#4B5563]">
-                  <svg viewBox="0 0 16 16" className="h-4 w-4 text-[#9CA3AF]"><polyline points="2,8 6,8 6,4 10,4" fill="none" stroke="currentColor" strokeWidth="1.5" /><circle cx="10" cy="4" r="1.5" fill="currentColor" /></svg>
-                  <div className="flex-1 h-px bg-[#E5E7EB]" />
-                  <svg viewBox="0 0 16 16" className="h-4 w-4 text-[#9CA3AF]"><rect x="3" y="5" width="10" height="6" fill="currentColor" /></svg>
-                </div>
+                <line
+                  key={`branch-${index}`}
+                  x1="18"
+                  y1={42 + index * 12}
+                  x2="50"
+                  y2={42 + index * 12}
+                  stroke="#9CA3AF"
+                  strokeWidth="2"
+                />
               ))}
+              <circle cx="18" cy="42" r="3" fill="#9CA3AF" />
+              <circle cx="18" cy="54" r="3" fill="#9CA3AF" />
+              <circle cx="18" cy="66" r="3" fill="#9CA3AF" />
+              {[0, 1, 2].map((index) => (
+                <rect key={`node-${index}`} x="50" y={37 + index * 12} width="28" height="8" fill="#F3F4F6" stroke="#D1D5DB" />
+              ))}
+            </svg>
+            <div className="flex w-1/2 flex-col gap-2 rounded-none border border-[#E5E7EB] bg-white/90 p-3">
+              <div className="flex-1 rounded-none border border-[#E5E7EB] bg-[#F9FAFB]" />
+              <div className="h-2 rounded-none bg-[#E5E7EB]" />
+              <div className="h-2 rounded-none bg-[#E5E7EB]/70" />
+              <div className="flex flex-wrap gap-1">
+                {Array.from({ length: 4 }).map((_, index) => (
+                  <div key={`tag-${index}`} className="h-2 w-8 rounded-none bg-[#D1D5DB]" />
+                ))}
+              </div>
             </div>
           </div>
         </div>
