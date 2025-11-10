@@ -152,37 +152,46 @@ const subFeatures: SubFeature[] = [
     illustration: (
       <SubFeatureCardFrame>
         <div className="flex h-full items-center justify-center gap-3" aria-hidden="true">
-          <div className="flex w-[90px] flex-col gap-1 rounded-none border border-[#E5E7EB] bg-white/95 p-2">
-            <svg viewBox="0 0 60 80" className="w-full text-[#4B5563]">
-              <line x1="20" y1="10" x2="20" y2="70" stroke="#D1D5DB" strokeWidth="1.5" />
-              {[0, 1, 2].map((index) => (
-                <g key={`branch-${index}`}>
-                  <line x1="20" y1={20 + index * 20} x2="40" y2={20 + index * 10} stroke="#9CA3AF" strokeWidth="1.5" />
-                  <circle cx="20" cy={20 + index * 20} r="2.8" fill="#9CA3AF" />
-                  <rect x="40" y={15 + index * 10} width="12" height="8" fill="#F3F4F6" stroke="#D1D5DB" />
-                  <line x1="40" y1={19 + index * 10} x2="52" y2={19 + index * 10} stroke="#E5E7EB" strokeWidth="1" />
-                </g>
-              ))}
-            </svg>
-          </div>
-          <div className="flex w-[110px] flex-col gap-2 rounded-none border border-[#E5E7EB] bg-white/90 p-3">
-            <div className="rounded-none border border-[#E5E7EB] bg-white p-2">
-              <svg viewBox="0 0 90 50" className="w-full text-[#4B5563]">
-                <rect x="6" y="4" width="78" height="42" fill="#F9FAFB" stroke="#D1D5DB" />
-                <rect x="12" y="10" width="66" height="8" fill="#E5E7EB" />
-                <polyline points="12,28 38,22 56,30 72,22" fill="none" stroke="#D1D5DB" strokeWidth="1.2" />
-                <circle cx="12" cy="28" r="2" fill="#9CA3AF" />
-                <circle cx="38" cy="22" r="2" fill="#9CA3AF" />
-                <circle cx="56" cy="30" r="2" fill="#9CA3AF" />
-                <circle cx="72" cy="22" r="2" fill="#9CA3AF" />
+          <svg viewBox="0 0 110 90" className="h-full w-[90px] text-[#4B5563]">
+            <rect x="10" y="8" width="88" height="74" fill="#fff" stroke="#E5E7EB" />
+            <line x1="30" y1="14" x2="30" y2="76" stroke="#D1D5DB" strokeWidth="1.5" />
+            {[0, 1, 2].map((index) => (
+              <g key={`tree-${index}`}>
+                <line x1="30" y1={24 + index * 18} x2="84" y2={20 + index * 18} stroke="#9CA3AF" strokeWidth="1.5" />
+                <rect x="16" y={20 + index * 18} width="10" height="8" fill="#E5E7EB" />
+                <polygon points={f"20,{22 + index * 18} 24,{22 + index * 18} 22,{18 + index * 18}"} fill="#C4CBD4" />
+                <rect x="44" y={18 + index * 18} width="20" height="8" fill="#F3F4F6" stroke="#D1D5DB" />
+                <rect x="72" y={16 + index * 18} width="12" height="6" fill="#E5E7EB" />
+                <rect x="88" y={15 + index * 18} width="6" height="4" fill="#D1D5DB" />
+              </g>
+            ))}
+          </svg>
+          <div className="flex w-[120px] flex-col gap-2 rounded-none border border-[#E5E7EB] bg-white/90 p-3">
+            <div className="rounded-none border border-[#1F2937] bg-[#111827] p-3">
+              <svg viewBox="0 0 120 60" className="w-full text-white">
+                <polyline points="16,38 30,18 46,28 62,16 90,32" fill="none" stroke="#94A3B8" strokeWidth="2" />
+                <path d="M34 46 L44 24 L78 22" fill="none" stroke="#4B5563" strokeWidth="1" />
+                <polygon points="24,20 36,12 52,22 40,30" fill="none" stroke="#6B7280" strokeWidth="1" />
+                {[0, 1, 2].map((index) => (
+                  <rect key={`preview-${index}`} x={18 + index * 24} y="10" width="20" height="8" fill="#1F2937" stroke="#4B5563" />
+                ))}
+                {[18, 36, 54, 72, 90].map((cx) => (
+                  <circle key={`preview-node-${cx}`} cx={cx} cy="32" r="2" fill="#9CA3AF" />
+                ))}
               </svg>
             </div>
             <div className="flex flex-col gap-1 rounded-none border border-[#E5E7EB] bg-[#F9FAFB] p-2">
               <div className="h-2 rounded-none bg-[#E5E7EB]" />
               <div className="h-2 rounded-none bg-[#E5E7EB]/70" />
+              <div className="h-2 rounded-none bg-[#E5E7EB]/70" />
               <div className="flex gap-1">
-                {Array.from({ length: 3 }).map((_, index) => (
+                {Array.from({ length: 4 }).map((_, index) => (
                   <div key={`detail-${index}`} className="h-2 flex-1 rounded-none bg-[#D1D5DB]" />
+                ))}
+              </div>
+              <div className="flex gap-1 pt-1">
+                {Array.from({ length: 3 }).map((_, index) => (
+                  <div key={`button-${index}`} className="h-3 flex-1 rounded-none bg-[#E5E7EB]" />
                 ))}
               </div>
             </div>
@@ -190,6 +199,7 @@ const subFeatures: SubFeature[] = [
         </div>
       </SubFeatureCardFrame>
     ),
+  },
   },
   {
     title: '権限管理',
