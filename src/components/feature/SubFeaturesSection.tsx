@@ -152,46 +152,70 @@ const subFeatures: SubFeature[] = [
     illustration: (
       <SubFeatureCardFrame>
         <div className="flex h-full items-center justify-center gap-3" aria-hidden="true">
-          <svg viewBox="0 0 110 90" className="h-full w-[90px] text-[#4B5563]">
-            <rect x="10" y="8" width="88" height="74" fill="#fff" stroke="#E5E7EB" />
-            <line x1="30" y1="14" x2="30" y2="76" stroke="#D1D5DB" strokeWidth="1.5" />
-            {[0, 1, 2].map((index) => (
-              <g key={`tree-${index}`}>
-                <line x1="30" y1={24 + index * 18} x2="84" y2={20 + index * 18} stroke="#9CA3AF" strokeWidth="1.5" />
-                <rect x="16" y={20 + index * 18} width="10" height="8" fill="#E5E7EB" />
-                <polygon points={`20,${22 + index * 18} 24,${22 + index * 18} 22,${18 + index * 18}`} fill="#C4CBD4" />
-                <rect x="44" y={18 + index * 18} width="20" height="8" fill="#F3F4F6" stroke="#D1D5DB" />
-                <rect x="72" y={16 + index * 18} width="12" height="6" fill="#E5E7EB" />
-                <rect x="88" y={15 + index * 18} width="6" height="4" fill="#D1D5DB" />
-              </g>
-            ))}
-          </svg>
-          <div className="flex w-[120px] flex-col gap-2 rounded-none border border-[#E5E7EB] bg-white/90 p-3">
-            <div className="rounded-none border border-[#1F2937] bg-[#111827] p-3">
-              <svg viewBox="0 0 120 60" className="w-full text-white">
-                <polyline points="16,38 30,18 46,28 62,16 90,32" fill="none" stroke="#94A3B8" strokeWidth="2" />
-                <path d="M34 46 L44 24 L78 22" fill="none" stroke="#4B5563" strokeWidth="1" />
-                <polygon points="24,20 36,12 52,22 40,30" fill="none" stroke="#6B7280" strokeWidth="1" />
-                {[0, 1, 2].map((index) => (
-                  <rect key={`preview-${index}`} x={18 + index * 24} y="10" width="20" height="8" fill="#1F2937" stroke="#4B5563" />
-                ))}
-                {[18, 36, 54, 72, 90].map((cx) => (
-                  <circle key={`preview-node-${cx}`} cx={cx} cy="32" r="2" fill="#9CA3AF" />
-                ))}
+          <div className="flex h-full w-[80px] flex-col rounded-none border border-[#E5E7EB] bg-white">
+            <svg viewBox="0 0 80 90" className="h-full w-full text-[#4B5563]">
+              <rect x="4" y="4" width="72" height="82" fill="#fff" stroke="#E5E7EB" />
+              {[0, 1].map((group) => (
+                <g key={`tree-group-${group}`}>
+                  <polygon
+                    points={group === 0 ? '16,18 20,18 18,14' : '16,42 20,42 18,38'}
+                    fill={group === 0 ? '#9CA3AF' : '#C9CED6'}
+                  />
+                  <rect x="22" y={14 + group * 24} width="22" height="8" fill="#F3F4F6" stroke="#E5E7EB" />
+                  <rect x="48" y={15 + group * 24} width="12" height="6" fill="#E5E7EB" />
+                  {[0, 1].map((child) => (
+                    <g key={`child-${group}-${child}`}>
+                      <line
+                        x1="32"
+                        y1={28 + group * 24}
+                        x2={48 + child * 12}
+                        y2={34 + group * 24 + child * 4}
+                        stroke="#D1D5DB"
+                        strokeWidth="1"
+                      />
+                      <rect
+                        x={48 + child * 12}
+                        y={32 + group * 24 + child * 4}
+                        width="10"
+                        height="6"
+                        fill="#EFEFF1"
+                        stroke="#E5E7EB"
+                      />
+                    </g>
+                  ))}
+                </g>
+              ))}
+            </svg>
+          </div>
+          <div className="flex h-full w-[140px] flex-col rounded-none border border-[#E5E7EB] bg-white">
+            <div className="flex-1 border-b border-[#E5E7EB] bg-[#111827] p-3">
+              <svg viewBox="0 0 140 60" className="h-full w-full text-white">
+                <polygon points="24,16 52,8 78,20 52,32" fill="none" stroke="#6B7280" strokeWidth="1" />
+                <rect x="80" y="18" width="28" height="10" fill="#1F2937" stroke="#4B5563" />
+                <rect x="92" y="8" width="10" height="10" fill="#1F2937" stroke="#4B5563" />
+                <path
+                  d="M32 42 L52 34 L68 44 L92 32"
+                  fill="none"
+                  stroke="#94A3B8"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+                <circle cx="32" cy="42" r="2" fill="#9CA3AF" />
+                <circle cx="52" cy="34" r="2" fill="#9CA3AF" />
+                <circle cx="68" cy="44" r="2" fill="#9CA3AF" />
+                <circle cx="92" cy="32" r="2" fill="#9CA3AF" />
               </svg>
             </div>
-            <div className="flex flex-col gap-1 rounded-none border border-[#E5E7EB] bg-[#F9FAFB] p-2">
-              <div className="h-2 rounded-none bg-[#E5E7EB]" />
-              <div className="h-2 rounded-none bg-[#E5E7EB]/70" />
-              <div className="h-2 rounded-none bg-[#E5E7EB]/70" />
-              <div className="flex gap-1">
-                {Array.from({ length: 4 }).map((_, index) => (
-                  <div key={`detail-${index}`} className="h-2 flex-1 rounded-none bg-[#D1D5DB]" />
-                ))}
-              </div>
-              <div className="flex gap-1 pt-1">
+            <div className="flex flex-col gap-2 p-3">
+              {[0, 1, 2, 3, 4].map((row) => (
+                <div key={`attr-${row}`} className="flex items-center gap-2">
+                  <div className="h-2 w-8 rounded-none bg-[#E5E7EB]" />
+                  <div className="h-2 flex-1 rounded-none bg-[#D1D5DB]" />
+                </div>
+              ))}
+              <div className="flex gap-2 pt-1">
                 {Array.from({ length: 3 }).map((_, index) => (
-                  <div key={`button-${index}`} className="h-3 flex-1 rounded-none bg-[#E5E7EB]" />
+                  <div key={`btn-${index}`} className="h-3 flex-1 rounded-none bg-[#E5E7EB]" />
                 ))}
               </div>
             </div>
