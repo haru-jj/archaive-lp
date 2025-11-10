@@ -152,25 +152,31 @@ const subFeatures: SubFeature[] = [
     illustration: (
       <SubFeatureCardFrame>
         <div className="flex h-full items-center justify-center gap-3" aria-hidden="true">
-          <div className="flex w-[90px] flex-col items-stretch rounded-none border border-[#E5E7EB] bg-white/95 p-2">
-            <div className="h-6 rounded-none border border-[#D1D5DB] bg-[#F3F4F6]" />
-            <div className="my-2 h-px bg-[#E5E7EB]" />
-            {[0, 1, 2].map((index) => (
-              <div key={`lvl-${index}`} className="flex items-center gap-2 py-1">
-                <div className="h-px flex-1 bg-[#D1D5DB]" />
-                <div className="h-2 w-2 bg-[#9CA3AF]" />
-              </div>
-            ))}
+          <div className="flex w-[90px] flex-col gap-1 rounded-none border border-[#E5E7EB] bg-white/95 p-2">
+            <svg viewBox="0 0 60 80" className="w-full text-[#4B5563]">
+              <line x1="20" y1="10" x2="20" y2="70" stroke="#D1D5DB" strokeWidth="1.5" />
+              {[0, 1, 2].map((index) => (
+                <g key={`branch-${index}`}>
+                  <line x1="20" y1={20 + index * 20} x2="40" y2={20 + index * 10} stroke="#9CA3AF" strokeWidth="1.5" />
+                  <circle cx="20" cy={20 + index * 20} r="2.8" fill="#9CA3AF" />
+                  <rect x="40" y={15 + index * 10} width="12" height="8" fill="#F3F4F6" stroke="#D1D5DB" />
+                  <line x1="40" y1={19 + index * 10} x2="52" y2={19 + index * 10} stroke="#E5E7EB" strokeWidth="1" />
+                </g>
+              ))}
+            </svg>
           </div>
           <div className="flex w-[110px] flex-col gap-2 rounded-none border border-[#E5E7EB] bg-white/90 p-3">
-            <svg viewBox="0 0 90 60" className="w-full text-[#4B5563]">
-              <rect x="4" y="4" width="82" height="52" fill="#F9FAFB" stroke="#D1D5DB" />
-              <rect x="12" y="12" width="66" height="12" fill="#E5E7EB" />
-              <polyline points="12,32 45,32 45,28 70,28" fill="none" stroke="#D1D5DB" strokeWidth="1.5" />
-              <circle cx="12" cy="32" r="2.5" fill="#9CA3AF" />
-              <circle cx="45" cy="28" r="2.5" fill="#9CA3AF" />
-              <rect x="52" y="34" width="24" height="12" fill="#F3F4F6" stroke="#D1D5DB" />
-            </svg>
+            <div className="rounded-none border border-[#E5E7EB] bg-white p-2">
+              <svg viewBox="0 0 90 50" className="w-full text-[#4B5563]">
+                <rect x="6" y="4" width="78" height="42" fill="#F9FAFB" stroke="#D1D5DB" />
+                <rect x="12" y="10" width="66" height="8" fill="#E5E7EB" />
+                <polyline points="12,28 38,22 56,30 72,22" fill="none" stroke="#D1D5DB" strokeWidth="1.2" />
+                <circle cx="12" cy="28" r="2" fill="#9CA3AF" />
+                <circle cx="38" cy="22" r="2" fill="#9CA3AF" />
+                <circle cx="56" cy="30" r="2" fill="#9CA3AF" />
+                <circle cx="72" cy="22" r="2" fill="#9CA3AF" />
+              </svg>
+            </div>
             <div className="flex flex-col gap-1 rounded-none border border-[#E5E7EB] bg-[#F9FAFB] p-2">
               <div className="h-2 rounded-none bg-[#E5E7EB]" />
               <div className="h-2 rounded-none bg-[#E5E7EB]/70" />
