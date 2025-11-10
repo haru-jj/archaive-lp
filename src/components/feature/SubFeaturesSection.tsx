@@ -512,7 +512,7 @@ export default function SubFeaturesSection() {
   }
 
   return (
-    <div className="relative py-24 -mx-[50vw] left-[50%] right-[50%] w-screen bg-gradient-to-br from-gray-700 via-gray-600 to-slate-700">
+    <div className="relative py-24 -mx-[50vw] left-[50%] right-[50%] w-screen bg-[#0F172A]">
       <div className="absolute inset-0 opacity-30">
         <svg className="h-full w-full" viewBox="0 0 400 300" preserveAspectRatio="none">
           <defs>
@@ -527,6 +527,16 @@ export default function SubFeaturesSection() {
           </defs>
           <rect width="100%" height="100%" fill="url(#mesh)" />
           <rect width="100%" height="100%" fill="url(#meshGradient)" />
+        </svg>
+      </div>
+      <div className="absolute inset-0">
+        <svg className="h-full w-full" viewBox="0 0 400 300" preserveAspectRatio="none">
+          <defs>
+            <pattern id="mesh" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(59,130,246,0.22)" strokeWidth="0.6" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#mesh)" />
         </svg>
       </div>
 
