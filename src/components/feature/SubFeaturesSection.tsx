@@ -512,7 +512,7 @@ export default function SubFeaturesSection() {
   }
 
   return (
-    <div className="relative py-24 -mx-[50vw] left-[50%] right-[50%] w-screen bg-[#0F172A]">
+    <div className="relative py-24 -mx-[50vw] left-[50%] right-[50%] w-screen bg-gradient-to-br from-gray-700 via-gray-600 to-slate-700">
       <div className="absolute inset-0 opacity-30">
         <svg className="h-full w-full" viewBox="0 0 400 300" preserveAspectRatio="none">
           <defs>
@@ -533,7 +533,7 @@ export default function SubFeaturesSection() {
         <svg className="h-full w-full" viewBox="0 0 400 300" preserveAspectRatio="none">
           <defs>
             <pattern id="mesh" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(59,130,246,0.22)" strokeWidth="0.6" />
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke=#37B7C4 strokeWidth="0.6" />
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#mesh)" />
@@ -541,10 +541,10 @@ export default function SubFeaturesSection() {
       </div>
 
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-10 left-10 w-32 h-32 bg-gradient-to-br from-[#4B5563]/10 to-transparent rounded-full blur-xl animate-pulse" style={{ animationDelay: '0s', animationDuration: '4s' }} />
-        <div className="absolute top-20 right-20 w-24 h-24 bg-gradient-to-bl from-[#4B5563]/15 to-transparent rounded-full blur-lg animate-pulse" style={{ animationDelay: '2s', animationDuration: '3s' }} />
-        <div className="absolute bottom-16 left-1/3 w-20 h-20 bg-gradient-to-tr from-[#4B5563]/8 to-transparent rounded-full blur-xl animate-pulse" style={{ animationDelay: '1s', animationDuration: '5s' }} />
-        <div className="absolute bottom-32 right-1/4 w-28 h-28 bg-gradient-to-tl from-[#4B5563]/12 to-transparent rounded-full blur-2xl animate-pulse" style={{ animationDelay: '3s', animationDuration: '4s' }} />
+        <div className="absolute top-10 left-10 w-32 h-32 bg-gradient-to-br from-[#37B7C4]/10 to-transparent rounded-full blur-xl animate-pulse" style={{ animationDelay: '0s', animationDuration: '4s' }} />
+        <div className="absolute top-20 right-20 w-24 h-24 bg-gradient-to-bl from-[#37B7C4]/15 to-transparent rounded-full blur-lg animate-pulse" style={{ animationDelay: '2s', animationDuration: '3s' }} />
+        <div className="absolute bottom-16 left-1/3 w-20 h-20 bg-gradient-to-tr from-[#37B7C4]/8 to-transparent rounded-full blur-xl animate-pulse" style={{ animationDelay: '1s', animationDuration: '5s' }} />
+        <div className="absolute bottom-32 right-1/4 w-28 h-28 bg-gradient-to-tl from-[#37B7C4]/12 to-transparent rounded-full blur-2xl animate-pulse" style={{ animationDelay: '3s', animationDuration: '4s' }} />
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-4">
