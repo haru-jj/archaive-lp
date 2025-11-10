@@ -159,7 +159,7 @@ const subFeatures: SubFeature[] = [
               <g key={`tree-${index}`}>
                 <line x1="30" y1={24 + index * 18} x2="84" y2={20 + index * 18} stroke="#9CA3AF" strokeWidth="1.5" />
                 <rect x="16" y={20 + index * 18} width="10" height="8" fill="#E5E7EB" />
-                <polygon points={f"20,{22 + index * 18} 24,{22 + index * 18} 22,{18 + index * 18}"} fill="#C4CBD4" />
+                <polygon points={`20,${22 + index * 18} 24,${22 + index * 18} 22,${18 + index * 18}`} fill="#C4CBD4" />
                 <rect x="44" y={18 + index * 18} width="20" height="8" fill="#F3F4F6" stroke="#D1D5DB" />
                 <rect x="72" y={16 + index * 18} width="12" height="6" fill="#E5E7EB" />
                 <rect x="88" y={15 + index * 18} width="6" height="4" fill="#D1D5DB" />
