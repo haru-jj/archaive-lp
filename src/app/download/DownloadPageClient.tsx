@@ -24,10 +24,12 @@ export default function DownloadPageClient() {
   };
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitStatus(null);
 
     try {
       const response = await fetch('/api/submit-form', {
@@ -44,7 +46,6 @@ export default function DownloadPageClient() {
       const result = await response.json();
 
       if (result.success) {
-        alert(result.message);
         setFormData({
           companyName: '',
           name: '',
@@ -55,12 +56,22 @@ export default function DownloadPageClient() {
           inquiryContent: '',
           inquiryDetails: '',
         });
+        setSubmitStatus({
+          type: 'success',
+          message: '送信ありがとうございます。担当より資料送付についてご連絡いたします。'
+        });
       } else {
-        alert(result.error || 'エラーが発生しました');
+        setSubmitStatus({
+          type: 'error',
+          message: result.error || 'エラーが発生しました。時間をおいて再度お試しください。'
+        });
       }
     } catch (error) {
       console.error('Form submission error:', error);
-      alert('送信に失敗しました。しばらく経ってから再度お試しください。');
+      setSubmitStatus({
+        type: 'error',
+        message: '送信に失敗しました。しばらく経ってから再度お試しください。'
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -263,6 +274,15 @@ export default function DownloadPageClient() {
               >
                 {isSubmitting ? '送信中…' : '資料をダウンロードする'}
               </button>
+              {submitStatus && (
+                <p
+                  className={`text-sm ${
+                    submitStatus.type === 'success' ? 'text-emerald-600' : 'text-red-600'
+                  }`}
+                >
+                  {submitStatus.message}
+                </p>
+              )}
             </div>
           </form>
         </div>
