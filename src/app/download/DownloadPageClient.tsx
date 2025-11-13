@@ -58,7 +58,7 @@ export default function DownloadPageClient() {
         });
         setSubmitStatus({
           type: 'success',
-          message: '送信ありがとうございます。担当より資料送付についてご連絡いたします。'
+          message: '資料請求が完了しました。ご入力いただいたメールアドレス宛に、資料のダウンロードリンクをお送りさせていただきます。'
         });
       } else {
         setSubmitStatus({

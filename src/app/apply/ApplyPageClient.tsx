@@ -60,7 +60,7 @@ export default function ApplyPageClient() {
         });
         setSubmitStatus({
           type: 'success',
-          message: 'お問い合わせありがとうございます。送信が完了しました。担当より順次ご連絡いたします。'
+          message: '送信が完了しました。担当者より、1〜2営業日以内にご連絡いたします。'
         });
       } else {
         setSubmitStatus({
