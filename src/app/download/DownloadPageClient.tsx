@@ -81,21 +81,19 @@ export default function DownloadPageClient() {
         </div>
 
         <div className="container mx-auto px-4 max-w-3xl py-8 sm:py-12 relative">
-          <div
-            className="absolute inset-0 pointer-events-none hidden sm:block overflow-hidden"
-            style={{ zIndex: 1 }}
-          >
+          <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
             <img
               src="/images/sub_ui.png"
-              alt="ARCHAIVEのUIイメージ背景"
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-60 blur-sm max-w-none"
-              style={{ width: '175%', minWidth: '980px', height: 'auto' }}
+              alt="ARCHAIVE UIシステム背景"
+              className="w-[80vw] max-w-5xl blur-sm opacity-70"
+              style={{ height: 'auto' }}
+              loading="lazy"
             />
           </div>
 
           <form
             onSubmit={handleSubmit}
-            className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-200 p-4 sm:p-6 lg:p-8 xl:p-12 relative z-10"
+            className="relative z-10 bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-200 p-4 sm:p-6 lg:p-8 xl:p-12"
           >
             <div className="mb-4 sm:mb-6">
               <label className="block text-gray-700 font-semibold mb-2 text-sm sm:text-base">
@@ -175,8 +173,8 @@ export default function DownloadPageClient() {
               </div>
             </div>
 
-            <div className="mb-4 sm:mb-6 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-              <div>
+            <div className="mb-4 sm:mb-6 flex flex-col gap-4">
+              <div className="w-full">
                 <label className="block text-gray-700 font-semibold mb-2 text-sm sm:text-base">
                   Eメール
                   <span className="text-red-500 ml-1">*</span>
@@ -192,7 +190,7 @@ export default function DownloadPageClient() {
                 />
               </div>
 
-              <div>
+              <div className="w-full">
                 <label className="block text-gray-700 font-semibold mb-2 text-sm sm:text-base">
                   電話番号
                   <span className="text-red-500 ml-1">*</span>
@@ -254,14 +252,14 @@ export default function DownloadPageClient() {
               />
             </div>
 
-            <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-              <p className="text-xs sm:text-sm text-gray-500">
+            <div className="flex flex-col gap-4">
+              <p className="text-xs sm:text-sm text-gray-500 leading-relaxed">
                 送信いただいた情報は、お問い合わせへの対応のみに利用し、プライバシーポリシーに基づき適切に取り扱います。
               </p>
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full sm:w-auto bg-[#37B7C4] text-white px-6 py-3 rounded-lg font-bold hover:bg-[#2a9aa5] transition-all duration-300 disabled:opacity-60"
+                className="w-full bg-[#37B7C4] text-white px-6 py-3 rounded-lg font-bold hover:bg-[#2a9aa5] transition-all duration-300 disabled:opacity-60"
               >
                 {isSubmitting ? '送信中…' : '資料をダウンロードする'}
               </button>
