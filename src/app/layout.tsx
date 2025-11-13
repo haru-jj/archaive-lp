@@ -13,21 +13,26 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://archaive.jp'),
+  metadataBase: new URL('https://archaive.net'),
   alternates: {
-    canonical: '/',
+    canonical: 'https://archaive.net/',
+    languages: {
+      'ja-JP': 'https://archaive.net/',
+      en: 'https://archaive.net/en/',
+    },
   },
   openGraph: {
     title: 'ARCHAIVE - 製造業向けAIナレッジ検索システム',
     description: '見積作成の属人化を解消。AIで過去の図面・見積データを瞬時に検索し、正確な見積を自動生成。',
-    url: 'https://archaive.jp',
+    url: 'https://archaive.net',
     siteName: 'ARCHAIVE',
     images: [
       {
-        url: '/images/og-image.png',
+        url: 'https://archaive.net/images/hero-dashboard.png',
         width: 1200,
         height: 630,
         alt: 'ARCHAIVE - 製造業DXを実現するAI見積システム',
+        type: 'image/png',
       }
     ],
     locale: 'ja_JP',
@@ -50,11 +55,12 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 5,
-  },
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -81,7 +87,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     publisher: {
       '@type': 'Organization',
       name: 'ARCHAIVE',
-      url: 'https://archaive.jp',
+      url: 'https://archaive.net',
     },
   };
 
@@ -89,8 +95,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'ARCHAIVE',
-    url: 'https://archaive.jp',
-    logo: 'https://archaive.jp/images/ARCHAIVE_logo.png',
+    url: 'https://archaive.net',
+    logo: 'https://archaive.net/images/ARCHAIVE_logo.png',
     description: '製造業DXを実現するAIソリューション企業',
     contactPoint: {
       '@type': 'ContactPoint',
@@ -104,6 +110,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

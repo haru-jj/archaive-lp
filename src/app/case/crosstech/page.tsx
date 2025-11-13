@@ -8,9 +8,49 @@ const caseData = {
   title: '株式会社クロステック様インタビュー｜ARCHAIVE導入事例',
   summary:
     '図面検索と見積業務の効率化に取り組む株式会社クロステック様に、ARCHAIVE導入の背景と効果を伺いました。',
-  url: 'https://archaive.jp/case/crosstech',
-  image: 'https://archaive.jp/images/matsuda.png',
+  url: 'https://archaive.net/case/crosstech',
+  image: 'https://archaive.net/images/matsuda.png',
 };
+
+const reviewData = {
+  ratingValue: '5',
+  author: '松田忠明',
+  jobTitle: '代表取締役',
+  company: '株式会社クロステック',
+  reviewBody:
+    '図面検索と見積業務の属人化を解消し、案件管理を一気通貫で効率化。見積・納品書・請求業務まで大幅に時間を削減し、1案件あたり40%の機会損失を防いだ事例です。',
+};
+
+const faqEntries = [
+  {
+    question: 'ARCHAIVE導入前の課題は何でしたか？',
+    answer:
+      '図面や案件の管理が属人化し、Excelを使った調査に時間がかかっていました。抱き合わせ案件で安めの見積もりを出した差額も把握できず、損失が生まれていたと語られています。',
+  },
+  {
+    question: '導入後に得られた効果は？',
+    answer:
+      '図面起点の案件管理で事務・現場の連携がスムーズになり、誰でも過去案件を参照できる体制を構築。作業員も加工法や外注先をすぐ確認でき、技術伝承も容易になりました。',
+  },
+];
+
+const relatedCases = [
+  {
+    slug: 'crosstech',
+    name: '株式会社クロステック',
+    summary: '図面検索と見積業務の属人化を解消し、案件管理を効率化した事例。',
+  },
+  {
+    slug: 'amc',
+    name: '株式会社エイ・エム・シィ',
+    summary: '紙図面の管理負荷を削減し、クリック主体の検索で誰でも使える環境を構築。',
+  },
+  {
+    slug: 'suenami',
+    name: 'スエナミ工業株式会社',
+    summary: '大量図面のAI見積とコパイロット機能で業務を高速化した事例。',
+  },
+];
 
 export const metadata: Metadata = {
   title: caseData.title,
@@ -52,15 +92,15 @@ export default function CrosstechCase() {
     author: {
       '@type': 'Organization',
       name: 'ARCHAIVE',
-      url: 'https://archaive.jp/',
+      url: 'https://archaive.net/',
     },
     publisher: {
       '@type': 'Organization',
       name: 'ARCHAIVE',
-      url: 'https://archaive.jp/',
+      url: 'https://archaive.net/',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://archaive.jp/images/og-image.png',
+        url: 'https://archaive.net/images/og-image.png',
       },
     },
   };
@@ -73,13 +113,13 @@ export default function CrosstechCase() {
         '@type': 'ListItem',
         position: 1,
         name: 'トップ',
-        item: 'https://archaive.jp/',
+        item: 'https://archaive.net/',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: '導入事例',
-        item: 'https://archaive.jp/case',
+        item: 'https://archaive.net/case',
       },
       {
         '@type': 'ListItem',
@@ -89,6 +129,57 @@ export default function CrosstechCase() {
       },
     ],
   };
+
+  const productReviewJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: 'ARCHAIVE',
+    brand: {
+      '@type': 'Organization',
+      name: 'ARCHAIVE',
+    },
+    description: '製造業向けAI図面検索・見積プラットフォーム',
+    url: caseData.url,
+    image: caseData.image,
+    review: {
+      '@type': 'Review',
+      author: {
+        '@type': 'Person',
+        name: `${reviewData.author}（${reviewData.jobTitle}）`,
+        worksFor: {
+          '@type': 'Organization',
+          name: reviewData.company,
+        },
+      },
+      reviewBody: reviewData.reviewBody,
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: reviewData.ratingValue,
+        bestRating: '5',
+        worstRating: '1',
+      },
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: reviewData.ratingValue,
+      reviewCount: '1',
+      bestRating: '5',
+      worstRating: '1',
+    },
+  };
+
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqEntries.map((entry) => ({
+      '@type': 'Question',
+      name: entry.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: entry.answer,
+      },
+    })),
+  };
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
@@ -96,6 +187,8 @@ export default function CrosstechCase() {
       <main className="pt-20">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productReviewJsonLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
         {/* インタビューセクション */}
         <div className={styles['interview-section']}>
           <div className="interview-header">
@@ -107,6 +200,15 @@ export default function CrosstechCase() {
         {/* インタビューコンテンツ */}
         <div className={styles['interview-content-wrapper']}>
           <div className={styles['interview-content']}>
+            <nav aria-label="breadcrumb" className="text-sm text-gray-500 mb-4">
+              <ol className="flex gap-2">
+                <li><Link href="/" className="hover:text-[#37B7C4]">トップ</Link></li>
+                <li>/</li>
+                <li><Link href="/case" className="hover:text-[#37B7C4]">導入事例</Link></li>
+                <li>/</li>
+                <li className="text-gray-900">{caseData.title}</li>
+              </ol>
+            </nav>
             <h1>株式会社クロステック/松田忠明様 ✖️ STAR UP/吉川岳宏</h1>
             <hr />
             <div className="relative w-2/3 h-64 md:h-96 mb-6 mx-auto">
@@ -256,8 +358,43 @@ export default function CrosstechCase() {
                 <p className="mt-2"><strong>会社HP：</strong><a href="https://www.crosstech.osaka/" target="_blank" rel="noopener noreferrer">https://www.crosstech.osaka/</a></p>
               </div>
             </div>
-          </div>
         </div>
+      </div>
+
+        <section className="px-4 pb-16">
+          <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg border border-gray-100 p-8">
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">他の導入事例もチェック</h2>
+            <p className="text-gray-600 mb-6">自社に近しい課題を抱える企業の事例を参考に、導入効果を比較してください。</p>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {relatedCases
+                .filter((item) => item.slug !== 'crosstech')
+                .map((item) => (
+                  <Link
+                    key={item.slug}
+                    href={`/case/${item.slug}`}
+                    className="block rounded-xl border border-gray-200 p-4 hover:border-[#37B7C4] hover:shadow-md transition-all"
+                  >
+                    <p className="text-sm text-[#37B7C4] font-semibold mb-1">{item.name}</p>
+                    <p className="text-sm text-gray-600 leading-relaxed">{item.summary}</p>
+                  </Link>
+                ))}
+            </div>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link
+                href="/case"
+                className="px-5 py-2 rounded-full border border-[#37B7C4] text-[#37B7C4] font-semibold hover:bg-[#37B7C4]/10"
+              >
+                導入事例一覧を見る
+              </Link>
+              <Link
+                href="/apply"
+                className="px-5 py-2 rounded-full bg-[#37B7C4] text-white font-semibold hover:bg-[#2a8b96]"
+              >
+                無料デモを申し込む
+              </Link>
+            </div>
+          </div>
+        </section>
       </main>
 
       <Footer />

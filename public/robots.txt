@@ -4,4 +4,4 @@ Disallow: /api/
 Disallow: /_next/
 Disallow: /admin/
 
-Sitemap: https://archaive.jp/sitemap.xml
+Sitemap: https://archaive.net/sitemap.xml

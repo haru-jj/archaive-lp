@@ -1,14 +1,12 @@
 'use client';
 
-import Link from 'next/link';
-
 export default function HeroQuickNav() {
   return (
     <section className="bg-white h-full w-full border-t border-gray-200 hidden sm:flex">
       <div className="container mx-auto px-4 h-full flex-1 flex">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 divide-y sm:divide-y-0 sm:divide-x divide-gray-200 h-full w-full">
           <QuickNavItem href="#demo" title="ARCHAIVEとは" label="サービス紹介" />
-          <QuickNavItem href="#problem-solution" title="ARCHAIVEが解決する" label="課題と解決策" />
+          <QuickNavItem href="#before-after" title="ARCHAIVEが解決する" label="課題と解決策" />
           <QuickNavItem href="#features" title="ARCHAIVEの" label="主要機能" />
           <QuickNavItem href="#case" title="ARCHAIVEの" label="導入事例" />
           <QuickNavItem href="#process" title="ARCHAIVEの" label="導入ステップ" />

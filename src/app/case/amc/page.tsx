@@ -8,9 +8,49 @@ const caseData = {
   title: '株式会社エイ・エム・シィ様インタビュー｜ARCHAIVE導入事例',
   summary:
     '図面管理の属人化を解消した株式会社エイ・エム・シィ様に、ARCHAIVE導入の決め手と効果を伺いました。',
-  url: 'https://archaive.jp/case/amc',
-  image: 'https://archaive.jp/images/nakanishi.jpg',
+  url: 'https://archaive.net/case/amc',
+  image: 'https://archaive.net/images/nakanishi.jpg',
 };
+
+const reviewData = {
+  ratingValue: '5',
+  author: '中西弘栄',
+  jobTitle: '副工場長',
+  company: '株式会社エイ・エム・シィ',
+  reviewBody:
+    '紙図面の属人管理を解消し、文字入力なしでクリック検索できる操作性を評価。現場と事務で業務分担が進み、図面探索に費やしていた時間を大幅に削減できたと語られています。',
+};
+
+const faqEntries = [
+  {
+    question: 'ARCHAIVE導入前に抱えていた課題は？',
+    answer:
+      '紙の図面を五十音順で管理していたため、戻し忘れや誤った場所への保管が頻発。ローマ字入力にも不慣れな従業員が多く、システム導入に不安を感じていたと紹介しています。',
+  },
+  {
+    question: '導入の決め手と得られた成果は？',
+    answer:
+      '初期費用の手頃さと柔軟なカスタマイズ性、迅速な改善対応が導入の決め手。クリック主体の検索で誰でも使え、図面の所在不明問題も改善され、生産性向上に繋がっています。',
+  },
+];
+
+const relatedCases = [
+  {
+    slug: 'crosstech',
+    name: '株式会社クロステック',
+    summary: '図面検索と見積業務の属人化を解消し、案件管理を効率化した事例。',
+  },
+  {
+    slug: 'amc',
+    name: '株式会社エイ・エム・シィ',
+    summary: '紙図面の管理負荷を削減し、クリック主体の検索で誰でも使える環境を構築。',
+  },
+  {
+    slug: 'suenami',
+    name: 'スエナミ工業株式会社',
+    summary: '大量図面のAI見積とコパイロット機能で業務を高速化した事例。',
+  },
+];
 
 export const metadata: Metadata = {
   title: caseData.title,
@@ -52,15 +92,15 @@ export default function AmcCase() {
     author: {
       '@type': 'Organization',
       name: 'ARCHAIVE',
-      url: 'https://archaive.jp/',
+      url: 'https://archaive.net/',
     },
     publisher: {
       '@type': 'Organization',
       name: 'ARCHAIVE',
-      url: 'https://archaive.jp/',
+      url: 'https://archaive.net/',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://archaive.jp/images/og-image.png',
+        url: 'https://archaive.net/images/og-image.png',
       },
     },
   };
@@ -73,13 +113,13 @@ export default function AmcCase() {
         '@type': 'ListItem',
         position: 1,
         name: 'トップ',
-        item: 'https://archaive.jp/',
+        item: 'https://archaive.net/',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: '導入事例',
-        item: 'https://archaive.jp/case',
+        item: 'https://archaive.net/case',
       },
       {
         '@type': 'ListItem',
@@ -89,6 +129,57 @@ export default function AmcCase() {
       },
     ],
   };
+
+  const productReviewJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: 'ARCHAIVE',
+    brand: {
+      '@type': 'Organization',
+      name: 'ARCHAIVE',
+    },
+    description: '製造業向けAI図面検索・見積プラットフォーム',
+    url: caseData.url,
+    image: caseData.image,
+    review: {
+      '@type': 'Review',
+      author: {
+        '@type': 'Person',
+        name: `${reviewData.author}（${reviewData.jobTitle}）`,
+        worksFor: {
+          '@type': 'Organization',
+          name: reviewData.company,
+        },
+      },
+      reviewBody: reviewData.reviewBody,
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: reviewData.ratingValue,
+        bestRating: '5',
+        worstRating: '1',
+      },
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: reviewData.ratingValue,
+      reviewCount: '1',
+      bestRating: '5',
+      worstRating: '1',
+    },
+  };
+
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqEntries.map((entry) => ({
+      '@type': 'Question',
+      name: entry.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: entry.answer,
+      },
+    })),
+  };
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
@@ -96,6 +187,8 @@ export default function AmcCase() {
       <main className="pt-20">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productReviewJsonLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
         {/* インタビューセクション */}
         <div className={styles['interview-section']}>
           <div className="interview-header">
@@ -107,6 +200,15 @@ export default function AmcCase() {
         {/* インタビューコンテンツ */}
         <div className={styles['interview-content-wrapper']}>
           <div className={styles['interview-content']}>
+            <nav aria-label="breadcrumb" className="text-sm text-gray-500 mb-4">
+              <ol className="flex gap-2">
+                <li><Link href="/" className="hover:text-[#37B7C4]">トップ</Link></li>
+                <li>/</li>
+                <li><Link href="/case" className="hover:text-[#37B7C4]">導入事例</Link></li>
+                <li>/</li>
+                <li className="text-gray-900">{caseData.title}</li>
+              </ol>
+            </nav>
             <h1>株式会社エイ・エム・シィ/副工場長 中西弘栄様 ✖️ STAR UP/辻 拓真</h1>
             <hr />
             <div className="relative w-2/3 h-64 md:h-96 mb-6 mx-auto">
@@ -219,8 +321,43 @@ export default function AmcCase() {
               <p><strong>代表取締役：</strong>佐々木徹</p>
               <p><strong>所在地：</strong>石川県かほく市内日角中49番地</p>
             </div>
-          </div>
         </div>
+      </div>
+
+        <section className="px-4 pb-16">
+          <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg border border-gray-100 p-8">
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">他の導入事例もチェック</h2>
+            <p className="text-gray-600 mb-6">類似企業の導入背景や効果を読み比べて、自社への適合をイメージしてください。</p>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {relatedCases
+                .filter((item) => item.slug !== 'amc')
+                .map((item) => (
+                  <Link
+                    key={item.slug}
+                    href={`/case/${item.slug}`}
+                    className="block rounded-xl border border-gray-200 p-4 hover:border-[#37B7C4] hover:shadow-md transition-all"
+                  >
+                    <p className="text-sm text-[#37B7C4] font-semibold mb-1">{item.name}</p>
+                    <p className="text-sm text-gray-600 leading-relaxed">{item.summary}</p>
+                  </Link>
+                ))}
+            </div>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link
+                href="/case"
+                className="px-5 py-2 rounded-full border border-[#37B7C4] text-[#37B7C4] font-semibold hover:bg-[#37B7C4]/10"
+              >
+                導入事例一覧を見る
+              </Link>
+              <Link
+                href="/apply"
+                className="px-5 py-2 rounded-full bg-[#37B7C4] text-white font-semibold hover:bg-[#2a8b96]"
+              >
+                無料デモを申し込む
+              </Link>
+            </div>
+          </div>
+        </section>
       </main>
 
       <Footer />
