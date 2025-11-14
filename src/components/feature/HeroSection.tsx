@@ -30,8 +30,8 @@ export default function HeroSection() {
         </div>
 
         {/* Content Container */}
-        <div className="container mx-auto max-w-6xl px-4 py-12 sm:py-16 lg:py-20 relative z-10 h-full">
-          <div className="grid gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1fr)] lg:gap-12 items-center justify-items-center min-h-[520px]">
+        <div className="container mx-auto max-w-7xl px-4 py-12 sm:py-16 lg:py-20 relative z-10 h-full">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16 items-center min-h-[520px]">
             {/* Left Content */}
             <div className="text-center lg:text-left mx-auto lg:mx-0 w-full max-w-[clamp(320px,46vw,640px)]">
               {/* Headline */}
