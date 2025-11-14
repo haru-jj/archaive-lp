@@ -25,10 +25,12 @@ export default function ApplyPageClient() {
   };
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitStatus(null);
 
     try {
       const response = await fetch('/api/submit-form', {
@@ -45,7 +47,6 @@ export default function ApplyPageClient() {
       const result = await response.json();
 
       if (result.success) {
-        alert(result.message);
         setFormData({
           companyName: '',
           name: '',
@@ -57,12 +58,22 @@ export default function ApplyPageClient() {
           purpose: '',
           message: '',
         });
+        setSubmitStatus({
+          type: 'success',
+          message: '送信が完了しました。担当者より、1〜2営業日以内にご連絡いたします。'
+        });
       } else {
-        alert(result.error || 'エラーが発生しました');
+        setSubmitStatus({
+          type: 'error',
+          message: result.error || 'エラーが発生しました。時間をおいて再度お試しください。'
+        });
       }
     } catch (error) {
       console.error('Form submission error:', error);
-      alert('送信に失敗しました。しばらく経ってから再度お試しください。');
+      setSubmitStatus({
+        type: 'error',
+        message: '送信に失敗しました。しばらく経ってから再度お試しください。'
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -288,6 +299,15 @@ export default function ApplyPageClient() {
               >
                 {isSubmitting ? '送信中…' : '無料デモを申し込む'}
               </button>
+              {submitStatus && (
+                <p
+                  className={`text-sm ${
+                    submitStatus.type === 'success' ? 'text-emerald-600' : 'text-red-600'
+                  }`}
+                >
+                  {submitStatus.message}
+                </p>
+              )}
             </div>
           </form>
         </div>
