@@ -30,8 +30,8 @@ export default function HeroSection() {
         </div>
 
         {/* Content Container */}
-        <div className="container mx-auto px-4 py-12 sm:py-16 lg:py-20 relative z-10 h-full">
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1fr)] lg:gap-12 xl:gap-12 items-center min-h-[520px]">
+        <div className="container mx-auto max-w-5xl px-4 py-12 sm:py-16 lg:py-20 relative z-10 h-full">
+          <div className="grid gap-6 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1fr)] lg:gap-8 items-center justify-items-center min-h-[520px]">
             {/* Left Content */}
             <div className="text-center lg:text-left mx-auto lg:mx-0 w-full max-w-[clamp(320px,46vw,640px)]">
               {/* Headline */}
@@ -78,7 +78,8 @@ export default function HeroSection() {
               <img
                 src="/images/hero-image2.png"
                 alt="ARCHAIVEのAI見積システムのダッシュボード画面。図面検索と見積作成機能を表示"
-                className="w-full max-w-[clamp(320px,40vw,520px)] h-auto rounded-xl shadow-2xl"
+                className="w-full max-w-[clamp(320px,40vw,520px)] rounded-xl shadow-2xl"
+                style={{ clipPath: 'inset(0% 0% 0.5% 0%)' }}
                 loading="lazy"
               />
             </div>
