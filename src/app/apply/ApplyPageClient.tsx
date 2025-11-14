@@ -106,8 +106,21 @@ export default function ApplyPageClient() {
 
           <form
             onSubmit={handleSubmit}
-            className="relative z-10 bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-200 p-4 sm:p-6 lg:p-8 xl:p-12"
+            className="relative z-10 bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-200 p-4 sm:p-6 lg:p-8 xl:p-12 space-y-6"
           >
+            <div aria-live="polite">
+              {submitStatus && (
+                <div
+                  className={`rounded-lg border px-4 py-3 text-sm ${
+                    submitStatus.type === 'success'
+                      ? 'border-emerald-300 bg-emerald-50 text-emerald-700'
+                      : 'border-red-300 bg-red-50 text-red-700'
+                  }`}
+                >
+                  {submitStatus.message}
+                </div>
+              )}
+            </div>
             <div className="mb-4 sm:mb-6">
               <label className="block text-gray-700 font-semibold mb-2 text-sm sm:text-base">
                 会社名
@@ -299,15 +312,6 @@ export default function ApplyPageClient() {
               >
                 {isSubmitting ? '送信中…' : '無料デモを申し込む'}
               </button>
-              {submitStatus && (
-                <p
-                  className={`text-sm ${
-                    submitStatus.type === 'success' ? 'text-emerald-600' : 'text-red-600'
-                  }`}
-                >
-                  {submitStatus.message}
-                </p>
-              )}
             </div>
           </form>
         </div>
