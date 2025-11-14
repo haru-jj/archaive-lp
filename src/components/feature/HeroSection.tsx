@@ -74,7 +74,7 @@ export default function HeroSection() {
             </div>
             
             {/* Right Content - Product Image */}
-            <div className="hidden lg:flex items-end justify-center lg:justify-end">
+            <div className="flex items-end justify-center lg:justify-end w-full">
               <img
                 src="/images/image3.png"
                 alt="ARCHAIVEのAI見積システムのダッシュボード画面。図面検索と見積作成機能を表示"
