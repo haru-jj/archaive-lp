@@ -35,7 +35,7 @@ export default function HeroSection() {
             {/* Left Content */}
             <div className="text-center lg:text-left mx-auto lg:mx-0 w-full max-w-[clamp(320px,46vw,640px)]">
               {/* Headline */}
-              <h1 className="font-bold text-white mb-6 tracking-tight text-[clamp(26px,3.4vw,50px)] leading-[clamp(34px,4vw,58px)]">
+              <h1 className="font-bold text-white mb-6 tracking-tight text-[clamp(24px,3vw,44px)] leading-[clamp(32px,3.6vw,52px)]">
                 <div>1枚の図面/帳票から</div>
                 <div>社内の全ナレッジをAI活用</div>
               </h1>
