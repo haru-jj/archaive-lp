@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
+import Image from 'next/image';
 import { Header, Footer } from '@/components/layout';
 
 export default function DownloadPageClient() {
@@ -78,47 +78,78 @@ export default function DownloadPageClient() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
+    <div className="min-h-screen flex flex-col bg-[#f7f9fc]">
       <Header />
 
-      <main className="flex-grow pt-20">
-        <div className="bg-gradient-to-r from-[#37B7C4] to-[#2a9aa5] text-white py-8 sm:py-12 lg:py-16 px-4 shadow-lg">
-          <div className="container mx-auto max-w-3xl text-center">
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">ARCHAIVE 製品資料ダウンロード</h1>
-            <p className="text-white/90 text-base sm:text-lg leading-relaxed">
-              製造業向けAI図面検索システムの詳細資料をダウンロードしていただけます
-            </p>
-          </div>
-        </div>
+      <main className="flex-grow pt-36 pb-16 px-4 sm:px-6 lg:px-10">
+        <div className="container mx-auto max-w-7xl">
+          <div className="flex flex-col lg:flex-row gap-10 lg:gap-16">
+            <section className="flex-[1.05] xl:flex-[1.1] lg:max-w-[780px] xl:max-w-[840px] text-gray-800">
+              <p className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.25em] text-[#37B7C4] mb-3">
+                <span className="block h-px w-10 bg-[#37B7C4]" />
+                資料ダウンロード
+              </p>
+              <h1 className="text-3xl sm:text-4xl font-bold leading-tight mb-4">
+                ARCHAIVE製品紹介カタログ
+              </h1>
+              <p className="text-base sm:text-lg text-gray-600 mb-8 leading-relaxed">
+                製造業向けAIデータプラットフォーム「ARCHAIVE」の概要・ビジョン・主要機能・事例を簡単に把握できるコンパクト版です。
+              </p>
 
-        <div className="container mx-auto px-4 max-w-3xl py-8 sm:py-12 relative">
-          <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-            <img
-              src="/images/sub_ui.png"
-              alt="ARCHAIVE UIシステム背景"
-              className="w-[80vw] max-w-5xl blur-sm opacity-70"
-              style={{ height: 'auto' }}
-              loading="lazy"
-            />
-          </div>
+              <div className="relative w-full max-w-2xl mx-auto mb-8">
+                <Image
+                  src="/images/paper20251026.jpeg"
+                  alt="ARCHAIVE製品紹介カタログの表紙。"
+                  width={2474}
+                  height={1392}
+                  className="w-full h-auto shadow-lg"
+                  sizes="(min-width: 1024px) 520px, 100vw"
+                  priority
+                />
+              </div>
 
-          <form
-            onSubmit={handleSubmit}
-            className="relative z-10 bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-200 p-4 sm:p-6 lg:p-8 xl:p-12 space-y-6"
-          >
-            <div aria-live="polite">
-              {submitStatus && (
-                <div
-                  className={`rounded-lg border px-4 py-3 text-sm ${
-                    submitStatus.type === 'success'
-                      ? 'border-emerald-300 bg-emerald-50 text-emerald-700'
-                      : 'border-red-300 bg-red-50 text-red-700'
-                  }`}
-                >
-                  {submitStatus.message}
+              <div className="bg-white border border-gray-200 rounded-2xl shadow-lg p-6 sm:p-8 space-y-6 mb-8">
+                <h2 className="text-left text-2xl sm:text-3xl font-bold text-[#37B7C4]">資料内容</h2>
+                <div className="space-y-4">
+                  {[
+                    '製造業向けAIデータプラットフォーム「ARCHAIVE」の製品概要／主な機能紹介',
+                    '図面を起点とした業務フローの刷新と、間接業務の大幅な削減事例',
+                    'SIerとSaaSの強みを統合した、現場主導のDX推進体制とシステム構築マップ',
+                  ].map((text) => (
+                    <div
+                      key={text}
+                      className="flex items-center gap-4 sm:gap-5 rounded-xl bg-[#f2f7fc] px-4 sm:px-6 py-4 sm:py-5 text-sm sm:text-base text-gray-800 border border-gray-100"
+                    >
+                      <div className="w-2 h-2 rounded-full bg-[#37B7C4] flex-shrink-0" />
+                      <div className="flex-1">{text}</div>
+                    </div>
+                  ))}
                 </div>
-              )}
-            </div>
+              </div>
+            </section>
+
+            <form
+              onSubmit={handleSubmit}
+              className="w-full lg:w-[460px] xl:w-[520px] bg-white rounded-3xl shadow-2xl border border-gray-100 p-6 sm:p-8 space-y-6"
+            >
+              <div className="text-center">
+                <p className="text-lg font-bold text-[#37B7C4]">30秒で資料を受け取る</p>
+                <p className="text-sm text-gray-500 mt-1">フォーム入力後、メールでダウンロードリンクをお送りします。</p>
+              </div>
+
+              <div aria-live="polite">
+                {submitStatus && (
+                  <div
+                    className={`rounded-lg border px-4 py-3 text-sm ${
+                      submitStatus.type === 'success'
+                        ? 'border-emerald-300 bg-emerald-50 text-emerald-700'
+                        : 'border-red-300 bg-red-50 text-red-700'
+                    }`}
+                  >
+                    {submitStatus.message}
+                  </div>
+                )}
+              </div>
             <div className="mb-4 sm:mb-6">
               <label className="block text-gray-700 font-semibold mb-2 text-sm sm:text-base">
                 会社名
@@ -290,6 +321,7 @@ export default function DownloadPageClient() {
             </div>
           </form>
         </div>
+      </div>
       </main>
 
       <Footer />

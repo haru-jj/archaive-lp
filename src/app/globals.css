@@ -27,6 +27,13 @@ body {
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 88px; /* compensate for fixed header */
+}
+
+@media (max-width: 768px) {
+  html {
+    scroll-padding-top: 72px;
+  }
 }
 
 @keyframes scroll-left {

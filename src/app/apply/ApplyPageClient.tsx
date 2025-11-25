@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
+import Image from 'next/image';
 import { Header, Footer } from '@/components/layout';
 
 export default function ApplyPageClient() {
@@ -80,47 +80,62 @@ export default function ApplyPageClient() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
+    <div className="min-h-screen flex flex-col bg-[#f7f9fc]">
       <Header />
 
-      <main className="flex-grow pt-20">
-        <div className="bg-[#37B7C4] text-white py-8 sm:py-12 lg:py-16 px-4 shadow-lg">
-          <div className="container mx-auto max-w-3xl text-center">
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">無料デモ・トライアル申し込み</h1>
-            <p className="text-white/90 text-base sm:text-lg leading-relaxed">
-              実際の業務データを使ったカスタマイズデモをご覧いただけます
-            </p>
-          </div>
-        </div>
+      <main className="flex-grow pt-36 pb-16 px-4 sm:px-6 lg:px-10">
+        <div className="container mx-auto max-w-7xl">
+          <div className="flex flex-col lg:flex-row gap-10 lg:gap-16">
+            <section className="flex-[1.05] xl:flex-[1.1] lg:max-w-[780px] xl:max-w-[840px] text-gray-800">
+              <p className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.25em] text-[#37B7C4] mb-3">
+                <span className="block h-px w-10 bg-[#37B7C4]" />
+                無料デモ
+              </p>
+              <h1 className="text-3xl sm:text-4xl font-bold leading-tight mb-4">
+                「ARCHAIVE」を体験する
+              </h1>
+              <p className="text-base sm:text-lg text-gray-600 mb-8 leading-relaxed">
+                図面検索から見積自動化、ナレッジ共有まで、ARCHAIVEの基本を体験していただけます。
+                必要に応じて御社データも組み込んだシナリオをご用意させていただくこともあります。
+              </p>
 
-        <div className="container mx-auto px-4 max-w-3xl py-8 sm:py-12 relative">
-          <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-            <img
-              src="/images/sub_ui.png"
-              alt="ARCHAIVE UIシステム背景"
-              className="w-[80vw] max-w-5xl blur-sm opacity-70"
-              style={{ height: 'auto' }}
-              loading="lazy"
-            />
-          </div>
+              <div className="relative w-full max-w-2xl mx-auto mb-8">
+                <Image
+                  src="/images/Group 18.png"
+                  alt="ARCHAIVEデモ画面の実際のUI。"
+                  width={7888}
+                  height={5128}
+                  className="w-full h-auto"
+                  sizes="(min-width: 1024px) 520px, 100vw"
+                  priority
+                />
+              </div>
 
-          <form
-            onSubmit={handleSubmit}
-            className="relative z-10 bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-200 p-4 sm:p-6 lg:p-8 xl:p-12 space-y-6"
-          >
-            <div aria-live="polite">
-              {submitStatus && (
-                <div
-                  className={`rounded-lg border px-4 py-3 text-sm ${
-                    submitStatus.type === 'success'
-                      ? 'border-emerald-300 bg-emerald-50 text-emerald-700'
-                      : 'border-red-300 bg-red-50 text-red-700'
-                  }`}
-                >
-                  {submitStatus.message}
-                </div>
-              )}
-            </div>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8" />
+            </section>
+
+            <form
+              onSubmit={handleSubmit}
+              className="w-full lg:w-[460px] xl:w-[520px] bg-white rounded-3xl shadow-2xl border border-gray-100 p-6 sm:p-8 space-y-6"
+            >
+              <div className="text-center">
+                <p className="text-lg font-bold text-[#37B7C4]">30秒で無料デモを予約</p>
+                <p className="text-sm text-gray-500 mt-1">フォーム送信後、担当より日程調整のご連絡を差し上げます。</p>
+              </div>
+
+              <div aria-live="polite">
+                {submitStatus && (
+                  <div
+                    className={`rounded-lg border px-4 py-3 text-sm ${
+                      submitStatus.type === 'success'
+                        ? 'border-emerald-300 bg-emerald-50 text-emerald-700'
+                        : 'border-red-300 bg-red-50 text-red-700'
+                    }`}
+                  >
+                    {submitStatus.message}
+                  </div>
+                )}
+              </div>
             <div className="mb-4 sm:mb-6">
               <label className="block text-gray-700 font-semibold mb-2 text-sm sm:text-base">
                 会社名
@@ -315,7 +330,8 @@ export default function ApplyPageClient() {
             </div>
           </form>
         </div>
-      </main>
+      </div>
+    </main>
 
       <Footer />
     </div>
