@@ -28,10 +28,9 @@ export default function Header() {
     
     e.preventDefault();
     setIsMenuOpen(false);
-    
+    const offset = 80; // ヘッダーの高さ分のオフセット
     const element = document.querySelector(href);
     if (element) {
-      const offset = 80; // ヘッダーの高さ分のオフセット
       const elementPosition = element.getBoundingClientRect().top + window.scrollY;
       window.scrollTo({
         top: elementPosition - offset,

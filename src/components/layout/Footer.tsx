@@ -1,12 +1,15 @@
 'use client';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 
 export default function Footer() {
   const companyInfo = {
     name: "株式会社ARCHAIVE",
     email: "info@archaive.co.jp"
   };
+
+  const pathname = usePathname();
 
   const links = [
     { label: "ARCHAIVEとは", href: "#demo" },
@@ -16,85 +19,88 @@ export default function Footer() {
     { label: "導入ステップ", href: "#process" },
     { label: "お知らせ", href: "#news" },
     { label: "セキュリティ", href: "#security" },
+  ];
+
+  const inlineLinks = [
     { label: "お問い合わせ", href: "#cta" },
     { label: "会社概要", href: "https://starup01.jp/", external: true }
   ];
 
+  const allLinks = [...links, ...inlineLinks];
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, link: { href: string; external?: boolean }) => {
+    if (link.external) return;
+    if (link.href.startsWith('#')) {
+      // ホーム以外ではトップへ遷移してからアンカーへ（ヘッダーと同様の挙動）
+      if (pathname !== '/') {
+        e.preventDefault();
+        window.location.href = '/' + link.href;
+        return;
+      }
+      e.preventDefault();
+      const element = document.querySelector(link.href);
+      if (element) {
+        const offset = 80; // ヘッダーと同じオフセット
+        const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({
+          top: elementPosition - offset,
+          behavior: 'smooth'
+        });
+      }
+    }
+  };
+
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-white text-gray-800 border-t border-gray-200">
       {/* メインフッターコンテンツ */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12">
-        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 lg:gap-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-16">
+        <div className="flex flex-col items-start gap-7 sm:gap-8">
           {/* ロゴ */}
           <div className="flex-shrink-0">
             <Link href="/" className="inline-flex items-center gap-2 sm:gap-3">
               <Image
                 src="/svg/logo.svg"
                 alt="ARCHAIVE Logo"
-                width={28}
-                height={28}
-                className="cursor-pointer sm:w-8 sm:h-8"
+                width={40}
+                height={40}
+                className="cursor-pointer sm:w-10 sm:h-10"
               />
               <Image
                 src="/svg/logo-text.svg"
                 alt="ARCHAIVE"
-                width={90}
-                height={25}
-                className="cursor-pointer h-6 sm:h-7 sm:w-[100px] filter brightness-0 invert"
+                width={120}
+                height={32}
+                className="cursor-pointer h-8 sm:h-9 sm:w-[132px]"
               />
             </Link>
           </div>
 
           {/* ナビゲーションリンク */}
-          <nav className="flex flex-col gap-4 lg:gap-4 w-full lg:w-auto">
+          <nav className="flex flex-col gap-5 w-full">
             {/* メインナビゲーション */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:flex lg:flex-wrap gap-3 sm:gap-4 lg:gap-6">
-              {links.slice(0, -1).map((link, index) => (
+            <div className="flex flex-nowrap items-center gap-7 sm:gap-10 lg:gap-14 overflow-x-auto">
+              {allLinks.map((link, index) => (
                 <a
                   key={index}
                   href={link.href}
-                  className="text-gray-400 hover:text-[#37B7C4] transition-colors duration-200 text-xs sm:text-sm lg:text-sm whitespace-nowrap"
-                  onClick={(e) => {
-                    if (!link.external && link.href.startsWith('#')) {
-                      e.preventDefault();
-                      const element = document.querySelector(link.href);
-                      if (element) {
-                        const offset = 80;
-                        const elementPosition = element.getBoundingClientRect().top + window.scrollY;
-                        window.scrollTo({
-                          top: elementPosition - offset,
-                          behavior: 'smooth'
-                        });
-                      }
-                    }
-                  }}
+                  className="text-gray-600 hover:text-[#37B7C4] transition-colors duration-200 text-xs sm:text-sm lg:text-sm whitespace-nowrap font-medium"
+                  onClick={(e) => handleNavClick(e, link)}
                 >
                   {link.label}
                 </a>
               ))}
             </div>
-            
-            {/* 会社概要リンク */}
-            <div className="pt-2 lg:pt-0">
-              <a
-                href={links[links.length - 1].href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-[#37B7C4] transition-colors duration-200 text-xs sm:text-sm lg:text-sm"
-              >
-                {links[links.length - 1].label}
-              </a>
-            </div>
           </nav>
         </div>
+
       </div>
 
       {/* コピーライト */}
-      <div className="border-t border-gray-800">
+      <div className="border-t border-gray-100">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
           <div className="flex justify-center items-center">
             <p className="text-gray-500 text-xs sm:text-sm">
-              © 2025 STAR UP All Right Reserved.
+              © 2025 STAR UP All Rights Reserved.
             </p>
           </div>
         </div>
