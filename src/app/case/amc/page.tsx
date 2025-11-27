@@ -324,7 +324,7 @@ export default function AmcCase() {
         </div>
       </div>
 
-        <section className="px-4 pb-16">
+        <section className="px-4 pb-16 bg-[#37B7C4]">
           <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg border border-gray-100 p-8">
             <h2 className="text-2xl font-bold text-gray-800 mb-4">他の導入事例もチェック</h2>
             <p className="text-gray-600 mb-6">類似企業の導入背景や効果を読み比べて、自社への適合をイメージしてください。</p>

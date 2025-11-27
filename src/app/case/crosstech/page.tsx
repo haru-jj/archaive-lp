@@ -361,7 +361,7 @@ export default function CrosstechCase() {
         </div>
       </div>
 
-        <section className="px-4 pb-16">
+        <section className="px-4 pb-16 bg-[#37B7C4]">
           <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg border border-gray-100 p-8">
             <h2 className="text-2xl font-bold text-gray-800 mb-4">他の導入事例もチェック</h2>
             <p className="text-gray-600 mb-6">自社に近しい課題を抱える企業の事例を参考に、導入効果を比較してください。</p>
