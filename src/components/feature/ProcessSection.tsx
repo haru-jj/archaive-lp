@@ -178,8 +178,15 @@ export default function ProcessSection() {
 
                 {/* 矢印 - ステップ間 */}
                 {index < steps.length - 1 && (
-                  <div className="hidden md:flex items-center justify-center">
-                    <ChevronRight className="w-8 h-8 text-[#37B7C4]" />
+                  <div className="hidden md:flex items-center justify-center mt-14">
+                    <svg
+                      className="w-12 h-12 text-[#37B7C4]"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path d="M8 4l8 8-8 8" />
+                    </svg>
                   </div>
                 )}
               </Fragment>

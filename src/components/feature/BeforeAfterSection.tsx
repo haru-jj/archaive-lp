@@ -7,6 +7,8 @@ export default function BeforeAfterSection() {
   const [activeTab, setActiveTab] = useState<'before' | 'after'>('before');
   const [scrollProgress, setScrollProgress] = useState(0);
   const [mounted, setMounted] = useState(false);
+  // マットな紙質感のノイズ背景（Before用）
+  const paperTexture = `linear-gradient(180deg, rgba(255,255,255,0.82), rgba(247,248,250,0.9)), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E")`;
 
   useEffect(() => {
     setMounted(true);
@@ -125,18 +127,18 @@ export default function BeforeAfterSection() {
           }`}>
             {/* Problem 1 */}
             <div className="relative h-full">
-              <div className="relative bg-white rounded-2xl p-6 border border-gray-200 h-full flex flex-col" style={{
-                boxShadow: '4px 4px 0px #EF4444'
+              <div className="relative rounded-2xl p-6 border border-gray-300/70 h-full flex flex-col shadow-[0_12px_30px_rgba(0,0,0,0.12)]" style={{
+                backgroundImage: paperTexture
               }}>
-                <div className="w-14 h-14 bg-red-100 rounded-xl flex items-center justify-center mb-4">
-                  <svg className="w-8 h-8 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                <div className="w-14 h-14 bg-red-100/90 rounded-xl flex items-center justify-center mb-4 shadow-inner shadow-red-200/60">
+                  <svg className="w-9 h-9 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.4" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-bold text-gray-800 mb-3">
+                <h3 className="text-2xl font-extrabold text-gray-900 mb-3">
                   検索に時間がかかり、コストが増大
                 </h3>
-                <p className="text-gray-600 leading-relaxed flex-grow">
+                <p className="text-gray-700 leading-relaxed flex-grow font-medium">
                   図面や価格・仕様書などの検索に時間がかかり、過去の類似実績や仕様を再利用できず、毎回ゼロからの調査に多大な時間が費やされている。
                 </p>
                 <div className="mt-4 pt-4 border-t border-gray-100">
@@ -152,24 +154,24 @@ export default function BeforeAfterSection() {
 
             {/* Problem 2 */}
             <div className="relative h-full">
-              <div className="relative bg-white rounded-2xl p-6 border border-gray-200 h-full flex flex-col" style={{
-                boxShadow: '4px 4px 0px #EF4444'
+              <div className="relative rounded-2xl p-6 border border-gray-300/70 h-full flex flex-col shadow-[0_12px_30px_rgba(0,0,0,0.12)]" style={{
+                backgroundImage: paperTexture
               }}>
-                <div className="w-14 h-14 bg-red-100 rounded-xl flex items-center justify-center mb-4">
-                  <svg className="w-8 h-8 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                <div className="w-14 h-14 bg-red-100/90 rounded-xl flex items-center justify-center mb-4 shadow-inner shadow-red-200/60">
+                  <svg className="w-9 h-9 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.4" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-bold text-gray-800 mb-3">
+                <h3 className="text-2xl font-extrabold text-gray-900 mb-3">
                   業務やデータが属人化
                 </h3>
-                <p className="text-gray-600 leading-relaxed flex-grow">
+                <p className="text-gray-700 leading-relaxed flex-grow font-medium">
                   見積もり根拠やトラブル対処法などの重要な情報が、特定の担当者の経験や記憶に依存し、会社のノウハウが失われ続けている。
                 </p>
-                <div className="mt-4 pt-4 border-t border-gray-100">
+                <div className="mt-4 pt-4 border-t border-gray-200/80">
                   <div className="flex items-center text-red-600">
                     <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                     </svg>
                     <span className="font-semibold">ノウハウ流出リスク</span>
                   </div>
@@ -211,26 +213,28 @@ export default function BeforeAfterSection() {
           }`}>
             {/* Solution 1 */}
             <div className="relative h-full">
-              <div className="relative bg-white rounded-2xl p-6 border-2 border-[#37B7C4]/30 h-full flex flex-col" style={{
-                boxShadow: '4px 4px 0px #37B7C4'
-              }}>
-                <div className="w-14 h-14 bg-[#37B7C4]/10 rounded-xl flex items-center justify-center mb-4">
-                  <svg className="w-8 h-8 text-[#37B7C4]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold text-gray-800 mb-3">
-                  欲しいデータが<span className="text-[#37B7C4]">5秒</span>で見つかる
-                </h3>
-                <p className="text-gray-600 leading-relaxed flex-grow">
-                  「厚さ5mmのSUS304を使ったブラケット図面は？」といった自然な対話で、AIが意図を汲み取り、最適な候補を瞬時に提示。
-                </p>
-                <div className="mt-4 pt-4 border-t border-[#37B7C4]/20">
-                  <div className="flex items-center text-[#37B7C4]">
-                    <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+              <div className="relative rounded-2xl p-6 h-full flex flex-col bg-white/90 backdrop-blur-xl border border-[#37B7C4]/25 shadow-[0_25px_50px_rgba(55,183,196,0.25)] overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-white via-white/90 to-[#E7F9FF] opacity-95" />
+                <div className="absolute -top-10 -right-10 w-32 h-32 bg-[#37B7C4]/12 rounded-full blur-3xl" />
+                <div className="relative z-10">
+                  <div className="w-14 h-14 bg-[#37B7C4]/10 border border-[#37B7C4]/30 backdrop-blur-md rounded-xl flex items-center justify-center mb-4 shadow-inner shadow-[#37B7C4]/20">
+                    <svg className="w-9 h-9 text-[#0f172a]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                     </svg>
-                    <span className="font-semibold">検索時間を99%削減</span>
+                  </div>
+                  <h3 className="text-2xl font-extrabold text-gray-900 mb-3">
+                    欲しいデータが<span className="text-[#0ea5e9]">5秒</span>で見つかる
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed flex-grow font-medium">
+                    「厚さ5mmのSUS304を使ったブラケット図面は？」といった自然な対話で、AIが意図を汲み取り、最適な候補を瞬時に提示。
+                  </p>
+                  <div className="mt-4 pt-4 border-t border-gray-200/70">
+                    <div className="flex items-center text-[#0f172a]">
+                      <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                      <span className="font-semibold">検索時間を99%削減</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -238,26 +242,28 @@ export default function BeforeAfterSection() {
 
             {/* Solution 2 */}
             <div className="relative h-full">
-              <div className="relative bg-white rounded-2xl p-6 border-2 border-[#37B7C4]/30 h-full flex flex-col" style={{
-                boxShadow: '4px 4px 0px #37B7C4'
-              }}>
-                <div className="w-14 h-14 bg-[#37B7C4]/10 rounded-xl flex items-center justify-center mb-4">
-                  <svg className="w-8 h-8 text-[#37B7C4]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold text-gray-800 mb-3">
-                  全員が同じ情報にアクセス可能
-                </h3>
-                <p className="text-gray-600 leading-relaxed flex-grow">
-                  ベテランの頭の中にあった知見を、誰もがアクセスできる「会社の資産」に変え、新任者でも的確な判断を可能に。
-                </p>
-                <div className="mt-4 pt-4 border-t border-[#37B7C4]/20">
-                  <div className="flex items-center text-[#37B7C4]">
-                    <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              <div className="relative rounded-2xl p-6 h-full flex flex-col bg-white/92 backdrop-blur-xl border border-[#37B7C4]/20 shadow-[0_18px_36px_rgba(55,183,196,0.18)] overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-white via-white/95 to-[#E7F9FF]/80 opacity-95" />
+                <div className="absolute -top-10 -right-10 w-32 h-32 bg-[#37B7C4]/10 rounded-full blur-3xl" />
+                <div className="relative z-10">
+                  <div className="w-14 h-14 bg-[#37B7C4]/12 border border-[#37B7C4]/25 backdrop-blur-md rounded-xl flex items-center justify-center mb-4 shadow-inner shadow-[#37B7C4]/20">
+                    <svg className="w-9 h-9 text-[#0f172a]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    <span className="font-semibold">ナレッジを資産化</span>
+                  </div>
+                  <h3 className="text-2xl font-extrabold text-gray-900 mb-3">
+                    全員が同じ情報にアクセス可能
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed flex-grow font-medium">
+                    ベテランの頭の中にあった知見を、誰もがアクセスできる「会社の資産」に変え、新任者でも的確な判断を可能に。
+                  </p>
+                  <div className="mt-4 pt-4 border-t border-gray-200/70">
+                    <div className="flex items-center text-[#0f172a]">
+                      <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <span className="font-semibold">ナレッジを資産化</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -265,26 +271,28 @@ export default function BeforeAfterSection() {
 
             {/* Solution 3 */}
             <div className="relative h-full">
-              <div className="relative bg-white rounded-2xl p-6 border-2 border-[#37B7C4]/30 h-full flex flex-col" style={{
-                boxShadow: '4px 4px 0px #37B7C4'
-              }}>
-                <div className="w-14 h-14 bg-[#37B7C4]/10 rounded-xl flex items-center justify-center mb-4">
-                  <svg className="w-8 h-8 text-[#37B7C4]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold text-gray-800 mb-3">
-                  部門間の壁を超える連携
-                </h3>
-                <p className="text-gray-600 leading-relaxed flex-grow">
-                  ARCHAIVEがハブとなり、全部門の情報がリアルタイムに連携。開発スピードを劇的に向上。
-                </p>
-                <div className="mt-4 pt-4 border-t border-[#37B7C4]/20">
-                  <div className="flex items-center text-[#37B7C4]">
-                    <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              <div className="relative rounded-2xl p-6 h-full flex flex-col bg-white/92 backdrop-blur-xl border border-[#37B7C4]/20 shadow-[0_18px_36px_rgba(55,183,196,0.18)] overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-white via-white/95 to-[#E7F9FF]/80 opacity-95" />
+                <div className="absolute -top-10 -right-10 w-32 h-32 bg-[#37B7C4]/10 rounded-full blur-3xl" />
+                <div className="relative z-10">
+                  <div className="w-14 h-14 bg-[#37B7C4]/12 border border-[#37B7C4]/25 backdrop-blur-md rounded-xl flex items-center justify-center mb-4 shadow-inner shadow-[#37B7C4]/20">
+                    <svg className="w-9 h-9 text-[#0f172a]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
                     </svg>
-                    <span className="font-semibold">開発速度2倍</span>
+                  </div>
+                  <h3 className="text-2xl font-extrabold text-gray-900 mb-3">
+                    部門間の壁を超える連携
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed flex-grow font-medium">
+                    ARCHAIVEがハブとなり、全部門の情報がリアルタイムに連携。開発スピードを劇的に向上。
+                  </p>
+                  <div className="mt-4 pt-4 border-t border-gray-200/70">
+                    <div className="flex items-center text-[#0f172a]">
+                      <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                      <span className="font-semibold">開発速度2倍</span>
+                    </div>
                   </div>
                 </div>
               </div>
