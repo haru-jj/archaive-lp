@@ -2,7 +2,11 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 const gonePaths = new Set([
+  '/form',
+  '/form-1',
+  '/form-3',
   '/form-4',
+  '/info',
   '/_nuxt',
   '/qm_tWbrX/sfvMfoBD',
   '/qm_tWbrX/KSUIVxB6',

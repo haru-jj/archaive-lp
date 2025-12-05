@@ -8,13 +8,13 @@ export const metadata: Metadata = {
     'ARCHAIVEのプレスリリースやメディア掲載、イベント情報をまとめた最新ニュース一覧ページです。',
   keywords: ['ARCHAIVEニュース', 'プレスリリース', '製造業DXニュース', 'AI見積最新情報'],
   alternates: {
-    canonical: '/news',
+    canonical: 'https://archaive.net/news',
   },
   openGraph: {
     title: 'お知らせ一覧｜ARCHAIVE最新情報',
     description:
       '製造業DXを支援するARCHAIVEの最新情報を掲載。新機能リリースやメディア掲載をいち早くご確認ください。',
-    url: 'https://archaive.jp/news',
+    url: 'https://archaive.net/news',
   },
   twitter: {
     card: 'summary',
