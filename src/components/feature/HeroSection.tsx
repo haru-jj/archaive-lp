@@ -80,7 +80,11 @@ export default function HeroSection() {
                 alt="ARCHAIVEのAI見積システムのダッシュボード画面。図面検索と見積作成機能を表示"
                 className="w-full max-w-[clamp(320px,40vw,520px)] rounded-xl shadow-2xl"
                 style={{ clipPath: 'inset(0% 0% 0.5% 0%)' }}
-                loading="lazy"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+                width={2659}
+                height={1940}
               />
             </div>
           </div>
