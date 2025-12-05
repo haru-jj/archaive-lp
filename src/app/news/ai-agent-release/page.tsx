@@ -9,9 +9,9 @@ const article = {
   subtitle: '',
   description:
     'ARCHAIVEが社内データを会話形式で活用できる製造業向けAIエージェントをリリース。図面検索や見積作成を対話で実現し、属人化を解消します。',
-  url: 'https://archaive.jp/news/ai-agent-release',
+  url: 'https://archaive.net/news/ai-agent-release',
   publishDate: '2025-07-28',
-  image: 'https://archaive.jp/news/142139-11-5216d3335c660b5c6b7e0ceaae4f56d0-2068x1160.jpeg',
+  image: 'https://archaive.net/news/142139-11-5216d3335c660b5c6b7e0ceaae4f56d0-2068x1160.jpeg',
 };
 
 export const metadata: Metadata = {
@@ -57,15 +57,15 @@ export default function AiAgentReleaseNews() {
     author: {
       '@type': 'Organization',
       name: 'ARCHAIVE',
-      url: 'https://archaive.jp/',
+      url: 'https://archaive.net/',
     },
     publisher: {
       '@type': 'Organization',
       name: 'ARCHAIVE',
-      url: 'https://archaive.jp/',
+      url: 'https://archaive.net/',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://archaive.jp/images/og-image.png',
+        url: 'https://archaive.net/images/og-image.png',
       },
     },
   };
@@ -78,13 +78,13 @@ export default function AiAgentReleaseNews() {
         '@type': 'ListItem',
         position: 1,
         name: 'トップ',
-        item: 'https://archaive.jp/',
+        item: 'https://archaive.net/',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'お知らせ',
-        item: 'https://archaive.jp/news',
+        item: 'https://archaive.net/news',
       },
       {
         '@type': 'ListItem',
