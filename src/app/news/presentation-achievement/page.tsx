@@ -8,9 +8,9 @@ const article = {
   subtitle: '',
   description:
     'ARCHAIVEを運営する株式会社STAR UPの最新登壇実績を紹介。各種イベントで製造業DXのノウハウを共有しました。',
-  url: 'https://archaive.jp/news/presentation-achievement',
+  url: 'https://archaive.net/news/presentation-achievement',
   publishDate: '2024-12-21',
-  image: 'https://archaive.jp/images/KYOTO%20SMARTCITY%20EXPO.webp',
+  image: 'https://archaive.net/images/KYOTO%20SMARTCITY%20EXPO.webp',
 };
 
 export const metadata: Metadata = {
@@ -53,23 +53,23 @@ export default function PresentationAchievementNews() {
     dateModified: `${article.publishDate}T00:00:00+09:00`,
     mainEntityOfPage: article.url,
     image: [
-      'https://archaive.jp/images/KYOTO%20SMARTCITY%20EXPO.webp',
-      'https://archaive.jp/images/MI-NET%20DXセミナー.webp',
-      'https://archaive.jp/images/TRY%20ANGLE%20EHIME.webp',
-      'https://archaive.jp/images/岐阜県DX推進コンソーシアム.webp',
+      'https://archaive.net/images/KYOTO%20SMARTCITY%20EXPO.webp',
+      'https://archaive.net/images/MI-NET%20DXセミナー.webp',
+      'https://archaive.net/images/TRY%20ANGLE%20EHIME.webp',
+      'https://archaive.net/images/岐阜県DX推進コンソーシアム.webp',
     ],
     author: {
       '@type': 'Organization',
       name: 'ARCHAIVE',
-      url: 'https://archaive.jp/',
+      url: 'https://archaive.net/',
     },
     publisher: {
       '@type': 'Organization',
       name: 'ARCHAIVE',
-      url: 'https://archaive.jp/',
+      url: 'https://archaive.net/',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://archaive.jp/images/og-image.png',
+        url: 'https://archaive.net/images/og-image.png',
       },
     },
   };
@@ -82,13 +82,13 @@ export default function PresentationAchievementNews() {
         '@type': 'ListItem',
         position: 1,
         name: 'トップ',
-        item: 'https://archaive.jp/',
+        item: 'https://archaive.net/',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'お知らせ',
-        item: 'https://archaive.jp/news',
+        item: 'https://archaive.net/news',
       },
       {
         '@type': 'ListItem',
