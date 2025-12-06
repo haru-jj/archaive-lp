@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, type CSSProperties } from 'react';
+import { useEffect, useState, type CSSProperties, type ReactNode } from 'react';
 import SubFeatureCardFrame from './SubFeatureCardFrame';
 
 const writingStyle = (
@@ -34,14 +34,20 @@ const WritingLine = ({
 
 type SubFeature = {
   title: string;
-  subtitle: string;
+  subtitle: ReactNode;
   illustration: JSX.Element;
 };
 
 const subFeatures: SubFeature[] = [
   {
     title: '顧客管理',
-    subtitle: '顧客情報と案件履歴を一元管理',
+    subtitle: (
+      <>
+        顧客情報と案件履歴を
+        <br />
+        一元管理
+      </>
+    ),
     illustration: (
       <SubFeatureCardFrame>
         <div className="flex h-full flex-col justify-between" aria-hidden="true">
@@ -49,19 +55,19 @@ const subFeatures: SubFeature[] = [
             {[0, 1].map((index) => (
               <div
                 key={`customer-card-${index}`}
-                className="flex items-center rounded-xl border border-[#37B7C4]/25 bg-white/90 shadow-sm"
+                className="flex items-center rounded-xl border-2 border-[#37B7C4] bg-white/95 shadow-sm"
                 style={{ padding: '12px 14px', gap: 14 }}
               >
                 <div
-                  className="flex items-center justify-center rounded-full border border-[#37B7C4]/30 bg-[#37B7C4]/18"
+                  className="flex items-center justify-center rounded-full border-2 border-[#37B7C4] bg-[#37B7C4]/24"
                   style={{ width: 36, height: 36 }}
                 >
-                  <svg viewBox="0 0 24 24" className="text-[#14556A]" style={{ width: 20, height: 20 }}>
-                    <circle cx="12" cy="9" r="4" fill="currentColor" />
+                  <svg viewBox="0 0 24 24" className="text-[#37B7C4]" style={{ width: 20, height: 20 }}>
+                    <circle cx="12" cy="9" r="4" fill="currentColor" opacity="0.85" />
                     <path
                       d="M5.5 19.5c0-3.31 2.99-6 6.5-6s6.5 2.69 6.5 6"
                       stroke="currentColor"
-                      strokeWidth="2"
+                      strokeWidth="2.8"
                       strokeLinecap="round"
                       fill="none"
                     />
@@ -96,31 +102,45 @@ const subFeatures: SubFeature[] = [
   },
   {
     title: '図面内書き込み',
-    subtitle: '図面上に直接コメントや修正指示を追加',
+    subtitle: (
+      <>
+        図面上に直接コメントや
+        <br />
+        修正指示を追加
+      </>
+    ),
     illustration: (
       <SubFeatureCardFrame>
         <div className="flex h-full flex-col justify-between gap-3 pt-2" aria-hidden="true">
           <div
-            className="relative mx-auto flex items-center justify-center overflow-visible rounded-xl border border-[#37B7C4]/30 bg-white shadow-sm"
+            className="relative mx-auto flex items-center justify-center overflow-visible rounded-xl border-2 border-[#37B7C4] bg-white shadow-sm"
             style={{ width: 132, height: 96, padding: '12px 14px' }}
           >
             <svg viewBox="0 0 92 64" className="h-full w-full text-[#2A8B96]" role="img" aria-hidden="true">
-              <rect x="6" y="6" width="80" height="52" fill="none" stroke="currentColor" strokeWidth="1.8" />
-              <line x1="6" y1="32" x2="86" y2="32" stroke="currentColor" strokeWidth="1.2" />
-              <line x1="46" y1="6" x2="46" y2="58" stroke="currentColor" strokeWidth="1.2" />
-              <line x1="24" y1="16" x2="46" y2="32" stroke="currentColor" strokeWidth="1.2" />
-              <line x1="46" y1="32" x2="70" y2="46" stroke="currentColor" strokeWidth="1.2" />
-              <circle cx="32" cy="22" r="8" fill="none" stroke="currentColor" strokeWidth="1.8" />
-              <circle cx="64" cy="40" r="12" fill="none" stroke="currentColor" strokeWidth="1.8" />
-              <circle cx="64" cy="40" r="5" fill="none" stroke="currentColor" strokeWidth="1.8" />
-              <line x1="22" y1="50" x2="70" y2="50" stroke="currentColor" strokeWidth="1.2" />
-              <circle cx="22" cy="50" r="2.4" fill="currentColor" />
-              <circle cx="70" cy="50" r="2.4" fill="currentColor" />
+              <rect x="6" y="6" width="80" height="52" fill="none" stroke="currentColor" strokeWidth="2" />
+              <line x1="6" y1="32" x2="86" y2="32" stroke="currentColor" strokeWidth="1.5" />
+              <line x1="46" y1="6" x2="46" y2="58" stroke="currentColor" strokeWidth="1.5" />
+              <line x1="24" y1="16" x2="46" y2="32" stroke="currentColor" strokeWidth="1.5" />
+              <line x1="46" y1="32" x2="70" y2="46" stroke="currentColor" strokeWidth="1.5" />
+              <circle cx="32" cy="22" r="8" fill="none" stroke="currentColor" strokeWidth="2" />
+              <circle cx="64" cy="40" r="12" fill="none" stroke="currentColor" strokeWidth="2" />
+              <circle cx="64" cy="40" r="5" fill="none" stroke="currentColor" strokeWidth="2" />
+              <line x1="22" y1="50" x2="70" y2="50" stroke="currentColor" strokeWidth="1.5" />
+              <circle cx="22" cy="50" r="2.6" fill="currentColor" />
+              <circle cx="70" cy="50" r="2.6" fill="currentColor" />
             </svg>
             <svg
               viewBox="0 0 48 48"
-              className="absolute rotate-6 text-[#37B7C4]"
-              style={{ width: 48, height: 48, right: -10, bottom: -2, zIndex: 10 }}
+              className="absolute rotate-6 text-[#37B7C4] pen-sway"
+              style={{
+                width: 48,
+                height: 48,
+                right: -10,
+                bottom: -2,
+                zIndex: 10,
+                animation: 'penSway 1.4s ease-in-out infinite',
+                willChange: 'transform',
+              }}
             >
               <path
                 d="M33 6a3 3 0 0 1 4.24 0l4.76 4.76a3 3 0 0 1 0 4.24L20 37l-8 2 2-8L33 6Z"
@@ -130,7 +150,7 @@ const subFeatures: SubFeature[] = [
             </svg>
           </div>
           <div
-            className="mx-auto flex items-center justify-between rounded-full border border-[#37B7C4]/35 bg-white/85"
+            className="mx-auto flex items-center justify-between rounded-full border-2 border-[#37B7C4] bg-white/90"
             style={{ width: 130, padding: '6px 12px' }}
           >
             <span
@@ -148,40 +168,61 @@ const subFeatures: SubFeature[] = [
   },
   {
     title: '組図・部品図管理',
-    subtitle: '組立図と部品図の階層構造管理',
+    subtitle: (
+      <>
+        組立図と部品図の
+        <br />
+        階層構造管理
+      </>
+    ),
     illustration: (
       <SubFeatureCardFrame>
-        <div className="flex h-full items-center justify-center gap-8" aria-hidden="true">
-          <svg viewBox="0 0 80 80" className="h-20 w-20 text-[#14556A]">
-            <rect x="20" y="8" width="40" height="12" rx="2" fill="currentColor" />
-            <rect x="26" y="20" width="28" height="40" rx="3" fill="none" stroke="currentColor" strokeWidth="3" />
-            {[0, 1, 2, 3].map((index) => (
-              <line
-                key={index}
-                x1="26"
-                y1={28 + index * 8}
-                x2="54"
-                y2={26 + index * 8}
-                stroke="#37B7C4"
-                strokeWidth="2"
+        <div className="flex h-full w-full items-center justify-center" aria-hidden="true">
+            <div className="relative w-32">
+            {/* 縦ラインを左側に配置（最下段まで） */}
+              <div
+                className="absolute w-0.5 h-[110px] bg-[#37B7C4]"
+                style={{ left: '-16px', top: '4px' }}
               />
-            ))}
-            <circle cx="40" cy="62" r="6" fill="none" stroke="currentColor" strokeWidth="3" />
-          </svg>
-          <svg viewBox="0 0 80 80" className="h-20 w-20 text-[#37B7C4]">
-            <polygon points="22,12 58,12 68,24 68,30 12,30 12,24" fill="currentColor" />
-            <rect x="24" y="30" width="32" height="6" fill="currentColor" />
-            <rect x="30" y="36" width="20" height="30" rx="4" fill="none" stroke="currentColor" strokeWidth="4" />
-            <line x1="30" y1="46" x2="50" y2="46" stroke="#14556A" strokeWidth="3" />
-            <line x1="30" y1="54" x2="50" y2="54" stroke="#14556A" strokeWidth="3" />
-          </svg>
+            <div className="flex flex-col gap-3 pl-1.5">
+              {/* 親ボックス */}
+              <div className="relative w-42 h-12 rounded-md border-2 border-[#37B7C4] bg-white shadow-sm flex items-center gap-2 px-3">
+                <div className="w-8 h-8 rounded-md bg-[#37B7C4]/15 border border-[#37B7C4]/50" />
+                <div className="flex-1 space-y-1">
+                  <div className="h-1.5 w-26 rounded bg-[#37B7C4]/60" />
+                  <div className="h-1.5 w-18 rounded bg-[#37B7C4]/40" />
+                </div>
+                <div className="w-2 h-2 rounded-full bg-[#37B7C4] shadow-[0_0_6px_rgba(55,183,196,0.6)]" />
+              </div>
+              {/* 子1 */}
+              <div className="relative w-24 h-7 rounded-md border-2 border-[#14556A]/80 bg-[#EFF7FB] flex items-center gap-2 px-3 ml-6">
+                <div className="w-5 h-5 rounded-md bg-[#37B7C4]/10 border border-[#37B7C4]/70" />
+                <div className="flex-1 h-1.5 rounded bg-[#37B7C4]/40" />
+              </div>
+              {/* 子2 */}
+              <div className="relative w-24 h-7 rounded-md border-2 border-[#14556A]/80 bg-[#EFF7FB] flex items-center gap-2 px-3 ml-6">
+                <div className="w-5 h-5 rounded-md bg-[#37B7C4]/10 border border-[#37B7C4]/70" />
+                <div className="flex-1 h-1.5 rounded bg-[#37B7C4]/40" />
+              </div>
+            </div>
+            {/* 接続横線 */}
+            <div className="absolute left-[-16px] top-[22px] w-6 h-0.5 bg-[#37B7C4]" />
+            <div className="absolute left-[-16px] top-[72px] w-12 h-0.5 bg-[#37B7C4]" />
+            <div className="absolute left-[-16px] top-[112px] w-12 h-0.5 bg-[#37B7C4]" />
+          </div>
         </div>
       </SubFeatureCardFrame>
     ),
   },
   {
     title: '権限管理',
-    subtitle: 'ユーザーごとのアクセス権限設定',
+    subtitle: (
+      <>
+        ユーザーごとのアクセス
+        <br />
+        権限設定
+      </>
+    ),
     illustration: (
       <SubFeatureCardFrame>
         <div className="flex h-full flex-col justify-between" aria-hidden="true">
@@ -189,19 +230,19 @@ const subFeatures: SubFeature[] = [
             {[0, 1].map((index) => (
               <div
                 key={`permission-card-${index}`}
-                className="flex items-center rounded-xl border border-[#37B7C4]/25 bg-white/90 px-4 py-3"
+                className="flex items-center rounded-xl border-2 border-[#37B7C4] bg-white/95 px-4 py-3"
                 style={{ gap: 14 }}
               >
                 <div
-                  className="flex items-center justify-center rounded-full border border-[#37B7C4]/35 bg-[#EAF7FA]"
+                  className="flex items-center justify-center rounded-full border-2 border-[#37B7C4] bg-[#EAF7FA]"
                   style={{ width: 36, height: 36 }}
                 >
-                  <svg viewBox="0 0 24 24" className="text-[#14556A]" style={{ width: 20, height: 20 }}>
-                    <circle cx="12" cy="9" r="4" fill="currentColor" />
+                  <svg viewBox="0 0 24 24" className="text-[#37B7C4]" style={{ width: 20, height: 20 }}>
+                    <circle cx="12" cy="9" r="4" fill="currentColor" opacity="0.85" />
                     <path
                       d="M5.5 19.5c0-3.31 2.99-6 6.5-6s6.5 2.69 6.5 6"
                       stroke="currentColor"
-                      strokeWidth="2"
+                      strokeWidth="2.4"
                       strokeLinecap="round"
                       fill="none"
                     />
@@ -218,7 +259,7 @@ const subFeatures: SubFeature[] = [
                   />
                 </div>
                 <div
-                  className="flex items-center justify-center rounded-lg border border-[#37B7C4]/35 bg-white"
+                  className="flex items-center justify-center rounded-lg border-2 border-[#37B7C4] bg-white"
                   style={{ width: 32, height: 32 }}
                 >
                   {index === 0 ? (
@@ -227,7 +268,7 @@ const subFeatures: SubFeature[] = [
                         d="M6 12l4 4 8-8"
                         fill="none"
                         stroke="currentColor"
-                        strokeWidth="2"
+                        strokeWidth="2.4"
                         strokeLinecap="round"
                         strokeLinejoin="round"
                       />
@@ -238,7 +279,7 @@ const subFeatures: SubFeature[] = [
                         d="M7 7l10 10M17 7l-10 10"
                         fill="none"
                         stroke="currentColor"
-                        strokeWidth="2"
+                        strokeWidth="2.4"
                         strokeLinecap="round"
                       />
                     </svg>
@@ -253,18 +294,24 @@ const subFeatures: SubFeature[] = [
   },
   {
     title: '帳票発行',
-    subtitle: '見積書や仕様書などの帳票を自動生成',
+    subtitle: (
+      <>
+        見積書や仕様書などの帳票を
+        <br />
+        自動生成
+      </>
+    ),
     illustration: (
       <SubFeatureCardFrame>
         <div className="flex h-full flex-col justify-center" aria-hidden="true">
           <div className="relative mx-auto" style={{ width: 132, height: 102 }}>
             <div
-              className="absolute inset-0 rounded-xl border border-[#37B7C4]/25 bg-[#EAF7FA]/85 shadow-sm"
-              style={{ boxShadow: '0 8px 18px rgba(21, 85, 106, 0.12)' }}
+              className="absolute inset-0 rounded-xl border-2 border-[#37B7C4] bg-[#EAF7FA]/90 shadow-sm"
+              style={{ boxShadow: '0 10px 20px rgba(21, 85, 106, 0.16)' }}
             >
               <div
-                className="absolute inset-[12px] rounded-lg border border-[#37B7C4]/25 bg-white/90 overflow-hidden"
-                style={{ boxShadow: 'inset 0 0 0 1px rgba(55,183,196,0.1)' }}
+                className="absolute inset-[12px] rounded-lg border-2 border-[#37B7C4] bg-white/95 overflow-hidden"
+                style={{ boxShadow: 'inset 0 0 0 1px rgba(55,183,196,0.18)' }}
               >
                 <div
                   className="flex flex-col animate-page-scroll"
@@ -296,6 +343,7 @@ const subFeatures: SubFeature[] = [
               viewBox="0 0 24 24"
               className="absolute text-[#37B7C4]"
               style={{ width: 38, height: 38, top: -18, left: -18 }}
+              aria-hidden="true"
             >
               <path
                 d="M7 3h7l5 5v11a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"
@@ -303,8 +351,7 @@ const subFeatures: SubFeature[] = [
                 opacity="0.85"
               />
               <path
-                d="M14 3v4a1 1 0 0 0 1 1h4"
-                fill="none"
+                d="M14 3l5 5"
                 stroke="#fff"
                 strokeWidth="1.5"
                 strokeLinecap="round"
@@ -322,24 +369,24 @@ const subFeatures: SubFeature[] = [
       <SubFeatureCardFrame>
         <div className="flex h-full flex-col items-center justify-center" style={{ gap: 13 }} aria-hidden="true">
           <div
-            className="relative rounded-full border border-[#37B7C4]/40 bg-white"
+            className="relative rounded-full border-2 border-[#37B7C4] bg-white"
             style={{ width: 124, padding: '8px 16px', height: 36 }}
           >
-            <div
-              className="rounded-full bg-[#37B7C4]/30 animate-pulse"
-              style={{ height: 6, width: 98 }}
-            />
-            <div
-              className="pointer-events-none absolute overflow-hidden rounded-full"
-              style={{ top: 6, bottom: 6, left: 8, right: 8 }}
-            >
-              <div className="h-full w-full bg-gradient-to-r from-transparent via-[#37B7C4]/15 to-transparent animate-search-sweep" />
-            </div>
-            <div
-              className="absolute flex items-center justify-center rounded-full border border-[#37B7C4] bg-[#37B7C4]/10 animate-search-button origin-center"
-              style={{ width: 28, height: 28, right: -14, top: 4, willChange: 'transform' }}
-            >
-              <svg viewBox="0 0 24 24" className="text-[#37B7C4]" style={{ width: 18, height: 18 }}>
+              <div
+                className="rounded-full bg-[#37B7C4]/50 animate-pulse"
+                style={{ height: 6, width: 98 }}
+              />
+              <div
+                className="pointer-events-none absolute overflow-hidden rounded-full"
+                style={{ top: 6, bottom: 6, left: 8, right: 8 }}
+              >
+                <div className="h-full w-full bg-gradient-to-r from-transparent via-[#37B7C4]/25 to-transparent animate-search-sweep" />
+              </div>
+              <div
+                className="absolute flex items-center justify-center rounded-full border-2 border-[#37B7C4] bg-white animate-search-button origin-center"
+                style={{ width: 28, height: 28, right: -14, top: 0, willChange: 'transform' }}
+              >
+                <svg viewBox="0 0 24 24" className="text-[#37B7C4]" style={{ width: 18, height: 18 }}>
                 <circle cx="11" cy="11" r="6" stroke="currentColor" strokeWidth="2" fill="none" />
                 <line
                   x1="16"
@@ -354,7 +401,7 @@ const subFeatures: SubFeature[] = [
             </div>
           </div>
           <div
-            className="rounded-lg border border-[#37B7C4]/25 bg-[#E4F6FA]/70"
+            className="rounded-lg border-2 border-[#37B7C4] bg-[#E4F6FA]/70"
             style={{ padding: '14px', display: 'flex', flexDirection: 'column', gap: 10, width: 132 }}
           >
             {[0, 1, 2].map((row) => (
@@ -384,33 +431,33 @@ const subFeatures: SubFeature[] = [
             {[0, 1].map((index) => (
               <div
                 key={`project-card-${index}`}
-                className="flex items-center rounded-xl border border-[#37B7C4]/25 bg-white/90 shadow-sm"
+                className="flex items-center rounded-xl border-2 border-[#37B7C4] bg-white/95 shadow-sm"
                 style={{ padding: '12px 14px', gap: 14 }}
               >
                 <div
-                  className="flex items-center justify-center rounded-full border border-[#37B7C4]/30 bg-[#37B7C4]/18"
+                  className="flex items-center justify-center rounded-full border-2 border-[#37B7C4] bg-[#37B7C4]/24"
                   style={{ width: 36, height: 36 }}
                 >
-                  <svg viewBox="0 0 24 24" className="text-[#14556A]" style={{ width: 20, height: 20 }}>
+                  <svg viewBox="0 0 24 24" className="text-[#37B7C4]" style={{ width: 20, height: 20 }}>
                     <path d="M5 4h9v16H5z" fill="currentColor" opacity="0.9" />
                     <path
                       d="M14 9h5v11h-5z"
                       fill="none"
                       stroke="currentColor"
-                      strokeWidth="1.6"
+                      strokeWidth="2.8"
                       strokeLinejoin="round"
                     />
                     <path
                       d="M7.5 7h2M7.5 11h2M7.5 15h2M16.5 12h1.5M16.5 15h1.5"
                       stroke="#fff"
-                      strokeWidth="1.2"
+                      strokeWidth="1.8"
                       strokeLinecap="round"
                     />
                     <path
                       d="M9 20v-3h4v3"
                       fill="none"
                       stroke="#fff"
-                      strokeWidth="1.4"
+                      strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     />
@@ -449,35 +496,35 @@ const subFeatures: SubFeature[] = [
     illustration: (
       <SubFeatureCardFrame>
         <div className="relative flex h-full items-center justify-center" aria-hidden="true">
-          <div className="relative" style={{ width: 96, height: 64 }}>
-            <div className="absolute inset-0 rounded-lg border border-[#37B7C4]/25 bg-gradient-to-br from-[#37B7C4] to-[#1F7D8C]" />
-            <div className="absolute rounded-lg border border-white/30" style={{ inset: 8 }} />
+          <div className="relative" style={{ width: 132, height: 88 }}>
+            <div className="absolute inset-0 rounded-lg border border-[#37B7C4]/70 bg-gradient-to-br from-[#37B7C4] to-[#1F7D8C]" />
+            <div className="absolute rounded-lg border border-white/30" style={{ inset: 10 }} />
             <div
-              className="absolute rounded-lg border border-[#37B7C4]/35 bg-gradient-to-br from-[#4AC7D4] to-[#37B7C4] animate-bounce"
-              style={{ width: 56, height: 36, top: -8, left: 12 }}
+              className="absolute rounded-lg border border-[#37B7C4]/65 bg-gradient-to-br from-[#4AC7D4] to-[#37B7C4] animate-bounce"
+              style={{ width: 78, height: 48, top: -10, left: 16 }}
             />
             <div
-              className="absolute rounded-lg border border-[#37B7C4]/35 bg-gradient-to-br from-[#2A9BA8] to-[#1F7D8C] animate-pulse"
-              style={{ width: 56, height: 36, top: 8, right: -12 }}
+              className="absolute rounded-lg border border-[#37B7C4]/65 bg-gradient-to-br from-[#2A9BA8] to-[#1F7D8C] animate-pulse"
+              style={{ width: 78, height: 48, top: 12, right: -16 }}
             />
             <div
               className="absolute flex items-center justify-center rounded-full border-2 border-white"
-              style={{ width: 20, height: 20, top: -4, right: -4 }}
+              style={{ width: 24, height: 24, top: -6, right: -6 }}
             >
               <div
                 className="rounded-full border border-white animate-spin"
-                style={{ width: 12, height: 12 }}
+                style={{ width: 14, height: 14 }}
               />
             </div>
             <div
               className="absolute flex -translate-x-1/2"
-              style={{ bottom: -12, left: '50%', gap: 4 }}
+              style={{ bottom: -14, left: '50%', gap: 5 }}
             >
               {[0, 1, 2].map((index) => (
                 <span
                   key={`orb-${index}`}
                   className={`rounded-full bg-[#37B7C4]/60 ${index === 0 ? 'animate-ping' : ''}`}
-                  style={{ width: 6, height: 6 }}
+                  style={{ width: 8, height: 8 }}
                 />
               ))}
             </div>
@@ -505,12 +552,12 @@ export default function SubFeaturesSection() {
         <svg className="h-full w-full" viewBox="0 0 400 300" preserveAspectRatio="none">
           <defs>
             <pattern id="mesh" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#37B7C4" strokeWidth="0.5" opacity="0.3" />
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#37B7C4" strokeWidth="0.6" opacity="0.45" />
             </pattern>
             <linearGradient id="meshGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#37B7C4" stopOpacity="0.1" />
-              <stop offset="50%" stopColor="#37B7C4" stopOpacity="0.05" />
-              <stop offset="100%" stopColor="#37B7C4" stopOpacity="0.1" />
+              <stop offset="0%" stopColor="#37B7C4" stopOpacity="0.14" />
+              <stop offset="50%" stopColor="#37B7C4" stopOpacity="0.08" />
+              <stop offset="100%" stopColor="#37B7C4" stopOpacity="0.14" />
             </linearGradient>
           </defs>
           <rect width="100%" height="100%" fill="url(#mesh)" />
@@ -544,23 +591,21 @@ export default function SubFeaturesSection() {
           {subFeatures.map((feature) => (
             <div
               key={feature.title}
-              className="group relative w-full rounded-2xl border border-gray-300/50 bg-gradient-to-br from-gray-50 to-white p-3 sm:p-6 lg:p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
+              className="group relative w-full rounded-2xl border-[3px] border-gray-400 bg-gradient-to-br from-gray-50 to-white p-3 sm:p-6 lg:p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
               style={{ minHeight: '220px' }}
             >
-              <div className="absolute top-0 left-0 h-0.5 w-0 rounded-full bg-[#37B7C4] transition-all duration-300 group-hover:w-full" />
-              <div className="absolute top-0 right-0 h-0 w-0.5 rounded-full bg-[#37B7C4] transition-all duration-300 delay-100 group-hover:h-full" />
-              <div className="absolute bottom-0 right-0 h-0.5 w-0 rounded-full bg-[#37B7C4] transition-all duration-300 delay-200 group-hover:w-full" />
-              <div className="absolute bottom-0 left-0 h-0 w-0.5 rounded-full bg-[#37B7C4] transition-all duration-300 delay-300 group-hover:h-full" />
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#37B7C4]/5 via-transparent to-[#37B7C4]/3 opacity-0 transition-opacity duration-500 delay-200 group-hover:opacity-100" />
-
               <div className="relative z-10 flex h-full flex-col items-center justify-center">
-                <div className="mb-4 w-full transition-all duration-300 group-hover:-translate-y-1 group-hover:scale-105">
+                <div
+                  className={`mb-4 w-full transition-all duration-300 group-hover:-translate-y-1 group-hover:scale-105 subfeature-ill ${
+                    ['図面内書き込み', '組図・部品図管理'].includes(feature.title) ? 'diagram-ill' : ''
+                  }`}
+                >
                   {feature.illustration}
                 </div>
-                <h4 className="mb-2 text-center text-base font-bold text-gray-700 sm:text-lg">
+                <h4 className="mb-2 text-center text-base font-bold text-gray-800 sm:text-lg">
                   {feature.title}
                 </h4>
-                <p className="px-1 text-center text-xs text-gray-500 leading-relaxed sm:px-2 sm:text-sm">
+                <p className="px-1 text-center text-xs text-gray-600 leading-relaxed sm:px-2 sm:text-sm">
                   {feature.subtitle}
                 </p>
               </div>
@@ -568,6 +613,44 @@ export default function SubFeaturesSection() {
           ))}
         </div>
       </div>
+
+      <style jsx>{`
+        .pen-sway {
+          animation: penSway 1.4s ease-in-out infinite;
+          will-change: transform;
+        }
+      `}</style>
+      <style jsx global>{`
+        @keyframes penSway {
+          0% {
+            transform: rotate(6deg) translateX(-6px);
+          }
+          50% {
+            transform: rotate(6deg) translateX(6px);
+          }
+          100% {
+            transform: rotate(6deg) translateX(-6px);
+          }
+        }
+        .subfeature-ill:not(.diagram-ill) svg [stroke] {
+          stroke-opacity: 1;
+          stroke: #37B7C4;
+          stroke-width: 3.5;
+        }
+        .subfeature-ill:not(.diagram-ill) svg line,
+        .subfeature-ill:not(.diagram-ill) svg path {
+          stroke-opacity: 1;
+          stroke: #37B7C4;
+          stroke-width: 3.5;
+        }
+        .subfeature-ill.diagram-ill svg [stroke] {
+          stroke-width: 2;
+        }
+        .subfeature-ill.diagram-ill svg line,
+        .subfeature-ill.diagram-ill svg path {
+          stroke-width: 2;
+        }
+      `}</style>
     </div>
   );
 }
