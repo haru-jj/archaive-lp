@@ -42,7 +42,17 @@ const faqs: FAQItem[] = [
 ];
 
 export default function FAQSection() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndices, setOpenIndices] = useState<Set<number>>(new Set());
+
+  const toggleIndex = (idx: number) => {
+    const next = new Set(openIndices);
+    if (next.has(idx)) {
+      next.delete(idx);
+    } else {
+      next.add(idx);
+    }
+    setOpenIndices(next);
+  };
 
   return (
     <section className="relative -mx-[50vw] left-[50%] right-[50%] w-screen bg-gradient-to-b from-white via-gray-50 to-white py-20">
@@ -52,20 +62,17 @@ export default function FAQSection() {
         <div className="text-center mb-10">
           <p className="text-sm font-semibold tracking-wide text-[#37B7C4]">FAQ</p>
           <h2 className="mt-2 text-2xl font-bold text-gray-900 sm:text-3xl">よくある質問</h2>
-          <p className="mt-3 text-gray-600">
-            クリックで回答を表示します。導入前のご不明点があればお気軽にお問い合わせください。
-          </p>
         </div>
 
         <div className="space-y-4">
           {faqs.map((item, idx) => {
-            const isOpen = openIndex === idx;
+            const isOpen = openIndices.has(idx);
             return (
               <div key={item.question} className="space-y-2">
                 <button
                   type="button"
                   className="flex w-full items-center justify-between rounded-2xl border border-gray-200 bg-white px-5 py-4 text-left shadow-sm transition-all duration-200 hover:border-[#37B7C4]/50"
-                  onClick={() => setOpenIndex(isOpen ? null : idx)}
+                  onClick={() => toggleIndex(idx)}
                 >
                   <span className="text-base font-semibold text-gray-800 leading-relaxed">{item.question}</span>
                   <span
