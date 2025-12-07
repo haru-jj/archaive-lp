@@ -76,7 +76,7 @@ export default function FAQSection() {
                 >
                   <span className="text-[17px] font-semibold text-gray-800 leading-relaxed">{item.question}</span>
                   <span
-                    className={`ml-4 flex h-6 w-6 items-center justify-center rounded-full border border-[#37B7C4]/70 text-[#37B7C4] transition-transform ${
+                    className={`ml-4 flex h-7 w-7 items-center justify-center rounded-full border-2 border-[#37B7C4]/80 text-[#37B7C4] font-semibold transition-transform ${
                       isOpen ? 'rotate-45' : ''
                     }`}
                   >
