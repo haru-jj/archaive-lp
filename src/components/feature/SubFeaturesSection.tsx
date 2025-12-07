@@ -374,7 +374,7 @@ const subFeatures: SubFeature[] = [
           >
               <div
                 className="rounded-full bg-[#37B7C4]/50 animate-pulse"
-                style={{ height: 6, width: 98 }}
+                style={{ height: 6, width: 82 }}
               />
               <div
                 className="pointer-events-none absolute overflow-hidden rounded-full"
