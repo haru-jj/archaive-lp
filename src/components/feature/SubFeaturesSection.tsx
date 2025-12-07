@@ -55,7 +55,9 @@ const subFeatures: SubFeature[] = [
             {[0, 1].map((index) => (
               <div
                 key={`customer-card-${index}`}
-                className="flex items-center rounded-xl border-2 border-[#37B7C4] bg-white/95 shadow-sm"
+                className={`flex items-center rounded-xl border-2 border-[#37B7C4] bg-white/95 shadow-sm ${
+                  index === 0 ? 'animate-card-glow' : ''
+                }`}
                 style={{ padding: '12px 14px', gap: 14 }}
               >
                 <div
@@ -230,7 +232,9 @@ const subFeatures: SubFeature[] = [
             {[0, 1].map((index) => (
               <div
                 key={`permission-card-${index}`}
-                className="flex items-center rounded-xl border-2 border-[#37B7C4] bg-white/95 px-4 py-3"
+                className={`flex items-center rounded-xl border-2 border-[#37B7C4] bg-white/95 px-4 py-3 ${
+                  index === 0 ? 'animate-card-glow' : ''
+                }`}
                 style={{ gap: 14 }}
               >
                 <div
@@ -425,7 +429,9 @@ const subFeatures: SubFeature[] = [
             {[0, 1].map((index) => (
               <div
                 key={`project-card-${index}`}
-                className="flex items-center rounded-xl border-2 border-[#37B7C4] bg-white/95 shadow-sm"
+                className={`flex items-center rounded-xl border-2 border-[#37B7C4] bg-white/95 shadow-sm ${
+                  index === 0 ? 'animate-card-glow' : ''
+                }`}
                 style={{ padding: '12px 14px', gap: 14 }}
               >
                 <div
@@ -643,6 +649,47 @@ export default function SubFeaturesSection() {
         .subfeature-ill.diagram-ill svg line,
         .subfeature-ill.diagram-ill svg path {
           stroke-width: 2;
+        }
+
+        /* Search button pulse */
+        .animate-search-button {
+          animation: searchButtonPulse 2s ease-in-out infinite;
+          box-shadow: 0 6px 14px rgba(55, 183, 196, 0.18);
+        }
+        @keyframes searchButtonPulse {
+          0% {
+            transform: translateY(0) scale(1);
+            box-shadow: 0 6px 14px rgba(55, 183, 196, 0.18);
+          }
+          50% {
+            transform: translateY(-2px) scale(1.04);
+            box-shadow: 0 10px 22px rgba(55, 183, 196, 0.28);
+          }
+          100% {
+            transform: translateY(0) scale(1);
+            box-shadow: 0 6px 14px rgba(55, 183, 196, 0.18);
+          }
+        }
+
+        /* First-card gentle glow */
+        .animate-card-glow {
+          position: relative;
+          z-index: 1;
+          animation: cardGlow 2.8s ease-in-out infinite;
+        }
+        @keyframes cardGlow {
+          0% {
+            box-shadow: 0 10px 18px rgba(55, 183, 196, 0.15);
+            transform: translateY(0);
+          }
+          50% {
+            box-shadow: 0 14px 26px rgba(55, 183, 196, 0.24);
+            transform: translateY(-2px);
+          }
+          100% {
+            box-shadow: 0 10px 18px rgba(55, 183, 196, 0.15);
+            transform: translateY(0);
+          }
         }
 
         /* Writing animation for 帳票発行 */
