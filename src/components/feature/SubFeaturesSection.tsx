@@ -83,7 +83,7 @@ const subFeatures: SubFeature[] = [
                     style={{ display: 'block', height: 6, width: 58 }}
                   />
                 </div>
-                <div className="flex flex-col items-end" style={{ gap: 6, marginRight: -8 }}>
+                <div className="flex flex-col items-end" style={{ gap: 6, marginRight: -10 }}>
                   <span
                     className="rounded-full bg-[#37B7C4]/20"
                     style={{ display: 'block', height: 6, width: 30 }}
