@@ -377,12 +377,6 @@ const subFeatures: SubFeature[] = [
                 style={{ height: 6, width: 82 }}
               />
               <div
-                className="pointer-events-none absolute overflow-hidden rounded-full"
-                style={{ top: 6, bottom: 6, left: 8, right: 8 }}
-              >
-                <div className="h-full w-full bg-gradient-to-r from-transparent via-[#37B7C4]/25 to-transparent animate-search-sweep" />
-              </div>
-              <div
                 className="absolute flex items-center justify-center rounded-full border-2 border-[#37B7C4] bg-white animate-search-button origin-center"
                 style={{ width: 28, height: 28, right: -14, top: 0, willChange: 'transform' }}
               >
