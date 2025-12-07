@@ -90,7 +90,7 @@ export default function FAQSection() {
                 >
                   <div className="flex items-center rounded-2xl border border-[#37B7C4]/40 bg-white/90 px-5 py-4 text-sm text-gray-700 leading-relaxed shadow-sm">
                     <span className="font-semibold text-gray-900">{item.answerBold}</span>
-                    {item.answerRest}
+                    <span className="ml-1">{item.answerRest}</span>
                   </div>
                 </div>
               </div>
