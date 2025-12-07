@@ -55,16 +55,13 @@ export default function FAQSection() {
           {faqs.map((item, idx) => {
             const isOpen = openIndex === idx;
             return (
-              <div
-                key={item.question}
-                className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition-all duration-200 hover:border-[#37B7C4]/50"
-              >
+              <div key={item.question} className="space-y-2">
                 <button
                   type="button"
-                  className="flex w-full items-center justify-between px-5 py-4 text-left"
+                  className="flex w-full items-center justify-between rounded-2xl border border-gray-200 bg-white px-5 py-4 text-left shadow-sm transition-all duration-200 hover:border-[#37B7C4]/50"
                   onClick={() => setOpenIndex(isOpen ? null : idx)}
                 >
-                  <span className="text-base font-semibold text-gray-800">{item.question}</span>
+                  <span className="text-base font-semibold text-gray-800 leading-relaxed">{item.question}</span>
                   <span
                     className={`ml-4 flex h-6 w-6 items-center justify-center rounded-full border border-[#37B7C4]/70 text-[#37B7C4] transition-transform ${
                       isOpen ? 'rotate-45' : ''
@@ -74,12 +71,13 @@ export default function FAQSection() {
                   </span>
                 </button>
                 <div
-                  className={`px-5 pb-5 text-sm text-gray-700 transition-all duration-200 ${
-                    isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                  className={`overflow-hidden transition-all duration-200 ${
+                    isOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
                   }`}
-                  style={{ lineHeight: 1.7 }}
                 >
-                  {item.answer}
+                  <div className="flex items-center rounded-2xl border border-[#37B7C4]/40 bg-white/90 px-5 py-4 text-sm text-gray-700 leading-relaxed shadow-sm">
+                    {item.answer}
+                  </div>
                 </div>
               </div>
             );
