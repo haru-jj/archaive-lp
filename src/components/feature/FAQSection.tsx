@@ -55,7 +55,7 @@ export default function FAQSection() {
   };
 
   return (
-    <section className="relative -mx-[50vw] left-[50%] right-[50%] w-screen bg-gradient-to-b from-white via-gray-50 to-white py-20">
+    <section className="relative -mx-[50vw] left-[50%] right-[50%] w-screen bg-gradient-to-b from-white via-gray-50 to-white py-28 sm:py-32">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_20%,rgba(55,183,196,0.06),transparent_25%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_0%,rgba(55,183,196,0.06),transparent_25%)]" />
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
