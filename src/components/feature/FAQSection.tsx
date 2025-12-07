@@ -71,10 +71,10 @@ export default function FAQSection() {
               <div key={item.question} className="space-y-2">
                 <button
                   type="button"
-                  className="flex w-full items-center justify-between rounded-2xl border border-gray-200 bg-white px-5 py-4 text-left shadow-sm transition-all duration-200 hover:border-[#37B7C4]/50"
+                  className="flex w-full items-center justify-between rounded-2xl border border-gray-200 bg-white px-6 py-5 text-left shadow-sm transition-all duration-200 hover:border-[#37B7C4]/50"
                   onClick={() => toggleIndex(idx)}
                 >
-                  <span className="text-base font-semibold text-gray-800 leading-relaxed">{item.question}</span>
+                  <span className="text-[17px] font-semibold text-gray-800 leading-relaxed">{item.question}</span>
                   <span
                     className={`ml-4 flex h-6 w-6 items-center justify-center rounded-full border border-[#37B7C4]/70 text-[#37B7C4] transition-transform ${
                       isOpen ? 'rotate-45' : ''
@@ -88,8 +88,8 @@ export default function FAQSection() {
                     isOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
                   }`}
                 >
-                  <div className="rounded-2xl border border-[#37B7C4]/40 bg-white/90 px-5 py-4 shadow-sm">
-                    <p className="text-sm leading-relaxed text-gray-700">
+                  <div className="rounded-2xl border border-[#37B7C4]/40 bg-white/90 px-6 py-5 shadow-sm">
+                    <p className="text-[15px] leading-relaxed text-gray-700">
                       <span className="font-semibold text-gray-900">{item.answerBold}</span>
                       <span className="ml-1">{item.answerRest}</span>
                     </p>
