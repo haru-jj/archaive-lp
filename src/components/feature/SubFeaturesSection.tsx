@@ -473,7 +473,7 @@ const subFeatures: SubFeature[] = [
                     style={{ display: 'block', height: 6, width: 30 }}
                   />
                   <span
-                    className={`rounded-full ${index === 0 ? 'bg-emerald-400 animate-ping' : 'bg-[#37B7C4]/25'}`}
+                    className="rounded-full bg-[#37B7C4]/25"
                     style={{ display: 'block', height: 6, width: 18 }}
                   />
                 </div>
