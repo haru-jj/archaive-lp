@@ -321,7 +321,7 @@ const subFeatures: SubFeature[] = [
                     '--page-scroll-duration': '3.6s',
                   } as CSSProperties}
                 >
-                  {[96, 90, 94, 88, 92, 86, 90, 84].map((width, lineIdx) => (
+                  {[76, 70, 74, 68, 72, 66, 70, 64].map((width, lineIdx) => (
                     <WritingLine
                       key={`page-line-${lineIdx}`}
                       style={{
