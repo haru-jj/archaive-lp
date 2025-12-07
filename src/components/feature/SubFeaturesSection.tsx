@@ -650,6 +650,54 @@ export default function SubFeaturesSection() {
         .subfeature-ill.diagram-ill svg path {
           stroke-width: 2;
         }
+
+        /* Writing animation for 帳票発行 */
+        .writing-track {
+          position: relative;
+          width: 100%;
+          border-radius: 9999px;
+          background: var(--writing-track-color);
+          overflow: hidden;
+        }
+        .writing-progress {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(
+            90deg,
+            transparent,
+            var(--writing-fill-color),
+            var(--writing-fill-color),
+            transparent
+          );
+          transform: translateX(-100%);
+          animation: writingFill var(--writing-duration) ease-in-out infinite;
+          animation-delay: var(--writing-delay);
+        }
+        @keyframes writingFill {
+          0% {
+            transform: translateX(-100%);
+          }
+          50% {
+            transform: translateX(0%);
+          }
+          100% {
+            transform: translateX(100%);
+          }
+        }
+        .animate-page-scroll {
+          animation: pageScroll var(--page-scroll-duration, 3s) linear infinite;
+        }
+        @keyframes pageScroll {
+          0% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-8px);
+          }
+          100% {
+            transform: translateY(0);
+          }
+        }
       `}</style>
     </div>
   );
