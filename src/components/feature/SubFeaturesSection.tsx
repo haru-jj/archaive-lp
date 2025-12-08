@@ -115,7 +115,7 @@ const subFeatures: SubFeature[] = [
       <SubFeatureCardFrame>
         <div className="flex h-full flex-col justify-between gap-3 pt-2" aria-hidden="true">
           <div
-            className="relative mx-auto flex items-center justify-center overflow-visible border-2 border-[#37B7C4] bg-white shadow-sm"
+            className="relative mx-auto flex items-center justify-center overflow-visible rounded-xl border-2 border-[#37B7C4] bg-white shadow-sm"
             style={{ width: 132, height: 96, padding: '12px 14px' }}
           >
             <svg viewBox="0 0 92 64" className="h-full w-full text-[#2A8B96]" role="img" aria-hidden="true">
@@ -152,17 +152,17 @@ const subFeatures: SubFeature[] = [
             </svg>
           </div>
           <div
-              className="mx-auto flex items-center justify-between border-2 border-[#37B7C4] bg-white/90"
-              style={{ width: 130, padding: '6px 12px' }}
-            >
-              <span
-                className="rounded-none bg-[#37B7C4]/30"
-                style={{ display: 'block', height: 6, width: 60 }}
-              />
-              <span
-                className="rounded-none bg-[#37B7C4]/20"
-                style={{ display: 'block', height: 6, width: 48 }}
-              />
+            className="mx-auto flex items-center justify-between rounded-full border-2 border-[#37B7C4] bg-white/90"
+            style={{ width: 130, padding: '6px 12px' }}
+          >
+            <span
+              className="rounded-full bg-[#37B7C4]/30"
+              style={{ display: 'block', height: 6, width: 60 }}
+            />
+            <span
+              className="rounded-full bg-[#37B7C4]/20"
+              style={{ display: 'block', height: 6, width: 48 }}
+            />
             </div>
         </div>
       </SubFeatureCardFrame>
