@@ -55,7 +55,9 @@ const subFeatures: SubFeature[] = [
             {[0, 1].map((index) => (
               <div
                 key={`customer-card-${index}`}
-                className="flex items-center rounded-xl border-2 border-[#37B7C4] bg-white/95 shadow-sm"
+                className={`flex items-center rounded-xl border-2 border-[#37B7C4] bg-white/95 shadow-sm ${
+                  index === 0 ? 'animate-card-glow' : ''
+                }`}
                 style={{ padding: '12px 14px', gap: 14 }}
               >
                 <div
@@ -83,13 +85,13 @@ const subFeatures: SubFeature[] = [
                     style={{ display: 'block', height: 6, width: 58 }}
                   />
                 </div>
-                <div className="flex flex-col items-end" style={{ gap: 6 }}>
+                <div className="flex flex-col items-end" style={{ gap: 6, marginRight: -10 }}>
                   <span
                     className="rounded-full bg-[#37B7C4]/20"
                     style={{ display: 'block', height: 6, width: 30 }}
                   />
                   <span
-                    className={`rounded-full ${index === 0 ? 'bg-emerald-400 animate-ping' : 'bg-[#37B7C4]/25'}`}
+                    className="rounded-full bg-[#37B7C4]/25"
                     style={{ display: 'block', height: 6, width: 18 }}
                   />
                 </div>
@@ -230,7 +232,9 @@ const subFeatures: SubFeature[] = [
             {[0, 1].map((index) => (
               <div
                 key={`permission-card-${index}`}
-                className="flex items-center rounded-xl border-2 border-[#37B7C4] bg-white/95 px-4 py-3"
+                className={`flex items-center rounded-xl border-2 border-[#37B7C4] bg-white/95 px-4 py-3 ${
+                  index === 0 ? 'animate-card-glow' : ''
+                }`}
                 style={{ gap: 14 }}
               >
                 <div
@@ -321,7 +325,7 @@ const subFeatures: SubFeature[] = [
                     '--page-scroll-duration': '3.6s',
                   } as CSSProperties}
                 >
-                  {[96, 90, 94, 88, 92, 86, 90, 84].map((width, lineIdx) => (
+                  {[68, 62, 66, 60, 64, 58, 62, 56].map((width, lineIdx) => (
                     <WritingLine
                       key={`page-line-${lineIdx}`}
                       style={{
@@ -374,14 +378,8 @@ const subFeatures: SubFeature[] = [
           >
               <div
                 className="rounded-full bg-[#37B7C4]/50 animate-pulse"
-                style={{ height: 6, width: 98 }}
+                style={{ height: 6, width: 82, marginTop: 4 }}
               />
-              <div
-                className="pointer-events-none absolute overflow-hidden rounded-full"
-                style={{ top: 6, bottom: 6, left: 8, right: 8 }}
-              >
-                <div className="h-full w-full bg-gradient-to-r from-transparent via-[#37B7C4]/25 to-transparent animate-search-sweep" />
-              </div>
               <div
                 className="absolute flex items-center justify-center rounded-full border-2 border-[#37B7C4] bg-white animate-search-button origin-center"
                 style={{ width: 28, height: 28, right: -14, top: 0, willChange: 'transform' }}
@@ -431,7 +429,9 @@ const subFeatures: SubFeature[] = [
             {[0, 1].map((index) => (
               <div
                 key={`project-card-${index}`}
-                className="flex items-center rounded-xl border-2 border-[#37B7C4] bg-white/95 shadow-sm"
+                className={`flex items-center rounded-xl border-2 border-[#37B7C4] bg-white/95 shadow-sm ${
+                  index === 0 ? 'animate-card-glow' : ''
+                }`}
                 style={{ padding: '12px 14px', gap: 14 }}
               >
                 <div
@@ -479,7 +479,7 @@ const subFeatures: SubFeature[] = [
                     style={{ display: 'block', height: 6, width: 30 }}
                   />
                   <span
-                    className={`rounded-full ${index === 0 ? 'bg-emerald-400 animate-ping' : 'bg-[#37B7C4]/25'}`}
+                    className="rounded-full bg-[#37B7C4]/25"
                     style={{ display: 'block', height: 6, width: 18 }}
                   />
                 </div>
@@ -649,6 +649,95 @@ export default function SubFeaturesSection() {
         .subfeature-ill.diagram-ill svg line,
         .subfeature-ill.diagram-ill svg path {
           stroke-width: 2;
+        }
+
+        /* Search button pulse */
+        .animate-search-button {
+          animation: searchButtonPulse 2s ease-in-out infinite;
+          box-shadow: 0 6px 14px rgba(55, 183, 196, 0.18);
+        }
+        @keyframes searchButtonPulse {
+          0% {
+            transform: translateY(0) scale(1);
+            box-shadow: 0 6px 14px rgba(55, 183, 196, 0.18);
+          }
+          50% {
+            transform: translateY(-2px) scale(1.04);
+            box-shadow: 0 10px 22px rgba(55, 183, 196, 0.28);
+          }
+          100% {
+            transform: translateY(0) scale(1);
+            box-shadow: 0 6px 14px rgba(55, 183, 196, 0.18);
+          }
+        }
+
+        /* First-card gentle glow */
+        .animate-card-glow {
+          position: relative;
+          z-index: 1;
+          animation: cardGlow 2.8s ease-in-out infinite;
+        }
+        @keyframes cardGlow {
+          0% {
+            box-shadow: 0 10px 18px rgba(55, 183, 196, 0.15);
+            transform: translateY(0);
+          }
+          50% {
+            box-shadow: 0 14px 26px rgba(55, 183, 196, 0.24);
+            transform: translateY(-2px);
+          }
+          100% {
+            box-shadow: 0 10px 18px rgba(55, 183, 196, 0.15);
+            transform: translateY(0);
+          }
+        }
+
+        /* Writing animation for 帳票発行 */
+        .writing-track {
+          position: relative;
+          width: 100%;
+          border-radius: 9999px;
+          background: var(--writing-track-color);
+          overflow: hidden;
+        }
+        .writing-progress {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(
+            90deg,
+            transparent,
+            var(--writing-fill-color),
+            var(--writing-fill-color),
+            transparent
+          );
+          transform: translateX(-100%);
+          animation: writingFill var(--writing-duration) ease-in-out infinite;
+          animation-delay: var(--writing-delay);
+        }
+        @keyframes writingFill {
+          0% {
+            transform: translateX(-100%);
+          }
+          50% {
+            transform: translateX(0%);
+          }
+          100% {
+            transform: translateX(100%);
+          }
+        }
+        .animate-page-scroll {
+          animation: pageScroll var(--page-scroll-duration, 3s) linear infinite;
+        }
+        @keyframes pageScroll {
+          0% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-8px);
+          }
+          100% {
+            transform: translateY(0);
+          }
         }
       `}</style>
     </div>
