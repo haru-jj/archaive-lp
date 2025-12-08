@@ -128,7 +128,7 @@ export default function CaseSection() {
         </div>
 
         {/* カルーセル */}
-        <div className="relative w-full max-w-7xl mx-auto mb-5 sm:mb-8 md:mb-10 overflow-hidden">
+        <div className="relative w-full max-w-7xl mx-auto mb-5 sm:mb-8 md:mb-10 overflow-hidden px-1">
           {/* モバイル表示 (sm未満) */}
           <div className="block sm:hidden">
             <div 
@@ -163,7 +163,7 @@ export default function CaseSection() {
                   </Link>
                   
                   {/* コンテンツ */}
-                  <div className="px-2">
+                  <div className="px-1 sm:px-2">
                     <p className="text-sm font-bold text-[#333333] leading-relaxed min-h-[4rem] flex items-center">
                       {caseItem.title}
                     </p>
@@ -174,7 +174,7 @@ export default function CaseSection() {
           </div>
           
           {/* デスクトップ表示 (sm以上) */}
-          <div className="hidden sm:block overflow-hidden">
+          <div className="hidden sm:block overflow-hidden px-2">
             <div 
               className={`flex gap-6 md:gap-8 ${isTransitioning ? 'transition-transform duration-500 ease-in-out' : ''}`}
               style={{ transform: `translateX(${translateX}px)` }}
