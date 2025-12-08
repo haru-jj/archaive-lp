@@ -20,7 +20,7 @@ const HeaderBar = () => (
 export default function SubFeatureCardFrame({ children, className }: SubFeatureCardFrameProps) {
   return (
     <div className={`flex items-center justify-center ${className ?? ''}`}>
-      <div className="flex h-[208px] w-[224px] flex-col overflow-hidden rounded-2xl border border-[#14556a]/20 bg-white shadow-[0_16px_40px_rgba(20,85,106,0.18)]">
+      <div className="flex h-[208px] w-[224px] flex-col overflow-hidden rounded-md border border-[#14556a]/20 bg-white shadow-[0_16px_40px_rgba(20,85,106,0.18)]">
         <HeaderBar />
         <div className="flex flex-1 flex-col gap-2 px-4 py-3">
           {children}
