@@ -149,7 +149,7 @@ export default function CaseSection() {
                       <img 
                         src={caseItem.image} 
                         alt={`${caseItem.subtitle} ${caseItem.author}のインタビュー写真`} 
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover object-center"
                       />
                     )}
                     
@@ -165,7 +165,8 @@ export default function CaseSection() {
                   {/* コンテンツ */}
                   <div className="px-1 sm:px-2">
                     <p className="text-sm font-bold text-[#333333] leading-relaxed min-h-[4rem] flex items-center">
-                      {caseItem.title}
+                      <span className="block sm:hidden whitespace-pre-line">{caseItem.title.replace(/。/g, '。\n')}</span>
+                      <span className="hidden sm:block">{caseItem.title}</span>
                     </p>
                   </div>
                 </div>
