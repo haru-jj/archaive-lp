@@ -55,14 +55,14 @@ const subFeatures: SubFeature[] = [
             {[0, 1].map((index) => (
               <div
                 key={`customer-card-${index}`}
-                className={`flex items-center rounded-xl border-2 border-[#37B7C4] bg-white/95 shadow-sm ${
+                className={`flex items-center border-2 border-[#37B7C4] bg-white/95 shadow-sm ${
                   index === 0 ? 'animate-card-glow' : ''
                 }`}
                 style={{ padding: '12px 14px', gap: 14 }}
               >
                 <div
-                  className="flex items-center justify-center rounded-full border-2 border-[#37B7C4] bg-[#37B7C4]/24"
-                  style={{ width: 36, height: 36 }}
+                  className="flex items-center justify-center border-2 border-[#37B7C4] bg-[#37B7C4]/24"
+                  style={{ width: 36, height: 36, borderRadius: 12 }}
                 >
                   <svg viewBox="0 0 24 24" className="text-[#37B7C4]" style={{ width: 20, height: 20 }}>
                     <circle cx="12" cy="9" r="4" fill="currentColor" opacity="0.85" />
@@ -77,21 +77,21 @@ const subFeatures: SubFeature[] = [
                 </div>
                 <div className="flex flex-col" style={{ gap: 6, width: 86 }}>
                   <span
-                    className="rounded-full bg-[#37B7C4]/30"
-                    style={{ display: 'block', height: 6, width: 70 }}
-                  />
-                  <span
-                    className="rounded-full bg-[#37B7C4]/15"
-                    style={{ display: 'block', height: 6, width: 58 }}
-                  />
+                  className="rounded-none bg-[#37B7C4]/30"
+                  style={{ display: 'block', height: 6, width: 70 }}
+                />
+                <span
+                  className="rounded-none bg-[#37B7C4]/15"
+                  style={{ display: 'block', height: 6, width: 58 }}
+                />
                 </div>
                 <div className="flex flex-col items-end" style={{ gap: 6, marginRight: -10 }}>
                   <span
-                    className="rounded-full bg-[#37B7C4]/20"
+                    className="rounded-none bg-[#37B7C4]/20"
                     style={{ display: 'block', height: 6, width: 30 }}
                   />
                   <span
-                    className="rounded-full bg-[#37B7C4]/25"
+                    className="rounded-none bg-[#37B7C4]/25"
                     style={{ display: 'block', height: 6, width: 18 }}
                   />
                 </div>
@@ -115,7 +115,7 @@ const subFeatures: SubFeature[] = [
       <SubFeatureCardFrame>
         <div className="flex h-full flex-col justify-between gap-3 pt-2" aria-hidden="true">
           <div
-            className="relative mx-auto flex items-center justify-center overflow-visible rounded-xl border-2 border-[#37B7C4] bg-white shadow-sm"
+            className="relative mx-auto flex items-center justify-center overflow-visible border-2 border-[#37B7C4] bg-white shadow-sm"
             style={{ width: 132, height: 96, padding: '12px 14px' }}
           >
             <svg viewBox="0 0 92 64" className="h-full w-full text-[#2A8B96]" role="img" aria-hidden="true">
@@ -152,18 +152,18 @@ const subFeatures: SubFeature[] = [
             </svg>
           </div>
           <div
-            className="mx-auto flex items-center justify-between rounded-full border-2 border-[#37B7C4] bg-white/90"
-            style={{ width: 130, padding: '6px 12px' }}
-          >
-            <span
-              className="rounded-full bg-[#37B7C4]/30"
-              style={{ display: 'block', height: 6, width: 60 }}
-            />
-            <span
-              className="rounded-full bg-[#37B7C4]/20"
-              style={{ display: 'block', height: 6, width: 48 }}
-            />
-          </div>
+              className="mx-auto flex items-center justify-between border-2 border-[#37B7C4] bg-white/90"
+              style={{ width: 130, padding: '6px 12px' }}
+            >
+              <span
+                className="rounded-none bg-[#37B7C4]/30"
+                style={{ display: 'block', height: 6, width: 60 }}
+              />
+              <span
+                className="rounded-none bg-[#37B7C4]/20"
+                style={{ display: 'block', height: 6, width: 48 }}
+              />
+            </div>
         </div>
       </SubFeatureCardFrame>
     ),
@@ -188,23 +188,23 @@ const subFeatures: SubFeature[] = [
               />
             <div className="flex flex-col gap-3 pl-1.5">
               {/* 親ボックス */}
-              <div className="relative w-42 h-12 rounded-md border-2 border-[#37B7C4] bg-white shadow-sm flex items-center gap-2 px-3">
-                <div className="w-8 h-8 rounded-md bg-[#37B7C4]/15 border border-[#37B7C4]/50" />
+              <div className="relative w-42 h-12 border-2 border-[#37B7C4] bg-white shadow-sm flex items-center gap-2 px-3">
+                <div className="w-8 h-8 border border-[#37B7C4]/50" />
                 <div className="flex-1 space-y-1">
-                  <div className="h-1.5 w-26 rounded bg-[#37B7C4]/60" />
-                  <div className="h-1.5 w-18 rounded bg-[#37B7C4]/40" />
+                  <div className="h-1.5 w-26 bg-[#37B7C4]/60" />
+                  <div className="h-1.5 w-18 bg-[#37B7C4]/40" />
                 </div>
-                <div className="w-2 h-2 rounded-full bg-[#37B7C4] shadow-[0_0_6px_rgba(55,183,196,0.6)]" />
+                <div className="w-2 h-2 bg-[#37B7C4] shadow-[0_0_6px_rgba(55,183,196,0.6)]" />
               </div>
               {/* 子1 */}
-              <div className="relative w-24 h-7 rounded-md border-2 border-[#14556A]/80 bg-[#EFF7FB] flex items-center gap-2 px-3 ml-6">
-                <div className="w-5 h-5 rounded-md bg-[#37B7C4]/10 border border-[#37B7C4]/70" />
-                <div className="flex-1 h-1.5 rounded bg-[#37B7C4]/40" />
+              <div className="relative w-24 h-7 border-2 border-[#14556A]/80 bg-[#EFF7FB] flex items-center gap-2 px-3 ml-6">
+                <div className="w-5 h-5 border border-[#37B7C4]/70" />
+                <div className="flex-1 h-1.5 bg-[#37B7C4]/40" />
               </div>
               {/* 子2 */}
-              <div className="relative w-24 h-7 rounded-md border-2 border-[#14556A]/80 bg-[#EFF7FB] flex items-center gap-2 px-3 ml-6">
-                <div className="w-5 h-5 rounded-md bg-[#37B7C4]/10 border border-[#37B7C4]/70" />
-                <div className="flex-1 h-1.5 rounded bg-[#37B7C4]/40" />
+              <div className="relative w-24 h-7 border-2 border-[#14556A]/80 bg-[#EFF7FB] flex items-center gap-2 px-3 ml-6">
+                <div className="w-5 h-5 border border-[#37B7C4]/70" />
+                <div className="flex-1 h-1.5 bg-[#37B7C4]/40" />
               </div>
             </div>
             {/* 接続横線 */}
@@ -591,7 +591,7 @@ export default function SubFeaturesSection() {
           {subFeatures.map((feature) => (
             <div
               key={feature.title}
-              className="group relative w-full rounded-2xl border-[3px] border-gray-400 bg-gradient-to-br from-gray-50 to-white p-3 sm:p-6 lg:p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
+              className="group relative w-full rounded-none border-[3px] border-gray-400 bg-gradient-to-br from-gray-50 to-white p-3 sm:p-6 lg:p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
               style={{ minHeight: '220px' }}
             >
               <div className="relative z-10 flex h-full flex-col items-center justify-center">
@@ -649,6 +649,11 @@ export default function SubFeaturesSection() {
         .subfeature-ill.diagram-ill svg line,
         .subfeature-ill.diagram-ill svg path {
           stroke-width: 2;
+        }
+
+        /* Remove rounded corners in subfeature illustrations */
+        .subfeature-ill :is([class*='rounded'], .rounded, .rounded-full, .rounded-lg, .rounded-xl, .rounded-2xl) {
+          border-radius: 0 !important;
         }
 
         /* Search button pulse */
