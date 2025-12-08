@@ -8,9 +8,9 @@ export default function CaseSection() {
   const [isTransitioning, setIsTransitioning] = useState(true);
   
   // カード幅 + ギャップ
-  const cardWidth = 600; // px
-  const gap = 32; // 8rem = 32px (デスクトップ)
-  const slideDistance = cardWidth + gap; // 632px
+  const cardWidth = 520; // px
+  const gap = 28; // px
+  const slideDistance = cardWidth + gap;
 
   const caseStudies = [
     {

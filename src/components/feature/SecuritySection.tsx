@@ -103,8 +103,8 @@ export default function SecuritySection() {
         <div className="absolute bottom-24 right-16 w-28 h-28 bg-[#37B7C4]/8 rounded-full blur-2xl animate-pulse" style={{animationDelay: '2s', animationDuration: '3s'}} />
       </div>
 
-      {/* 左側に大きなLottieアニメーション - absolute配置 */}
-      <div className="absolute left-[24%] top-[19%] w-[400px] h-[400px] lg:w-[800px] lg:h-[800px] transform -translate-x-1/2 -translate-y-1/2 z-5 pointer-events-none">
+      {/* 左側に大きなLottieアニメーション - absolute配置（モバイル非表示） */}
+      <div className="hidden md:block absolute left-[24%] top-[19%] w-[360px] h-[360px] lg:w-[800px] lg:h-[800px] transform -translate-x-1/2 -translate-y-1/2 z-5 pointer-events-none">
         <Lottie
           loop
           play
@@ -114,17 +114,17 @@ export default function SecuritySection() {
         />
       </div>
 
-      <div className="container mx-auto max-w-6xl relative z-10">
-        <div className="mb-12 sm:mb-8 ml-0 lg:ml-60">
+      <div className="container mx-auto max-w-6xl relative z-10 px-1 sm:px-4">
+        <div className="mb-10 sm:mb-12 text-center md:text-left md:ml-0 lg:ml-60">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2 tracking-tight">
             エンタープライズ水準のセキュリティ
           </h2>
-          <p className="text-gray-300 max-w-3xl text-lg leading-relaxed">
+          <p className="text-gray-300 max-w-3xl text-base sm:text-lg leading-relaxed mx-auto md:mx-0">
             高水準のセキュリティ/コンプライアンスによって、お客様の重要な資産を守ります
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 sm:gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
           {securityMeasures.map((measure, index) => (
             <div
               key={index}
