@@ -382,7 +382,7 @@ const subFeatures: SubFeature[] = [
               />
               <div
                 className="absolute flex items-center justify-center rounded-full border-2 border-[#37B7C4] bg-white animate-search-button origin-center"
-                style={{ width: 28, height: 28, right: -14, top: 4, willChange: 'transform' }}
+                style={{ width: 28, height: 28, right: -14, top: 2, willChange: 'transform' }}
               >
                 <svg viewBox="0 0 24 24" className="text-[#37B7C4]" style={{ width: 18, height: 18 }}>
                 <circle cx="11" cy="11" r="6" stroke="currentColor" strokeWidth="2" fill="none" />
