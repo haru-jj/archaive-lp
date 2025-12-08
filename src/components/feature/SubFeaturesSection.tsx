@@ -232,7 +232,7 @@ const subFeatures: SubFeature[] = [
             {[0, 1].map((index) => (
               <div
                 key={`permission-card-${index}`}
-                className={`flex items-center rounded-xl border-2 border-[#37B7C4] bg-white/95 px-4 py-3 ${
+                className={`flex items-center border-2 border-[#37B7C4] bg-white/95 px-4 py-3 ${
                   index === 0 ? 'animate-card-glow' : ''
                 }`}
                 style={{ gap: 14 }}
@@ -429,7 +429,7 @@ const subFeatures: SubFeature[] = [
             {[0, 1].map((index) => (
               <div
                 key={`project-card-${index}`}
-                className={`flex items-center rounded-xl border-2 border-[#37B7C4] bg-white/95 shadow-sm ${
+                className={`flex items-center border-2 border-[#37B7C4] bg-white/95 shadow-sm ${
                   index === 0 ? 'animate-card-glow' : ''
                 }`}
                 style={{ padding: '12px 14px', gap: 14 }}
@@ -649,11 +649,6 @@ export default function SubFeaturesSection() {
         .subfeature-ill.diagram-ill svg line,
         .subfeature-ill.diagram-ill svg path {
           stroke-width: 2;
-        }
-
-        /* Remove rounded corners in subfeature illustrations */
-        .subfeature-ill :is([class*='rounded'], .rounded, .rounded-full, .rounded-lg, .rounded-xl, .rounded-2xl) {
-          border-radius: 0 !important;
         }
 
         /* Search button pulse */
