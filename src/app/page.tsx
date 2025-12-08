@@ -9,6 +9,7 @@ import {
   CaseSection,
   NewsSection,
   SecuritySection,
+  FAQSection,
   CTASection,
 } from '@/components/feature';
 
@@ -108,6 +109,7 @@ export default function Home() {
         <ProcessSection />
         <NewsSection />
         <SecuritySection />
+        <FAQSection />
         <CTASection />
       </main>
       <Footer />
