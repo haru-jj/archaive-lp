@@ -22,7 +22,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'ARCHAIVE｜製造業DXを実現するAI図面検索・見積プラットフォーム',
   description:
-    'ARCHAIVEは図面・帳票データをAIで解析・検索し、チャット型ナレッジ検索とAI見積で製造業DXを実現するクラウドSaaSです。',
+    'ARCHAIVEは図面・帳票データを資産化し、AIチャット検索・図面自動解析・見積AIで製造業の現場から経営までDXを推進するプラットフォームです。',
   keywords: [
     'ARCHAIVE',
     '製造業DXプラットフォーム',
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'ARCHAIVE｜製造業DXを実現するAI図面検索・見積プラットフォーム',
     description:
-      '図面・帳票をAIが解析して検索性を高め、チャットとAI見積で製造業DXを推進するクラウドSaaS。',
+      '図面データを資産化し、誰でも素早く正確な見積りを。ARCHAIVEは製造業DXを加速させるAIプラットフォームです。',
     url: 'https://archaive.net/',
   },
   twitter: {

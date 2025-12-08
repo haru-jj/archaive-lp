@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'ARCHAIVE - 製造業DXを実現するAI見積・ナレッジ検索システム',
-  description: '図面・帳票データをAIで解析・検索し、チャットとAI見積で製造業DXを実現するクラウドSaaS。属人化を解消し、即日から効果を発揮します。',
+  description: '製造業の見積作成を最大90%効率化。過去の図面・見積データをAIが瞬時に検索し、正確な見積を自動生成。属人化を解消し、若手でもベテラン級の見積が可能に。',
   keywords: '製造業DX,AI見積,図面検索,ナレッジマネジメント,製造業効率化,見積自動化,図面管理システム,製造業AI,SaaS',
   authors: [{ name: 'ARCHAIVE' }],
   creator: 'ARCHAIVE',
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'ARCHAIVE - 製造業向けAIナレッジ検索システム',
-    description: '図面・帳票をAIが解析し、チャットとAI見積で製造業DXを推進するクラウドSaaS。',
+    description: '見積作成の属人化を解消。AIで過去の図面・見積データを瞬時に検索し、正確な見積を自動生成。',
     url: 'https://archaive.net',
     siteName: 'ARCHAIVE',
     images: [
