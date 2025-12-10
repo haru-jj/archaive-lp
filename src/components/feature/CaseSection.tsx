@@ -138,7 +138,7 @@ export default function CaseSection() {
               {caseStudies.map((caseItem, index) => (
                 <div key={caseItem.id} className="min-w-full flex-shrink-0 flex flex-col items-center text-center">
                   {/* 画像と会社名・名前 */}
-                  <Link href={caseItem.link} className="relative w-full max-w-sm h-56 mb-3 overflow-hidden rounded-lg cursor-pointer hover:opacity-90 transition-opacity mx-auto">
+                  <Link href={caseItem.link} className="relative w-full h-56 mb-3 overflow-hidden rounded-lg cursor-pointer hover:opacity-90 transition-opacity">
                     {caseItem.image === "/api/placeholder/300/180" ? (
                       <div className="w-full h-full bg-gradient-to-br from-[#37B7C4]/20 to-[#37B7C4]/10 flex items-center justify-center">
                         <svg className="w-16 h-16 text-[#37B7C4]/50" fill="currentColor" viewBox="0 0 24 24">
@@ -164,8 +164,8 @@ export default function CaseSection() {
                   
                   {/* コンテンツ */}
                   <div className="px-2">
-                    <p className="text-sm font-bold text-[#333333] leading-relaxed min-h-[4rem] flex items-center whitespace-pre-line">
-                      {caseItem.title.replace(/。/g, '。\n')}
+                    <p className="text-sm font-bold text-[#333333] leading-relaxed min-h-[4rem] flex items-center whitespace-normal">
+                      {caseItem.title}
                     </p>
                   </div>
                 </div>
