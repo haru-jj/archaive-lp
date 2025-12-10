@@ -59,45 +59,92 @@ export default function FAQSection() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_20%,rgba(55,183,196,0.06),transparent_25%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_0%,rgba(55,183,196,0.06),transparent_25%)]" />
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="text-center mb-10">
-          <p className="text-sm font-semibold tracking-wide text-[#37B7C4]">FAQ</p>
-          <h2 className="mt-2 text-2xl font-bold text-gray-900 sm:text-3xl">よくある質問</h2>
-        </div>
+        {/* Mobile */}
+        <div className="sm:hidden">
+          <div className="text-center mb-10">
+            <p className="text-sm font-semibold tracking-wide text-[#37B7C4]">FAQ</p>
+            <h2 className="mt-2 text-2xl font-bold text-gray-900 sm:text-3xl">よくある質問</h2>
+          </div>
 
-        <div className="space-y-4">
-          {faqs.map((item, idx) => {
-            const isOpen = openIndices.has(idx);
-            return (
-              <div key={item.question} className="space-y-2">
-                <button
-                  type="button"
-                  className="flex w-full items-center justify-between rounded-2xl border border-gray-200 bg-white px-6 py-5 text-left shadow-sm transition-all duration-200 hover:border-[#37B7C4]/50"
-                  onClick={() => toggleIndex(idx)}
-                >
-                  <span className="text-[17px] font-semibold text-gray-800 leading-relaxed">{item.question}</span>
-                  <span
-                    className={`ml-4 flex h-7 w-7 items-center justify-center rounded-full border-2 border-[#37B7C4]/80 text-[#37B7C4] font-semibold transition-transform ${
-                      isOpen ? 'rotate-45' : ''
+          <div className="space-y-4">
+            {faqs.map((item, idx) => {
+              const isOpen = openIndices.has(idx);
+              return (
+                <div key={item.question} className="space-y-2">
+                  <button
+                    type="button"
+                    className="flex w-full items-center justify-between rounded-2xl border border-gray-200 bg-white px-6 py-5 text-left shadow-sm transition-all duration-200 hover:border-[#37B7C4]/50"
+                    onClick={() => toggleIndex(idx)}
+                  >
+                    <span className="text-[17px] font-semibold text-gray-800 leading-relaxed flex-1 pr-3">{item.question}</span>
+                    <span
+                      className={`ml-2 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full border-2 border-[#37B7C4]/80 text-[#37B7C4] font-semibold transition-transform ${
+                        isOpen ? 'rotate-45' : ''
+                      }`}
+                    >
+                      +
+                    </span>
+                  </button>
+                  <div
+                    className={`overflow-hidden transition-all duration-200 ${
+                      isOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
                     }`}
                   >
-                    +
-                  </span>
-                </button>
-                <div
-                  className={`overflow-hidden transition-all duration-200 ${
-                    isOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
-                  }`}
-                >
-                  <div className="rounded-2xl border border-[#37B7C4]/40 bg-white/90 px-6 py-5 shadow-sm">
-                    <p className="text-[15px] leading-relaxed text-gray-700">
-                      <span className="font-semibold text-gray-900">{item.answerBold}</span>
-                      <span className="ml-1">{item.answerRest}</span>
-                    </p>
+                    <div className="rounded-2xl border border-[#37B7C4]/40 bg-white/90 px-6 py-5 shadow-sm">
+                      <p className="text-[15px] leading-relaxed text-gray-700">
+                        <span className="font-semibold text-gray-900">{item.answerBold}</span>
+                        <span className="ml-1">{item.answerRest}</span>
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Desktop */}
+        <div className="hidden sm:block">
+          <div className="text-center mb-10">
+            <p className="text-sm font-semibold tracking-wide text-[#37B7C4]">FAQ</p>
+            <h2 className="mt-2 text-2xl font-bold text-gray-900 sm:text-3xl">よくある質問</h2>
+          </div>
+
+          <div className="space-y-4">
+            {faqs.map((item, idx) => {
+              const isOpen = openIndices.has(idx);
+              return (
+                <div key={item.question} className="space-y-2">
+                  <button
+                    type="button"
+                    className="flex w-full items-center justify-between rounded-2xl border border-gray-200 bg-white px-6 py-5 text-left shadow-sm transition-all duration-200 hover:border-[#37B7C4]/50"
+                    onClick={() => toggleIndex(idx)}
+                  >
+                    <span className="text-[17px] font-semibold text-gray-800 leading-relaxed">{item.question}</span>
+                    <span
+                      className={`ml-4 flex h-7 w-7 items-center justify-center rounded-full border-2 border-[#37B7C4]/80 text-[#37B7C4] font-semibold transition-transform ${
+                        isOpen ? 'rotate-45' : ''
+                      }`}
+                    >
+                      +
+                    </span>
+                  </button>
+                  <div
+                    className={`overflow-hidden transition-all duration-200 ${
+                      isOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
+                    }`}
+                  >
+                    <div className="rounded-2xl border border-[#37B7C4]/40 bg-white/90 px-6 py-5 shadow-sm">
+                      <p className="text-[15px] leading-relaxed text-gray-700">
+                        <span className="font-semibold text-gray-900">{item.answerBold}</span>
+                        <span className="ml-1">{item.answerRest}</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
