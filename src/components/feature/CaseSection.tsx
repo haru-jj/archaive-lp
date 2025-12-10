@@ -7,6 +7,21 @@ export default function CaseSection() {
   const [translateX, setTranslateX] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(true);
   
+  // モバイル用: 指定箇所で強制改行を挿入
+  const formatTitleForMobile = (title: string) => {
+    let formatted = title;
+    const replacements: [string, string][] = [
+      ['案件管理により大幅に削減しました。', '\n案件管理により大幅に削減しました。'],
+      ['類似案件の検索も容易になりました。', '\n類似案件の検索も容易になりました。'],
+      ['をCSVで出力できる機能は', '\nをCSVで出力できる機能は'],
+      ['効率化してくれています。', '\n効率化してくれています。'],
+    ];
+    replacements.forEach(([target, insert]) => {
+      formatted = formatted.replace(target, insert);
+    });
+    return formatted;
+  };
+
   // カード幅 + ギャップ
   const cardWidth = 600; // px
   const gap = 32; // 8rem = 32px (デスクトップ)
@@ -122,50 +137,56 @@ export default function CaseSection() {
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#333333] mb-4 sm:mb-6">
             お客様の声
           </h2>
-          <p className="text-base sm:text-lg text-gray-600 font-medium">
-            全国、幅広い規模の企業様に導入いただいています
+          <p className="text-base sm:text-lg text-gray-600 font-medium text-center">
+            全国、幅広い規模の企業様に<br className="inline" />
+            導入いただいています
           </p>
         </div>
 
         {/* カルーセル */}
         <div className="relative w-full max-w-7xl mx-auto mb-5 sm:mb-8 md:mb-10 overflow-hidden">
           {/* モバイル表示 (sm未満) */}
-          <div className="block sm:hidden">
+          <div className="block sm:hidden px-0 -mx-4">
             <div 
-              className="flex transition-transform duration-500 ease-in-out gap-4"
+              className="flex transition-transform duration-500 ease-in-out gap-0"
               style={{ transform: `translateX(-${currentIndex * 100}%)` }}
             >
               {caseStudies.map((caseItem, index) => (
                 <div key={caseItem.id} className="min-w-full flex-shrink-0 flex flex-col items-center text-center">
                   {/* 画像と会社名・名前 */}
-                  <Link href={caseItem.link} className="relative w-full h-56 mb-3 overflow-hidden rounded-lg cursor-pointer hover:opacity-90 transition-opacity">
-                    {caseItem.image === "/api/placeholder/300/180" ? (
-                      <div className="w-full h-full bg-gradient-to-br from-[#37B7C4]/20 to-[#37B7C4]/10 flex items-center justify-center">
-                        <svg className="w-16 h-16 text-[#37B7C4]/50" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                        </svg>
+                  <div className="w-full">
+                    <Link
+                      href={caseItem.link}
+                      className={`relative w-[90%] ${index === 2 ? 'h-[11.5rem]' : 'h-48'} mb-3 overflow-hidden rounded-lg cursor-pointer hover:opacity-90 transition-opacity block mx-auto`}
+                    >
+                      {caseItem.image === "/api/placeholder/300/180" ? (
+                        <div className="w-full h-full bg-gradient-to-br from-[#37B7C4]/20 to-[#37B7C4]/10 flex items-center justify-center">
+                          <svg className="w-16 h-16 text-[#37B7C4]/50" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                          </svg>
+                        </div>
+                      ) : (
+                        <img 
+                          src={caseItem.image} 
+                          alt={`${caseItem.subtitle} ${caseItem.author}のインタビュー写真`} 
+                          className="w-full h-full object-cover object-center"
+                        />
+                      )}
+                      
+                      {/* 黒グラデーションと会社名・名前オーバーレイ */}
+                      <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+                        <div className="p-3 text-white text-left">
+                          <div className="text-sm font-bold">{caseItem.subtitle}</div>
+                          <div className="text-xs">{caseItem.author}</div>
+                        </div>
                       </div>
-                    ) : (
-                      <img 
-                        src={caseItem.image} 
-                        alt={`${caseItem.subtitle} ${caseItem.author}のインタビュー写真`} 
-                        className="w-full h-full object-cover object-center"
-                      />
-                    )}
-                    
-                    {/* 黒グラデーションと会社名・名前オーバーレイ */}
-                    <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-black/70 to-transparent flex items-end">
-                      <div className="p-3 text-white text-left">
-                        <div className="text-sm font-bold">{caseItem.subtitle}</div>
-                        <div className="text-xs">{caseItem.author}</div>
-                      </div>
-                    </div>
-                  </Link>
+                    </Link>
+                  </div>
                   
                   {/* コンテンツ */}
-                  <div className="px-2">
-                    <p className="text-sm font-bold text-[#333333] leading-relaxed min-h-[4rem] flex items-center whitespace-normal">
-                      {caseItem.title}
+                  <div className="w-[90%] mx-auto px-4">
+                    <p className="text-sm font-bold text-[#333333] leading-relaxed min-h-[4rem] flex items-center justify-center text-center whitespace-pre-line">
+                      {formatTitleForMobile(caseItem.title)}
                     </p>
                   </div>
                 </div>

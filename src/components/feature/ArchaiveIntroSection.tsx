@@ -10,7 +10,7 @@ export default function ArchaiveIntroSection() {
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header with Logo */}
         <div className="text-center animate-fade-in-down">
-          <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-lg rounded-full px-6 py-3 mb-6">
+          <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-lg rounded-full px-8 sm:px-6 py-3 mb-6 w-full max-w-[360px] sm:w-auto sm:max-w-none justify-center">
             <span className="text-white text-lg font-semibold" style={{lineHeight: '1.5'}}>製造業AIデータハブ</span>
             <img
               src="/images/archaive_logo_white.svg"
@@ -18,8 +18,9 @@ export default function ArchaiveIntroSection() {
               className="h-10"
             />
           </div>
-          <h2 className="text-white text-3xl md:text-4xl font-bold" style={{lineHeight: '1.6'}}>
-            点在したデータや暗黙知を繋ぎ合わせ、<br/>
+          <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-bold" style={{lineHeight: '1.6'}}>
+            点在したデータや暗黙知を<br className="sm:hidden" />
+            繋ぎ合わせ、<br/>
             ひとつなぎの「ものづくり」を創造する。
           </h2>
         </div>

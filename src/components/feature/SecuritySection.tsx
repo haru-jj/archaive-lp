@@ -118,10 +118,10 @@ export default function SecuritySection() {
       <div className="md:hidden relative z-10">
         <div className="text-center mb-8">
           <h2 className="text-2xl font-bold text-white mb-2 tracking-tight">
-            エンタープライズ水準のセキュリティ
+            エンタープライズ水準の<br className="md:hidden" />セキュリティ
           </h2>
           <p className="text-gray-300 text-base leading-relaxed">
-            高水準のセキュリティ/コンプライアンスによって、お客様の重要な資産を守ります
+            高水準のセキュリティ/コンプライアンスに<br className="md:hidden" />よって、お客様の重要な資産を守ります
           </p>
         </div>
         <div className="space-y-6">

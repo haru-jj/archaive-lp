@@ -50,8 +50,8 @@ export default function Footer() {
     }
   };
 
-  return (
-    <footer className="bg-white text-gray-800 border-t border-gray-200">
+  const renderFooter = () => (
+    <>
       {/* メインフッターコンテンツ */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-16">
         <div className="flex flex-col items-start gap-7 sm:gap-8">
@@ -92,19 +92,25 @@ export default function Footer() {
             </div>
           </nav>
         </div>
-
       </div>
 
       {/* コピーライト */}
       <div className="border-t border-gray-100">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
           <div className="flex justify-center items-center">
-            <p className="text-gray-500 text-xs sm:text-sm">
-              © 2025 STAR UP All Rights Reserved.
-            </p>
+            <p className="text-gray-500 text-xs sm:text-sm">© 2025 STAR UP All Rights Reserved.</p>
           </div>
         </div>
       </div>
+    </>
+  );
+
+  return (
+    <footer className="bg-white text-gray-800 border-t border-gray-200">
+      {/* Mobile */}
+      <div className="sm:hidden pl-6">{renderFooter()}</div>
+      {/* Desktop */}
+      <div className="hidden sm:block">{renderFooter()}</div>
     </footer>
   );
 }

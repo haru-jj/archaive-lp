@@ -75,7 +75,7 @@ export default function ProcessSection() {
   };
 
   return (
-    <section className="py-8 sm:py-12 md:py-16 px-4 bg-[#eaedf2] relative overflow-hidden" id="process">
+    <section className="py-12 sm:py-16 md:py-20 px-4 bg-[#eaedf2] relative overflow-hidden" id="process">
       {/* Digital Blueprint Background */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-br from-[#f1f3f7] via-[#e0e5ed] to-[#cfd8e3]" />
@@ -200,6 +200,7 @@ export default function ProcessSection() {
             <h3 className="text-lg sm:text-xl font-bold mb-3">
               <span className="text-[#37B7C4] font-bold">ARCHAIVE</span>
               <span className="text-gray-300">の</span>
+              <br className="sm:hidden" />
               <span className="text-white">「SaaS + 伴走型開発」</span>
               <span className="text-gray-300">アプローチ</span>
             </h3>
