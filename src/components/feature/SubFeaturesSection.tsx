@@ -163,7 +163,7 @@ const subFeatures: SubFeature[] = [
               className="rounded-full bg-[#37B7C4]/20"
               style={{ display: 'block', height: 6, width: 48 }}
             />
-          </div>
+            </div>
         </div>
       </SubFeatureCardFrame>
     ),
@@ -180,7 +180,7 @@ const subFeatures: SubFeature[] = [
     illustration: (
       <SubFeatureCardFrame>
         <div className="flex h-full w-full items-center justify-center" aria-hidden="true">
-            <div className="relative w-32">
+              <div className="relative w-32">
             {/* 縦ラインを左側に配置（最下段まで） */}
               <div
                 className="absolute w-0.5 h-[110px] bg-[#37B7C4]"
@@ -227,7 +227,7 @@ const subFeatures: SubFeature[] = [
     ),
     illustration: (
       <SubFeatureCardFrame>
-        <div className="flex h-full flex-col justify-between" aria-hidden="true">
+                <div className="flex h-full flex-col justify-between" aria-hidden="true">
           <div className="flex flex-col" style={{ gap: 14 }}>
             {[0, 1].map((index) => (
               <div
@@ -382,7 +382,7 @@ const subFeatures: SubFeature[] = [
               />
               <div
                 className="absolute flex items-center justify-center rounded-full border-2 border-[#37B7C4] bg-white animate-search-button origin-center"
-                style={{ width: 28, height: 28, right: -14, top: 0, willChange: 'transform' }}
+                style={{ width: 28, height: 28, right: -14, top: 2, willChange: 'transform' }}
               >
                 <svg viewBox="0 0 24 24" className="text-[#37B7C4]" style={{ width: 18, height: 18 }}>
                 <circle cx="11" cy="11" r="6" stroke="currentColor" strokeWidth="2" fill="none" />
