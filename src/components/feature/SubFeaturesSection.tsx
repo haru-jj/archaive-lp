@@ -118,7 +118,7 @@ const subFeatures: SubFeature[] = [
             className="relative mx-auto flex items-center justify-center overflow-visible rounded-xl border-2 border-[#37B7C4] bg-white shadow-sm"
             style={{ width: 132, height: 96, padding: '12px 14px' }}
           >
-            <svg viewBox="0 0 92 64" className="h-full w-full text-[#2A8B96]" role="img" aria-hidden="true">
+            <svg viewBox="0 0 92 64" className="h-full w-full text-[#37B7C4]" role="img" aria-hidden="true">
               <rect x="6" y="6" width="80" height="52" fill="none" stroke="currentColor" strokeWidth="2" />
               <line x1="6" y1="32" x2="86" y2="32" stroke="currentColor" strokeWidth="1.5" />
               <line x1="46" y1="6" x2="46" y2="58" stroke="currentColor" strokeWidth="1.5" />
