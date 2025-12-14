@@ -170,6 +170,8 @@ export default function CaseSection() {
                           src={caseItem.image} 
                           alt={`${caseItem.subtitle} ${caseItem.author}のインタビュー写真`} 
                           className="w-full h-full object-cover object-center"
+                          loading="lazy"
+                          decoding="async"
                         />
                       )}
                       
@@ -216,6 +218,8 @@ export default function CaseSection() {
                       src={caseItem.image} 
                       alt={`${caseItem.subtitle} ${caseItem.author}のインタビュー写真`} 
                       className="w-full h-full object-cover"
+                      loading="lazy"
+                      decoding="async"
                     />
                   )}
                   
@@ -253,6 +257,8 @@ export default function CaseSection() {
                       src={caseItem.image} 
                       alt={`${caseItem.subtitle} ${caseItem.author}のインタビュー写真`} 
                       className="w-full h-full object-cover"
+                      loading="lazy"
+                      decoding="async"
                     />
                   )}
                   
@@ -290,6 +296,8 @@ export default function CaseSection() {
                       src={caseItem.image} 
                       alt={`${caseItem.subtitle} ${caseItem.author}のインタビュー写真`} 
                       className="w-full h-full object-cover"
+                      loading="lazy"
+                      decoding="async"
                     />
                   )}
                   
