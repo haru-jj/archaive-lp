@@ -109,12 +109,32 @@ export default function Home() {
     description: 'ARCHAIVEのダッシュボード画面とAI見積機能を示すキービジュアル',
   };
 
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'ホーム',
+        item: 'https://archaive.net/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: '製造業DXプラットフォーム',
+        item: 'https://archaive.net/#features',
+      },
+    ],
+  };
+
   return (
     <div className="font-noto-sans-jp">
       <Header />
       <main className="pt-20">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(heroImageJsonLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
         <HeroSection />
         {/* <ArchaiveIntroSection /> */}
         <ArchaiveIntroSection />

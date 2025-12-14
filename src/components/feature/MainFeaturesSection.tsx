@@ -183,6 +183,7 @@ export default function MainFeaturesSection() {
                   hoveredCard === feature.id ? '-translate-y-2 shadow-xl' : ''
                 }`}
                 loading="lazy"
+                decoding="async"
               />
 
               <div
