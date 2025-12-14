@@ -74,6 +74,108 @@ export default function ProcessSection() {
     })),
   };
 
+  const renderContent = () => (
+    <div className="container mx-auto max-w-6xl relative z-10">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }} />
+      {/* セクションタイトル - 他セクションと統一 */}
+      <div className="text-center mb-8 sm:mb-12">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#333333] mb-4 leading-tight">
+          全体最適までの導入・活用までの伴走支援
+        </h2>
+        <p className="text-base sm:text-lg text-gray-600 font-medium">
+          製造業DX/AIのプロが全力でサポートします。
+        </p>
+      </div>
+
+      {/* 3ステッププロセス - 横方向フェーズ移行 */}
+      <div className="relative">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8">
+          {steps.map((step, index) => (
+            <Fragment key={step.number}>
+              {/* ステップコンテンツ */}
+              <div
+                className={`flex flex-col items-start transform transition-all duration-700 ${
+                  visibleSteps.includes(index)
+                    ? 'translate-x-0 opacity-100'
+                    : 'translate-x-8 opacity-0'
+                }`}
+                style={{transitionDelay: `${index * 200}ms`}}
+              >
+                {/* STEP番号 - カード上の左 */}
+                <div className="mb-4 self-start">
+                  <div className="text-[#37B7C4] text-xs font-semibold tracking-wider mb-1">STEP</div>
+                  <div className="text-[#37B7C4] text-3xl font-bold leading-none">{step.number}</div>
+                  <div className="w-8 h-0.5 bg-[#37B7C4] mt-1"></div>
+                </div>
+
+                {/* プロセスカード */}
+                <div className="bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 w-80">
+                  {/* ヘッダー */}
+                  <div className={`bg-gradient-to-r ${step.bgGradient} p-4 text-white text-center`}>
+                    <h3 className="text-lg font-bold mb-2">
+                      {step.title}
+                    </h3>
+                    <p className="text-sm opacity-90">
+                      【{step.subtitle}】
+                    </p>
+                  </div>
+
+                  {/* コンテンツ */}
+                  <div className="p-5">
+                    <p className="text-gray-700 text-base leading-relaxed mb-4 font-medium">
+                      {step.description}
+                    </p>
+
+                    {/* ベネフィット */}
+                    <div className="flex gap-1 justify-center">
+                      {step.benefits.map((benefit, bIndex) => (
+                        <div key={bIndex} className="bg-[#37B7C4]/10 text-[#37B7C4] text-xs font-medium px-2 py-1 rounded">
+                          # {benefit}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* 矢印 - ステップ間 */}
+              {index < steps.length - 1 && (
+                <div className="hidden md:flex items-center justify-center mt-14">
+                  <svg
+                    className="w-12 h-12 text-[#37B7C4]"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path d="M8 4l8 8-8 8" />
+                  </svg>
+                </div>
+              )}
+            </Fragment>
+          ))}
+        </div>
+      </div>
+
+      {/* ARCHAIVEアプローチ - 他セクションと統一 */}
+      <div className="text-center mt-8 sm:mt-12">
+        <div className="bg-gray-800 text-white rounded-lg p-4 sm:p-6 max-w-4xl mx-auto shadow-lg">
+          <h3 className="text-lg sm:text-xl font-bold mb-3">
+            <span className="text-[#37B7C4] font-bold">ARCHAIVE</span>
+            <span className="text-gray-300">の</span>
+            <br className="sm:hidden" />
+            <span className="text-white">「SaaS + 伴走型開発」</span>
+            <span className="text-gray-300">アプローチ</span>
+          </h3>
+
+          <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
+            標準機能による即効性と、<br className="md:hidden" />カスタム開発による独自性を両立。<br />
+            段階的導入でリスクを最小化し、<br className="md:hidden" />成果を最大化します。
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <section className="py-12 sm:py-16 md:py-20 px-4 bg-[#eaedf2] relative overflow-hidden" id="process">
       {/* Digital Blueprint Background */}
@@ -113,105 +215,11 @@ export default function ProcessSection() {
         <div className="rotate-squares absolute top-1/4 right-[8%] w-48 h-48 border border-[#37B7C4]/20 rounded-3xl" />
       </div>
 
-      <div className="container mx-auto max-w-6xl relative z-10">
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }} />
-        {/* セクションタイトル - 他セクションと統一 */}
-        <div className="text-center mb-8 sm:mb-12">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#333333] mb-4 leading-tight">
-            全体最適までの導入・活用までの伴走支援
-          </h2>
-          <p className="text-base sm:text-lg text-gray-600 font-medium">
-            製造業DX/AIのプロが全力でサポートします。
-          </p>
-        </div>
+      {/* Mobile */}
+      <div className="md:hidden">{renderContent()}</div>
 
-        {/* 3ステッププロセス - 横方向フェーズ移行 */}
-        <div className="relative">
-          <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8">
-            {steps.map((step, index) => (
-              <Fragment key={step.number}>
-                {/* ステップコンテンツ */}
-                <div
-                  className={`flex flex-col items-start transform transition-all duration-700 ${
-                    visibleSteps.includes(index)
-                      ? 'translate-x-0 opacity-100'
-                      : 'translate-x-8 opacity-0'
-                  }`}
-                  style={{transitionDelay: `${index * 200}ms`}}
-                >
-                  {/* STEP番号 - カード上の左 */}
-                  <div className="mb-4 self-start">
-                    <div className="text-[#37B7C4] text-xs font-semibold tracking-wider mb-1">STEP</div>
-                    <div className="text-[#37B7C4] text-3xl font-bold leading-none">{step.number}</div>
-                    <div className="w-8 h-0.5 bg-[#37B7C4] mt-1"></div>
-                  </div>
-
-                  {/* プロセスカード */}
-                  <div className="bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 w-80">
-                    {/* ヘッダー */}
-                    <div className={`bg-gradient-to-r ${step.bgGradient} p-4 text-white text-center`}>
-                      <h3 className="text-lg font-bold mb-2">
-                        {step.title}
-                      </h3>
-                      <p className="text-sm opacity-90">
-                        【{step.subtitle}】
-                      </p>
-                    </div>
-
-                    {/* コンテンツ */}
-                    <div className="p-5">
-                      <p className="text-gray-700 text-base leading-relaxed mb-4 font-medium">
-                        {step.description}
-                      </p>
-
-                      {/* ベネフィット */}
-                      <div className="flex gap-1 justify-center">
-                        {step.benefits.map((benefit, bIndex) => (
-                          <div key={bIndex} className="bg-[#37B7C4]/10 text-[#37B7C4] text-xs font-medium px-2 py-1 rounded">
-                            # {benefit}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* 矢印 - ステップ間 */}
-                {index < steps.length - 1 && (
-                  <div className="hidden md:flex items-center justify-center mt-14">
-                    <svg
-                      className="w-12 h-12 text-[#37B7C4]"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      aria-hidden="true"
-                    >
-                      <path d="M8 4l8 8-8 8" />
-                    </svg>
-                  </div>
-                )}
-              </Fragment>
-            ))}
-          </div>
-        </div>
-
-        {/* ARCHAIVEアプローチ - 他セクションと統一 */}
-        <div className="text-center mt-8 sm:mt-12">
-          <div className="bg-gray-800 text-white rounded-lg p-4 sm:p-6 max-w-4xl mx-auto shadow-lg">
-            <h3 className="text-lg sm:text-xl font-bold mb-3">
-              <span className="text-[#37B7C4] font-bold">ARCHAIVE</span>
-              <span className="text-gray-300">の</span>
-              <br className="sm:hidden" />
-              <span className="text-white">「SaaS + 伴走型開発」</span>
-              <span className="text-gray-300">アプローチ</span>
-            </h3>
-
-            <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
-              標準機能による即効性と、カスタム開発による独自性を両立。<br />
-              段階的導入でリスクを最小化し、成果を最大化します。
-            </p>
-          </div>
-        </div>
-      </div>
+      {/* Desktop */}
+      <div className="hidden md:block">{renderContent()}</div>
 
       <style jsx>{`
         @keyframes dashFlow {
