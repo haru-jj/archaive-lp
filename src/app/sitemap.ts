@@ -18,7 +18,7 @@ const pages = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date();
+  const lastModified = new Date().toISOString();
   const baseUrl = 'https://archaive.net';
 
   return pages.map((page) => ({
