@@ -79,6 +79,7 @@ export default function ProcessSection() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }} />
       {/* セクションタイトル - 他セクションと統一 */}
       <div className="text-center mb-8 sm:mb-12">
+        <p className="text-sm font-semibold text-[#37B7C4] mb-3">Process</p>
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#333333] mb-4 leading-tight">
           全体最適までの導入・活用までの伴走支援
         </h2>
@@ -177,7 +178,7 @@ export default function ProcessSection() {
   );
 
   return (
-    <section className="py-12 sm:py-16 md:py-20 px-4 bg-[#eaedf2] relative overflow-hidden" id="process">
+    <section className="pt-12 sm:pt-16 md:pt-20 pb-20 sm:pb-24 md:pb-28 px-4 bg-[#eaedf2] relative overflow-hidden" id="process">
       {/* Digital Blueprint Background */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-br from-[#f1f3f7] via-[#e0e5ed] to-[#cfd8e3]" />

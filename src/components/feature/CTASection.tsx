@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 export default function CTASection() {
   return (
-  <section className="py-10 sm:py-12 md:py-16 lg:py-20 px-4 bg-[#37B7C4] relative overflow-hidden scroll-mt-24" id="cta">
+  <section className="pt-10 sm:pt-12 md:pt-16 lg:pt-20 pb-16 sm:pb-20 md:pb-24 lg:pb-28 px-4 bg-[#37B7C4] relative overflow-hidden scroll-mt-24" id="cta">
       {/* 背景パターン */}
       <div className="absolute inset-0 opacity-15">
         {/* 左上円 */}

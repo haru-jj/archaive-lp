@@ -134,6 +134,7 @@ export default function CaseSection() {
       <div className="container mx-auto max-w-6xl">
         {/* セクションタイトル */}
         <div className="text-center mb-8 sm:mb-12 md:mb-16">
+          <p className="text-sm font-semibold text-[#37B7C4] mb-3">Case Study</p>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#333333] mb-4 sm:mb-6">
             お客様の声
           </h2>
