@@ -6,7 +6,7 @@ import { CircleDiagram, BubbleAnimation } from '@/components/animation-component
 
 export default function ArchaiveIntroSection() {
   return (
-    <div className="bg-[#37B7C4] px-4 relative overflow-hidden" id="demo" style={{paddingTop: '38.4px', paddingBottom: '38.4px', minHeight: '80vh'}}>
+    <div className="bg-[#37B7C4] px-4 relative overflow-hidden" id="demo" style={{paddingTop: '38.4px', paddingBottom: '96px', minHeight: '80vh'}}>
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header with Logo */}
         <div className="text-center animate-fade-in-down">

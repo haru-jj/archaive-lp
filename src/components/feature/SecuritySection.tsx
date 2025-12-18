@@ -34,7 +34,12 @@ export default function SecuritySection() {
     {
       title: "不正アクセス対策",
       icon: (
-        <svg className="w-6 h-6 sm:w-7 sm:h-7 text-[#37B7C4]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg
+          className="w-6 h-6 sm:w-7 sm:h-7 text-[#37B7C4]"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.4" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
         </svg>
       ),
@@ -74,37 +79,44 @@ export default function SecuritySection() {
   ];
 
   return (
-    <section className="py-16 sm:py-20 md:py-24 px-4 bg-gradient-to-br from-gray-950 via-gray-900 to-slate-900 relative overflow-hidden" id="security">
+    <section
+      className="pt-16 sm:pt-20 md:pt-24 pb-24 sm:pb-28 md:pb-32 px-4 bg-gradient-to-br from-gray-950 via-slate-950 to-gray-900 relative overflow-hidden"
+      id="security"
+    >
       {/* 背景の装飾要素 */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* シンプルなグローと控えめグリッド */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_30%,rgba(55,183,196,0.08),transparent_42%),radial-gradient(circle_at_78%_25%,rgba(55,183,196,0.06),transparent_40%),radial-gradient(circle_at_60%_72%,rgba(55,183,196,0.04),transparent_46%)]" />
+        {/* Subtle glow (keep background calm) */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_18%,rgba(55,183,196,0.18),transparent_44%),radial-gradient(circle_at_78%_30%,rgba(55,183,196,0.12),transparent_52%),radial-gradient(circle_at_60%_82%,rgba(99,102,241,0.10),transparent_58%)]" />
 
-        <svg className="absolute inset-0 w-full h-full opacity-[0.06]" viewBox="0 0 800 600" preserveAspectRatio="none">
+        {/* Soft highlight sweep (glass feel) */}
+        <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,255,0.05),transparent_42%)]" />
+
+        {/* Very subtle grid (helps the background read without being noisy) */}
+        <svg className="absolute inset-0 w-full h-full opacity-[0.03]" viewBox="0 0 800 600" preserveAspectRatio="none">
           <defs>
-            <pattern id="securityGrid" width="40" height="40" patternUnits="userSpaceOnUse">
-              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#37B7C4" strokeWidth="0.4"/>
+            <pattern id="securityGrid" width="48" height="48" patternUnits="userSpaceOnUse">
+              <path d="M 48 0 L 0 0 0 48" fill="none" stroke="#37B7C4" strokeWidth="0.4" />
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#securityGrid)" />
-          <g stroke="#37B7C4" strokeWidth="0.4" strokeOpacity="0.35" fill="none">
-            <path d="M140 120 h20 v14" />
-            <path d="M140 134 h12" />
-            <path d="M500 200 h22 v12" />
-            <path d="M500 212 h14" />
-            <path d="M320 420 h18 v12" />
-            <path d="M320 432 h10" />
-            <path d="M660 340 h20 v14" />
-            <path d="M660 354 h12" />
-          </g>
         </svg>
 
-        <div className="absolute top-24 right-8 w-32 h-32 bg-[#37B7C4]/6 rounded-full blur-3xl animate-pulse" style={{animationDuration: '4s'}} />
-        <div className="absolute bottom-24 right-16 w-28 h-28 bg-[#37B7C4]/8 rounded-full blur-2xl animate-pulse" style={{animationDelay: '2s', animationDuration: '3s'}} />
+        {/* Fine noise overlay (glass-like texture) */}
+        <div
+          className="absolute inset-0 opacity-[0.035]"
+          style={{
+            backgroundImage:
+              'url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27160%27 height=%27160%27 viewBox=%270 0 160 160%27%3E%3Cfilter id=%27n%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.6%27 numOctaves=%272%27 stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect width=%27160%27 height=%27160%27 filter=%27url(%23n)%27 opacity=%270.25%27/%3E%3C/svg%3E")',
+            mixBlendMode: 'soft-light',
+          }}
+        />
+
+        <div className="absolute top-20 right-10 w-36 h-36 bg-[#37B7C4]/10 rounded-full blur-3xl animate-pulse" style={{animationDuration: '5s'}} />
+        <div className="absolute bottom-20 left-10 w-40 h-40 bg-indigo-500/8 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1.2s', animationDuration: '6s'}} />
       </div>
 
       {/* 左側に大きなLottieアニメーション - absolute配置（モバイル非表示） */}
-      <div className="hidden md:block absolute left-[24%] top-[19%] w-[360px] h-[360px] lg:w-[800px] lg:h-[800px] transform -translate-x-1/2 -translate-y-1/2 z-5 pointer-events-none">
+      <div className="hidden md:block absolute left-[24%] top-[22%] w-[360px] h-[360px] lg:w-[800px] lg:h-[800px] transform -translate-x-1/2 -translate-y-1/2 z-5 pointer-events-none">
         <Lottie
           loop
           play
@@ -117,6 +129,7 @@ export default function SecuritySection() {
       {/* モバイル専用レイアウト */}
       <div className="md:hidden relative z-10">
         <div className="text-center mb-8">
+          <p className="text-sm font-semibold text-[#37B7C4] mb-3">Security</p>
           <h2 className="text-2xl font-bold text-white mb-2 tracking-tight">
             エンタープライズ水準の<br className="md:hidden" />セキュリティ
           </h2>
@@ -153,11 +166,12 @@ export default function SecuritySection() {
 
       {/* PCレイアウト */}
       <div className="hidden md:block container mx-auto max-w-6xl relative z-10 px-1 sm:px-4">
-        <div className="mb-10 sm:mb-12 text-left md:ml-0 lg:ml-60">
+        <div className="mb-10 sm:mb-12 text-center">
+          <p className="text-sm font-semibold text-[#37B7C4] mb-3">Security</p>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2 tracking-tight">
             エンタープライズ水準のセキュリティ
           </h2>
-          <p className="text-gray-300 max-w-3xl text-base sm:text-lg leading-relaxed">
+          <p className="text-gray-300 max-w-3xl mx-auto text-base sm:text-lg leading-relaxed">
             高水準のセキュリティ/コンプライアンスによって、お客様の重要な資産を守ります
           </p>
         </div>
