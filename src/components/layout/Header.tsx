@@ -10,13 +10,13 @@ export default function Header() {
   const isHomePage = pathname === '/';
 
   const navigationItems = [
-    { href: "#demo", label: "ARCHAIVEとは" },
+    { href: "#demo", label: "ARCHAIVEについて" },
     { href: "#before-after", label: "課題と解決" },
     { href: "#features", label: "主要機能" },
     { href: "#case", label: "導入事例" },
     { href: "#process", label: "導入ステップ" },
     { href: "#news", label: "お知らせ" },
-    { href: "#security", label: "セキュリティ" },
+    { href: "#faq", label: "よくある質問" },
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -77,7 +77,7 @@ export default function Header() {
                   key={item.href}
                   href={item.href}
                   onClick={(e) => handleNavClick(e, item.href)}
-                  className="text-gray-600 hover:text-[#37B7C4] transition-colors duration-200 font-bold text-sm whitespace-nowrap"
+                  className="text-black hover:text-[#37B7C4] transition-colors duration-200 font-bold text-sm whitespace-nowrap"
                 >
                   {item.label}
                 </a>
@@ -89,25 +89,15 @@ export default function Header() {
           <div className="hidden lg:flex items-center space-x-4 flex-shrink-0">
             <Link 
               href="/download"
-              className="bg-white border-2 border-gray-300 rounded-lg text-black px-6 py-3 text-sm font-bold cursor-pointer flex items-center justify-center hover:bg-gray-50 btn-hover"
+              className="bg-[#37B7C4] border-2 border-[#37B7C4] rounded-full text-white px-6 py-3 text-sm font-bold cursor-pointer flex items-center justify-center hover:opacity-90 btn-hover"
             >
-              <span className="flex items-center gap-2">
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
-                </svg>
-                サービス紹介資料
-              </span>
+              資料ダウンロード
             </Link>
             <Link 
               href="/apply"
-              className="bg-transparent border-2 border-[#37B7C4] text-[#37B7C4] rounded-lg px-6 py-3 text-sm font-bold cursor-pointer flex items-center justify-center hover:bg-[#37B7C4]/10 btn-hover"
+              className="bg-white border-2 border-gray-300 text-black rounded-full px-6 py-3 text-sm font-bold cursor-pointer flex items-center justify-center hover:bg-gray-50 btn-hover"
             >
-              <span className="flex items-center gap-2">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                </svg>
-                無料デモの申込み
-              </span>
+              無料デモ体験
             </Link>
           </div>
 
@@ -142,7 +132,7 @@ export default function Header() {
                 <a
                   key={item.href}
                   href={item.href}
-                  className="text-gray-600 hover:text-[#37B7C4] transition-colors duration-200 font-bold py-2 text-sm"
+                  className="text-black hover:text-[#37B7C4] transition-colors duration-200 font-bold py-2 text-sm"
                   onClick={(e) => handleNavClick(e, item.href)}
                 >
                   {item.label}
@@ -152,25 +142,15 @@ export default function Header() {
             <div className="flex flex-col space-y-3 mt-6">
               <Link 
                 href="/download"
-                className="bg-white border-2 border-gray-300 rounded-lg text-black px-6 py-3 text-base font-bold cursor-pointer flex items-center justify-center hover:bg-gray-50 btn-hover"
+                className="bg-[#37B7C4] border-2 border-[#37B7C4] rounded-full text-white px-6 py-3 text-base font-bold cursor-pointer flex items-center justify-center hover:opacity-90 btn-hover"
               >
-                <span className="flex items-center gap-2">
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
-                  </svg>
-                  サービス紹介資料
-                </span>
+                資料ダウンロード
               </Link>
               <Link 
                 href="/apply"
-                className="bg-transparent border-2 border-[#37B7C4] text-[#37B7C4] rounded-lg px-6 py-3 text-base font-bold cursor-pointer flex items-center justify-center hover:bg-[#37B7C4]/10 btn-hover"
+                className="bg-white border-2 border-gray-300 text-black rounded-full px-6 py-3 text-base font-bold cursor-pointer flex items-center justify-center hover:bg-gray-50 btn-hover"
               >
-                <span className="flex items-center gap-2">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                  </svg>
-                  無料デモの申込み
-                </span>
+                無料デモ体験
               </Link>
             </div>
           </div>

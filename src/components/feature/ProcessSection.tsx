@@ -79,6 +79,7 @@ export default function ProcessSection() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }} />
       {/* セクションタイトル - 他セクションと統一 */}
       <div className="text-center mb-8 sm:mb-12">
+        <p className="text-sm font-semibold text-[#37B7C4] mb-3">Process</p>
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#333333] mb-4 leading-tight">
           全体最適までの導入・活用までの伴走支援
         </h2>

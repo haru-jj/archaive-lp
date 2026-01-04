@@ -8,7 +8,8 @@ export default function NewsSection() {
         { label: 'プレスリリース', type: 'press' }
       ],
       content: 'ARCHAIVEが東京都スタートアップ協働プロジェクトに採択 〜公共事業DXと建築土木業・製造業のデータ活用を推進〜',
-      link: '/news/tokyo-project-adoption'
+      link: '/news/tokyo-project-adoption',
+      image: '/news/ARCHAIVE_Tokyo.webp',
     },
     {
       date: '2025年09月08日',
@@ -16,7 +17,8 @@ export default function NewsSection() {
         { label: 'プレスリリース', type: 'press' }
       ],
       content: '製造業のDXを加速するAIプラットフォーム「ARCHAIVE 2.1」を2025年10月1日より提供開始',
-      link: '/news/archaive-2-1-release'
+      link: '/news/archaive-2-1-release',
+      image: 'https://archaive.net/news/142139-12-db5647717e97f2603463709ff7136c46-1600x900.jpeg',
     },
     {
       date: '2025年07月28日',
@@ -24,7 +26,8 @@ export default function NewsSection() {
         { label: 'プレスリリース', type: 'press' }
       ],
       content: '業界初、「探す」から「話す」へ。ARCHAIVE、製造業AIエージェント「チャット型データ検索機能」をリリース',
-      link: '/news/ai-agent-release'
+      link: '/news/ai-agent-release',
+      image: 'https://archaive.net/news/142139-11-5216d3335c660b5c6b7e0ceaae4f56d0-2068x1160.jpeg',
     },
     {
       date: '2025年03月05日',
@@ -79,9 +82,10 @@ export default function NewsSection() {
         </svg>
       </div>
 
-      <div className="container mx-auto max-w-6xl relative z-10">
+      <div className="mx-auto w-full relative z-10 px-4 sm:px-6 lg:px-10 max-w-none">
         {/* セクションタイトル */}
         <div className="text-center mb-8 sm:mb-10 relative">
+          <p className="text-sm font-semibold text-[#37B7C4] mb-3">News</p>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#333333] mb-4 relative">
             お知らせ
             {/* アンダーライン装飾 */}
@@ -94,53 +98,50 @@ export default function NewsSection() {
         </div>
 
         {/* ニュース一覧 */}
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg border border-gray-200/50 overflow-hidden">
-            {newsItems.map((item, index) => (
+        <div className="w-full">
+          <div className="grid gap-6 lg:gap-8 md:grid-cols-2 xl:grid-cols-[repeat(3,minmax(0,26vw))] justify-center w-full mx-auto">
+            {newsItems.slice(0, 3).map((item, index) => (
               <a
                 key={index}
                 href={item.link}
-                className="block border-b border-gray-200/50 last:border-b-0 py-4 sm:py-6 hover:bg-[#37B7C4]/5 transition-all duration-300 px-4 sm:px-6 group relative overflow-hidden"
+                className="group bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg border border-gray-200/70 overflow-hidden transition-transform duration-300 hover:-translate-y-1 w-full"
               >
-                {/* ホバー時の装飾 */}
-                <div className="absolute left-0 top-0 h-full w-1 bg-[#37B7C4] transform scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-top"></div>
-
-                <div className="news-item relative z-10">
-                  {/* レスポンシブレイアウト */}
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
-                    {/* 日付とタグ（スマホでは上部に横並び） */}
-                    <div className="flex items-center gap-3 sm:gap-6 flex-shrink-0">
-                      {/* 日付 */}
-                      <div className="font-bold text-gray-800 flex-shrink-0 relative">
-                        <div className="bg-[#37B7C4]/10 rounded-lg px-2 py-1 sm:px-3 sm:py-2 group-hover:bg-[#37B7C4]/20 transition-colors text-xs sm:text-sm">
-                          {item.date}
-                        </div>
-                      </div>
-
-                      {/* タグ */}
-                      <div className="flex gap-2 flex-shrink-0">
-                        {item.tags.map((tag, tagIndex) => (
-                          <span
-                            key={tagIndex}
-                            className={`inline-block px-2 py-1 sm:px-4 sm:py-2 rounded-full text-white text-xs min-w-[80px] sm:min-w-[120px] text-center ${getTagColor(tag.type)} shadow-sm group-hover:shadow-md transition-shadow relative overflow-hidden whitespace-nowrap`}
-                          >
-                            {/* タグ内装飾 */}
-                            <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                            <span className="relative z-10">{tag.label}</span>
-                          </span>
-                        ))}
-                      </div>
+                <div className="relative w-full bg-gray-100 overflow-hidden">
+                  <img
+                    src={item.image}
+                    alt={item.content}
+                    className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-100"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-60 transition-opacity duration-300"></div>
+                </div>
+                <div className="p-5 sm:p-6 flex flex-col gap-3">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <div className="bg-[#37B7C4]/10 text-gray-800 px-3 py-1 rounded-full text-xs font-semibold shadow-sm">
+                      {item.date}
                     </div>
-
-                    {/* コンテンツ（タイトル） */}
-                    <div className="text-sm sm:text-lg font-bold text-gray-700 group-hover:text-[#37B7C4] transition-colors flex-1 relative">
-                      {item.content}
-
-                      {/* 矢印アイコン */}
-                      <svg className="inline-block ml-2 w-4 h-4 sm:w-5 sm:h-5 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </div>
+                    {item.tags.map((tag, tagIndex) => (
+                      <span
+                        key={tagIndex}
+                        className={`px-3 py-1 rounded-full text-white text-xs font-semibold shadow ${getTagColor(tag.type)}`}
+                      >
+                        {tag.label}
+                      </span>
+                    ))}
+                  </div>
+                  <p className="text-base sm:text-lg font-bold text-gray-800 group-hover:text-[#37B7C4] transition-colors leading-relaxed">
+                    {item.content}
+                  </p>
+                  <div className="mt-auto inline-flex items-center gap-2 text-sm font-semibold text-[#37B7C4]">
+                    詳細を見る
+                    <svg
+                      className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
                   </div>
                 </div>
               </a>
@@ -151,7 +152,7 @@ export default function NewsSection() {
           <div className="text-center mt-8 sm:mt-12">
             <a
               href="/news"
-              className="inline-flex items-center gap-2 px-6 py-3 sm:px-8 sm:py-4 bg-white border-2 border-[#37B7C4] text-[#37B7C4] rounded-xl font-bold hover:bg-[#37B7C4] hover:text-white btn-hover group relative overflow-hidden text-sm sm:text-base"
+              className="inline-flex items-center gap-2 px-6 py-3 sm:px-8 sm:py-4 bg-white border-2 border-[#37B7C4] text-[#37B7C4] rounded-full font-bold hover:bg-[#37B7C4] hover:text-white btn-hover group relative overflow-hidden text-sm sm:text-base"
             >
               {/* ボタン内装飾 */}
               <div className="absolute inset-0 bg-gradient-to-r from-[#37B7C4]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>

@@ -134,11 +134,12 @@ export default function CaseSection() {
       <div className="container mx-auto max-w-6xl">
         {/* セクションタイトル */}
         <div className="text-center mb-8 sm:mb-12 md:mb-16">
+          <p className="text-sm font-semibold text-[#37B7C4] mb-3">Case Study</p>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#333333] mb-4 sm:mb-6">
             お客様の声
           </h2>
           <p className="text-base sm:text-lg text-gray-600 font-medium text-center">
-            全国、幅広い規模の企業様に<br className="inline" />
+            全国、幅広い規模の企業様に導入いただいています
             導入いただいています
           </p>
         </div>
@@ -358,7 +359,7 @@ export default function CaseSection() {
       <div className="mt-8 text-center mb-10 sm:mb-12 lg:mb-14">
         <Link
           href="/case"
-          className="inline-flex items-center gap-2 px-6 py-3 border-2 border-[#37B7C4] text-[#37B7C4] rounded-lg font-bold hover:bg-[#37B7C4] hover:text-white transition-all duration-300"
+          className="inline-flex items-center gap-2 px-6 py-3 border-2 border-[#37B7C4] text-[#37B7C4] rounded-full font-bold hover:bg-[#37B7C4] hover:text-white transition-all duration-300"
         >
           すべての導入事例を見る
           <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
