@@ -5,93 +5,74 @@ import Image from 'next/image';
 
 export default function CTASection() {
   return (
-  <section className="pt-10 sm:pt-12 md:pt-16 lg:pt-20 pb-16 sm:pb-20 md:pb-24 lg:pb-28 px-4 bg-[#37B7C4] relative overflow-hidden scroll-mt-24" id="cta">
-      {/* 背景パターン */}
-      <div className="absolute inset-0 opacity-15">
-        {/* 左上円 */}
-        <div className="absolute top-5 left-5 sm:top-10 sm:left-10 w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 border-2 border-white rounded-full"></div>
-        {/* 右上ダイヤ */}
-        <div className="absolute top-16 right-6 sm:top-28 sm:right-14 w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 border-2 border-white rounded-lg rotate-45"></div>
-        {/* 左下円（塗り） */}
-        <div className="absolute bottom-16 left-10 sm:bottom-24 sm:left-28 w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-white rounded-full"></div>
-        {/* 右下円（線） */}
-        <div className="absolute bottom-6 right-6 sm:bottom-12 sm:right-12 w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 border-2 border-white rounded-full"></div>
-        {/* 斜めライン */}
-        <div className="absolute inset-0">
-          <svg className="w-full h-full" viewBox="0 0 1200 600" preserveAspectRatio="none">
-            <g stroke="white" strokeWidth="2" strokeOpacity="0.2">
-              <path d="M-80 120 L 320 -40" />
-              <path d="M1020 640 L 1380 420" />
-              <path d="M-60 520 L 360 300" />
-              <path d="M880 120 L 1240 -20" />
-            </g>
-          </svg>
-        </div>
-        {/* 小ドット群 */}
-        <div className="absolute inset-0">
-          <svg className="w-full h-full" viewBox="0 0 1200 600" preserveAspectRatio="none">
-            <g fill="white" fillOpacity="0.15">
-              <circle cx="180" cy="180" r="3" />
-              <circle cx="220" cy="210" r="2.5" />
-              <circle cx="280" cy="160" r="2" />
-              <circle cx="960" cy="420" r="3" />
-              <circle cx="1020" cy="380" r="2.5" />
-              <circle cx="1100" cy="440" r="2" />
-            </g>
-          </svg>
-        </div>
-      </div>
-      
-      <div className="container mx-auto max-w-6xl relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1.4fr] items-center gap-8 lg:gap-10">
-          <div className="order-2 lg:order-1">
-            <div className="relative w-full max-w-[460px] mx-auto aspect-[4/3]">
-              <Image
-                src="/images/Group 18.png"
-                alt="ARCHAIVEの画面イメージ"
-                fill
-                className="object-cover drop-shadow-2xl"
-                sizes="(min-width: 1024px) 540px, 100vw"
-                priority
-              />
+    <section className="py-10 sm:py-12 md:py-14 px-4 bg-gradient-to-r from-[#37B7C4] to-[#2A8B96] relative overflow-hidden scroll-mt-24" id="cta">
+      <div className="mx-auto w-full max-w-6xl relative z-10">
+        <h2 className="text-center text-white text-2xl sm:text-3xl font-bold mb-10">
+          今すぐARCHAIVEを始めませんか？
+        </h2>
+
+        <div className="flex flex-col lg:flex-row items-stretch justify-center gap-6 sm:gap-8 lg:gap-10">
+          {/* 資料ダウンロードカード */}
+          <div className="relative bg-white rounded-2xl w-full max-w-[600px] mx-auto pt-4 px-3 pb-2">
+            <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-[#1F2B36] text-white text-sm font-bold px-4 py-2 rounded-full border-4 border-white shadow-md whitespace-nowrap">
+              詳しく知りたい！
+            </div>
+            <div className="border border-[#37B7C4]/30 rounded-xl p-5 h-full flex items-center justify-center">
+              <div className="flex flex-col items-center sm:flex-row sm:items-center gap-4">
+                <div className="w-34 h-38 flex items-center justify-center overflow-hidden mr-1">
+                  <Image
+                    src="/images/paper0-2-2.png"
+                    alt="資料イラスト"
+                    width={240}
+                    height={260}
+                    className="object-contain"
+                  />
+                </div>
+                <div className="flex-1 flex flex-col items-center text-center ml-0 sm:ml-0">
+                  <h3 className="text-lg sm:text-xl font-bold text-[#1F2B36] mb-3 leading-snug">
+                    ARCHAIVEご紹介資料
+                  </h3>
+                  <Link
+                    href="/download"
+                    className="inline-flex items-center justify-center bg-[#37B7C4] text-white font-bold px-6 sm:px-7 py-3 rounded-full shadow hover:opacity-90 transition self-center w-full sm:w-auto min-w-[190px] mt-4"
+                  >
+                    資料ダウンロード
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="text-center text-white order-1 lg:order-2">
-            {/* メインコピー */}
-            <div className="mb-8 sm:mb-10 lg:mb-12">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 leading-tight">
-                今すぐARCHAIVEを<br className="sm:hidden"/>始めませんか？
-              </h2>
-              <p className="text-lg sm:text-xl font-semibold text-white/90 mb-2">
-                製造業の図面管理を革新するAIシステム
-              </p>
-              <p className="text-base sm:text-lg font-semibold text-white/80">
-                無料トライアルで効果を実感してください
-              </p>
+          {/* お問い合わせカード */}
+          <div className="relative bg-white rounded-2xl w-full max-w-[600px] mx-auto pt-2 px-3 pb-2">
+            <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-[#1F2B36] text-white text-sm font-bold px-4 py-2 rounded-full border-4 border-white shadow-md whitespace-nowrap">
+              まずは試してみたい！
             </div>
-
-            {/* CTA buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center lg:justify-start items-center lg:items-start">
-              <Link href="/download" className="bg-white border-2 border-white rounded-lg text-[#37B7C4] px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-bold cursor-pointer flex items-center justify-center w-full sm:w-auto sm:min-w-[280px] hover:bg-gray-50 btn-hover">
-                <span className="flex items-center gap-2">
-                  <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
-                  </svg>
-                  資料ダウンロード
-                </span>
-              </Link>
-              <Link href="/apply" className="bg-transparent border-2 border-white text-white rounded-lg px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-bold cursor-pointer flex items-center justify-center w-full sm:w-auto sm:min-w-[280px] hover:bg-white/10 btn-hover">
-                <span className="flex items-center gap-2">
-                  <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                  </svg>
-                  無料トライアル申し込み
-                </span>
-              </Link>
+            <div className="border border-[#37B7C4]/30 rounded-xl p-5 h-full flex items-center justify-center">
+              <div className="flex flex-col items-center sm:flex-row sm:items-center gap-4">
+                <div className="w-34 h-38 flex items-center justify-center overflow-hidden mr-1">
+                  <Image
+                    src="/images/UI_PC.png"
+                    alt="UI画面イラスト"
+                    width={210}
+                    height={230}
+                    className="object-contain ml-1 self-center mt-2"
+                  />
+                </div>
+                <div className="flex-1 flex flex-col items-center text-center ml-0 sm:ml-0">
+                  <h3 className="text-lg sm:text-xl font-bold text-[#1F2B36] mb-3 leading-snug">
+                    実際に体験してみる
+                  </h3>
+                  <Link
+                    href="/apply"
+                    className="inline-flex items-center justify-center bg-white border-2 border-gray-300 text-black font-bold px-6 sm:px-7 py-3 rounded-full hover:bg-gray-50 transition self-center w-full sm:w-auto min-w-[190px] mt-4"
+                  >
+                    無料デモ体験
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
-
         </div>
       </div>
     </section>

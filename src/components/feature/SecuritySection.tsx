@@ -1,11 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import dynamic from 'next/dynamic';
-
-const Lottie = dynamic(() => import('react-lottie-player').then(mod => mod.default), {
-  ssr: false,
-});
 
 export default function SecuritySection() {
   const [visibleCards, setVisibleCards] = useState<number[]>([]);
@@ -33,16 +28,8 @@ export default function SecuritySection() {
   const securityMeasures = [
     {
       title: "不正アクセス対策",
-      icon: (
-        <svg
-          className="w-6 h-6 sm:w-7 sm:h-7 text-[#37B7C4]"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.4" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-        </svg>
-      ),
+      image: "/images/illustration/undraw_invite-only_373f.svg",
+      imageAlt: "不正アクセス対策のイラスト",
       items: [
         "最小限のポート・IPアドレスのみ許可",
         "必要最低限のアクセス権限で侵入リスクを低減",
@@ -51,11 +38,8 @@ export default function SecuritySection() {
     },
     {
       title: "脆弱性対策",
-      icon: (
-        <svg className="w-6 h-6 sm:w-7 sm:h-7 text-[#37B7C4]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.4" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-        </svg>
-      ),
+      image: "/images/illustration/undraw_maintenance_4unj.svg",
+      imageAlt: "脆弱性対策のイラスト",
       items: [
         "OS・ミドルウェアへの定期的なパッチ適用",
         "脆弱性スキャンによる早期発見と対策",
@@ -64,12 +48,8 @@ export default function SecuritySection() {
     },
     {
       title: "データ保護",
-      icon: (
-        <svg className="w-6 h-6 sm:w-7 sm:h-7 text-[#37B7C4]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.4" d="M4 7v10c0 2.21 3.39 4 7.5 4s7.5-1.79 7.5-4V7c0 2.21-3.39 4-7.5 4S4 9.21 4 7z"/>
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.4" d="M4 7c0-2.21 3.39-4 7.5-4s7.5 1.79 7.5 4"/>
-        </svg>
-      ),
+      image: "/images/illustration/undraw_secure-server_lz9x.svg",
+      imageAlt: "データ保護のイラスト",
       items: [
         "保存・通信データの暗号化",
         "定期バックアップとマルチリージョン対応",
@@ -115,22 +95,11 @@ export default function SecuritySection() {
         <div className="absolute bottom-20 left-10 w-40 h-40 bg-indigo-500/8 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1.2s', animationDuration: '6s'}} />
       </div>
 
-      {/* 左側に大きなLottieアニメーション - absolute配置（モバイル非表示） */}
-      <div className="hidden md:block absolute left-[24%] top-[22%] w-[360px] h-[360px] lg:w-[800px] lg:h-[800px] transform -translate-x-1/2 -translate-y-1/2 z-5 pointer-events-none">
-        <Lottie
-          loop
-          play
-          path="/lottie/uuQjgmQJ4g.json"
-          style={{ height: '100%', width: '100%' }}
-          speed={0.3}
-        />
-      </div>
-
       {/* モバイル専用レイアウト */}
       <div className="md:hidden relative z-10">
         <div className="text-center mb-8">
-          <p className="text-sm font-semibold text-[#37B7C4] mb-3">Security</p>
-          <h2 className="text-2xl font-bold text-white mb-2 tracking-tight">
+          <p className="text-sm font-semibold text-[#37B7C4] mb-3 -mt-4">Security</p>
+          <h2 className="text-2xl font-bold text-white mb-3 tracking-tight">
             エンタープライズ水準の<br className="md:hidden" />セキュリティ
           </h2>
           <p className="text-gray-300 text-base leading-relaxed">
@@ -143,10 +112,12 @@ export default function SecuritySection() {
               key={index}
               className="bg-gradient-to-b from-gray-800/85 via-gray-800/80 to-gray-900/90 backdrop-blur-md rounded-xl p-6 shadow-2xl border border-gray-700/50 ring-1 ring-[#37B7C4]/10"
             >
-              <div className="flex items-center mb-4">
-                <div className="bg-[#37B7C4]/15 p-3 rounded-full mr-3 shadow-inner shadow-[#37B7C4]/20 ring-1 ring-[#37B7C4]/30">
-                  {measure.icon}
-                </div>
+              <div className="flex flex-col items-center text-center mb-4">
+                <img
+                  src={measure.image}
+                  alt={measure.imageAlt}
+                  className="w-40 h-28 object-contain mb-4"
+                />
                 <h3 className="text-xl font-extrabold text-white tracking-wide">
                   {measure.title}
                 </h3>
@@ -167,11 +138,11 @@ export default function SecuritySection() {
       {/* PCレイアウト */}
       <div className="hidden md:block container mx-auto max-w-6xl relative z-10 px-1 sm:px-4">
         <div className="mb-10 sm:mb-12 text-center">
-          <p className="text-sm font-semibold text-[#37B7C4] mb-3">Security</p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2 tracking-tight">
+          <p className="text-sm font-semibold text-[#37B7C4] mb-3 -mt-4">Security</p>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 tracking-tight">
             エンタープライズ水準のセキュリティ
           </h2>
-          <p className="text-gray-300 max-w-3xl mx-auto text-base sm:text-lg leading-relaxed">
+          <p className="text-gray-300 max-w-3xl text-base sm:text-lg leading-relaxed mx-auto">
             高水準のセキュリティ/コンプライアンスによって、お客様の重要な資産を守ります
           </p>
         </div>
@@ -192,10 +163,12 @@ export default function SecuritySection() {
               <div className="absolute inset-0 pointer-events-none">
                 <div className="absolute w-28 h-28 bg-[#37B7C4]/8 rounded-full blur-3xl -right-10 -bottom-10" />
               </div>
-              <div className="flex items-center mb-6 sm:mb-8 relative z-10">
-                <div className="bg-[#37B7C4]/15 p-4 rounded-full mr-4 shadow-inner shadow-[#37B7C4]/20 ring-1 ring-[#37B7C4]/30">
-                  {measure.icon}
-                </div>
+              <div className="flex flex-col items-center text-center mb-6 sm:mb-8 relative z-10">
+                <img
+                  src={measure.image}
+                  alt={measure.imageAlt}
+                  className="w-44 h-32 object-contain mb-4"
+                />
                 <h3 className="text-2xl sm:text-[26px] lg:text-[28px] font-extrabold text-white tracking-wide">
                   {measure.title}
                 </h3>

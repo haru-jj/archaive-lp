@@ -15,6 +15,7 @@ export default function DownloadPageClient() {
     inquiryContent: '',
     inquiryDetails: '',
   });
+  const [currentImage, setCurrentImage] = useState(0);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
@@ -97,15 +98,39 @@ export default function DownloadPageClient() {
               </p>
 
               <div className="relative w-full max-w-2xl mx-auto mb-8">
-                <Image
-                  src="/images/paper20251026.jpeg"
-                  alt="ARCHAIVE製品紹介カタログの表紙。"
-                  width={2474}
-                  height={1392}
-                  className="w-full h-auto shadow-lg"
-                  sizes="(min-width: 1024px) 520px, 100vw"
-                  priority
-                />
+                <div className="relative overflow-visible rounded-2xl shadow-lg">
+                  <Image
+                    src={['/images/paper1215.png', '/images/paper1215-1.png', '/images/paper1215-2.png'][currentImage]}
+                    alt="ARCHAIVE製品紹介カタログの表紙。"
+                    width={2474}
+                    height={1392}
+                    className="w-full h-auto"
+                    sizes="(min-width: 1024px) 520px, 100vw"
+                    priority
+                  />
+                  <button
+                    type="button"
+                    aria-label="前の画像へ"
+                    onClick={() => setCurrentImage((prev) => (prev + 2) % 3)}
+                    className="absolute -left-5 sm:-left-6 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 rounded-full p-2 shadow-md transition z-10"
+                  >
+                    <span className="sr-only">前へ</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M12.707 15.707a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 111.414 1.414L8.414 10l4.293 4.293a1 1 0 010 1.414z" clipRule="evenodd" />
+                    </svg>
+                  </button>
+                  <button
+                    type="button"
+                    aria-label="次の画像へ"
+                    onClick={() => setCurrentImage((prev) => (prev + 1) % 3)}
+                    className="absolute -right-5 sm:-right-6 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 rounded-full p-2 shadow-md transition z-10"
+                  >
+                    <span className="sr-only">次へ</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M7.293 4.293a1 1 0 011.414 0l5 5a1 1 0 010 1.414l-5 5a1 1 0 11-1.414-1.414L11.586 10 7.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                    </svg>
+                  </button>
+                </div>
               </div>
 
               <div className="bg-white border border-gray-200 rounded-2xl shadow-lg p-6 sm:p-8 space-y-6 mb-8">

@@ -54,19 +54,6 @@ export default function MainFeaturesSection() {
     {
       id: 2,
       number: '03',
-      title: '専属のAIエージェントが、',
-      subtitle: '2D図面を自動で見積。',
-      description:
-        '自社の工程マスタや材料マスタを参照し、AIが過去の見積情報から新しい図面の見積を提案。\nベテランや職人の暗黙知を会社の資産に。',
-      image: '/lp/main_function_3.jpg',
-      imageAlt: 'AI見積エージェントの操作画面',
-      tooltips: ['見積AI', '材料・工程\nマスタ', '利率カスタム'],
-      imagePosition: 'right',
-      tooltipPosition: 'right',
-    },
-    {
-      id: 3,
-      number: '04',
       title: '企業の競争力を向上させる、',
       subtitle: 'オーダーメイドAIの開発。',
       description:
@@ -74,7 +61,7 @@ export default function MainFeaturesSection() {
       image: '/lp/main_function_4.jpg',
       imageAlt: 'カスタムAIソリューションの管理画面',
       tooltips: ['シンボル抽出\nAI', '検図AI', 'BOM管理'],
-      imagePosition: 'left',
+      imagePosition: 'right',
       tooltipPosition: 'right',
     },
   ];

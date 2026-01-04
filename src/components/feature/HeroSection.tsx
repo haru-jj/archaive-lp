@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { HeroQuickNav } from '@/components/layout';
 
 export default function HeroSection() {
@@ -10,53 +11,62 @@ export default function HeroSection() {
       className="transition-all duration-500 flex flex-col sm:min-h-[calc(100vh-64px)]"
     >
       {/* Hero Main Content - Mobile */}
-      <div className="relative bg-[#37B7C4] overflow-hidden flex sm:hidden items-center justify-center">
+      <div className="relative bg-gradient-to-r from-[#005381] to-[#37B7C4] overflow-hidden flex sm:hidden items-center justify-center">
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-60" style={{ backgroundImage: "url('/images/background_geometric.png')" }} />
-        <div className="absolute inset-0 bg-[#2A8B96]/40 z-[1]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#005381]/40 via-[#2A8B96]/40 to-[#37B7C4]/40 z-[1]" />
 
         <div className="w-full px-4 py-12 relative z-10">
           <div className="space-y-6 text-center">
-            <h1 className="font-bold text-white tracking-tight text-[26px] leading-tight">
-              <div>1枚の図面/帳票から</div>
+            <h1 className="font-bold text-white tracking-tight text-[30px] leading-[1.3]">
+              <div>1枚の図面・帳票から</div>
               <div>社内の全ナレッジをAI活用</div>
             </h1>
             <div className="space-y-3">
-              <p className="text-white font-semibold leading-relaxed text-sm">
-                AIにより、「誰でも」「早く」「正確な」見積りを実現。
+              <p className="text-white font-semibold leading-relaxed text-[18px]" style={{ lineHeight: 1.82 }}>
+                あらゆるデータを構造化し、会社の「資産」に。
               </p>
-              <p className="text-white/90 font-semibold leading-relaxed text-sm">
-                眠るデータを"資産"へ。製造業DXの新常識、はじまる。
+              <p className="text-white font-semibold leading-relaxed text-[18px]" style={{ lineHeight: 1.82 }}>
+                独自のAIエージェントが設計・調達・見積業務をラクに。
               </p>
             </div>
-            <div className="flex flex-col gap-3 w-full max-w-[320px] mx-auto">
-              <Link href="/download" className="bg-white border-2 border-white rounded-lg text-[#37B7C4] px-6 py-3 text-base font-bold flex items-center justify-center w-full hover:bg-gray-50 btn-hover group">
-                <span className="flex items-center gap-2 group-icon-right leading-none">
-                  <svg className="w-5 h-5 group-icon-rotate" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
-                  </svg>
-                  <span className="group-text-wide">メールで資料を受け取る</span>
+            <div className="flex flex-row flex-wrap gap-3 w-full max-w-[440px] mx-auto">
+              <Link href="/download" className="bg-white border-2 border-white rounded-full text-black px-9 py-3 text-sm font-bold flex items-center justify-center w-full sm:w-auto flex-none shrink-0 min-w-[200px] max-w-[300px] hover:bg-gray-50 btn-hover group">
+                <span className="relative flex items-center justify-center w-full min-h-[48px]">
+                  <span className="absolute left-[-52px] sm:left-[-60px] w-18 h-14">
+                    <Image
+                      src="/images/paper1215-0-2.png"
+                      alt="カタログプレビュー"
+                      width={3469}
+                      height={2650}
+                      className="w-full h-full object-cover rounded-md"
+                      style={{ transform: 'translate(-12px, 4px)' }}
+                      sizes="64px"
+                      priority={false}
+                    />
+                  </span>
+                  <span className="flex-1 flex flex-col items-center text-center leading-tight gap-1">
+                    <span className="text-xs font-semibold text-[#D86B0F]">\ 詳細がすぐわかる /</span>
+                    <span className="group-text-wide">メールで資料を受け取る</span>
+                  </span>
                 </span>
               </Link>
-              <Link href="/apply" className="bg-transparent border-2 border-white text-white rounded-lg px-6 py-3 text-base font-bold flex items-center justify-center w-full hover:bg-white/20 hover:border-white/80 btn-hover group relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-                <span className="flex items-center gap-2 group-icon-right relative z-10 leading-none">
-                  <svg className="w-5 h-5 group-icon-rotate" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                  </svg>
+              <Link href="/apply" className="bg-white border-2 border-white text-black rounded-full px-7 py-3 text-sm font-bold flex items-center justify-center w-full sm:w-auto flex-none shrink-0 min-w-[190px] max-w-[280px] hover:bg-gray-50 btn-hover group relative overflow-hidden">
+                <span className="flex flex-col items-center leading-tight text-center w-full gap-1">
+                  <span className="text-xs font-semibold text-[#D86B0F]">\ 実際に使ってみる /</span>
                   <span className="group-text-wide">デモを無料体験</span>
                 </span>
               </Link>
             </div>
-            <div className="flex justify-center">
-              <img
-                src="/images/hero-image2.png"
-                alt="ARCHAIVEのAI見積システムのダッシュボード画面。図面検索と見積作成機能を表示"
-                className="w-full max-w-[360px] rounded-xl shadow-2xl"
-                loading="eager"
-                fetchPriority="high"
-                decoding="async"
-                width={2659}
-                height={1940}
+              <div className="flex justify-center">
+                <img
+                  src="/images/hero_canva.png"
+                  alt="ARCHAIVEのAI見積システムを工場で操作する様子。図面検索と見積作成画面を表示"
+                  className="w-full max-w-[820px] rounded-xl shadow-2xl"
+                  loading="eager"
+                  fetchPriority="high"
+                  decoding="async"
+                  width={4500}
+                  height={2481}
               />
             </div>
           </div>
@@ -64,14 +74,14 @@ export default function HeroSection() {
       </div>
 
       {/* Hero Main Content - Desktop */}
-      <div className="hidden sm:flex sm:flex-col flex-1 sm:flex-none sm:[flex-basis:calc((100vh-64px)*0.78)] relative bg-[#37B7C4] overflow-hidden items-center justify-center">
+      <div className="hidden sm:flex sm:flex-col flex-1 sm:flex-none sm:[flex-basis:calc((100vh-64px)*0.78)] relative bg-gradient-to-r from-[#005381] to-[#37B7C4] overflow-hidden items-center justify-center">
         {/* Background Layers */}
         <div className="absolute inset-0">
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-60"
             style={{ backgroundImage: "url('/images/background_geometric.png')" }}
           />
-          <div className="absolute inset-0 bg-[#2A8B96]/40 z-[1]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#005381]/40 via-[#2A8B96]/40 to-[#37B7C4]/40 z-[1]" />
           <div 
             className="absolute inset-0 bg-white z-[2] hidden lg:block"
             style={{
@@ -80,38 +90,47 @@ export default function HeroSection() {
           />
         </div>
 
-        <div className="container mx-auto max-w-7xl px-4 py-12 sm:py-16 lg:py-20 relative z-10 h-full">
+        <div className="container mx-auto max-w-[1400px] px-4 py-12 sm:py-16 lg:py-20 relative z-10 h-full sm:-translate-y-3 lg:-translate-y-6">
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16 items-center min-h-[520px]">
-            <div className="text-center lg:text-left mx-auto lg:mx-0 w-full max-w-[clamp(320px,46vw,640px)]">
-              <h1 className="font-bold text-white mb-6 tracking-tight text-[clamp(24px,3vw,44px)] leading-[clamp(32px,3.6vw,52px)]">
-                <div>1枚の図面/帳票から</div>
+            <div className="text-center lg:text-left mx-auto lg:ml-[1.5vw] w-full max-w-[clamp(480px,70vw,1040px)]">
+            <h1 className="font-bold text-white mb-6 tracking-tight text-[clamp(28px,3.8vw,52px)] leading-[clamp(44px,5.2vw,70px)]">
+                <div>1枚の図面・帳票から</div>
                 <div>社内の全ナレッジをAI活用</div>
               </h1>
               
-              <div className="mb-10 space-y-4 max-w-[clamp(280px,38vw,520px)] mx-auto lg:mx-0">
-                <p className="text-white font-semibold leading-[1.5] text-[13px] sm:text-[clamp(13px,1.8vw,20px)]">
-                  AIにより、「誰でも」「早く」「正確な」見積りを実現。
+              <div className="mb-8 space-y-5 max-w-[clamp(340px,45vw,660px)] mx-auto lg:mx-0">
+                <p className="text-white font-semibold leading-[1.85] text-[clamp(16px,2.2vw,23px)]">
+                  あらゆるデータを構造化し、会社の「資産」に。
                 </p>
-                <p className="text-white/90 font-semibold leading-[1.5] text-[clamp(13px,1.6vw,18px)]">
-                  眠るデータを"資産"へ。製造業DXの新常識、はじまる。
+                <p className="text-white font-semibold leading-[1.85] text-[clamp(16px,2.2vw,23px)]">
+                  独自のAIエージェントが設計・調達・見積業務をラクに。
                 </p>
               </div>
               
-              <div className="flex flex-col gap-4 w-full max-w-[clamp(280px,32vw,420px)] mx-auto lg:mx-0">
-                <Link href="/download" className="bg-white border-2 border-white rounded-lg text-[#37B7C4] px-10 py-4 text-[clamp(15px,1.5vw,18px)] font-bold flex items-center justify-center w-full hover:bg-gray-50 btn-hover group">
-                  <span className="flex items-center gap-2 group-icon-right leading-none">
-                    <svg className="w-5 h-5 group-icon-rotate" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
-                    </svg>
-                    <span className="group-text-wide">メールで資料を受け取る</span>
+              <div className="flex flex-row flex-wrap gap-4 w-full max-w-[clamp(440px,50vw,620px)] mx-auto lg:mx-0">
+                <Link href="/download" className="bg-white border-2 border-white rounded-full text-black px-12 py-3.5 text-[clamp(15px,1.4vw,18px)] font-bold flex items-center justify-center w-full sm:w-auto flex-none shrink-0 min-w-[230px] max-w-[320px] hover:bg-gray-50 btn-hover group">
+                  <span className="relative flex items-center justify-center w-full min-h-[48px]">
+                    <span className="absolute left-[-56px] lg:left-[-64px] w-18 h-14">
+                      <Image
+                        src="/images/paper1215-0-2.png"
+                        alt="カタログプレビュー"
+                        width={3469}
+                        height={2650}
+                        className="w-full h-full object-cover rounded-md"
+                        style={{ transform: 'translate(-12px, 4px)' }}
+                        sizes="72px"
+                        priority={false}
+                      />
+                    </span>
+                    <span className="flex-1 flex flex-col items-center text-center leading-tight gap-1">
+                    <span className="text-xs font-semibold text-[#D86B0F]">\ 詳細がすぐわかる /</span>
+                      <span className="group-text-wide">メールで資料を受け取る</span>
+                    </span>
                   </span>
                 </Link>
-                <Link href="/apply" className="bg-transparent border-2 border-white text-white rounded-lg px-10 py-4 text-[clamp(15px,1.5vw,18px)] font-bold flex items-center justify-center w-full hover:bg-white/20 hover:border-white/80 btn-hover group relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-                  <span className="flex items-center gap-2 group-icon-right relative z-10 leading-none">
-                    <svg className="w-5 h-5 group-icon-rotate" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                    </svg>
+                <Link href="/apply" className="bg-white border-2 border-white text-black rounded-full px-11 py-3.5 text-[clamp(15px,1.4vw,18px)] font-bold flex items-center justify-center w-full sm:w-auto flex-none shrink-0 min-w-[230px] max-w-[320px] hover:bg-gray-50 btn-hover group relative overflow-hidden">
+                  <span className="flex flex-col items-center leading-tight text-center w-full gap-1">
+                    <span className="text-xs font-semibold text-[#D86B0F]">\ 実際に使ってみる /</span>
                     <span className="group-text-wide">デモを無料体験</span>
                   </span>
                 </Link>
@@ -120,15 +139,15 @@ export default function HeroSection() {
             
             <div className="flex items-end justify-center lg:justify-end w-full">
               <img
-                src="/images/hero-image2.png"
-                alt="ARCHAIVEのAI見積システムのダッシュボード画面。図面検索と見積作成機能を表示"
-                className="w-full max-w-[clamp(320px,40vw,520px)] rounded-xl shadow-2xl"
+                src="/images/hero_canva.png"
+                alt="ARCHAIVEのAI見積システムを工場で操作する様子。図面検索と見積作成画面を表示"
+                className="w-full max-w-[clamp(660px,72vw,1280px)] rounded-xl shadow-2xl"
                 style={{ clipPath: 'inset(0% 0% 0.5% 0%)' }}
                 loading="eager"
                 fetchPriority="high"
                 decoding="async"
-                width={2659}
-                height={1940}
+                width={4500}
+                height={2481}
               />
             </div>
           </div>
@@ -139,7 +158,6 @@ export default function HeroSection() {
       <div className="hidden sm:flex sm:flex-none sm:[flex-basis:calc((100vh-64px)*0.197)]">
         <HeroQuickNav />
       </div>
-      <div className="hidden sm:block sm:flex-none sm:[flex-basis:calc((100vh-64px)*0.023)] bg-[#37B7C4]" />
     </section>
   );
 }
