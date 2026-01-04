@@ -547,7 +547,7 @@ export default function SubFeaturesSection() {
   }
 
   return (
-    <div className="relative py-24 -mx-[50vw] left-[50%] right-[50%] w-screen bg-gradient-to-br from-gray-700 via-gray-600 to-slate-700">
+    <div className="relative pt-24 pb-32 sm:pb-36 -mx-[50vw] left-[50%] right-[50%] w-screen bg-gradient-to-br from-gray-700 via-gray-600 to-slate-700">
       <div className="absolute inset-0 opacity-30">
         <svg className="h-full w-full" viewBox="0 0 400 300" preserveAspectRatio="none">
           <defs>
@@ -574,6 +574,7 @@ export default function SubFeaturesSection() {
 
       <div className="relative z-10 mx-auto max-w-7xl px-4">
         <div className="mb-12 text-center">
+          <p className="text-sm font-semibold text-[#37B7C4] mb-3">Sub Feature for ARCHAIVE</p>
           <h2 className="mb-8 text-2xl font-bold text-white sm:text-3xl md:text-4xl">
             ARCHAIVEのその他の機能
           </h2>

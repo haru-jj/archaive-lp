@@ -10,3 +10,4 @@ export function GET() {
 export function HEAD() {
   return new Response(null, { status: 410, headers });
 }
+

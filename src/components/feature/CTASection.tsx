@@ -6,7 +6,6 @@ import Image from 'next/image';
 export default function CTASection() {
   return (
     <section className="py-10 sm:py-12 md:py-14 px-4 bg-gradient-to-r from-[#37B7C4] to-[#2A8B96] relative overflow-hidden scroll-mt-24" id="cta">
-
       <div className="mx-auto w-full max-w-6xl relative z-10">
         <h2 className="text-center text-white text-2xl sm:text-3xl font-bold mb-10">
           今すぐARCHAIVEを始めませんか？

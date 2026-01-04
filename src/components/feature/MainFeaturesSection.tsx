@@ -231,7 +231,7 @@ export default function MainFeaturesSection() {
 
   return (
     <div
-      className="py-12 sm:py-16 md:py-20 px-4 bg-gradient-to-br from-gray-50 via-white to-[#37B7C4]/5 relative overflow-hidden"
+      className="pt-12 sm:pt-16 md:pt-20 pb-20 sm:pb-24 md:pb-28 px-4 bg-gradient-to-br from-gray-50 via-white to-[#37B7C4]/5 relative overflow-hidden"
       id="features"
     >
       <ManufacturingDataFlow />

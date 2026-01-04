@@ -60,7 +60,7 @@ export default function NewsSection() {
   };
 
   return (
-    <section className="py-8 sm:py-12 md:py-16 px-4 bg-gradient-to-br from-gray-50 via-white to-[#37B7C4]/5 relative overflow-hidden" id="news">
+    <section className="pt-8 sm:pt-12 md:pt-16 pb-16 sm:pb-20 md:pb-24 px-4 bg-gradient-to-br from-gray-50 via-white to-[#37B7C4]/5 relative overflow-hidden" id="news">
       {/* 背景装飾 */}
       <div className="absolute inset-0 pointer-events-none">
         {/* 装飾的な要素 */}

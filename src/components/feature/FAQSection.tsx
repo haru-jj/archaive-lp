@@ -57,7 +57,7 @@ export default function FAQSection() {
   return (
     <section
       id="faq"
-      className="relative -mx-[50vw] left-[50%] right-[50%] w-screen bg-gradient-to-b from-white via-gray-50 to-white py-28 sm:py-32 scroll-mt-24 sm:scroll-mt-28"
+      className="relative -mx-[50vw] left-[50%] right-[50%] w-screen bg-gradient-to-b from-white via-gray-50 to-white pt-28 sm:pt-32 pb-36 sm:pb-40 scroll-mt-24 sm:scroll-mt-28"
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_20%,rgba(55,183,196,0.06),transparent_25%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_0%,rgba(55,183,196,0.06),transparent_25%)]" />

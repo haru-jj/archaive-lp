@@ -178,7 +178,7 @@ export default function ProcessSection() {
   );
 
   return (
-    <section className="py-12 sm:py-16 md:py-20 px-4 bg-[#eaedf2] relative overflow-hidden" id="process">
+    <section className="pt-12 sm:pt-16 md:pt-20 pb-20 sm:pb-24 md:pb-28 px-4 bg-[#eaedf2] relative overflow-hidden" id="process">
       {/* Digital Blueprint Background */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-br from-[#f1f3f7] via-[#e0e5ed] to-[#cfd8e3]" />

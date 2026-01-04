@@ -12,7 +12,6 @@ import {
   SecuritySection,
   FAQSection,
   CTASection,
-  PricingSection,
 } from '@/components/feature';
 
 import {
@@ -146,7 +145,6 @@ export default function Home() {
         <SubFeaturesSectionAlt />
         <CaseSection />
         <ProcessSection />
-        {/* <PricingSection /> */}
         <NewsSection />
         <SecuritySection />
         <FAQSection />
