@@ -12,7 +12,7 @@ export default function DownloadPageClient() {
     position: '',
     email: '',
     phone: '',
-    inquiryContent: '',
+    inquiryContent: [] as string[],
     inquiryDetails: '',
   });
   const [currentImage, setCurrentImage] = useState(0);
@@ -24,6 +24,18 @@ export default function DownloadPageClient() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const toggleCheckboxValue = (name: 'inquiryContent', value: string) => {
+    setFormData((prev) => {
+      const current = new Set(Array.isArray(prev[name]) ? prev[name] : []);
+      if (current.has(value)) {
+        current.delete(value);
+      } else {
+        current.add(value);
+      }
+      return { ...prev, [name]: Array.from(current) };
+    });
+  };
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
 
@@ -33,13 +45,19 @@ export default function DownloadPageClient() {
     setSubmitStatus(null);
 
     try {
+      const submissionData = {
+        ...formData,
+        inquiryContent: Array.isArray(formData.inquiryContent)
+          ? formData.inquiryContent.join(', ')
+          : formData.inquiryContent,
+      };
       const response = await fetch('/api/submit-form', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          ...formData,
+          ...submissionData,
           formType: 'download',
         }),
       });
@@ -54,7 +72,7 @@ export default function DownloadPageClient() {
           position: '',
           email: '',
           phone: '',
-          inquiryContent: '',
+          inquiryContent: [],
           inquiryDetails: '',
         });
         setSubmitStatus({
@@ -143,10 +161,9 @@ export default function DownloadPageClient() {
                   ].map((text) => (
                     <div
                       key={text}
-                      className="flex items-center gap-4 sm:gap-5 rounded-xl bg-[#f2f7fc] px-4 sm:px-6 py-4 sm:py-5 text-sm sm:text-base text-gray-800 border border-gray-100"
+                      className="rounded-xl bg-[#f2f7fc] px-4 sm:px-6 py-4 sm:py-5 text-sm sm:text-base text-gray-800 border border-gray-100"
                     >
-                      <div className="w-2 h-2 rounded-full bg-[#37B7C4] flex-shrink-0" />
-                      <div className="flex-1">{text}</div>
+                      {text}
                     </div>
                   ))}
                 </div>
@@ -224,13 +241,17 @@ export default function DownloadPageClient() {
             </div>
 
             <div className="mb-4 sm:mb-6">
-              <label className="block text-gray-700 font-semibold mb-2 text-sm sm:text-base">役職</label>
+              <label className="block text-gray-700 font-semibold mb-2 text-sm sm:text-base">
+                役職
+                <span className="text-red-500 ml-1">*</span>
+              </label>
               <div className="relative">
                 <select
                   name="position"
                   value={formData.position}
                   onChange={handleInputChange}
                   className="w-full px-3 py-2 sm:px-4 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#37B7C4] focus:border-transparent appearance-none bg-white text-sm sm:text-base"
+                  required
                 >
                   <option value="">選択してください</option>
                   <option value="取締役">取締役</option>
@@ -292,31 +313,35 @@ export default function DownloadPageClient() {
                 現在抱えている課題
                 <span className="text-red-500 ml-1">*</span>
               </label>
-              <div className="relative">
-                <select
-                  name="inquiryContent"
-                  value={formData.inquiryContent}
-                  onChange={handleInputChange}
-                  className="w-full px-3 py-2 sm:px-4 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#37B7C4] focus:border-transparent appearance-none bg-white text-sm sm:text-base"
-                  required
-                >
-                  <option value="">選択してください</option>
-                  <option value="図面検索業務の効率化">図面検索業務の効率化</option>
-                  <option value="見積作成業務の効率化">見積作成業務の効率化</option>
-                  <option value="ナレッジ共有の仕組み化">ナレッジ共有の仕組み化</option>
-                  <option value="過去トラブル・不良の活用">過去トラブル・不良の活用</option>
-                  <option value="その他">その他</option>
-                </select>
-                <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-                  <svg className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path
-                      fillRule="evenodd"
-                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                      clipRule="evenodd"
+              <div className="flex flex-col gap-2">
+                {[
+                  '図面検索業務の効率化',
+                  '見積作成業務の効率化',
+                  'ナレッジ共有の仕組み化',
+                  '過去トラブル・不良の活用',
+                  'その他',
+                ].map((option) => (
+                  <label key={option} className="flex items-center gap-3 text-sm sm:text-base text-gray-700">
+                    <input
+                      type="checkbox"
+                      checked={Array.isArray(formData.inquiryContent) && formData.inquiryContent.includes(option)}
+                      onChange={() => toggleCheckboxValue('inquiryContent', option)}
+                      className="h-4 w-4 rounded border-gray-300 text-[#37B7C4] focus:ring-[#37B7C4]"
                     />
-                  </svg>
-                </div>
+                    <span>{option}</span>
+                  </label>
+                ))}
               </div>
+              <input
+                type="text"
+                name="inquiryContent"
+                value={Array.isArray(formData.inquiryContent) ? formData.inquiryContent.join(', ') : formData.inquiryContent}
+                onChange={() => {}}
+                className="sr-only"
+                required
+                aria-hidden="true"
+                tabIndex={-1}
+              />
             </div>
 
             <div className="mb-4 sm:mb-6">
