@@ -5,7 +5,6 @@ import {
   BeforeAfterSection,
   MainFeaturesSection,
   SubFeaturesSection,
-  SubFeaturesSectionAlt,
   ProcessSection,
   CaseSection,
   NewsSection,
@@ -142,7 +141,6 @@ export default function Home() {
         <BeforeAfterSection />
         <MainFeaturesSection />
         <SubFeaturesSection />
-        <SubFeaturesSectionAlt />
         <CaseSection />
         <ProcessSection />
         <NewsSection />
