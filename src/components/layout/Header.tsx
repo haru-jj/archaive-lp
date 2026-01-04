@@ -89,7 +89,7 @@ export default function Header() {
           <div className="hidden lg:flex items-center space-x-4 flex-shrink-0">
             <Link 
               href="/download"
-              className="bg-[#37B7C4] border-2 border-[#37B7C4] rounded-full text-white px-6 py-3 text-sm font-bold cursor-pointer flex items-center justify-center hover:opacity-90 btn-hover"
+              className="bg-[#f54848] border-2 border-[#f54848] rounded-full text-white px-6 py-3 text-sm font-bold cursor-pointer flex items-center justify-center hover:opacity-90 btn-hover"
             >
               資料ダウンロード
             </Link>
@@ -142,7 +142,7 @@ export default function Header() {
             <div className="flex flex-col space-y-3 mt-6">
               <Link 
                 href="/download"
-                className="bg-[#37B7C4] border-2 border-[#37B7C4] rounded-full text-white px-6 py-3 text-base font-bold cursor-pointer flex items-center justify-center hover:opacity-90 btn-hover"
+                className="bg-[#f54848] border-2 border-[#f54848] rounded-full text-white px-6 py-3 text-base font-bold cursor-pointer flex items-center justify-center hover:opacity-90 btn-hover"
               >
                 資料ダウンロード
               </Link>
