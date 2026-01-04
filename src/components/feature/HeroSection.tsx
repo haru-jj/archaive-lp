@@ -45,14 +45,14 @@ export default function HeroSection() {
                     />
                   </span>
                   <span className="flex-1 flex flex-col items-center text-center leading-tight gap-1">
-                    <span className="text-xs font-semibold text-[#D86B0F]">\ 詳細がすぐわかる /</span>
+                    <span className="text-xs font-semibold text-[#f54848]">\ 詳細がすぐわかる /</span>
                     <span className="group-text-wide">メールで資料を受け取る</span>
                   </span>
                 </span>
               </Link>
               <Link href="/apply" className="bg-white border-2 border-white text-black rounded-full px-7 py-3 text-sm font-bold flex items-center justify-center w-full sm:w-auto flex-none shrink-0 min-w-[190px] max-w-[280px] hover:bg-gray-50 btn-hover group relative overflow-hidden">
                 <span className="flex flex-col items-center leading-tight text-center w-full gap-1">
-                  <span className="text-xs font-semibold text-[#D86B0F]">\ 実際に使ってみる /</span>
+                  <span className="text-xs font-semibold text-[#f54848]">\ 実際に使ってみる /</span>
                   <span className="group-text-wide">デモを無料体験</span>
                 </span>
               </Link>
@@ -123,14 +123,14 @@ export default function HeroSection() {
                       />
                     </span>
                     <span className="flex-1 flex flex-col items-center text-center leading-tight gap-1">
-                    <span className="text-xs font-semibold text-[#D86B0F]">\ 詳細がすぐわかる /</span>
+                    <span className="text-xs font-semibold text-[#f54848]">\ 詳細がすぐわかる /</span>
                       <span className="group-text-wide">メールで資料を受け取る</span>
                     </span>
                   </span>
                 </Link>
                 <Link href="/apply" className="bg-white border-2 border-white text-black rounded-full px-11 py-3.5 text-[clamp(15px,1.4vw,18px)] font-bold flex items-center justify-center w-full sm:w-auto flex-none shrink-0 min-w-[230px] max-w-[320px] hover:bg-gray-50 btn-hover group relative overflow-hidden">
                   <span className="flex flex-col items-center leading-tight text-center w-full gap-1">
-                    <span className="text-xs font-semibold text-[#D86B0F]">\ 実際に使ってみる /</span>
+                    <span className="text-xs font-semibold text-[#f54848]">\ 実際に使ってみる /</span>
                     <span className="group-text-wide">デモを無料体験</span>
                   </span>
                 </Link>
