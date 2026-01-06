@@ -93,10 +93,34 @@ const subFeatures: SubFeature[] = [
 
 export default function SubFeaturesSection() {
   const [mounted, setMounted] = useState(false);
+  const [visibleCards, setVisibleCards] = useState<Record<number, boolean>>({});
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const idAttr = entry.target.getAttribute('data-subfeature-id');
+          if (!idAttr) return;
+          const featureId = Number(idAttr);
+          setVisibleCards((prev) => (prev[featureId] ? prev : { ...prev, [featureId]: true }));
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    const cards = document.querySelectorAll('[data-subfeature-id]');
+    cards.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, [mounted]);
 
   if (!mounted) {
     return null;
@@ -143,11 +167,17 @@ export default function SubFeaturesSection() {
         </div>
 
         <div className="mx-auto grid max-w-7xl grid-cols-1 justify-items-center gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4 lg:gap-8 xl:gap-10">
-          {subFeatures.map((feature) => (
+          {subFeatures.map((feature, index) => (
             <div
               key={feature.title}
-              className="group relative w-full rounded-2xl border-[3px] border-gray-400 bg-[#fefefe] p-3 sm:p-6 lg:p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
-              style={{ minHeight: '220px' }}
+              data-subfeature-id={index}
+              className={`group relative w-full rounded-2xl border-[3px] border-gray-400 bg-[#fefefe] p-3 sm:p-6 lg:p-8 transition-all duration-700 hover:-translate-y-1 hover:shadow-2xl ${
+                visibleCards[index] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+              } motion-reduce:opacity-100 motion-reduce:translate-y-0`}
+              style={{
+                transitionDelay: visibleCards[index] ? `${index * 120}ms` : '0ms',
+                minHeight: '220px',
+              }}
             >
               <div className="relative z-10 flex h-full flex-col items-center justify-center">
                 <div className="mb-2 w-full transition-all duration-300 group-hover:-translate-y-1 group-hover:scale-105">

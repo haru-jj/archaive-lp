@@ -1,28 +1,29 @@
 'use client';
-import { useState, useEffect, Fragment } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { ChevronRight } from 'lucide-react';
 
 export default function ProcessSection() {
-  const [visibleSteps, setVisibleSteps] = useState<number[]>([]);
+  const [visibleSteps, setVisibleSteps] = useState<Record<number, boolean>>({});
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setVisibleSteps([0]);
-    }, 300);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const indexAttr = entry.target.getAttribute('data-process-step');
+          if (!indexAttr) return;
+          const index = Number(indexAttr);
+          setVisibleSteps((prev) => (prev[index] ? prev : { ...prev, [index]: true }));
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.2, rootMargin: '0px 0px -10% 0px' }
+    );
 
-    const timer2 = setTimeout(() => {
-      setVisibleSteps([0, 1]);
-    }, 600);
+    const cards = document.querySelectorAll('[data-process-step]');
+    cards.forEach((card) => observer.observe(card));
 
-    const timer3 = setTimeout(() => {
-      setVisibleSteps([0, 1, 2]);
-    }, 900);
-
-    return () => {
-      clearTimeout(timer);
-      clearTimeout(timer2);
-      clearTimeout(timer3);
-    };
+    return () => observer.disconnect();
   }, []);
 
   const steps = [
@@ -95,12 +96,11 @@ export default function ProcessSection() {
             <Fragment key={step.number}>
               {/* ステップコンテンツ */}
               <div
+                data-process-step={index}
                 className={`flex flex-col items-start transform transition-all duration-700 ${
-                  visibleSteps.includes(index)
-                    ? 'translate-x-0 opacity-100'
-                    : 'translate-x-8 opacity-0'
-                }`}
-                style={{transitionDelay: `${index * 200}ms`}}
+                  visibleSteps[index] ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'
+                } motion-reduce:opacity-100 motion-reduce:translate-x-0`}
+                style={{ transitionDelay: visibleSteps[index] ? `${index * 200}ms` : '0ms' }}
               >
                 {/* STEP番号 - カード上の左 */}
                 <div className="mb-4 self-start">
@@ -178,7 +178,10 @@ export default function ProcessSection() {
   );
 
   return (
-    <section className="pt-12 sm:pt-16 md:pt-20 pb-20 sm:pb-24 md:pb-28 px-4 bg-[#eaedf2] relative overflow-hidden" id="process">
+    <section
+      className="pt-12 sm:pt-16 md:pt-20 pb-20 sm:pb-24 md:pb-28 px-4 bg-[#eaedf2] relative overflow-hidden"
+      id="process"
+    >
       {/* Digital Blueprint Background */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-gradient-to-br from-[#f1f3f7] via-[#e0e5ed] to-[#cfd8e3]" />
