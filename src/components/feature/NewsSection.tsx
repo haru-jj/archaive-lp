@@ -111,6 +111,8 @@ export default function NewsSection() {
                     src={item.image}
                     alt={item.content}
                     className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-100"
+                    width={1600}
+                    height={900}
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-60 transition-opacity duration-300"></div>
