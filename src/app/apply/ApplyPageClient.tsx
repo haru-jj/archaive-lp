@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Header, Footer } from '@/components/layout';
 
 export default function ApplyPageClient() {
@@ -111,7 +112,11 @@ export default function ApplyPageClient() {
                 「ARCHAIVE」を体験する
               </h1>
               <p className="text-base sm:text-lg text-gray-600 mb-8 leading-relaxed">
-                図面検索から見積自動化、ナレッジ共有まで、ARCHAIVEの基本を体験していただけます。
+                図面検索から見積自動化、ナレッジ共有まで、
+                <Link href="/" className="text-inherit" style={{ textDecoration: 'none' }}>
+                  ARCHAIVE
+                </Link>
+                の基本を体験していただけます。
                 必要に応じて御社データも組み込んだシナリオをご用意させていただくこともあります。
               </p>
 
