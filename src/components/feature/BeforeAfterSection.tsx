@@ -118,7 +118,7 @@ export default function BeforeAfterSection() {
                   検索に膨大な時間がかかる
                 </h3>
                 <p className="text-gray-700 leading-relaxed flex-grow text-sm font-medium">
-                  図面や価格・仕様書などの検索に時間がかかり、過去の類似実績や仕様を再利用できず、毎回ゼロからの調査に多大な時間が費やされている。
+                  過去の図面や仕様を検索・再利用できず、毎回ゼロからの調査に多大な時間を浪費。
                 </p>
                 <div className="mt-3 pt-3 border-t border-gray-100">
                   <div className="flex items-center text-[#f54848] text-sm font-semibold">
@@ -144,7 +144,7 @@ export default function BeforeAfterSection() {
                   業務やデータが属人化
                 </h3>
                 <p className="text-gray-700 leading-relaxed flex-grow text-sm font-medium">
-                  見積もり根拠やトラブル対処法などの重要な情報が、特定の担当者の経験や記憶に依存し、会社のノウハウが失われ続けている。
+                  重要情報が担当者の記憶に依存（属人化）し、会社のノウハウが失われ続けている。
                 </p>
                 <div className="mt-3 pt-3 border-t border-gray-200/80">
                   <div className="flex items-center text-[#f54848] text-sm font-semibold">
@@ -167,7 +167,7 @@ export default function BeforeAfterSection() {
                   部門間の確認作業と手戻り
                 </h3>
                 <p className="text-gray-700 leading-relaxed flex-grow text-sm font-medium">
-                  「設計」「調達」「営業」「製造」等で繰り返される部門間のやり取りや手戻りにかかる見えにくい時間が、確実にコストを圧迫。
+                  部門間の調整や手戻りにかかる「見えない時間」が、確実にコストを圧迫。
                 </p>
                 <div className="mt-3 pt-3 border-t border-gray-100">
                   <div className="flex items-center text-[#f54848] text-sm font-semibold">
@@ -368,7 +368,7 @@ export default function BeforeAfterSection() {
                   検索に膨大な時間がかかる
                 </h3>
                 <p className="text-gray-700 leading-relaxed flex-grow font-medium">
-                  図面や価格・仕様書などの検索に時間がかかり、過去の類似実績や仕様を再利用できず、毎回ゼロからの調査に多大な時間が費やされている。
+                  過去の図面や仕様を検索・再利用できず、毎回ゼロからの調査に多大な時間を浪費。
                 </p>
                   <div className="mt-4 pt-4 border-t border-gray-100">
                     <div className="flex items-center text-[#f54848]">
@@ -396,7 +396,7 @@ export default function BeforeAfterSection() {
                   業務やデータが属人化
                 </h3>
                 <p className="text-gray-700 leading-relaxed flex-grow font-medium">
-                  見積もり根拠やトラブル対処法などの重要な情報が、特定の担当者の経験や記憶に依存し、会社のノウハウが失われ続けている。
+                  重要情報が担当者の記憶に依存（属人化）し、会社のノウハウが失われ続けている。
                 </p>
                 <div className="mt-4 pt-4 border-t border-gray-200/80">
                   <div className="flex items-center text-[#f54848]">
@@ -423,7 +423,7 @@ export default function BeforeAfterSection() {
                   部門間の確認作業と手戻り
                 </h3>
                 <p className="text-gray-700 leading-relaxed flex-grow font-medium">
-                  「設計」「調達」「営業」「製造」等で繰り返される部門間のやり取りや手戻りにかかる見えにくい時間が、確実にコストを圧迫。
+                  部門間の調整や手戻りにかかる「見えない時間」が、確実にコストを圧迫。
                 </p>
                 <div className="mt-4 pt-4 border-t border-gray-100">
                   <div className="flex items-center text-[#f54848]">
