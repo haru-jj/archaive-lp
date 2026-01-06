@@ -18,7 +18,6 @@ export const metadata: Metadata = {
     canonical: 'https://archaive.net/',
     languages: {
       'ja-JP': 'https://archaive.net/',
-      en: 'https://archaive.net/en/',
     },
   },
   openGraph: {
@@ -105,6 +104,24 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     },
   };
 
+  const productSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: 'ARCHAIVE',
+    description: '製造業向けAI見積・ナレッジ検索システム',
+    category: 'Business Software',
+    brand: {
+      '@type': 'Brand',
+      name: 'ARCHAIVE',
+    },
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'JPY',
+      availability: 'https://schema.org/InStock',
+    },
+  };
+
   return (
     <html lang="ja">
       <head>
@@ -114,6 +131,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+        <link rel="preload" as="image" href="/images/hero_canva.png" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -121,6 +139,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
         />
       </head>
       <body>{children}</body>

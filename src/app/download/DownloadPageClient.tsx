@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
 import { Header, Footer } from '@/components/layout';
 
@@ -112,7 +113,11 @@ export default function DownloadPageClient() {
                 ARCHAIVE製品紹介カタログ
               </h1>
               <p className="text-base sm:text-lg text-gray-600 mb-8 leading-relaxed">
-                製造業向けAIデータプラットフォーム「ARCHAIVE」の概要・ビジョン・主要機能・事例を簡単に把握できるコンパクト版です。
+                製造業向けAIデータプラットフォーム「
+                <Link href="/" className="text-inherit" style={{ textDecoration: 'none' }}>
+                  ARCHAIVE
+                </Link>
+                」の概要・ビジョン・主要機能・事例を簡単に把握できるコンパクト版です。
               </p>
 
               <div className="relative w-full max-w-2xl mx-auto mb-8">
