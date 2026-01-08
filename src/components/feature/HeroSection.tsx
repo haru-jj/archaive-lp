@@ -23,14 +23,16 @@ export default function HeroSection() {
             </h1>
             <div className="space-y-3">
               <p className="text-white font-semibold leading-relaxed text-[18px]" style={{ lineHeight: 1.82 }}>
-                あらゆるデータを構造化し、会社の「資産」に。
+                あらゆるデータを構造化し、<br />
+                会社の「資産」に。
               </p>
               <p className="text-white font-semibold leading-relaxed text-[18px]" style={{ lineHeight: 1.82 }}>
-                独自のAIエージェントが設計・調達・見積業務をラクに。
+                独自のAIエージェントが<br />
+                設計・調達・見積業務をラクに。
               </p>
             </div>
-            <div className="flex flex-row flex-wrap gap-3 w-full max-w-[440px] mx-auto">
-              <Link href="/download" className="bg-white border-2 border-white rounded-full text-black px-9 py-3 text-sm font-bold flex items-center justify-center w-full sm:w-auto flex-none shrink-0 min-w-[200px] max-w-[300px] hover:bg-gray-50 btn-hover group">
+            <div className="flex flex-row flex-wrap gap-3 w-full max-w-[360px] mx-auto justify-center">
+              <Link href="/download" className="bg-white border-2 border-white rounded-full text-black px-9 py-3 text-sm font-bold flex items-center justify-center w-full sm:w-auto flex-none shrink-0 min-w-[190px] max-w-[260px] hover:bg-gray-50 btn-hover group">
                 <span className="relative flex items-center justify-center w-full min-h-[48px]">
                   <span className="absolute left-[-52px] sm:left-[-60px] w-18 h-14">
                     <Image
@@ -50,7 +52,7 @@ export default function HeroSection() {
                   </span>
                 </span>
               </Link>
-              <Link href="/apply" className="bg-white border-2 border-white text-black rounded-full px-7 py-3 text-sm font-bold flex items-center justify-center w-full sm:w-auto flex-none shrink-0 min-w-[190px] max-w-[280px] hover:bg-gray-50 btn-hover group relative overflow-hidden">
+              <Link href="/apply" className="bg-white border-2 border-white text-black rounded-full px-7 py-3 text-sm font-bold flex items-center justify-center w-full sm:w-auto flex-none shrink-0 min-w-[190px] max-w-[260px] hover:bg-gray-50 btn-hover group relative overflow-hidden">
                 <span className="flex flex-col items-center leading-tight text-center w-full gap-1">
                   <span className="text-xs font-semibold text-[#f54848]">\ 実際に使ってみる /</span>
                   <span className="group-text-wide">デモを無料体験</span>
