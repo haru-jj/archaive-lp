@@ -158,7 +158,7 @@ export default function DownloadPageClient() {
 
               <div className="bg-white border border-gray-200 rounded-2xl shadow-lg p-6 sm:p-8 space-y-6 mb-8">
                 <h2 className="text-left text-2xl sm:text-3xl font-bold text-[#37B7C4]">資料内容</h2>
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {[
                     '製造業向けAIデータプラットフォーム「ARCHAIVE」の製品概要／主な機能紹介',
                     '図面を起点とした業務フローの刷新と、間接業務の大幅な削減事例',
@@ -166,9 +166,9 @@ export default function DownloadPageClient() {
                   ].map((text) => (
                     <div
                       key={text}
-                      className="rounded-xl bg-[#f2f7fc] px-4 sm:px-6 py-4 sm:py-5 text-sm sm:text-base text-gray-800 border border-gray-100"
+                      className="text-sm sm:text-base text-gray-800 font-bold"
                     >
-                      {text}
+                      ・{text}
                     </div>
                   ))}
                 </div>
