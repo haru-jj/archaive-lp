@@ -92,7 +92,7 @@ export default function BeforeAfterSection() {
               onClick={() => setActiveTab('after')}
               className={`min-w-[160px] px-4 py-2 rounded-full text-sm font-bold text-center transition-all duration-300 ${
                 activeTab === 'after' ? 'bg-[#37B7C4] text-white' : 'bg-gray-200 text-gray-500'
-              }`}
+              } ${activeTab === 'after' ? '' : 'animate-soft-pulse'}`}
             >
               ARCHAIVE導入後
             </button>

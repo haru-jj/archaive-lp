@@ -200,7 +200,7 @@ export default function CrosstechCase() {
         {/* インタビューコンテンツ */}
         <div className={styles['interview-content-wrapper']}>
           <div className={styles['interview-content']}>
-            <nav aria-label="breadcrumb" className="text-sm text-gray-500 mb-4">
+            <nav aria-label="breadcrumb" className="hidden sm:flex text-sm text-gray-500 mb-4">
               <ol className="flex gap-2">
                 <li><Link href="/" className="hover:text-[#37B7C4]">トップ</Link></li>
                 <li>/</li>
@@ -211,7 +211,7 @@ export default function CrosstechCase() {
             </nav>
             <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-center">株式会社クロステック/松田忠明様 ✖️ STAR UP/吉川岳宏</h1>
             <hr />
-            <div className="relative w-2/3 h-64 md:h-96 mb-6 mx-auto">
+            <div className="relative w-full h-64 md:h-[420px] lg:h-[520px] mb-6 mx-auto">
               <Image
                 src="/images/matsuda.png"
                 alt="株式会社クロステック松田忠明様のポートレート"
@@ -225,7 +225,7 @@ export default function CrosstechCase() {
             <h3 className={styles['section-title']}>東大阪の町工場と京大発スタートアップが協働する理由</h3>
             <hr />
             
-            <div className="relative w-2/3 h-64 md:h-96 mb-6 mx-auto">
+            <div className="relative w-full h-64 md:h-[420px] lg:h-[520px] mb-6 mx-auto">
               <Image
                 src="/images/matsuda_2.jpg"
                 alt="クロステックとSTAR UPが協働する様子を写した写真"
@@ -262,7 +262,7 @@ export default function CrosstechCase() {
             <h3 className={styles['section-title']}>ARCHAIVE導入前の課題と導入後の効果</h3>
             <hr />
             
-            <div className="relative w-2/3 h-64 md:h-96 mb-6 mx-auto">
+            <div className="relative w-full h-64 md:h-[420px] lg:h-[520px] mb-6 mx-auto">
               <Image
                 src="/images/matsuda_3.jpg"
                 alt="ARCHAIVE導入前の課題について語る松田様"
@@ -289,7 +289,7 @@ export default function CrosstechCase() {
             <h3 className={styles['section-title']}>製造業へのイメージ</h3>
             <hr />
             
-            <div className="relative w-2/3 h-64 md:h-96 mb-6 mx-auto">
+            <div className="relative w-full h-64 md:h-[420px] lg:h-[520px] mb-6 mx-auto">
               <Image
                 src="/images/matsuda_4.jpg"
                 alt="製造業の未来について語る松田様のインタビューシーン"
@@ -316,7 +316,7 @@ export default function CrosstechCase() {
             <h3 className={styles['section-title']}>STAR UPの現状の印象と今後への期待</h3>
             <hr />
             
-            <div className="relative w-2/3 h-64 md:h-96 mb-6 mx-auto">
+            <div className="relative w-full h-64 md:h-[420px] lg:h-[520px] mb-6 mx-auto">
               <Image
                 src="/images/matsuda_5.jpg"
                 alt="STAR UPへの期待を語る松田様のインタビューシーン"
@@ -379,7 +379,7 @@ export default function CrosstechCase() {
                   </Link>
                 ))}
             </div>
-            <div className="mt-6 flex flex-wrap gap-3">
+            <div className="mt-6 flex flex-wrap gap-3 justify-center">
               <Link
                 href="/case"
                 className="px-5 py-2 rounded-full border border-[#37B7C4] text-[#37B7C4] font-semibold hover:bg-[#37B7C4]/10"
