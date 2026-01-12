@@ -112,7 +112,7 @@ export default function PresentationAchievementNews() {
         </div>
 
         <div className="bg-[#f4f4f4] py-20 flex justify-center min-h-screen">
-          <div className="w-[70%] max-w-none mx-auto">
+          <div className="w-full sm:w-[70%] max-w-none mx-auto px-4 sm:px-0">
             <p className="text-[#888] text-sm mb-6">2024/12/21</p>
             <div className="mt-6 mb-12">
               <h1 className="text-2xl md:text-3xl font-bold leading-relaxed text-gray-900">{article.title}</h1>

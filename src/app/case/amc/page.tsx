@@ -200,7 +200,7 @@ export default function AmcCase() {
         {/* インタビューコンテンツ */}
         <div className={styles['interview-content-wrapper']}>
           <div className={styles['interview-content']}>
-            <nav aria-label="breadcrumb" className="text-sm text-gray-500 mb-4">
+            <nav aria-label="breadcrumb" className="hidden sm:flex text-sm text-gray-500 mb-4">
               <ol className="flex gap-2">
                 <li><Link href="/" className="hover:text-[#37B7C4]">トップ</Link></li>
                 <li>/</li>
@@ -211,7 +211,7 @@ export default function AmcCase() {
             </nav>
             <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-center">株式会社エイ・エム・シィ/副工場長 中西弘栄様 ✖️ STAR UP/辻 拓真</h1>
             <hr />
-            <div className="relative w-2/3 h-64 md:h-96 mb-6 mx-auto">
+            <div className="relative w-full h-64 md:h-[420px] lg:h-[520px] mb-6 mx-auto">
               <Image
                 src="/images/nakanishi.jpg"
                 alt="株式会社エイ・エム・シィ副工場長 中西弘栄様のポートレート"
@@ -242,7 +242,7 @@ export default function AmcCase() {
             <h3 className={styles['section-title']}>ARCHAIVE導入の経緯と決め手</h3>
             <hr />
             
-            <div className="relative w-2/3 h-64 md:h-96 mb-6 mx-auto">
+            <div className="relative w-full h-64 md:h-[420px] lg:h-[520px] mb-6 mx-auto">
               <Image
                 src="/images/nakanishi_2.jpg"
                 alt="ARCHAIVE導入を振り返る中西様のインタビューシーン"
@@ -290,7 +290,7 @@ export default function AmcCase() {
             <h3 className={styles['section-title']}>STAR UPへの今後の期待</h3>
             <hr />
             
-            <div className="relative w-2/3 h-64 md:h-96 mb-6 mx-auto">
+            <div className="relative w-full h-64 md:h-[420px] lg:h-[520px] mb-6 mx-auto">
               <Image
                 src="/images/nakanishi_3.jpg"
                 alt="STAR UPへの期待について語る中西様"
@@ -342,7 +342,7 @@ export default function AmcCase() {
                   </Link>
                 ))}
             </div>
-            <div className="mt-6 flex flex-wrap gap-3">
+            <div className="mt-6 flex flex-wrap gap-3 justify-center">
               <Link
                 href="/case"
                 className="px-5 py-2 rounded-full border border-[#37B7C4] text-[#37B7C4] font-semibold hover:bg-[#37B7C4]/10"

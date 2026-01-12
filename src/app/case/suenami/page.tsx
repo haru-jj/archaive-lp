@@ -200,7 +200,7 @@ export default function SuenamiCase() {
         {/* インタビューコンテンツ */}
         <div className={styles['interview-content-wrapper']}>
           <div className={styles['interview-content']}>
-            <nav aria-label="breadcrumb" className="text-sm text-gray-500 mb-4">
+            <nav aria-label="breadcrumb" className="hidden sm:flex text-sm text-gray-500 mb-4">
               <ol className="flex gap-2">
                 <li><Link href="/" className="hover:text-[#37B7C4]">トップ</Link></li>
                 <li>/</li>
@@ -211,7 +211,7 @@ export default function SuenamiCase() {
             </nav>
             <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-center">スエナミ工業株式会社/営業 兼 開発 横山智一様 ✖️ STAR UP/稲元 海翔</h1>
             <hr />
-            <div className="relative w-2/3 h-64 md:h-96 mb-6 mx-auto">
+            <div className="relative w-full h-64 md:h-[420px] lg:h-[520px] mb-6 mx-auto">
               <Image
                 src="/images/yokoyama_1.png"
                 alt="スエナミ工業株式会社 横山智一様のインタビュー写真"
@@ -309,7 +309,7 @@ export default function SuenamiCase() {
                   </Link>
                 ))}
             </div>
-            <div className="mt-6 flex flex-wrap gap-3">
+            <div className="mt-6 flex flex-wrap gap-3 justify-center">
               <Link
                 href="/case"
                 className="px-5 py-2 rounded-full border border-[#37B7C4] text-[#37B7C4] font-semibold hover:bg-[#37B7C4]/10"

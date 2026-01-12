@@ -108,7 +108,7 @@ export default function TokyoProjectAdoptionNews() {
         </div>
 
         <div className="bg-[#f4f4f4] py-20 flex justify-center min-h-screen">
-          <div className="w-[70%] max-w-none mx-auto">
+          <div className="w-full sm:w-[70%] max-w-none mx-auto px-4 sm:px-0">
             <p className="text-[#888] text-sm mb-6">2025/10/30</p>
             <div className="mt-6 mb-12">
               <h1 className="text-2xl md:text-3xl font-bold leading-relaxed">{article.title}</h1>
@@ -202,7 +202,7 @@ export default function TokyoProjectAdoptionNews() {
                       href="https://prtimes.jp/main/html/rd/p/000000014.000142139.html"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#37B7C4] hover:underline"
+                      className="text-[#37B7C4] hover:underline break-all"
                     >
                       https://prtimes.jp/main/html/rd/p/000000014.000142139.html
                     </a>
