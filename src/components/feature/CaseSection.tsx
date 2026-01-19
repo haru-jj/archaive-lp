@@ -6,6 +6,9 @@ export default function CaseSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [translateX, setTranslateX] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(true);
+  const mobileStartIndex = 1;
+  const [mobileIndex, setMobileIndex] = useState(mobileStartIndex);
+  const [mobileTransition, setMobileTransition] = useState(true);
   
   // モバイル用: 指定箇所で強制改行を挿入
   const formatTitleForMobile = (title: string) => {
@@ -56,6 +59,48 @@ export default function CaseSection() {
       link: "/case/suenami"
     }
   ];
+
+  const mobileSlides = [
+    caseStudies[caseStudies.length - 1],
+    ...caseStudies,
+    caseStudies[0],
+  ];
+
+  const handleMobileNext = () => {
+    setMobileIndex((prevIndex) => {
+      if (prevIndex >= mobileSlides.length - 1) return prevIndex;
+      const nextIndex = prevIndex + 1;
+      setMobileTransition(true);
+
+      if (nextIndex === mobileSlides.length - 1) {
+        setTimeout(() => {
+          setMobileTransition(false);
+          setMobileIndex(mobileStartIndex);
+          setTimeout(() => setMobileTransition(true), 20);
+        }, 500);
+      }
+
+      return nextIndex;
+    });
+  };
+
+  const handleMobilePrev = () => {
+    setMobileIndex((prevIndex) => {
+      if (prevIndex <= 0) return prevIndex;
+      const nextIndex = prevIndex - 1;
+      setMobileTransition(true);
+
+      if (nextIndex === 0) {
+        setTimeout(() => {
+          setMobileTransition(false);
+          setMobileIndex(mobileSlides.length - 2);
+          setTimeout(() => setMobileTransition(true), 20);
+        }, 500);
+      }
+
+      return nextIndex;
+    });
+  };
 
   // 初期位置を中央セットに設定し、無限に続く構造を作る
   useEffect(() => {
@@ -149,11 +194,14 @@ export default function CaseSection() {
           {/* モバイル表示 (sm未満) */}
           <div className="block sm:hidden px-0 -mx-4">
             <div 
-              className="flex transition-transform duration-500 ease-in-out gap-0"
-              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+              className="flex gap-0"
+              style={{
+                transform: `translateX(-${mobileIndex * 100}%)`,
+                transition: mobileTransition ? 'transform 0.5s ease-in-out' : 'none',
+              }}
             >
-              {caseStudies.map((caseItem, index) => (
-                <div key={caseItem.id} className="min-w-full flex-shrink-0 flex flex-col items-center text-center">
+              {mobileSlides.map((caseItem, index) => (
+                <div key={`mobile-${index}`} className="min-w-full flex-shrink-0 flex flex-col items-center text-center">
                   {/* 画像と会社名・名前 */}
                   <div className="w-full">
                     <Link
@@ -326,7 +374,10 @@ export default function CaseSection() {
         {/* カルーセルコントロール */}
         <div className="flex justify-center items-center gap-3 sm:gap-5 mt-2 sm:mt-3">
           <button 
-            onClick={prevSlide}
+            onClick={() => {
+              prevSlide();
+              handleMobilePrev();
+            }}
             aria-label="Previous slide"
             className="bg-transparent border-2 border-[#37B7C4] rounded-full w-8 h-8 sm:w-10 sm:h-10 text-[#37B7C4] text-sm sm:text-lg cursor-pointer flex items-center justify-center transition-all duration-300 hover:bg-[#37B7C4] hover:text-white disabled:border-gray-300 disabled:text-gray-300 disabled:cursor-not-allowed"
           >
@@ -347,7 +398,10 @@ export default function CaseSection() {
           </div>
           
           <button 
-            onClick={nextSlide}
+            onClick={() => {
+              nextSlide();
+              handleMobileNext();
+            }}
             aria-label="Next slide"
             className="bg-transparent border-2 border-[#37B7C4] rounded-full w-8 h-8 sm:w-10 sm:h-10 text-[#37B7C4] text-sm sm:text-lg cursor-pointer flex items-center justify-center transition-all duration-300 hover:bg-[#37B7C4] hover:text-white disabled:border-gray-300 disabled:text-gray-300 disabled:cursor-not-allowed"
           >
