@@ -8,7 +8,7 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="transition-all duration-500 flex flex-col sm:min-h-[calc(100vh-64px)]"
+    className="transition-all duration-500 flex flex-col sm:min-h-[calc(100vh-64px-16px)]"
     >
       {/* Hero Main Content - Mobile */}
       <div className="relative bg-gradient-to-r from-[#005381] to-[#37B7C4] overflow-hidden flex sm:hidden items-center justify-center">
