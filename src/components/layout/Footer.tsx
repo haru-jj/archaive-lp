@@ -22,11 +22,10 @@ export default function Footer() {
   ];
 
   const inlineLinks = [
-    { label: "お問い合わせ", href: "#cta" },
+    { label: "資料ダウンロード", href: "/download" },
+    { label: "無料デモ体験", href: "/apply" },
     { label: "会社概要", href: "https://starup01.jp/", external: true }
   ];
-
-  const allLinks = [...links, ...inlineLinks];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, link: { href: string; external?: boolean }) => {
     if (link.external) return;
@@ -54,44 +53,66 @@ export default function Footer() {
     <>
       {/* メインフッターコンテンツ */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-16">
-        <div className="flex flex-col items-start gap-7 sm:gap-8">
-          {/* ロゴ */}
-          <div className="flex-shrink-0">
-            <Link href="/" className="inline-flex items-center gap-2 sm:gap-3">
-              <Image
-                src="/svg/logo.svg"
-                alt="ARCHAIVE Logo"
-                width={40}
-                height={40}
-                className="cursor-pointer sm:w-10 sm:h-10"
-              />
-              <Image
-                src="/svg/logo-text.svg"
-                alt="ARCHAIVE"
-                width={120}
-                height={32}
-                className="cursor-pointer h-8 sm:h-9 sm:w-[132px]"
-              />
-            </Link>
-          </div>
+          <div className="flex flex-col gap-6 sm:gap-8">
+            <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
+              <div className="flex-shrink-0">
+                <Link href="/" className="inline-flex items-center gap-2 sm:gap-3">
+                  <Image
+                    src="/svg/logo.svg"
+                    alt="ARCHAIVE Logo"
+                    width={40}
+                    height={40}
+                    className="cursor-pointer sm:w-10 sm:h-10"
+                  />
+                  <Image
+                    src="/svg/logo-text.svg"
+                    alt="ARCHAIVE"
+                    width={120}
+                    height={32}
+                    className="cursor-pointer h-8 sm:h-9 sm:w-[132px]"
+                  />
+                </Link>
+              </div>
 
-          {/* ナビゲーションリンク */}
-          <nav className="flex flex-col gap-5 w-full">
-            {/* メインナビゲーション */}
-            <div className="flex flex-nowrap items-center gap-7 sm:gap-10 lg:gap-14 overflow-x-auto">
-              {allLinks.map((link, index) => (
-                <a
-                  key={index}
-                  href={link.href}
-                  className="text-gray-600 hover:text-[#37B7C4] transition-colors duration-200 text-xs sm:text-sm lg:text-sm whitespace-nowrap font-medium"
-                  onClick={(e) => handleNavClick(e, link)}
-                >
-                  {link.label}
-                </a>
-              ))}
+              <nav className="flex-1 sm:flex-none">
+                <div className="flex flex-nowrap flex-wrap items-start justify-start gap-6 sm:gap-10 lg:gap-14 overflow-x-auto pt-2">
+                  {links.map((link, index) => (
+                    <a
+                      key={index}
+                      href={link.href}
+                      className="text-gray-600 hover:text-[#37B7C4] transition-colors duration-200 text-xs sm:text-sm lg:text-sm whitespace-nowrap font-medium"
+                      onClick={(e) => handleNavClick(e, link)}
+                    >
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
+              </nav>
             </div>
-          </nav>
-        </div>
+
+            <div className="flex justify-center gap-8 text-xs sm:text-sm font-medium text-gray-600">
+              {inlineLinks.map((link, index) => {
+                const isCompany = link.label === '会社概要';
+                return (
+                  <a
+                    key={index}
+                    href={link.href}
+                    className={`hover:text-[#37B7C4] transition-colors duration-200 ${isCompany ? 'border-b-2 border-transparent hover:border-[#37B7C4]' : ''}`}
+                    onClick={(e) => handleNavClick(e, link)}
+                    target={link.external ? '_blank' : undefined}
+                    rel={link.external ? 'noopener noreferrer' : undefined}
+                  >
+                    <span className="inline-flex items-center gap-1">
+                      {link.label}
+                      {isCompany && (
+                        <span aria-hidden="true" className="text-sm">↗︎</span>
+                      )}
+                    </span>
+                  </a>
+                );
+              })}
+            </div>
+          </div>
       </div>
 
       {/* コピーライト */}
