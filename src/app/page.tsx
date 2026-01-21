@@ -22,7 +22,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'ARCHAIVE｜製造業DXを実現するAI図面検索・見積プラットフォーム',
   description:
-    'ARCHAIVEは図面・帳票データを資産化し、AIチャット検索・図面自動解析・見積AIで製造業の現場から経営までDXを推進するプラットフォームです。',
+    'ARCHAIVEは図面・帳票をAIが解析し、検索・見積・ナレッジ共有を一気通貫で自動化する製造業向けDXプラットフォームです。',
   keywords: [
     'ARCHAIVE',
     '製造業DXプラットフォーム',
@@ -46,6 +46,10 @@ export const metadata: Metadata = {
     title: 'ARCHAIVE｜製造業DXを実現するAI図面検索・見積プラットフォーム',
     description:
       '図面・帳票をAIが解析し、チャットで社内ナレッジにアクセス。ARCHAIVEで見積スピードと精度を両立。',
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
@@ -128,6 +132,36 @@ export default function Home() {
     ],
   };
 
+  const productJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: 'ARCHAIVE',
+    image: 'https://archaive.net/images/hero-dashboard.png',
+    description: 'ARCHAIVEは図面・帳票をAIが解析し、検索・見積・ナレッジ共有を一気通貫で自動化する製造業向けDXプラットフォームです。',
+    brand: {
+      '@type': 'Brand',
+      name: 'ARCHAIVE',
+    },
+    url: 'https://archaive.net/',
+    category: '製造業DXプラットフォーム',
+  };
+
+  const organizationJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: '株式会社ARCHAIVE',
+    url: 'https://archaive.net/',
+    logo: 'https://archaive.net/svg/logo-text.svg',
+    contactPoint: [
+      {
+        '@type': 'ContactPoint',
+        contactType: 'customer support',
+        email: 'info@archaive.co.jp',
+        availableLanguage: ['Japanese'],
+      },
+    ],
+  };
+
   return (
     <div className="font-noto-sans-jp">
       <Header />
@@ -135,6 +169,8 @@ export default function Home() {
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(heroImageJsonLd) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
         <HeroSection />
         {/* <ArchaiveIntroSection /> */}
         <ArchaiveIntroSection />
