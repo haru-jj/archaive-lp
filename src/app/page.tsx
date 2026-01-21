@@ -162,6 +162,17 @@ export default function Home() {
     ],
   };
 
+  const webPageJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'ARCHAIVE | 製造業DXプラットフォーム',
+    url: 'https://archaive.net/',
+    license: '© 2025 STAR UP All Rights Reserved.',
+    copyrightNotice: '© 2025 STAR UP All Rights Reserved.',
+    acquireLicensePage: 'https://archaive.net/apply',
+    description: '図面・帳票を資産化し、AIチャット検索・自動解析・見積で製造業のDXを支援するページです。',
+  };
+
   return (
     <div className="font-noto-sans-jp">
       <Header />
@@ -171,6 +182,7 @@ export default function Home() {
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }} />
         <HeroSection />
         {/* <ArchaiveIntroSection /> */}
         <ArchaiveIntroSection />
