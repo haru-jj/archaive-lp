@@ -1,4 +1,5 @@
 import { Header, Footer } from '@/components/layout';
+import { CTASection } from '@/components/feature';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 
@@ -166,31 +167,9 @@ export default function NewsListPage() {
             </p>
           </div>
 
-          {/* CTAセクション */}
-          <div className="mt-12 sm:mt-16 text-center bg-gray-50 py-8 sm:py-12 px-4 sm:px-6 rounded-lg">
-            <h2 className="text-lg sm:text-xl font-bold text-[#333333] mb-4">
-              ARCHAIVEについて詳しく知りたい方へ
-            </h2>
-            <p className="text-sm sm:text-base text-gray-600 mb-6 leading-relaxed">
-              製造業向けAIナレッジ検索システムの詳細や導入事例について、お気軽にお問い合わせください。
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center max-w-md mx-auto">
-              <Link 
-                href="/download" 
-                className="bg-transparent border-2 border-[#37B7C4] text-[#37B7C4] rounded-lg px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-base font-bold hover:bg-[#37B7C4] hover:text-white transition-all duration-300"
-              >
-                サービス紹介資料
-              </Link>
-              <Link 
-                href="/apply" 
-                className="bg-[#37B7C4] text-white rounded-lg px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-base font-bold hover:bg-[#37B7C4]/90 transition-all duration-300"
-              >
-                無料デモの申込み
-              </Link>
-            </div>
-          </div>
         </div>
       </main>
+      <CTASection />
       <Footer />
     </div>
   );
