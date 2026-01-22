@@ -1,6 +1,6 @@
 import { Header, Footer } from '@/components/layout';
+import BackToNewsButton from '@/components/news/BackToNewsButton';
 import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
 import type { Metadata } from 'next';
 
 const article = {
@@ -212,13 +212,7 @@ export default function TokyoProjectAdoptionNews() {
             </div>
 
             <div className="mt-20 text-center">
-              <Link
-                href="/news"
-                className="inline-flex items-center gap-2 px-6 py-3 border-2 border-[#37B7C4] text-[#37B7C4] rounded-lg font-bold hover:bg-[#37B7C4] hover:text-white transition-all duration-300"
-              >
-                <ArrowLeft className="w-5 h-5" />
-                お知らせ一覧に戻る
-              </Link>
+              <BackToNewsButton />
             </div>
           </div>
         </div>
