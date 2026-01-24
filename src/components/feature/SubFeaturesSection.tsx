@@ -166,7 +166,7 @@ export default function SubFeaturesSection() {
           </div>
         </div>
 
-        <div className="mx-auto grid max-w-7xl grid-cols-1 justify-items-center gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4 lg:gap-8 xl:gap-10">
+        <div className="mx-auto grid max-w-7xl grid-cols-2 justify-items-center gap-3 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4 lg:gap-8 xl:gap-10">
           {subFeatures.map((feature, index) => (
             <div
               key={feature.title}
