@@ -61,7 +61,7 @@ export default function CTASection() {
                 </div>
                 <div className="flex-1 flex flex-col items-center text-center ml-0 sm:ml-0">
                   <h3 className="text-lg sm:text-xl font-bold text-[#1F2B36] mb-3 leading-snug">
-                    実際に体験してみる
+                    今すぐ効果を実感
                   </h3>
                   <Link
                     href="/apply"
