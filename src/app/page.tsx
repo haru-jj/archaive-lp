@@ -8,6 +8,7 @@ import {
   ProcessSection,
   CaseSection,
   NewsSection,
+  NoteSection,
   SecuritySection,
   FAQSection,
   CTASection,
@@ -195,6 +196,7 @@ export default function Home() {
         <SecuritySection />
         <FAQSection />
         <CTASection />
+        <NoteSection />
       </main>
       <Footer />
     </div>

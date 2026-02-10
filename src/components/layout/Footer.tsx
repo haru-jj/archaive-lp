@@ -126,7 +126,9 @@ export default function Footer() {
   );
 
   return (
-    <footer className="bg-white text-gray-800 border-t border-gray-200">
+    <footer
+      className={`${pathname === '/' ? 'bg-gray-50' : 'bg-white'} text-gray-800 border-t border-gray-200`}
+    >
       {/* Mobile */}
       <div className="sm:hidden pl-6">{renderFooter()}</div>
       {/* Desktop */}

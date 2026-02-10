@@ -5,14 +5,16 @@ import Image from 'next/image';
 
 export default function CTASection() {
   return (
-    <section className="py-10 sm:py-12 md:py-14 px-4 bg-gradient-to-r from-[#37B7C4] to-[#2A8B96] relative overflow-hidden scroll-mt-24" id="cta">
+    <section
+      className="py-10 sm:py-12 md:py-14 px-4 bg-gradient-to-r from-[#37B7C4] to-[#2A8B96] relative overflow-hidden scroll-mt-24"
+      id="cta"
+    >
       <div className="mx-auto w-full max-w-6xl relative z-10">
         <h2 className="text-center text-white text-2xl sm:text-3xl font-bold mb-10">
           今すぐARCHAIVEを始めませんか？
         </h2>
 
         <div className="flex flex-col lg:flex-row items-stretch justify-center gap-6 sm:gap-8 lg:gap-10">
-          {/* 資料ダウンロードカード */}
           <div className="relative bg-white rounded-2xl w-full max-w-[600px] mx-auto pt-4 px-3 pb-2">
             <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-[#1F2B36] text-white text-sm font-bold px-4 py-2 rounded-full border-4 border-white shadow-md whitespace-nowrap">
               詳しく知りたい！
@@ -43,7 +45,6 @@ export default function CTASection() {
             </div>
           </div>
 
-          {/* お問い合わせカード */}
           <div className="relative bg-white rounded-2xl w-full max-w-[600px] mx-auto pt-2 px-3 pb-2">
             <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-[#1F2B36] text-white text-sm font-bold px-4 py-2 rounded-full border-4 border-white shadow-md whitespace-nowrap">
               まずは試してみたい！
