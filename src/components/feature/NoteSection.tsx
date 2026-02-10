@@ -11,7 +11,7 @@ const noteCards = [
     title: 'IT人材不足の会社こそ「クラウド」を選ぶべき理由。サーバー管理の手間とコストから解放される図面管理とは',
     text: 'IT人材不足でも進めやすいクラウドの利点を、図面管理の運用負荷・コスト削減の視点で紹介。',
     href: 'https://note.com/starup_ogata/n/ne47727b63eab',
-    image: '/images/note/スクリーンショット 2026-02-06 0.37.52.png',
+    image: '/images/note/cloud-note.png',
   },
   {
     title: '図面が見つからない…製造業の現場で起こるトラブルと解決策',
