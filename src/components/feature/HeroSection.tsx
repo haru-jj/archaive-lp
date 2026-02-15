@@ -61,11 +61,11 @@ export default function HeroSection() {
             </div>
               <div className="flex justify-center">
                 <Image
-                  src="/images/hero_canva.png"
+                  src="/images/hero_canva-1600.webp"
                   alt="ARCHAIVEのAI見積システムを工場で操作する様子。図面検索と見積作成画面を表示"
                   className="w-full max-w-[820px] rounded-xl shadow-2xl"
-                  width={4500}
-                  height={2481}
+                  width={1600}
+                  height={882}
                   sizes="(max-width: 640px) 100vw, 820px"
                   priority
                 />
@@ -140,13 +140,13 @@ export default function HeroSection() {
             
             <div className="flex items-end justify-center lg:justify-end w-full">
               <Image
-                src="/images/hero_canva.png"
+                src="/images/hero_canva-1600.webp"
                 alt="ARCHAIVEのAI見積システムを工場で操作する様子。図面検索と見積作成画面を表示"
                 className="w-full max-w-[clamp(660px,72vw,1280px)] rounded-xl shadow-2xl"
                 style={{ clipPath: 'inset(0% 0% 0.5% 0%)' }}
-                width={4500}
-                height={2481}
-                sizes="(min-width: 1024px) 1280px, 72vw"
+                width={1600}
+                height={882}
+                sizes="(max-width: 1024px) 82vw, 1280px"
                 priority
               />
             </div>

@@ -1,5 +1,7 @@
 'use client';
 
+import Head from 'next/head';
+
 export default function GlobalError({
   error,
   reset,
@@ -9,6 +11,10 @@ export default function GlobalError({
 }) {
   return (
     <html>
+      <Head>
+        <meta name="robots" content="noindex, nofollow" />
+        <title>システムエラーが発生しました</title>
+      </Head>
       <body>
         <div className="min-h-screen flex items-center justify-center bg-gray-50">
           <div className="text-center">
