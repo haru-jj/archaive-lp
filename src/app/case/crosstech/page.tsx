@@ -213,7 +213,7 @@ export default function CrosstechCase() {
             <hr />
             <div className="relative w-full h-64 md:h-[420px] lg:h-[520px] mb-6 mx-auto">
               <Image
-                src="/images/matsuda.png"
+                src="/images/matsuda.webp"
                 alt="株式会社クロステック松田忠明様のポートレート"
                 fill
                 className="object-cover"
@@ -227,7 +227,7 @@ export default function CrosstechCase() {
             
             <div className="relative w-full h-64 md:h-[420px] lg:h-[520px] mb-6 mx-auto">
               <Image
-                src="/images/matsuda_2.jpg"
+                src="/images/matsuda_2.webp"
                 alt="クロステックとSTAR UPが協働する様子を写した写真"
                 fill
                 className="object-cover"
@@ -264,7 +264,7 @@ export default function CrosstechCase() {
             
             <div className="relative w-full h-64 md:h-[420px] lg:h-[520px] mb-6 mx-auto">
               <Image
-                src="/images/matsuda_3.jpg"
+                src="/images/matsuda_3.webp"
                 alt="ARCHAIVE導入前の課題について語る松田様"
                 fill
                 className="object-cover"
@@ -291,7 +291,7 @@ export default function CrosstechCase() {
             
             <div className="relative w-full h-64 md:h-[420px] lg:h-[520px] mb-6 mx-auto">
               <Image
-                src="/images/matsuda_4.jpg"
+                src="/images/matsuda_4.webp"
                 alt="製造業の未来について語る松田様のインタビューシーン"
                 fill
                 className="object-cover"
@@ -318,7 +318,7 @@ export default function CrosstechCase() {
             
             <div className="relative w-full h-64 md:h-[420px] lg:h-[520px] mb-6 mx-auto">
               <Image
-                src="/images/matsuda_5.jpg"
+                src="/images/matsuda_5.webp"
                 alt="STAR UPへの期待を語る松田様のインタビューシーン"
                 fill
                 className="object-cover"

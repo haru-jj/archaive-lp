@@ -558,7 +558,7 @@ export default function BeforeAfterSection() {
                     <span className="relative flex items-center justify-center w-full min-h-[52px]">
                       <span className="absolute left-[-56px] hidden sm:block w-16 h-12">
                         <img
-                          src="/images/paper1215-0-2.png"
+                          src="/images/paper1215-0-2.webp"
                           alt="ARCHAIVE資料プレビュー"
                           className="w-full h-full object-cover rounded-md"
                           style={{ transform: 'translate(-12px, 4px)' }}

@@ -122,7 +122,7 @@ export default function ApplyPageClient() {
 
               <div className="relative w-full max-w-2xl mx-auto mb-8">
                 <Image
-                  src="/images/UI_PC.png"
+                  src="/images/UI_PC.webp"
                   alt="ARCHAIVEデモ画面の実際のUI。"
                   width={7888}
                   height={5128}

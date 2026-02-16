@@ -10,7 +10,7 @@ const cases = [
     role: '代表取締役 松田忠明 様',
     summary:
       '図面検索と見積業務の属人化を解消し、案件管理を一気通貫で効率化。導入後は事務・現場の連携がスムーズになり、案件ごとの損失も抑制。',
-    image: '/images/matsuda.png',
+    image: '/images/matsuda.webp',
   },
   {
     slug: 'amc',
@@ -18,7 +18,7 @@ const cases = [
     role: '副工場長 中西弘栄 様',
     summary:
       '紙図面の検索やExcel管理にかかっていた時間を削減。クリック主体の検索で非IT人材でも使いこなせる管理体制を構築。',
-    image: '/images/nakanishi.jpg',
+    image: '/images/nakanishi.webp',
   },
   {
     slug: 'suenami',
@@ -26,7 +26,7 @@ const cases = [
     role: '営業 兼 開発 横山智一 様',
     summary:
       '大量の図面見積をAIが支援。コパイロット機能で過去の実績と照合しながら、見積りをスピードアップ。',
-    image: '/images/yokoyama_1.png',
+    image: '/images/yokoyama_1.webp',
   },
 ];
 

@@ -20,7 +20,7 @@ const subFeatures: SubFeature[] = [
         一元管理
       </>
     ),
-    imageSrc: '/images/subsection/sub1.png',
+    imageSrc: '/images/subsection/sub1.webp',
     imageAlt: '顧客管理の機能イメージ',
   },
   {
@@ -32,7 +32,7 @@ const subFeatures: SubFeature[] = [
         修正指示を追加
       </>
     ),
-    imageSrc: '/images/subsection/sub2.png',
+    imageSrc: '/images/subsection/sub2.webp',
     imageAlt: '図面内書き込みの機能イメージ',
   },
   {
@@ -44,7 +44,7 @@ const subFeatures: SubFeature[] = [
         階層構造管理
       </>
     ),
-    imageSrc: '/images/subsection/sub3.png',
+    imageSrc: '/images/subsection/sub3.webp',
     imageAlt: '組図・部品図管理の機能イメージ',
   },
   {
@@ -56,7 +56,7 @@ const subFeatures: SubFeature[] = [
         権限設定
       </>
     ),
-    imageSrc: '/images/subsection/sub4.png',
+    imageSrc: '/images/subsection/sub4.webp',
     imageAlt: '権限管理の機能イメージ',
   },
   {
@@ -68,25 +68,25 @@ const subFeatures: SubFeature[] = [
         自動生成
       </>
     ),
-    imageSrc: '/images/subsection/sub5.png',
+    imageSrc: '/images/subsection/sub5.webp',
     imageAlt: '帳票発行の機能イメージ',
   },
   {
     title: 'キーワード検索',
     subtitle: '図面や文書をキーワードで高速検索',
-    imageSrc: '/images/subsection/sub6.png',
+    imageSrc: '/images/subsection/sub6.webp',
     imageAlt: 'キーワード検索の機能イメージ',
   },
   {
     title: '案件管理',
     subtitle: 'プロジェクトの進捗状況と納期管理',
-    imageSrc: '/images/subsection/sub7.png',
+    imageSrc: '/images/subsection/sub7.webp',
     imageAlt: '案件管理の機能イメージ',
   },
   {
     title: '３Dプレビュー',
     subtitle: '図面データの立体的な可視化と検証',
-    imageSrc: '/images/subsection/sub8.png',
+    imageSrc: '/images/subsection/sub8.webp',
     imageAlt: '3Dプレビューの機能イメージ',
   },
 ];

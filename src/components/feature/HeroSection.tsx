@@ -12,7 +12,7 @@ export default function HeroSection() {
     >
       {/* Hero Main Content - Mobile */}
       <div className="relative bg-gradient-to-r from-[#005381] to-[#37B7C4] overflow-hidden flex sm:hidden items-center justify-center">
-        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-60" style={{ backgroundImage: "url('/images/background_geometric.png')" }} />
+        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-60" style={{ backgroundImage: "url('/images/background_geometric.webp')" }} />
         <div className="absolute inset-0 bg-gradient-to-r from-[#005381]/40 via-[#2A8B96]/40 to-[#37B7C4]/40 z-[1]" />
 
         <div className="w-full px-4 py-12 relative z-10">
@@ -36,7 +36,7 @@ export default function HeroSection() {
                 <span className="relative flex items-center justify-center w-full min-h-[48px]">
                   <span className="absolute left-[-52px] sm:left-[-60px] w-18 h-14">
                     <Image
-                      src="/images/paper1215-0-2.png"
+                      src="/images/paper1215-0-2.webp"
                       alt="カタログプレビュー"
                       width={3469}
                       height={2650}
@@ -80,7 +80,7 @@ export default function HeroSection() {
         <div className="absolute inset-0">
           <div 
             className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-60"
-            style={{ backgroundImage: "url('/images/background_geometric.png')" }}
+            style={{ backgroundImage: "url('/images/background_geometric.webp')" }}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#005381]/40 via-[#2A8B96]/40 to-[#37B7C4]/40 z-[1]" />
           <div 
@@ -113,7 +113,7 @@ export default function HeroSection() {
                   <span className="relative flex items-center justify-center w-full min-h-[48px]">
                     <span className="absolute left-[-56px] lg:left-[-64px] w-18 h-14">
                       <Image
-                        src="/images/paper1215-0-2.png"
+                        src="/images/paper1215-0-2.webp"
                         alt="カタログプレビュー"
                         width={3469}
                         height={2650}

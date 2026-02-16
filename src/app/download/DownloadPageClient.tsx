@@ -123,7 +123,7 @@ export default function DownloadPageClient() {
               <div className="relative w-full max-w-2xl mx-auto mb-8">
                 <div className="relative overflow-visible rounded-2xl shadow-lg">
                   <Image
-                    src={['/images/paper1215.png', '/images/paper1215-1.png', '/images/paper1215-2.png'][currentImage]}
+                    src={['/images/paper1215.webp', '/images/paper1215-1.webp', '/images/paper1215-2.webp'][currentImage]}
                     alt="ARCHAIVE製品紹介カタログの表紙。"
                     width={2474}
                     height={1392}

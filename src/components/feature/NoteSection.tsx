@@ -5,19 +5,19 @@ const noteCards = [
     title: 'これさえ読めばOK！製造業の主要ITツール（CAD/CAM/PDM/PLM）を総まとめ比較',
     text: 'CAD/CAM/PDM/PLMの違いと導入時の落とし穴を整理し、現場規模に合う選び方を解説。',
     href: 'https://note.com/starup_ogata/n/n18f895d01cbc',
-    image: '/images/note/image_1.png',
+    image: '/images/note/image_1.webp',
   },
   {
     title: 'IT人材不足の会社こそ「クラウド」を選ぶべき理由。サーバー管理の手間とコストから解放される図面管理とは',
     text: 'IT人材不足でも進めやすいクラウドの利点を、図面管理の運用負荷・コスト削減の視点で紹介。',
     href: 'https://note.com/starup_ogata/n/ne47727b63eab',
-    image: '/images/note/cloud-note.png',
+    image: '/images/note/cloud-note.webp',
   },
   {
     title: '図面が見つからない…製造業の現場で起こるトラブルと解決策',
     text: '図面紛失の原因と現場トラブルのリスクを整理し、再発を防ぐ管理の要点をまとめます。',
     href: 'https://note.com/starup_ogata/n/nf0084932001f',
-    image: '/images/note/image_3.png',
+    image: '/images/note/image_3.webp',
   },
 ];
 
