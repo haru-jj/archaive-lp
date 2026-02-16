@@ -213,7 +213,7 @@ export default function SuenamiCase() {
             <hr />
             <div className="relative w-full h-64 md:h-[420px] lg:h-[520px] mb-6 mx-auto">
               <Image
-                src="/images/yokoyama_1.png"
+                src="/images/yokoyama_1.webp"
                 alt="スエナミ工業株式会社 横山智一様のインタビュー写真"
                 fill
                 className="object-cover"

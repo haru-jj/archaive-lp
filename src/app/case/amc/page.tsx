@@ -213,7 +213,7 @@ export default function AmcCase() {
             <hr />
             <div className="relative w-full h-64 md:h-[420px] lg:h-[520px] mb-6 mx-auto">
               <Image
-                src="/images/nakanishi.jpg"
+                src="/images/nakanishi.webp"
                 alt="株式会社エイ・エム・シィ副工場長 中西弘栄様のポートレート"
                 fill
                 className="object-cover"
@@ -244,7 +244,7 @@ export default function AmcCase() {
             
             <div className="relative w-full h-64 md:h-[420px] lg:h-[520px] mb-6 mx-auto">
               <Image
-                src="/images/nakanishi_2.jpg"
+                src="/images/nakanishi_2.webp"
                 alt="ARCHAIVE導入を振り返る中西様のインタビューシーン"
                 fill
                 className="object-cover"
@@ -292,7 +292,7 @@ export default function AmcCase() {
             
             <div className="relative w-full h-64 md:h-[420px] lg:h-[520px] mb-6 mx-auto">
               <Image
-                src="/images/nakanishi_3.jpg"
+                src="/images/nakanishi_3.webp"
                 alt="STAR UPへの期待について語る中西様"
                 fill
                 className="object-cover"

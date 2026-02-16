@@ -33,7 +33,7 @@ export default function CaseSection() {
   const caseStudies = [
     {
       id: 1,
-      image: "/images/matsuda.png",
+      image: "/images/matsuda.webp",
       title: "見積・納品書作成・請求業務が図面起点の案件管理により大幅に削減しました。",
       subtitle: "株式会社クロステック",
       author: "松田 忠明 様",
@@ -42,7 +42,7 @@ export default function CaseSection() {
     },
     {
       id: 2,
-      image: "/images/nakanishi.jpg", 
+      image: "/images/nakanishi.webp", 
       title: "図面を探す時間が大幅に削減され、類似案件の検索も容易になりました。",
       subtitle: "株式会社エイ・エム・シィ",
       author: "中西 弘栄 様",
@@ -51,7 +51,7 @@ export default function CaseSection() {
     },
     {
       id: 3,
-      image: "/images/yokoyama_1.png",
+      image: "/images/yokoyama_1.webp",
       title: "多数の図面を一括で処理し、概算見積もりをCSVで出力できる機能は、私たちの業務を効率化してくれています。",
       subtitle: "スエナミ工業株式会社",
       author: "横山 智一 様",

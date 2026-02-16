@@ -143,7 +143,7 @@ export default function LogisticsNewspaperNews() {
 
               <div className="flex justify-center">
                 <img
-                  src="/images/nihon_butsuryu_shinbun_1.png"
+                  src="/images/nihon_butsuryu_shinbun_1.webp"
                   alt="日本物流新聞に掲載されたARCHAIVEの記事紙面"
                   className="w-full max-w-xl h-auto rounded-md shadow-md"
                 />

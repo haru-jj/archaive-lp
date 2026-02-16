@@ -23,7 +23,7 @@ export default function CTASection() {
               <div className="flex flex-col items-center sm:flex-row sm:items-center gap-4">
                 <div className="w-34 h-38 flex items-center justify-center overflow-hidden mr-1">
                   <Image
-                    src="/images/paper0-2-2.png"
+                    src="/images/paper0-2-2.webp"
                     alt="資料イラスト"
                     width={240}
                     height={260}
@@ -53,7 +53,7 @@ export default function CTASection() {
               <div className="flex flex-col items-center sm:flex-row sm:items-center gap-4">
                 <div className="w-34 h-38 flex items-center justify-center overflow-hidden mr-1">
                   <Image
-                    src="/images/UI_PC.png"
+                    src="/images/UI_PC.webp"
                     alt="UI画面イラスト"
                     width={210}
                     height={230}
