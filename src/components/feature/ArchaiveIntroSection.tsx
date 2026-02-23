@@ -15,7 +15,9 @@ export default function ArchaiveIntroSection() {
         {/* Header with Logo */}
         <div className="text-center animate-fade-in-down">
           <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-lg rounded-full px-8 sm:px-6 py-3 mb-6 w-full max-w-[360px] sm:w-auto sm:max-w-none justify-center">
-            <span className="text-white text-lg font-semibold" style={{lineHeight: '1.5'}}>製造業AIデータハブ</span>
+            <span className="text-white text-lg font-semibold" style={{lineHeight: '1.5'}}>
+              製造業AI<br className="sm:hidden" />データハブ
+            </span>
             <img
               src="/images/archaive_logo_white.svg"
               alt="ARCHAIVE"
