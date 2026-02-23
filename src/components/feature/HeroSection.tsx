@@ -19,7 +19,9 @@ export default function HeroSection() {
           <div className="space-y-6 text-center">
             <h1 className="font-bold text-white tracking-tight text-[30px] leading-[1.3]">
               <div>1枚の図面・帳票から</div>
-              <div>社内の全ナレッジをAI活用</div>
+              <div>
+                社内の全ナレッジを<br className="sm:hidden" />AI活用
+              </div>
             </h1>
             <div className="space-y-3">
               <p className="text-white font-semibold leading-relaxed text-[18px]" style={{ lineHeight: 1.82 }}>
@@ -96,7 +98,9 @@ export default function HeroSection() {
             <div className="text-center lg:text-left mx-auto lg:ml-[1.5vw] w-full max-w-[clamp(480px,70vw,1040px)]">
             <h1 className="font-bold text-white mb-6 tracking-tight text-[clamp(28px,3.8vw,52px)] leading-[clamp(44px,5.2vw,70px)]">
                 <div>1枚の図面・帳票から</div>
-                <div>社内の全ナレッジをAI活用</div>
+                <div>
+                  社内の全ナレッジを<br className="sm:hidden" />AI活用
+                </div>
               </h1>
               
               <div className="mb-8 space-y-5 max-w-[clamp(340px,45vw,660px)] mx-auto lg:mx-0">
