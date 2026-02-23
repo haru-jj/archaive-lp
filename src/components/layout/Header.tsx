@@ -127,7 +127,7 @@ export default function Header() {
         {/* モバイルメニュー */}
         {isMenuOpen && (
           <div className="lg:hidden mt-4 pb-4 border-t border-gray-200">
-            <nav className="flex flex-col space-y-4 mt-4">
+            <nav className="flex flex-col items-center text-center space-y-4 mt-4">
               {navigationItems.map((item) => (
                 <a
                   key={item.href}
