@@ -4,12 +4,17 @@ import type { NextRequest } from 'next/server';
 const gonePaths = new Set([
   '/form',
   '/form-1',
+  '/form-2',
   '/form-3',
   '/form-4',
   '/info',
+  '/zumennkensaku',
   '/_nuxt',
   '/qm_tWbrX/sfvMfoBD',
   '/qm_tWbrX/KSUIVxB6',
+  '/qm_tWbrX/TheDailyIndustrialNews',
+  '/qm_tWbrX/SpeakingEngagements',
+  '/qm_tWbrX/JapanLogisticsNews',
 ]);
 
 export function middleware(request: NextRequest) {
