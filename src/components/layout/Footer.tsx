@@ -12,13 +12,13 @@ export default function Footer() {
   const pathname = usePathname();
 
   const links = [
-    { label: "ARCHAIVEとは", href: "#demo" },
-    { label: "課題と解決", href: "#before-after" },
-    { label: "主要機能", href: "#features" },
-    { label: "導入事例", href: "#case" },
-    { label: "導入ステップ", href: "#process" },
-    { label: "お知らせ", href: "#news" },
-    { label: "セキュリティ", href: "#security" },
+    { label: "ARCHAIVEとは", href: "/about", anchor: "#demo" },
+    { label: "課題と解決", href: "/problem", anchor: "#before-after" },
+    { label: "主要機能", href: "/features", anchor: "#features" },
+    { label: "導入事例", href: "/case", anchor: "#case" },
+    { label: "導入ステップ", href: "/process", anchor: "#process" },
+    { label: "お知らせ", href: "/news", anchor: "#news" },
+    { label: "セキュリティ", href: "/security", anchor: "#security" },
   ];
 
   const inlineLinks = [
@@ -27,8 +27,29 @@ export default function Footer() {
     { label: "会社概要", href: "https://starup01.jp/", external: true }
   ];
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, link: { href: string; external?: boolean }) => {
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    link: { href: string; anchor?: string; external?: boolean }
+  ) => {
     if (link.external) return;
+    if (link.anchor) {
+      if (pathname === '/') {
+        e.preventDefault();
+        const element = document.querySelector(link.anchor);
+        if (element) {
+          const offset = 80;
+          const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+          window.scrollTo({
+            top: elementPosition - offset,
+            behavior: 'smooth'
+          });
+        }
+      } else {
+        e.preventDefault();
+        window.location.href = '/' + link.anchor;
+      }
+      return;
+    }
     if (link.href.startsWith('#')) {
       // ホーム以外ではトップへ遷移してからアンカーへ（ヘッダーと同様の挙動）
       if (pathname !== '/') {

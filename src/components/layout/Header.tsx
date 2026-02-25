@@ -10,35 +10,61 @@ export default function Header() {
   const isHomePage = pathname === '/';
 
   const navigationItems = [
-    { href: "#demo", label: "ARCHAIVEについて" },
-    { href: "#before-after", label: "課題と解決" },
-    { href: "#features", label: "主要機能" },
-    { href: "#case", label: "導入事例" },
-    { href: "#process", label: "導入ステップ" },
-    { href: "#news", label: "お知らせ" },
-    { href: "#faq", label: "よくある質問" },
+    { href: "/about", label: "ARCHAIVEについて", anchor: "#demo" },
+    { href: "/problem", label: "課題と解決", anchor: "#before-after" },
+    { href: "/features", label: "主要機能", anchor: "#features" },
+    { href: "/case", label: "導入事例", anchor: "#case" },
+    { href: "/process", label: "導入ステップ", anchor: "#process" },
+    { href: "/news", label: "お知らせ", anchor: "#news" },
+    { href: "/faq", label: "よくある質問", anchor: "#faq" },
   ];
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+    anchor?: string
+  ) => {
     // ホームページ以外からの場合はトップページに遷移
-    if (!isHomePage && href.startsWith('#')) {
-      window.location.href = '/' + href;
+    if (anchor) {
+      if (isHomePage) {
+        e.preventDefault();
+        const element = document.querySelector(anchor);
+        if (element) {
+          const offset = 80;
+          const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+          window.scrollTo({
+            top: elementPosition - offset,
+            behavior: 'smooth'
+          });
+          setIsMenuOpen(false);
+        }
+      } else {
+        e.preventDefault();
+        window.location.href = '/' + anchor;
+      }
       return;
     }
-    
-    e.preventDefault();
-    setIsMenuOpen(false);
-    const offset = 80; // ヘッダーの高さ分のオフセット
-    const element = document.querySelector(href);
-    if (element) {
-      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
-      window.scrollTo({
-        top: elementPosition - offset,
-        behavior: 'smooth'
-      });
-    } else {
-      console.warn(`Element with ID ${href} not found`);
+    if (href.startsWith('#')) {
+      if (!isHomePage) {
+        window.location.href = '/' + href;
+        return;
+      }
+      e.preventDefault();
+      setIsMenuOpen(false);
+      const offset = 80; // ヘッダーの高さ分のオフセット
+      const element = document.querySelector(href);
+      if (element) {
+        const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({
+          top: elementPosition - offset,
+          behavior: 'smooth'
+        });
+      } else {
+        console.warn(`Element with ID ${href} not found`);
+      }
+      return;
     }
+    setIsMenuOpen(false);
   };
 
   return (
@@ -76,7 +102,7 @@ export default function Header() {
                 <a
                   key={item.href}
                   href={item.href}
-                  onClick={(e) => handleNavClick(e, item.href)}
+                  onClick={(e) => handleNavClick(e, item.href, item.anchor)}
                   className="text-black hover:text-[#37B7C4] transition-colors duration-200 font-bold text-sm whitespace-nowrap"
                 >
                   {item.label}
@@ -133,7 +159,7 @@ export default function Header() {
                   key={item.href}
                   href={item.href}
                   className="text-black hover:text-[#37B7C4] transition-colors duration-200 font-bold py-2 text-sm"
-                  onClick={(e) => handleNavClick(e, item.href)}
+                  onClick={(e) => handleNavClick(e, item.href, item.anchor)}
                 >
                   {item.label}
                 </a>
