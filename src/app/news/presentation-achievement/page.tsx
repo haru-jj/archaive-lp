@@ -47,13 +47,22 @@ export default function PresentationAchievementNews() {
   const articleJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'NewsArticle',
+    '@id': `${article.url}#newsarticle`,
     headline: article.title,
     description: article.description,
     datePublished: `${article.publishDate}T00:00:00+09:00`,
     dateModified: `${article.publishDate}T00:00:00+09:00`,
-    mainEntityOfPage: article.url,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': article.url,
+    },
     image: [
-      'https://archaive.net/images/KYOTO%20SMARTCITY%20EXPO.webp',
+      {
+        '@type': 'ImageObject',
+        url: article.image,
+        width: 1024,
+        height: 576,
+      },
       'https://archaive.net/images/MI-NET%20DXセミナー.webp',
       'https://archaive.net/images/TRY%20ANGLE%20EHIME.webp',
       'https://archaive.net/images/岐阜県DX推進コンソーシアム.webp',
@@ -70,8 +79,11 @@ export default function PresentationAchievementNews() {
       logo: {
         '@type': 'ImageObject',
         url: 'https://archaive.net/images/og-image.png',
+        width: 324,
+        height: 324,
       },
     },
+    inLanguage: 'ja-JP',
   };
 
   const breadcrumbJsonLd = {

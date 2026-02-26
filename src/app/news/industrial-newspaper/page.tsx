@@ -47,12 +47,23 @@ export default function IndustrialNewspaperNews() {
   const articleJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'NewsArticle',
+    '@id': `${article.url}#newsarticle`,
     headline: article.title,
     description: article.description,
     datePublished: `${article.publishDate}T00:00:00+09:00`,
     dateModified: `${article.publishDate}T00:00:00+09:00`,
-    mainEntityOfPage: article.url,
-    image: [article.image],
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': article.url,
+    },
+    image: [
+      {
+        '@type': 'ImageObject',
+        url: article.image,
+        width: 1200,
+        height: 630,
+      },
+    ],
     author: {
       '@type': 'Organization',
       name: 'ARCHAIVE',
@@ -65,8 +76,11 @@ export default function IndustrialNewspaperNews() {
       logo: {
         '@type': 'ImageObject',
         url: 'https://archaive.net/images/og-image.png',
+        width: 324,
+        height: 324,
       },
     },
+    inLanguage: 'ja-JP',
   };
 
   const breadcrumbJsonLd = {

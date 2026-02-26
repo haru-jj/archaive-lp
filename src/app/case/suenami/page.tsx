@@ -85,10 +85,21 @@ export default function SuenamiCase() {
   const articleJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
+    '@id': `${caseData.url}#article`,
     headline: caseData.title,
     description: caseData.summary,
-    mainEntityOfPage: caseData.url,
-    image: [caseData.image],
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': caseData.url,
+    },
+    image: [
+      {
+        '@type': 'ImageObject',
+        url: caseData.image,
+        width: 1200,
+        height: 630,
+      },
+    ],
     author: {
       '@type': 'Organization',
       name: 'ARCHAIVE',
@@ -101,8 +112,11 @@ export default function SuenamiCase() {
       logo: {
         '@type': 'ImageObject',
         url: 'https://archaive.net/images/og-image.png',
+        width: 324,
+        height: 324,
       },
     },
+    inLanguage: 'ja-JP',
   };
 
   const breadcrumbJsonLd = {
