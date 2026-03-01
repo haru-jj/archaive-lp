@@ -139,7 +139,7 @@ export default function Footer() {
       <div className="border-t border-gray-100">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
           <div className="flex justify-center items-center">
-            <p className="text-gray-500 text-xs sm:text-sm">© 2025 STAR UP All Rights Reserved.</p>
+            <p className="text-gray-500 text-xs sm:text-sm">© 2026 STAR UP All Rights Reserved.</p>
           </div>
         </div>
       </div>

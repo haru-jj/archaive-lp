@@ -105,6 +105,7 @@ export default function Home() {
   const heroImageJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'ImageObject',
+    '@id': 'https://archaive.net/#primaryimage',
     contentUrl: 'https://archaive.net/images/hero-dashboard.png',
     creditText: 'ARCHAIVE product UI',
     creator: {
@@ -128,7 +129,7 @@ export default function Home() {
         '@type': 'ListItem',
         position: 2,
         name: '製造業DXプラットフォーム',
-        item: 'https://archaive.net/#features',
+        item: 'https://archaive.net/features',
       },
     ],
   };
@@ -150,6 +151,7 @@ export default function Home() {
   const organizationJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
+    '@id': 'https://archaive.net/#organization',
     name: '株式会社ARCHAIVE',
     url: 'https://archaive.net/',
     logo: 'https://archaive.net/svg/logo-text.svg',
@@ -163,15 +165,35 @@ export default function Home() {
     ],
   };
 
+  const webSiteJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': 'https://archaive.net/#website',
+    name: 'ARCHAIVE',
+    url: 'https://archaive.net/',
+    publisher: {
+      '@id': 'https://archaive.net/#organization',
+    },
+    inLanguage: 'ja-JP',
+  };
+
   const webPageJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
+    '@id': 'https://archaive.net/#webpage',
     name: 'ARCHAIVE | 製造業DXプラットフォーム',
     url: 'https://archaive.net/',
-    license: '© 2025 STAR UP All Rights Reserved.',
-    copyrightNotice: '© 2025 STAR UP All Rights Reserved.',
+    license: '© 2026 STAR UP All Rights Reserved.',
+    copyrightNotice: '© 2026 STAR UP All Rights Reserved.',
     acquireLicensePage: 'https://archaive.net/apply',
     description: '図面・帳票を資産化し、AIチャット検索・自動解析・見積で製造業のDXを支援するページです。',
+    isPartOf: {
+      '@id': 'https://archaive.net/#website',
+    },
+    primaryImageOfPage: {
+      '@id': 'https://archaive.net/#primaryimage',
+    },
+    inLanguage: 'ja-JP',
   };
 
   return (
@@ -183,6 +205,7 @@ export default function Home() {
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteJsonLd) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }} />
         <HeroSection />
         {/* <ArchaiveIntroSection /> */}
