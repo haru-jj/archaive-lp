@@ -15,7 +15,7 @@ export default function CTASection() {
         </h2>
 
         <div className="flex flex-col lg:flex-row items-stretch justify-center gap-6 sm:gap-8 lg:gap-10">
-          <div className="relative bg-white rounded-2xl w-full max-w-[600px] mx-auto pt-4 px-3 pb-2">
+          <div className="relative bg-white rounded-2xl w-full max-w-[600px] mx-auto pt-4 px-3 pb-2 transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl">
             <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-[#1F2B36] text-white text-sm font-bold px-4 py-2 rounded-full border-4 border-white shadow-md whitespace-nowrap">
               詳しく知りたい！
             </div>
@@ -45,7 +45,7 @@ export default function CTASection() {
             </div>
           </div>
 
-          <div className="relative bg-white rounded-2xl w-full max-w-[600px] mx-auto pt-2 px-3 pb-2">
+          <div className="relative bg-white rounded-2xl w-full max-w-[600px] mx-auto pt-2 px-3 pb-2 transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl">
             <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-[#1F2B36] text-white text-sm font-bold px-4 py-2 rounded-full border-4 border-white shadow-md whitespace-nowrap">
               まずは試してみたい！
             </div>
