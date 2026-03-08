@@ -7,6 +7,44 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
+    const turnstileToken = body?.turnstileToken as string | undefined;
+
+    const secretKey = process.env.TURNSTILE_SECRET_KEY;
+    if (!secretKey && process.env.NODE_ENV === 'production') {
+      throw new Error('TURNSTILE_SECRET_KEY is not configured');
+    }
+
+    if (secretKey) {
+      if (!turnstileToken) {
+        return NextResponse.json(
+          { error: '認証に失敗しました。再度お試しください。' },
+          { status: 400 }
+        );
+      }
+
+      const ip =
+        request.headers.get('cf-connecting-ip') ??
+        request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ??
+        undefined;
+
+      const verifyResponse = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+          secret: secretKey,
+          response: turnstileToken,
+          ...(ip ? { remoteip: ip } : {}),
+        }),
+      });
+
+      const verifyResult = await verifyResponse.json();
+      if (!verifyResult.success) {
+        return NextResponse.json(
+          { error: '認証に失敗しました。再度お試しください。' },
+          { status: 400 }
+        );
+      }
+    }
     
     // 1. バリデーション
     const { companyName, name, email, phone, employeeCount, purpose, message } = body;

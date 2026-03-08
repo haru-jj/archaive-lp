@@ -4,6 +4,12 @@ import { join } from 'path';
 
 const pages = [
   { path: '/', source: 'src/app/page.tsx', changeFrequency: 'weekly', priority: 1 },
+  { path: '/about', source: 'src/app/about/page.tsx', changeFrequency: 'monthly', priority: 0.8 },
+  { path: '/problem', source: 'src/app/problem/page.tsx', changeFrequency: 'monthly', priority: 0.8 },
+  { path: '/features', source: 'src/app/features/page.tsx', changeFrequency: 'monthly', priority: 0.8 },
+  { path: '/process', source: 'src/app/process/page.tsx', changeFrequency: 'monthly', priority: 0.8 },
+  { path: '/faq', source: 'src/app/faq/page.tsx', changeFrequency: 'monthly', priority: 0.7 },
+  { path: '/security', source: 'src/app/security/page.tsx', changeFrequency: 'monthly', priority: 0.7 },
   { path: '/apply', source: 'src/app/apply/page.tsx', changeFrequency: 'monthly', priority: 0.9 },
   { path: '/download', source: 'src/app/download/page.tsx', changeFrequency: 'monthly', priority: 0.9 },
   { path: '/case', source: 'src/app/case/page.tsx', changeFrequency: 'weekly', priority: 0.8 },

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Header, Footer } from '@/components/layout';
+import TurnstileWidget from '@/components/forms/TurnstileWidget';
 
 export default function ApplyPageClient() {
   const [formData, setFormData] = useState({
@@ -39,6 +40,9 @@ export default function ApplyPageClient() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+  const [turnstileToken, setTurnstileToken] = useState('');
+  const [turnstileWidgetId, setTurnstileWidgetId] = useState<string | null>(null);
+  const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || '';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -46,6 +50,14 @@ export default function ApplyPageClient() {
     setSubmitStatus(null);
 
     try {
+      if (!turnstileToken) {
+        setSubmitStatus({
+          type: 'error',
+          message: '認証に失敗しました。もう一度お試しください。'
+        });
+        return;
+      }
+
       const submissionData = {
         ...formData,
         purpose: Array.isArray(formData.purpose) ? formData.purpose.join(', ') : formData.purpose,
@@ -58,6 +70,7 @@ export default function ApplyPageClient() {
         body: JSON.stringify({
           ...submissionData,
           formType: 'apply',
+          turnstileToken,
         }),
       });
 
@@ -92,6 +105,10 @@ export default function ApplyPageClient() {
         message: '送信に失敗しました。しばらく経ってから再度お試しください。'
       });
     } finally {
+      if (turnstileWidgetId && typeof window !== 'undefined' && window.turnstile) {
+        window.turnstile.reset(turnstileWidgetId);
+      }
+      setTurnstileToken('');
       setIsSubmitting(false);
     }
   };
@@ -350,6 +367,19 @@ export default function ApplyPageClient() {
             </div>
 
             <div className="flex flex-col gap-4">
+              {turnstileSiteKey ? (
+                <TurnstileWidget
+                  siteKey={turnstileSiteKey}
+                  onVerify={setTurnstileToken}
+                  onExpire={() => setTurnstileToken('')}
+                  onError={() => setTurnstileToken('')}
+                  onWidgetLoad={setTurnstileWidgetId}
+                />
+              ) : (
+                <p className="text-xs text-red-500">
+                  Turnstileのサイトキーが設定されていません。
+                </p>
+              )}
               <p className="text-xs sm:text-sm text-gray-500 leading-relaxed">
                 送信いただいた情報は、デモ対応およびご案内のみに利用し、プライバシーポリシーに基づき適切に管理します。
               </p>

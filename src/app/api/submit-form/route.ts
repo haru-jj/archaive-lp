@@ -5,6 +5,7 @@ interface FormData {
   companyName: string;
   email: string;
   phone: string;
+  turnstileToken?: string;
   // download form specific
   lastName?: string;
   firstName?: string;
@@ -22,6 +23,46 @@ interface FormData {
 export async function POST(request: NextRequest) {
   try {
     const formData: FormData = await request.json();
+    const turnstileToken = formData.turnstileToken;
+
+    const secretKey = process.env.TURNSTILE_SECRET_KEY;
+    if (!secretKey && process.env.NODE_ENV === 'production') {
+      throw new Error('TURNSTILE_SECRET_KEY is not configured');
+    }
+
+    if (secretKey) {
+      if (!turnstileToken) {
+        return NextResponse.json(
+          { success: false, error: '認証に失敗しました。再度お試しください。' },
+          { status: 400 }
+        );
+      }
+
+      const ip =
+        request.headers.get('cf-connecting-ip') ??
+        request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ??
+        undefined;
+
+      const verifyResponse = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+          secret: secretKey,
+          response: turnstileToken,
+          ...(ip ? { remoteip: ip } : {}),
+        }),
+      });
+
+      const verifyResult = await verifyResponse.json();
+      if (!verifyResult.success) {
+        return NextResponse.json(
+          { success: false, error: '認証に失敗しました。再度お試しください。' },
+          { status: 400 }
+        );
+      }
+    }
+
+    const { turnstileToken: _token, ...cleanFormData } = formData;
 
     // Google Apps Script Web AppのURLを設定
     // 実際のGoogle Apps Script Web AppのURLに置き換えてください
@@ -37,7 +78,7 @@ export async function POST(request: NextRequest) {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(cleanFormData),
     });
 
     if (!response.ok) {
