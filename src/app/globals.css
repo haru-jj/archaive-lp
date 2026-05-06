@@ -10,6 +10,23 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* LP brand palette (design-v2) */
+  --lp-primary: #55bdcf;
+  --lp-primary-strong: #39afc3;
+  --lp-primary-deep: #126f7d;
+  --lp-primary-soft: #e6f7fa;
+  --lp-primary-surface: #f2fbfd;
+  --lp-primary-border: #bfe5ec;
+  --lp-text: #001a47;
+  --lp-text-muted: #374151;
+  --lp-text-subtle: #4b5563;
+  --lp-surface: #ffffff;
+  --lp-surface-soft: #f8fbfc;
+  --lp-border: #d8e3e8;
+  --lp-danger: #e35f58;
+  --lp-accent: #ffe500;
+  --lp-accent-strong: #f7c900;
 }
 
 @media (prefers-color-scheme: dark) {

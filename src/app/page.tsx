@@ -1,226 +1,128 @@
-import {
-  HeroSection,
-  // ArchaiveIntroSection,
-  ArchaiveIntroSection,
-  BeforeAfterSection,
-  MainFeaturesSection,
-  SubFeaturesSection,
-  ProcessSection,
-  CaseSection,
-  NewsSection,
-  NoteSection,
-  SecuritySection,
-  FAQSection,
-  CTASection,
-} from '@/components/feature';
-
-import {
-  Header,
-  Footer,
-} from '@/components/layout';
 import type { Metadata } from 'next';
 
+import { CaseStudySection } from './_components/CaseStudySection';
+import { FeaturesSection } from './_components/FeaturesSection';
+import { Footer } from './_components/Footer';
+import { GetStartedSection } from './_components/GetStartedSection';
+import { GettingStartedSection } from './_components/GettingStartedSection';
+import { Header } from './_components/Header';
+import { HeroSection } from './_components/HeroSection';
+import { LogoMarquee } from './_components/LogoMarquee';
+import { ProblemSolutionSection } from './_components/ProblemSolutionSection';
+import { ResultSection } from './_components/ResultSection';
+import { SecurityFaqSection } from './_components/SecurityFaqSection';
+
 export const metadata: Metadata = {
-  title: 'ARCHAIVE｜製造業DXを実現するAI図面検索・見積プラットフォーム',
+  metadataBase: new URL('https://archaive.net'),
+  title: 'ARCHAIVE | 中小製造業のための、図面管理AI／情報基盤',
   description:
-    'ARCHAIVEは図面・帳票をAIが解析し、検索・見積・ナレッジ共有を一気通貫で自動化する製造業向けDXプラットフォームです。',
+    '図面・見積・仕様・検査記録・判断の経緯まで、製品ごとに紐づけて蓄積。50〜300名の中小製造業向けに、PLMの役割を最短1週間で。AI開発を本業とする技術チーム（STAR UP）が運営する、製造業の情報基盤。',
   keywords: [
     'ARCHAIVE',
-    '製造業DXプラットフォーム',
-    'AI見積ソフト',
-    '図面自動解析',
-    'チャット型ナレッジ検索',
-    '加工業DX',
-    '図面管理SaaS',
+    'アーカイブ',
+    '図面管理',
+    'AI図面管理',
+    '図面検索',
+    '製造業DX',
+    'AI見積',
+    '類似図面検索',
+    '図面データベース',
+    '製造業SaaS',
+    'PLM',
+    'ERP連携',
+    'AIエージェント',
+    'STAR UP',
   ],
-  alternates: {
-    canonical: 'https://archaive.net/',
-  },
+  authors: [{ name: '株式会社STAR UP', url: 'https://starup01.jp/' }],
+  creator: '株式会社STAR UP',
+  publisher: '株式会社STAR UP',
   openGraph: {
-    title: 'ARCHAIVE｜製造業DXを実現するAI図面検索・見積プラットフォーム',
+    type: 'website',
+    locale: 'ja_JP',
+    url: 'https://archaive.net',
+    siteName: 'ARCHAIVE',
+    title: 'ARCHAIVE｜中小製造業のための、図面管理AI／情報基盤',
     description:
-      '図面データを資産化し、誰でも素早く正確な見積りを。ARCHAIVEは製造業DXを加速させるAIプラットフォームです。',
-    url: 'https://archaive.net/',
+      '図面・見積・仕様・検査記録・判断の経緯まで、製品ごとに紐づけて蓄積。50〜300名の中小製造業向けに、PLMの役割を最短1週間で。',
+    images: [
+      {
+        url: '/svg/logo.svg',
+        width: 1200,
+        height: 630,
+        alt: 'ARCHAIVE',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'ARCHAIVE｜製造業DXを実現するAI図面検索・見積プラットフォーム',
+    title: 'ARCHAIVE｜中小製造業のための、図面管理AI／情報基盤',
     description:
-      '図面・帳票をAIが解析し、チャットで社内ナレッジにアクセス。ARCHAIVEで見積スピードと精度を両立。',
+      '図面・見積・仕様・検査記録・判断の経緯まで、製品ごとに紐づけて蓄積。50〜300名の中小製造業向けに、PLMの役割を最短1週間で。',
+    images: ['/svg/logo.svg'],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: 'https://archaive.net',
+  },
+  icons: {
+    icon: [
+      { url: '/favicon/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+    ],
+    shortcut: '/favicon/favicon-32x32.png',
+  },
+  category: 'technology',
+};
+
+const softwareApplicationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'ARCHAIVE',
+  alternateName: 'アーカイブ',
+  description:
+    '中小製造業のための、図面管理AI／情報基盤。図面・見積・仕様・検査記録・判断の経緯まで、製品ごとに紐づけて蓄積。',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  url: 'https://archaive.net',
+  publisher: {
+    '@type': 'Organization',
+    name: '株式会社STAR UP',
+    url: 'https://starup01.jp/',
+  },
+  offers: {
+    '@type': 'Offer',
+    description: '無料デモ体験・資料ダウンロード可能',
   },
 };
 
 export default function Home() {
-  const faqJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
-      {
-        '@type': 'Question',
-        name: '無料デモやトライアルで、実際の使い勝手を確認できますか？',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'はい、可能です。弊社が用意しておりますデータによる無料デモに加え、貴社の実際の図面データを用いたトライアル利用（有償PoC）も実施しております。「自社の図面がどう整理されるか」をお試しいただけます。',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: '過去データの移行サポート（導入時や導入後のサポート）はありますか？',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: '専任スタッフによるデータ移行サポートが可能です。既存のファイルサーバーからのデータ移行支援を行っておりますので、大量の図面がある場合でも最適な移行プランをご提案します。',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: '図面は機密情報ですが、セキュリティ対策は万全ですか？',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: '世界最高水準のセキュリティ基準を持つAWSを採用し、通信の暗号化や詳細なアクセス権限設定機能も備えています。官公庁や大手企業でも採用される管理体制で技術情報を安全に保護します。',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: '専用ソフトのインストールは必要ですか？スマホやタブレットでも見られますか？',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'インストール不要で、ブラウザさえあればどこでも利用可能です。パソコンはもちろん、タブレットやスマートフォンからも図面の閲覧・検索ができ、場所を選ばず最新の図面情報にアクセスできます。',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: 'ファイル名が整理されていなくても、AIで図面を探せますか？',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'はい、ファイル名に依存せず「中身」で検索可能です。AI-OCRが図面内の「図番」「品名」「材質」「顧客名」などを自動で読み取りテキスト化するため、記載情報さえ分かれば瞬時に検索・発見できます。',
-        },
-      },
-    ],
-  };
-
-  const heroImageJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'ImageObject',
-    '@id': 'https://archaive.net/#primaryimage',
-    contentUrl: 'https://archaive.net/images/hero-dashboard.png',
-    creditText: 'ARCHAIVE product UI',
-    creator: {
-      '@type': 'Organization',
-      name: 'ARCHAIVE',
-    },
-    description: 'ARCHAIVEのダッシュボード画面とAI見積機能を示すキービジュアル',
-  };
-
-  const breadcrumbJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'ホーム',
-        item: 'https://archaive.net/',
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: '製造業DXプラットフォーム',
-        item: 'https://archaive.net/features',
-      },
-    ],
-  };
-
-  const productJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Product',
-    name: 'ARCHAIVE',
-    image: 'https://archaive.net/images/hero-dashboard.png',
-    description: 'ARCHAIVEは図面・帳票をAIが解析し、検索・見積・ナレッジ共有を一気通貫で自動化する製造業向けDXプラットフォームです。',
-    brand: {
-      '@type': 'Brand',
-      name: 'ARCHAIVE',
-    },
-    url: 'https://archaive.net/',
-    category: '製造業DXプラットフォーム',
-  };
-
-  const organizationJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    '@id': 'https://archaive.net/#organization',
-    name: '株式会社ARCHAIVE',
-    url: 'https://archaive.net/',
-    logo: 'https://archaive.net/svg/logo-text.svg',
-    contactPoint: [
-      {
-        '@type': 'ContactPoint',
-        contactType: 'customer support',
-        email: 'info@archaive.co.jp',
-        availableLanguage: ['Japanese'],
-      },
-    ],
-  };
-
-  const webSiteJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    '@id': 'https://archaive.net/#website',
-    name: 'ARCHAIVE',
-    url: 'https://archaive.net/',
-    publisher: {
-      '@id': 'https://archaive.net/#organization',
-    },
-    inLanguage: 'ja-JP',
-  };
-
-  const webPageJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    '@id': 'https://archaive.net/#webpage',
-    name: 'ARCHAIVE | 製造業DXプラットフォーム',
-    url: 'https://archaive.net/',
-    license: '© 2026 STAR UP All Rights Reserved.',
-    copyrightNotice: '© 2026 STAR UP All Rights Reserved.',
-    acquireLicensePage: 'https://archaive.net/apply',
-    description: '図面・帳票を資産化し、AIチャット検索・自動解析・見積で製造業のDXを支援するページです。',
-    isPartOf: {
-      '@id': 'https://archaive.net/#website',
-    },
-    primaryImageOfPage: {
-      '@id': 'https://archaive.net/#primaryimage',
-    },
-    inLanguage: 'ja-JP',
-  };
-
   return (
-    <div className="font-noto-sans-jp">
+    <div className='min-h-screen bg-white'>
+      <script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(softwareApplicationJsonLd),
+        }}
+      />
       <Header />
-      <main className="pt-20">
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(heroImageJsonLd) }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteJsonLd) }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }} />
-        <HeroSection />
-        {/* <ArchaiveIntroSection /> */}
-        <ArchaiveIntroSection />
-        <BeforeAfterSection />
-        <MainFeaturesSection />
-        <SubFeaturesSection />
-        <CaseSection />
-        <ProcessSection />
-        <NewsSection />
-        <SecuritySection />
-        <FAQSection />
-        <CTASection />
-        <NoteSection />
-      </main>
+      <HeroSection />
+      <LogoMarquee />
+      <GetStartedSection />
+      <ProblemSolutionSection />
+      <FeaturesSection />
+      <ResultSection />
+      <CaseStudySection />
+      <GettingStartedSection />
+      <SecurityFaqSection />
       <Footer />
     </div>
   );
