@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
 
 import Image from 'next/image';
 
@@ -9,29 +9,50 @@ import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
 const CASE_STUDIES = [
   {
     company: '株式会社エイ・エム・シィ',
-    person: '中西 弘高 様',
     comment:
-      '新人が2日目に、10年前の図面を引き当てた。しかも過去単価まで一緒に出てきた。',
+      '紙図面の管理負荷を削減し、クリック主体の検索で誰でも使える図面管理環境を構築',
+    industry: '業種：製造業・自動車部品加工',
+    companySize: '従業員数：1〜100名',
     imageSrc: '/lp-v2/people_2.png',
-    imageAlt: '株式会社エイ・エム・シィ 中西 弘高 様のインタビュー写真',
+    imageAlt: '株式会社エイ・エム・シィの事例写真',
+    mobileObjectPosition: 'center center',
+  },
+  {
+    company: '株式会社クロステック',
+    comment:
+      '図面起点の案件管理で見積・納品・請求業務を大幅削減。1案件あたり40%の機会損失防止を実現',
+    industry: '業種：製造業・ワイヤー放電加工',
+    companySize: '従業員数：1〜100名',
+    imageSrc: '/lp-v2/people_3.png',
+    imageAlt: '株式会社クロステックの事例写真',
     mobileObjectPosition: 'center center',
   },
   {
     company: 'スエナミ工業株式会社',
-    person: '柴山 誓一 様',
     comment:
-      '見積の回答が、翌日から当日に変わった。過去の類似案件がAIで出てくるから。',
-    imageSrc: '/lp-v2/people_3.png',
-    imageAlt: 'スエナミ工業株式会社 柴山 誓一 様のインタビュー写真',
+      '大量図面のAI見積とコパイロット機能で属人化を解消し、見積業務を高速化',
+    industry: '業種：製造業・精密板金加工',
+    companySize: '従業員数：1〜100名',
+    imageSrc: '/lp-v2/people_1.png',
+    imageAlt: 'スエナミ工業株式会社の事例写真',
     mobileObjectPosition: 'center center',
   },
   {
-    company: '○○製作所',
-    person: '設計部長 様',
-    comment:
-      '退職者が出ても慌てなくなった。判断の理由が全部、製品ページに残っているから。',
-    imageSrc: '/lp-v2/people_1.png',
-    imageAlt: '○○製作所 設計部長 様のインタビュー写真',
+    company: '生田産機工業株式会社',
+    comment: '[効果サマリ：要記入]',
+    industry: '業種：製造業・産業機械（金属生産設備）',
+    companySize: '従業員数：1〜100名',
+    imageSrc: null,
+    imageAlt: '生田産機工業株式会社の画像（未設定）',
+    mobileObjectPosition: 'center center',
+  },
+  {
+    company: '東京都',
+    comment: '要記入',
+    industry: '業種：要記入',
+    companySize: '従業員数または規模感：要記入',
+    imageSrc: null,
+    imageAlt: '東京都の画像（未設定）',
     mobileObjectPosition: 'center center',
   },
 ] as const;
@@ -49,17 +70,25 @@ export function CaseStudySection() {
   const timeoutRef = useRef<number | null>(null);
   const activeStudy = CASE_STUDIES[activeIndex] ?? CASE_STUDIES[0];
   const desktopStudies = [
+    CASE_STUDIES[normalizeStudyIndex(activeIndex - 2)],
     CASE_STUDIES[normalizeStudyIndex(activeIndex - 1)],
     activeStudy,
     CASE_STUDIES[normalizeStudyIndex(activeIndex + 1)],
+    CASE_STUDIES[normalizeStudyIndex(activeIndex + 2)],
+    CASE_STUDIES[normalizeStudyIndex(activeIndex + 3)],
   ];
 
   const desktopTranslate =
     slideDirection === 1
-      ? 'translateX(calc(var(--case-study-step) * -1))'
+      ? 'translateX(calc(var(--case-study-step) * -2))'
       : slideDirection === -1
-        ? 'translateX(var(--case-study-step))'
-        : 'translateX(0px)';
+        ? 'translateX(0px)'
+        : 'translateX(calc(var(--case-study-step) * -1))';
+
+  const displayActiveIndex =
+    slideDirection !== 0
+      ? normalizeStudyIndex(activeIndex + slideDirection)
+      : activeIndex;
 
   const moveSlide = (direction: -1 | 1) => {
     if (slideDirection !== 0) return;
@@ -105,7 +134,9 @@ export function CaseStudySection() {
     moveSlide(1);
   };
 
-  const handleDesktopTransitionEnd = () => {
+  const handleDesktopTransitionEnd = (event: React.TransitionEvent) => {
+    if (event.target !== event.currentTarget) return;
+    if (event.propertyName !== 'transform') return;
     if (slideDirection === 0) return;
 
     setActiveIndex((prev) => normalizeStudyIndex(prev + slideDirection));
@@ -120,21 +151,37 @@ export function CaseStudySection() {
   };
 
   return (
+    <>
+      <svg
+        aria-hidden='true'
+        className='pointer-events-none absolute h-0 w-0'
+      >
+        <defs>
+          <filter id='case-study-goo'>
+            <feGaussianBlur in='SourceGraphic' stdDeviation='3.5' />
+            <feColorMatrix
+              values='1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -10'
+            />
+          </filter>
+        </defs>
+      </svg>
     <section
       id='cases'
-      className='scroll-mt-16 bg-white px-6 py-16 sm:px-10 lg:px-16 lg:py-20'
+      className='scroll-mt-24 overflow-hidden bg-white px-6 py-28 sm:px-10 sm:py-32 lg:px-16 lg:py-40'
     >
-      <div className='relative mx-auto w-full max-w-7xl overflow-hidden'>
+      <div className='relative mx-auto w-full max-w-[1800px] overflow-x-hidden overflow-y-visible'>
         <div className='mx-auto max-w-[920px] text-center'>
-          <p className='text-sm font-semibold tracking-[0.18em] text-[var(--lp-primary)]'>
-            Case Study
+          <p className='text-sm font-bold text-[var(--lp-primary)]'>
+            CASE STUDY
           </p>
-          <h2 className='text-lp-text mt-5 text-[clamp(2.2rem,4.4vw,3.8rem)] leading-[1.05] font-black tracking-[-0.06em]'>
-            導入企業
+          <h2 className='text-lp-text mt-5 text-[clamp(1.625rem,2.6vw,2rem)] leading-[1.35] font-bold'>
+            導入企業の声
           </h2>
           <div className='border-lp-text/55 mx-auto mt-6 h-px w-full max-w-[18rem] border-t-2 border-solid sm:max-w-[20rem]' />
-          <p className='text-lp-text-subtle mx-auto mt-4 max-w-[44rem] text-base leading-7 font-semibold sm:text-lg'>
-            ARCHAIVEを導入した企業の現場で発生した変化を、担当者の声とともにご紹介します。
+          <p className='text-lp-text-subtle mx-auto mt-4 max-w-[44rem] text-base leading-7 font-normal sm:text-lg'>
+            <span style={{ color: '#37B7C4' }}>ARCHAIVE</span>を導入した企業の現場で発生した変化を
+            <br className='hidden sm:inline' />
+            担当者の声とともにご紹介します。
           </p>
         </div>
 
@@ -143,124 +190,200 @@ export function CaseStudySection() {
           <div className='pointer-events-none absolute inset-y-0 right-0 z-10 w-[14%] bg-gradient-to-l from-white to-transparent' />
           <div className='mx-auto w-[90%] overflow-hidden rounded-[1.5rem] border border-[color-mix(in_srgb,var(--lp-primary)_18%,white)] bg-white text-center shadow-[0_16px_50px_rgba(15,23,42,0.08)]'>
             <div className='relative block h-52 w-full overflow-hidden'>
-              <Image
-                key={activeStudy.imageSrc}
-                src={activeStudy.imageSrc}
-                alt={activeStudy.imageAlt}
-                fill
-                priority
-                className='object-cover'
-                style={{ objectPosition: activeStudy.mobileObjectPosition }}
-              />
+              {activeStudy.imageSrc ? (
+                <Image
+                  key={activeStudy.imageSrc}
+                  src={activeStudy.imageSrc}
+                  alt={activeStudy.imageAlt}
+                  fill
+                  priority
+                  className='object-cover'
+                  style={{ objectPosition: activeStudy.mobileObjectPosition }}
+                />
+              ) : (
+                <div className='flex h-full w-full items-center justify-center bg-slate-100 text-base font-bold text-slate-500'>
+                  No Image
+                </div>
+              )}
               <div className='absolute inset-x-0 bottom-0 flex h-16 items-end bg-gradient-to-t from-black/70 to-transparent'>
                 <div className='p-3 text-left text-white'>
                   <div className='text-sm font-bold'>{activeStudy.company}</div>
-                  <div className='text-xs'>{activeStudy.person}</div>
                 </div>
               </div>
             </div>
-            <div className='flex min-h-[6.4rem] items-center px-5 py-5'>
-              <p className='line-clamp-2 text-center text-base leading-[1.7] font-bold tracking-[-0.02em] text-slate-700'>
+            <div className='min-h-[11.5rem] px-5 py-5 text-left'>
+              <p className='text-sm leading-[1.8] font-bold text-slate-700'>
                 {activeStudy.comment}
+              </p>
+              <p className='mt-2 text-xs leading-6 font-normal text-slate-600'>
+                {activeStudy.industry}
+              </p>
+              <p className='text-xs leading-6 font-normal text-slate-600'>
+                {activeStudy.companySize}
               </p>
             </div>
           </div>
         </div>
 
-        <div className='relative mt-10 hidden overflow-hidden sm:mt-12 sm:block'>
-          <div className='pointer-events-none absolute inset-y-0 left-0 z-10 w-[10%] bg-gradient-to-r from-white via-white/85 to-transparent' />
-          <div className='pointer-events-none absolute inset-y-0 right-0 z-10 w-[10%] bg-gradient-to-l from-white via-white/85 to-transparent' />
+        <div className='relative mt-10 hidden py-10 sm:mt-12 sm:block'>
           <div
-            onTransitionEnd={handleDesktopTransitionEnd}
-            className={`mx-auto flex w-max gap-6 [--case-study-step:calc(22rem+1.5rem)] md:gap-8 md:[--case-study-step:532px] ${
-              isTransitionEnabled
-                ? 'transition-transform duration-500 ease-in-out'
-                : ''
-            }`}
-            style={{ transform: desktopTranslate }}
+            className='relative mx-auto overflow-x-hidden overflow-y-visible [--case-study-card-width:16rem] [--case-study-gap:1rem] [--case-study-step:calc(var(--case-study-card-width)+var(--case-study-gap))] md:[--case-study-card-width:18rem] md:[--case-study-gap:1rem] lg:[--case-study-card-width:20rem] lg:[--case-study-gap:1.25rem] xl:[--case-study-card-width:22rem]'
+            style={{
+              width:
+                'calc((var(--case-study-card-width) * 4) + (var(--case-study-gap) * 3))',
+              maskImage:
+                'linear-gradient(to right, transparent 0%, black 22%, black 78%, transparent 100%)',
+              WebkitMaskImage:
+                'linear-gradient(to right, transparent 0%, black 22%, black 78%, transparent 100%)',
+            }}
           >
-            {desktopStudies.map((study, itemIndex) => (
-              <div
-                key={`${study.company}-${itemIndex}`}
-                className='w-[22rem] flex-shrink-0 text-center md:w-[500px]'
-              >
-                <div className='overflow-hidden rounded-[1.75rem] border border-[color-mix(in_srgb,var(--lp-primary)_18%,white)] bg-white shadow-[0_18px_60px_rgba(15,23,42,0.08)]'>
-                  <div className='relative h-60 max-h-60 w-full overflow-hidden md:h-64 md:max-h-64'>
-                    <Image
-                      src={study.imageSrc}
-                      alt={study.imageAlt}
-                      fill
-                      priority
-                      className='object-cover'
-                    />
-                    <div className='absolute inset-x-0 bottom-0 flex h-20 items-end bg-gradient-to-t from-black/70 to-transparent'>
-                      <div className='p-4 text-left text-white'>
-                        <div className='text-sm font-bold'>{study.company}</div>
-                        <div className='text-xs'>{study.person}</div>
+            <div
+              onTransitionEnd={handleDesktopTransitionEnd}
+              className={`flex w-max gap-[var(--case-study-gap)] will-change-transform ${
+                isTransitionEnabled
+                  ? 'transition-transform duration-700 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]'
+                  : ''
+              }`}
+              style={{ transform: desktopTranslate }}
+            >
+              {desktopStudies.map((study, itemIndex) => {
+                const isPoppedCenter = itemIndex === 2 || itemIndex === 3;
+
+                const wrapperClass = isPoppedCenter
+                  ? 'opacity-100'
+                  : 'opacity-55';
+
+                const popClass = 'translate-y-0 scale-100';
+
+                const cardShadow = 'shadow-[0_14px_44px_rgba(15,23,42,0.08)]';
+
+                const cardTransitionClass =
+                  'transition-[opacity,transform] duration-700 [transition-timing-function:cubic-bezier(0.65,0,0.35,1)]';
+                const shadowTransitionClass =
+                  'transition-shadow duration-700 [transition-timing-function:cubic-bezier(0.65,0,0.35,1)]';
+
+                return (
+                  <div
+                    key={itemIndex}
+                    className={`w-[var(--case-study-card-width)] flex-shrink-0 text-center ${cardTransitionClass} ${wrapperClass} ${popClass}`}
+                  >
+                    <div
+                      className={`overflow-hidden rounded-[1.75rem] border border-[color-mix(in_srgb,var(--lp-primary)_18%,white)] bg-white ${shadowTransitionClass} ${cardShadow}`}
+                    >
+                      <div className='relative h-56 max-h-56 w-full overflow-hidden md:h-60 md:max-h-60 lg:h-64 lg:max-h-64'>
+                        {study.imageSrc ? (
+                          <Image
+                            src={study.imageSrc}
+                            alt={study.imageAlt}
+                            fill
+                            priority
+                            className='object-cover'
+                          />
+                        ) : (
+                          <div className='flex h-full w-full items-center justify-center bg-slate-100 text-xl font-bold text-slate-500'>
+                            No Image
+                          </div>
+                        )}
+                        <div className='absolute inset-x-0 bottom-0 flex h-20 items-end bg-gradient-to-t from-black/70 to-transparent'>
+                          <div className='p-4 text-left text-white'>
+                            <div className='text-sm font-bold'>
+                              {study.company}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className='min-h-[13.5rem] px-6 py-6 text-left'>
+                        <p className='text-[1rem] leading-[1.7] font-bold text-slate-800'>
+                          {study.comment}
+                        </p>
+                        <p className='mt-2 text-sm leading-7 font-normal text-slate-600'>
+                          {study.industry}
+                        </p>
+                        <p className='text-sm leading-7 font-normal text-slate-600'>
+                          {study.companySize}
+                        </p>
                       </div>
                     </div>
                   </div>
-                  <div className='flex min-h-[5.7rem] items-center px-6 py-6'>
-                    <p className='line-clamp-2 text-[1.15rem] leading-[1.6] font-black tracking-[-0.02em] text-slate-800'>
-                      {study.comment}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
+                );
+              })}
+            </div>
           </div>
         </div>
 
-        <div className='mt-8 flex flex-col items-center gap-5'>
-          <div className='flex items-center justify-center gap-4'>
+        <div className='mt-2 flex flex-col items-center gap-6'>
+          <div className='flex items-center justify-center gap-5'>
             <button
               type='button'
               onClick={showPrevious}
-              className='border-lp-border text-lp-text inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border bg-white shadow-[0_10px_22px_rgba(15,23,42,0.06)] transition hover:border-[var(--lp-primary-border)] hover:text-[var(--lp-primary)]'
+              className='border-lp-border text-lp-text group inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full border bg-white shadow-[0_10px_22px_rgba(15,23,42,0.06)] transition-[transform,border-color,color,box-shadow] duration-500 [transition-timing-function:cubic-bezier(0.65,0,0.35,1)] hover:-translate-x-0.5 hover:border-[var(--lp-primary-border)] hover:text-[var(--lp-primary)] hover:shadow-[0_14px_30px_rgba(85,189,207,0.18)]'
               aria-label='前の事例'
             >
-              <ChevronLeft className='h-4 w-4' strokeWidth={2.4} />
-            </button>
-            {CASE_STUDIES.map((study, dotIndex) => (
-              <button
-                key={study.company}
-                type='button'
-                onClick={() => {
-                  if (dotIndex === activeIndex) return;
-
-                  if (dotIndex === normalizeStudyIndex(activeIndex + 1)) {
-                    moveSlide(1);
-                  } else {
-                    moveSlide(-1);
-                  }
-                }}
-                className={`h-2.5 rounded-full transition ${
-                  dotIndex === activeIndex
-                    ? 'w-8 bg-[var(--lp-primary)]'
-                    : 'w-2.5 bg-slate-300'
-                }`}
-                aria-label={`${study.company} を表示`}
+              <ChevronLeft
+                className='h-5 w-5 transition-transform duration-500 [transition-timing-function:cubic-bezier(0.65,0,0.35,1)] group-hover:-translate-x-0.5'
+                strokeWidth={2.4}
               />
-            ))}
+            </button>
+            <div
+              className='relative flex h-3 items-center gap-3'
+              style={
+                {
+                  '--case-dot-size': '0.75rem',
+                  '--case-dot-gap': '0.75rem',
+                  '--case-dot-step':
+                    'calc(var(--case-dot-size) + var(--case-dot-gap))',
+                  filter: 'url(#case-study-goo)',
+                } as CSSProperties
+              }
+            >
+              <span
+                aria-hidden='true'
+                className='pointer-events-none absolute top-1/2 left-0 z-20 h-3 w-10 -translate-y-1/2 rounded-full bg-[var(--lp-primary)] transition-transform duration-700 [transition-timing-function:cubic-bezier(0.45,1.4,0.55,1)] will-change-transform'
+                style={{
+                  transform: `translate3d(calc(var(--case-dot-step) * ${displayActiveIndex} - (2.5rem - var(--case-dot-size)) / 2), -50%, 0)`,
+                }}
+              />
+              {CASE_STUDIES.map((study, dotIndex) => (
+                <button
+                  key={study.company}
+                  type='button'
+                  onClick={() => {
+                    if (dotIndex === activeIndex) return;
+
+                    if (dotIndex === normalizeStudyIndex(activeIndex + 1)) {
+                      moveSlide(1);
+                    } else {
+                      moveSlide(-1);
+                    }
+                  }}
+                  className='relative z-10 h-3 w-3 rounded-full bg-slate-300 transition-colors duration-500'
+                  aria-label={`${study.company} を表示`}
+                />
+              ))}
+            </div>
             <button
               type='button'
               onClick={showNext}
-              className='border-lp-border text-lp-text inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border bg-white shadow-[0_10px_22px_rgba(15,23,42,0.06)] transition hover:border-[var(--lp-primary-border)] hover:text-[var(--lp-primary)]'
+              className='border-lp-border text-lp-text group inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full border bg-white shadow-[0_10px_22px_rgba(15,23,42,0.06)] transition-[transform,border-color,color,box-shadow] duration-500 [transition-timing-function:cubic-bezier(0.65,0,0.35,1)] hover:translate-x-0.5 hover:border-[var(--lp-primary-border)] hover:text-[var(--lp-primary)] hover:shadow-[0_14px_30px_rgba(85,189,207,0.18)]'
               aria-label='次の事例'
             >
-              <ChevronRight className='h-4 w-4' strokeWidth={2.4} />
+              <ChevronRight
+                className='h-5 w-5 transition-transform duration-500 [transition-timing-function:cubic-bezier(0.65,0,0.35,1)] group-hover:translate-x-0.5'
+                strokeWidth={2.4}
+              />
             </button>
           </div>
 
           <button
             type='button'
-            className='inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-2.5 text-sm font-black text-slate-700 shadow-[0_8px_20px_rgba(15,23,42,0.06)] transition hover:-translate-y-0.5 hover:bg-slate-50'
+            className='inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-7 py-3.5 text-base font-bold text-slate-700 shadow-[0_8px_20px_rgba(15,23,42,0.06)] transition hover:-translate-y-0.5 hover:bg-slate-50'
           >
-            導入事例を見る
-            <ArrowUpRight className='h-4 w-4' />
+            全て見る
+            <ArrowUpRight className='h-5 w-5' />
           </button>
         </div>
       </div>
     </section>
+    </>
   );
 }

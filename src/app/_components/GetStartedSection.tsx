@@ -87,10 +87,10 @@ function DocumentPreview() {
       <div className='border-lp-border rounded-[0.95rem] border bg-[linear-gradient(180deg,var(--lp-surface)_0%,var(--lp-surface-soft)_100%)] p-2.5'>
         <div className='flex items-start justify-between gap-3'>
           <div>
-            <p className='text-lp-text-subtle text-[0.48rem] font-bold tracking-[0.14em] uppercase'>
+            <p className='text-lp-text-subtle text-[0.48rem] font-bold uppercase'>
               Archaive by Star Up
             </p>
-            <p className='text-lp-text mt-0.5 text-[0.66rem] font-black tracking-[-0.03em]'>
+            <p className='text-lp-text mt-0.5 text-[0.66rem] font-bold'>
               ARCHAIVEご紹介資料
             </p>
           </div>
@@ -260,16 +260,16 @@ export function GetStartedSection() {
     >
       <div className='relative z-10 mx-auto max-w-[1320px]'>
         <div className='text-center'>
-          <p className='text-sm font-black tracking-[0.24em] text-white/95 sm:text-base'>
+          <p className='text-sm font-bold text-white/95 sm:text-[0.95rem]'>
             GET STARTED
           </p>
-          <h2 className='mx-auto mt-5 text-[clamp(2.15rem,4vw,3.45rem)] leading-[1.1] font-black tracking-[-0.05em] text-white'>
-            「図面管理の、その先」を、
+          <h2 className='mx-auto mt-5 text-[clamp(1.625rem,2.6vw,2rem)] leading-[1.35] font-bold text-white'>
+            「図面管理のその先」を
             <br />
             見にきてください。
           </h2>
-          <p className='mx-auto mt-5 max-w-[40rem] text-[1rem] leading-8 font-semibold text-white/95 sm:text-[1.06rem]'>
-            貴社の図面と書類で、何が紐づくか。3分の資料か、30分のデモで。
+          <p className='mx-auto mt-5 max-w-[40rem] text-[1rem] leading-8 font-normal text-white/95 sm:text-[1.06rem]'>
+            貴社の図面と書類で何が紐づくか。3分の資料か30分のデモで。
           </p>
         </div>
 
@@ -287,7 +287,7 @@ export function GetStartedSection() {
                     : 'border-white/76'
                 }`}
               >
-                <div className='bg-lp-text absolute top-0 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2 rounded-full border-[3px] border-white px-4 py-1.5 text-xs font-black tracking-[0.03em] whitespace-nowrap text-white shadow-[0_10px_24px_rgba(15,23,42,0.16)]'>
+                <div className='bg-lp-text absolute top-0 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2 rounded-full border-[3px] border-white px-4 py-1.5 text-xs font-bold whitespace-nowrap text-white shadow-[0_10px_24px_rgba(15,23,42,0.16)]'>
                   {card.badge}
                 </div>
 
@@ -301,20 +301,20 @@ export function GetStartedSection() {
                   </div>
 
                   <div className='mt-5 flex flex-col justify-center lg:mt-0'>
-                    <p className='text-lp-primary text-xs font-black tracking-[0.22em] uppercase'>
+                    <p className='text-lp-primary text-xs font-bold uppercase'>
                       {card.eyebrow}
                     </p>
-                    <h3 className='text-lp-text mt-3 text-[clamp(1.35rem,2.3vw,1.95rem)] leading-[1.12] font-black tracking-[-0.04em] whitespace-pre-line'>
+                    <h3 className='text-lp-text mt-3 text-[clamp(1.25rem,2.1vw,1.75rem)] leading-[1.2] font-bold whitespace-pre-line'>
                       {card.title}
                     </h3>
-                    <p className='text-lp-text-muted mt-3 text-[0.9rem] leading-7 font-medium'>
+                    <p className='text-lp-text-muted mt-3 text-[0.9rem] leading-7 font-normal'>
                       {card.body}
                     </p>
 
                     <RippleButton
                       type='button'
                       onClick={() => setActiveMode(card.key)}
-                      className={`mt-5 inline-flex min-h-12 items-center justify-center self-start rounded-full border px-6 text-sm font-black shadow-[0_12px_24px_rgba(15,23,42,0.08)] transition-transform duration-300 hover:-translate-y-0.5 ${
+                      className={`mt-5 inline-flex min-h-12 items-center justify-center self-start rounded-full border px-6 text-sm font-bold shadow-[0_12px_24px_rgba(15,23,42,0.08)] transition-transform duration-300 hover:-translate-y-0.5 ${
                         isActive
                           ? 'border-lp-primary-deep bg-[linear-gradient(90deg,var(--lp-primary-strong)_0%,var(--lp-primary-deep)_100%)] text-white'
                           : 'border-lp-border text-lp-text bg-white'
@@ -348,13 +348,13 @@ export function GetStartedSection() {
                   <MessageSquareText className='h-6 w-6' strokeWidth={2.1} />
                 </span>
                 <div>
-                  <p className='text-lp-primary text-xs font-black tracking-[0.22em] uppercase'>
+                  <p className='text-lp-primary text-xs font-bold uppercase'>
                     CONTACT
                   </p>
-                  <h3 className='text-lp-text mt-1 text-[1.12rem] leading-tight font-black tracking-[-0.04em]'>
+                  <h3 className='text-lp-text mt-1 text-[1.12rem] leading-tight font-bold'>
                     お問い合わせはこちら
                   </h3>
-                  <p className='text-lp-text-muted mt-1.5 text-[0.88rem] leading-6 font-medium'>
+                  <p className='text-lp-text-muted mt-1.5 text-[0.88rem] leading-6 font-normal'>
                     相談内容に応じて、必要なフォームをご案内します。
                   </p>
                 </div>
@@ -366,7 +366,7 @@ export function GetStartedSection() {
                 onClick={() =>
                   setActiveMode(getNextMode(activeMode, 'contact'))
                 }
-                className={`inline-flex min-h-12 items-center justify-center rounded-full border px-6 text-sm font-black shadow-[0_12px_24px_rgba(15,23,42,0.08)] transition-transform duration-300 hover:-translate-y-0.5 ${
+                className={`inline-flex min-h-12 items-center justify-center rounded-full border px-6 text-sm font-bold shadow-[0_12px_24px_rgba(15,23,42,0.08)] transition-transform duration-300 hover:-translate-y-0.5 ${
                   activeMode === 'contact'
                     ? 'border-lp-primary-deep bg-[linear-gradient(90deg,var(--lp-primary-strong)_0%,var(--lp-primary-deep)_100%)] text-white'
                     : 'border-lp-border text-lp-text bg-white'
@@ -414,13 +414,13 @@ export function GetStartedSection() {
                   </button>
 
                   <div className='text-center'>
-                    <p className='text-lp-primary text-sm font-black tracking-[0.24em]'>
+                    <p className='text-lp-primary text-sm font-bold'>
                       {activeContent.eyebrow}
                     </p>
-                    <h3 className='text-lp-text mt-4 text-[clamp(1.65rem,3vw,2.4rem)] leading-[1.1] font-black tracking-[-0.05em]'>
+                    <h3 className='text-lp-text mt-4 text-[clamp(1.5rem,2.4vw,2rem)] leading-[1.25] font-bold'>
                       {activeContent.title}
                     </h3>
-                    <p className='text-lp-text-muted mx-auto mt-4 max-w-[38rem] text-[1rem] leading-8 font-medium'>
+                    <p className='text-lp-text-muted mx-auto mt-4 max-w-[38rem] text-[1rem] leading-8 font-normal'>
                       {activeContent.body}
                     </p>
                   </div>
@@ -542,10 +542,10 @@ export function GetStartedSection() {
                         </div>
                       ) : (
                         <div className='border-lp-border rounded-[1.5rem] border border-dashed bg-[linear-gradient(180deg,var(--lp-surface-soft)_0%,var(--lp-primary-surface)_100%)] px-5 py-4'>
-                          <p className='text-lp-primary text-sm font-black tracking-[0.14em]'>
+                          <p className='text-lp-primary text-sm font-bold'>
                             SUPPORT
                           </p>
-                          <p className='text-lp-text-muted mt-2 text-sm leading-7 font-medium'>
+                          <p className='text-lp-text-muted mt-2 text-sm leading-7 font-normal'>
                             いただいた内容に応じて、担当から最適なご案内を差し上げます。
                           </p>
                         </div>
@@ -559,7 +559,7 @@ export function GetStartedSection() {
                       >
                         ご相談内容
                         {activeContent.consultationOptional ? (
-                          <span className='text-lp-text-subtle ml-2 text-xs font-medium'>
+                          <span className='text-lp-text-subtle ml-2 text-xs font-normal'>
                             任意
                           </span>
                         ) : null}
@@ -576,13 +576,13 @@ export function GetStartedSection() {
                     <div className='flex flex-col items-center gap-4 pt-2'>
                       <RippleButton
                         type='submit'
-                        className='inline-flex min-h-14 items-center justify-center rounded-2xl bg-[linear-gradient(180deg,var(--lp-primary)_0%,var(--lp-primary-strong)_100%)] px-10 text-base font-black text-white shadow-[0_18px_38px_rgba(85,189,207,0.28)] transition-transform duration-300 hover:-translate-y-0.5 hover:shadow-[0_22px_42px_rgba(85,189,207,0.32)]'
+                        className='inline-flex min-h-14 items-center justify-center rounded-2xl bg-[linear-gradient(180deg,var(--lp-primary)_0%,var(--lp-primary-strong)_100%)] px-10 text-base font-bold text-white shadow-[0_18px_38px_rgba(85,189,207,0.28)] transition-transform duration-300 hover:-translate-y-0.5 hover:shadow-[0_22px_42px_rgba(85,189,207,0.32)]'
                         bgClassName='bg-[linear-gradient(180deg,var(--lp-primary-strong)_0%,var(--lp-primary-deep)_100%)]'
                         contentClassName='text-white'
                       >
                         {activeContent.submit}
                       </RippleButton>
-                      <p className='text-sm leading-7 font-semibold text-white/95'>
+                      <p className='text-sm leading-7 font-normal text-white/95'>
                         送信後、担当より順次ご連絡いたします。
                       </p>
                     </div>

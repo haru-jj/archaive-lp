@@ -50,7 +50,7 @@ function FooterLink({
   external?: boolean;
 }) {
   const baseClassName =
-    'inline-flex items-center gap-1.5 text-[1rem] leading-8 font-medium text-lp-text transition-colors duration-200 hover:text-lp-primary-strong';
+    'inline-flex items-center gap-1.5 text-[1rem] leading-8 font-normal text-lp-text transition-colors duration-200 hover:text-lp-primary-strong';
 
   if (external) {
     return (
@@ -85,23 +85,23 @@ export function Footer() {
                 className='h-12 w-12'
               />
               <div>
-                <div className='text-lp-text text-[2.1rem] leading-none font-black tracking-[-0.05em]'>
+                <div className='text-lp-text text-[2.1rem] leading-none font-bold'>
                   ARCHAIVE
                 </div>
-                <div className='text-lp-text mt-1 text-[0.95rem] font-medium tracking-[0.04em]'>
+                <div className='text-lp-text mt-1 text-[0.95rem] font-normal'>
                   by STAR UP
                 </div>
               </div>
             </Link>
 
-            <p className='text-lp-text-muted mt-8 max-w-[28rem] text-[1.05rem] leading-9 font-medium'>
-              中小製造業のための、図面管理AI／情報基盤。図面・見積・仕様・検査記録・判断の経緯まで、製品ごとに紐づけて蓄積します。
+            <p className='text-lp-text-muted mt-8 max-w-[28rem] text-[1.05rem] leading-9 font-normal'>
+              製造業のための、図面管理AI／情報基盤。図面・見積・仕様・検査記録・判断の経緯まで、製品ごとに紐づけて蓄積します。
             </p>
           </div>
 
           <div className='grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8'>
             <div>
-              <p className='text-lp-text-subtle text-[0.94rem] font-black tracking-[0.18em] uppercase'>
+              <p className='text-lp-text-subtle text-[0.94rem] font-bold uppercase'>
                 Product
               </p>
               <div className='mt-5 flex flex-col'>
@@ -116,7 +116,7 @@ export function Footer() {
             </div>
 
             <div>
-              <p className='text-lp-text-subtle text-[0.94rem] font-black tracking-[0.18em] uppercase'>
+              <p className='text-lp-text-subtle text-[0.94rem] font-bold uppercase'>
                 Navigation
               </p>
               <div className='mt-5 flex flex-col'>
@@ -131,7 +131,7 @@ export function Footer() {
             </div>
 
             <div>
-              <p className='text-lp-text-subtle text-[0.94rem] font-black tracking-[0.18em] uppercase'>
+              <p className='text-lp-text-subtle text-[0.94rem] font-bold uppercase'>
                 Company
               </p>
               <div className='mt-5 flex flex-col'>
@@ -146,7 +146,7 @@ export function Footer() {
             </div>
 
             <div>
-              <p className='text-lp-text-subtle text-[0.94rem] font-black tracking-[0.18em] uppercase'>
+              <p className='text-lp-text-subtle text-[0.94rem] font-bold uppercase'>
                 External
               </p>
               <div className='mt-5 flex flex-col'>
@@ -164,7 +164,7 @@ export function Footer() {
         </div>
 
         <div className='relative z-10 flex flex-col gap-6 pt-8 lg:flex-row lg:items-center lg:justify-between'>
-          <p className='text-lp-text text-[0.98rem] font-medium'>
+          <p className='text-lp-text text-[0.98rem] font-normal'>
             © 2026 STAR UP Inc. All rights reserved.
           </p>
 
@@ -173,7 +173,7 @@ export function Footer() {
               <Link
                 key={link.label}
                 href={link.href}
-                className='text-lp-text hover:text-lp-primary-strong text-[0.94rem] font-medium transition-colors duration-200'
+                className='text-lp-text hover:text-lp-primary-strong text-[0.94rem] font-normal transition-colors duration-200'
               >
                 {link.label}
               </Link>

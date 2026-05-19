@@ -2,8 +2,6 @@
 
 import Image from 'next/image';
 
-import { FileSearch, Puzzle, Workflow } from 'lucide-react';
-
 import { RippleLink } from './CtaRipple';
 
 const ORBIT_ITEMS = [
@@ -160,88 +158,115 @@ type ProblemCard = {
   title: string;
   description: string;
   metric: string;
-  icon: typeof FileSearch;
+  illustration: string;
+  illustrationAlt: string;
+  illustrationClass: string;
 };
 
 const problemCards: ProblemCard[] = [
   {
     number: '01',
-    title: '図面はあった。\nでも、その周りが出てこない。',
+    title: '必要な図面がすぐに見つからない',
     description:
-      '見積書は別フォルダ、仕様書はメール、検査記録は紙の棚。1製品の全体像を揃えるだけで、午前が消える。',
-    metric: '年間 240時間 ロス',
-    icon: FileSearch,
+      '図面はファイルサーバーに、仕様書はメール、検査記録は紙の棚。1つの製品の全体像を集めるだけで、午前が消えていきます。',
+    metric: '年間 240時間のロス',
+    illustration: '/lp-v2/problem_too_many_data.svg',
+    illustrationAlt: '大量のデータに埋もれて図面を探すイラスト',
+    illustrationClass: 'h-32 w-[58%] sm:h-36',
   },
   {
     number: '02',
-    title: 'あの人の頭の中にしか、なかった。',
+    title: 'ノウハウが個人に依存している',
     description:
-      '取引先との取り決め、過去のトラブル、値段を下げた理由。書き残す場所がないから、退職と一緒に消えた。',
-    metric: '知識消失リスク',
-    icon: Puzzle,
+      '取引先との取り決め、過去のトラブルの原因、設計判断の理由。記録する場所がないから、担当者の異動や退職とともに消えていきます。',
+    metric: '知識の消失リスク',
+    illustration: '/lp-v2/problem_zokuzinka.svg',
+    illustrationAlt: '属人化したノウハウのイラスト',
+    illustrationClass: 'h-32 w-[58%] sm:h-36',
   },
   {
     number: '03',
-    title: '同じ製品なのに、見ているデータが違う。',
+    title: '同じ製品なのに、見ているデータが違う',
     description:
-      '設計の図面、調達の単価表、製造の工程表。同じ製品のはずが、別ファイルで、更新タイミングも違う。確認の電話が毎日鳴る。',
-    metric: '確認往復が常態化',
-    icon: Workflow,
+      '設計は図面、製造は工程表、調達は単価表。同じ製品なのに、別ファイル、別タイミング。\n確認のための連絡が、毎日発生しています。',
+    metric: '確認業務の常態化',
+    illustration: '/lp-v2/problem_different_data.svg',
+    illustrationAlt: '部門ごとに異なるデータを参照しているイラスト',
+    illustrationClass: 'h-32 w-[58%] sm:h-36',
   },
 ];
 
 export function ProblemSolutionSection() {
   return (
-    <section className='bg-white px-6 py-16 sm:px-10 lg:px-16 lg:py-20'>
-      <div className='mx-auto max-w-[1320px]'>
+    <section className='relative overflow-hidden bg-[linear-gradient(180deg,#0A1B40_0%,#0D2453_32%,#27437A_58%,#8AA0C2_82%,#FFFFFF_100%)] px-6 py-16 sm:px-10 lg:px-16 lg:py-20'>
+      <div className='pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_10%,rgba(85,189,207,0.16),transparent_42%),radial-gradient(circle_at_88%_18%,rgba(85,189,207,0.10),transparent_38%)]' />
+      <div className='relative z-10 mx-auto max-w-[1320px]'>
         <div className='mx-auto max-w-[840px] text-center'>
-          <p className='text-lp-primary text-sm font-semibold tracking-[0.18em]'>
+          <p className='text-lp-primary text-sm font-bold'>
             THE PROBLEM
           </p>
-          <h2 className='text-lp-text mt-4 text-[clamp(2.15rem,4vw,3.7rem)] leading-[1.04] font-black tracking-[-0.06em]'>
-            <span className='block'>製造現場で起きている</span>
-            <span className='block'>3つの情報の分断</span>
+          <h2 className='mt-4 text-[clamp(1.625rem,2.6vw,2rem)] leading-[1.35] font-bold text-white'>
+            「辿り着けない」がなくなる会社へ
           </h2>
           <div className='mx-auto mt-6 max-w-[640px] space-y-3'>
-            <div className='border-lp-text-subtle/55 border-t-2 border-solid' />
-            <p className='text-lp-text-subtle mx-auto max-w-[44rem] text-base leading-7 font-semibold sm:text-lg'>
-              図面そのものの保管はできても、図面に紐づく仕様書や過去のトラブル、設計判断の経緯までを一元的に参照できる仕組みは、整備されていない企業が多く存在します。情報が分断されている状態は現場の判断を遅らせ、ノウハウの引き継ぎを困難にしています。
+            <div className='border-t-2 border-solid border-white/22' />
+            <p className='mx-auto max-w-[44rem] text-base leading-7 font-normal text-white/78 sm:text-lg'>
+              図面は保管されている。仕様書も、過去のトラブル記録もどこかにある。
+              <br />
+              それなのに、必要なときに必要な情報が出てこない。
+              <br />
+              製造現場で起きている3つの分断を、ARCHAIVEは解消します。
             </p>
           </div>
         </div>
 
         <div className='mt-12 grid gap-8 lg:grid-cols-3'>
           {problemCards.map(
-            ({ number, title, description, metric, icon: Icon }) => (
+            ({
+              number,
+              title,
+              description,
+              metric,
+              illustration,
+              illustrationAlt,
+              illustrationClass,
+            }) => (
               <article
                 key={number}
-                className='border-lp-border relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border bg-white px-6 py-8 shadow-[0_18px_44px_rgba(15,23,42,0.07)] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_28px_60px_rgba(15,23,42,0.10)]'
+                className='relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-white/70 bg-white px-6 pt-9 pb-8 shadow-[0_18px_44px_rgba(0,10,40,0.28)] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_28px_60px_rgba(0,10,40,0.36)]'
               >
-                <div className='pointer-events-none absolute inset-x-0 top-0 h-1.5 bg-[linear-gradient(90deg,color-mix(in_srgb,var(--lp-danger)_80%,transparent)_0%,color-mix(in_srgb,var(--lp-danger)_30%,transparent)_100%)]' />
+                <div className='pointer-events-none absolute inset-x-0 top-0 h-1.5 bg-[linear-gradient(90deg,var(--lp-primary-strong)_0%,color-mix(in_srgb,var(--lp-primary)_30%,transparent)_100%)]' />
 
-                <span className='text-lp-text/[0.05] pointer-events-none absolute -top-6 -right-2 text-[9rem] leading-none font-black tracking-[-0.06em] select-none'>
+                <span className='pointer-events-none absolute -top-4 -left-3 text-[8rem] leading-none font-bold text-[color-mix(in_srgb,var(--lp-text)_32%,transparent)] select-none sm:-top-6 sm:-left-4 sm:text-[10.5rem]'>
                   {number}
                 </span>
 
-                <div className='relative z-10 flex h-16 w-16 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,var(--lp-primary)_0%,var(--lp-primary-strong)_100%)] text-white shadow-[0_12px_28px_color-mix(in_srgb,var(--lp-primary)_38%,transparent)]'>
-                  <span className='absolute inset-0 rounded-2xl bg-[radial-gradient(circle_at_30%_25%,rgba(255,255,255,0.45),transparent_60%)]' />
-                  <Icon className='relative h-8 w-8 stroke-[1.8]' />
+                <div className={`relative z-10 ml-auto flex items-center justify-center ${illustrationClass}`}>
+                  <Image
+                    src={illustration}
+                    alt={illustrationAlt}
+                    width={260}
+                    height={220}
+                    className='h-full w-auto object-contain'
+                  />
                 </div>
 
-                <p className='text-lp-primary relative z-10 mt-5 text-[1.05rem] leading-none font-black tracking-[0.04em]'>
-                  {number}
-                </p>
-                <h3 className='text-lp-text relative z-10 mt-3 text-[1.16rem] leading-tight font-bold tracking-[-0.03em] whitespace-pre-line'>
+                <h3 className='text-lp-text relative z-10 mt-6 text-[1.16rem] leading-tight font-bold whitespace-pre-line'>
                   {title}
                 </h3>
-                <p className='text-lp-text-muted relative z-10 mt-3 text-[0.92rem] leading-7 font-medium'>
+                <p className='text-lp-text-muted relative z-10 mt-3 text-[0.92rem] leading-7 font-normal whitespace-pre-line'>
                   {description}
                 </p>
 
-                <div className='relative z-10 mt-auto pt-6'>
-                  <span className='text-lp-danger ring-lp-danger/30 inline-flex items-center gap-2 rounded-full bg-[color-mix(in_srgb,var(--lp-danger)_12%,white)] px-4 py-2 text-[0.85rem] font-black ring-1'>
-                    <span className='bg-lp-danger h-1.5 w-1.5 animate-pulse rounded-full' />
-                    {metric}
+                <div className='relative z-10 mt-auto pt-6 text-center'>
+                  <span className='relative inline-block px-5 py-2'>
+                    <span
+                      aria-hidden='true'
+                      className='pointer-events-none absolute inset-0 rounded-full bg-[color-mix(in_srgb,var(--lp-primary)_20%,white)] ring-1 ring-[color-mix(in_srgb,var(--lp-primary)_32%,transparent)]'
+                    />
+                    <span className='relative text-[1.1rem] font-bold text-[var(--lp-text)] sm:text-[1.18rem]'>
+                      {metric}
+                    </span>
                   </span>
                 </div>
               </article>
@@ -261,21 +286,29 @@ export function ProblemSolutionSection() {
 
           <div className='relative z-10 grid items-center gap-7 lg:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.92fr)] lg:gap-6'>
             <div className='max-w-[44rem]'>
-              <p className='text-sm font-black tracking-[0.24em] text-white/92 uppercase'>
+              <p className='text-sm font-bold text-white/92 uppercase'>
                 THE SOLUTION
               </p>
-              <h3 className='mt-4 text-[clamp(1.9rem,4vw,3.45rem)] leading-[1.12] font-black tracking-[-0.04em] text-white'>
-                <span className='block'>図面を入口に</span>
-                <span className='block'>製造のノウハウが、</span>
-                <span className='block'>会社に残る仕組みを。</span>
+              <h3 className='mt-4 text-[clamp(1.375rem,2.2vw,1.75rem)] leading-[1.35] font-bold text-white'>
+                図面とそれを取り巻くすべての
+                <br />
+                情報を製品単位で。
               </h3>
-              <p className='mt-5 max-w-[40rem] text-base leading-8 font-semibold text-white/94 sm:text-[1.05rem]'>
-                ARCHAIVEは、図面と、図面に紐づくものづくりの情報を、製品単位で蓄積する次世代のAIデータ基盤です。担当者の異動や退職があっても、過去のノウハウと判断は会社に残り、AIで活用できる状態が維持されます。
-              </p>
+              <div className='mt-5 max-w-[40rem] space-y-5 text-base leading-8 font-normal text-white/94 sm:text-[1.05rem]'>
+                <p>
+                  貴社の製品が1つ完成するまでに設計者の判断、取引先との交渉、現場での試行錯誤が積み重なっています。そのほとんどは図面そのものには書かれず、担当者の経験として蓄積されてきました。
+                </p>
+                <p className='text-[1.1rem] font-bold sm:text-[1.2rem]'>
+                  ARCHAIVEはその経験を図面と一緒に残す仕組みです。
+                </p>
+                <p>
+                  仕様書、過去のトラブル、設計判断の経緯まで製品単位で蓄積されます。担当者が変わっても、過去の判断は会社に残ります。新しいメンバーがAIに問いかけるだけで、5年前の図面にも10年前の判断にも辿り着けます。
+                </p>
+              </div>
               <div className='mt-6 flex flex-col gap-3 sm:flex-row'>
                 <RippleLink
                   href='#contact'
-                  className='inline-flex items-center justify-center rounded-2xl bg-white px-7 py-4 text-base font-black text-[color-mix(in_srgb,var(--lp-primary)_68%,black)] shadow-[0_18px_40px_rgba(15,23,42,0.18)] transition hover:translate-y-[-1px] hover:bg-[color-mix(in_srgb,white_90%,var(--lp-primary))]'
+                  className='inline-flex items-center justify-center rounded-2xl bg-white px-7 py-4 text-base font-bold text-[color-mix(in_srgb,var(--lp-primary)_68%,black)] shadow-[0_18px_40px_rgba(15,23,42,0.18)] transition hover:translate-y-[-1px] hover:bg-[color-mix(in_srgb,white_90%,var(--lp-primary))]'
                   bgClassName='bg-[color-mix(in_srgb,var(--lp-primary)_86%,black_6%)]'
                   contentClassName='text-inherit group-hover:text-white'
                 >
@@ -283,7 +316,7 @@ export function ProblemSolutionSection() {
                 </RippleLink>
                 <RippleLink
                   href='#demo'
-                  className='inline-flex items-center justify-center rounded-2xl border border-white/45 bg-white/10 px-7 py-4 text-base font-black text-white shadow-[0_12px_30px_rgba(15,23,42,0.10)] backdrop-blur-sm transition hover:translate-y-[-1px] hover:bg-white/16'
+                  className='inline-flex items-center justify-center rounded-2xl border border-white/45 bg-white/10 px-7 py-4 text-base font-bold text-white shadow-[0_12px_30px_rgba(15,23,42,0.10)] backdrop-blur-sm transition hover:translate-y-[-1px] hover:bg-white/16'
                   bgClassName='bg-[color-mix(in_srgb,var(--lp-primary)_86%,black_6%)]'
                   contentClassName='text-inherit'
                 >
@@ -355,7 +388,7 @@ export function ProblemSolutionSection() {
                           <div className='absolute inset-1 rounded-full bg-[linear-gradient(135deg,rgba(255,255,255,0.92),rgba(255,255,255,0.72))] shadow-lg' />
                           <div className='absolute inset-1 rounded-full bg-[linear-gradient(45deg,color-mix(in_srgb,var(--lp-primary)_80%,transparent),color-mix(in_srgb,var(--lp-primary)_58%,transparent),transparent)]' />
                           <div className='absolute inset-0 animate-pulse rounded-full bg-[color-mix(in_srgb,var(--lp-primary)_20%,transparent)] blur-xl' />
-                          <span className='relative z-10 px-1.5 text-[8px] font-black tracking-[0.02em] whitespace-nowrap text-white drop-shadow-[0_1px_8px_rgba(0,0,0,0.22)] sm:px-2 sm:text-[10px] lg:text-[11px]'>
+                          <span className='relative z-10 px-1.5 text-[8px] font-bold whitespace-nowrap text-white drop-shadow-[0_1px_8px_rgba(0,0,0,0.22)] sm:px-2 sm:text-[10px] lg:text-[11px]'>
                             {item.label}
                           </span>
                         </div>

@@ -14,23 +14,23 @@ import {
 const STEPS = [
   {
     number: '01',
-    title: '標準機能で即日稼働',
-    body: 'アカウント作成後、最短1週間で稼働。既存の図面・書類をアップロードするだけでAI検索が使えるようになります。',
-    period: '最短1週間',
+    title: '最短1週間で「使い始める」',
+    body: '今ある図面をアップロードするだけ。AIが読み取って、情報を整理します。データの事前整備は不要です。',
+    period: 'ARCHAIVE-CORE / 契約後〜1ヶ月',
     icon: DatabaseZap,
   },
   {
     number: '02',
-    title: 'ERPやCADとの統合',
-    body: '既存のERP・CAD・ファイルサーバーとAPI連携。データを移行するのではなく、つなぐ。業務フローを変えずに導入できます。',
-    period: '2〜4週間',
+    title: '既存のシステムと「つなぐ」',
+    body: 'ERP・CAD・ファイルサーバーとAPI連携。データを引っ越すのではなく、つなげる。業務フローを変えずに導入できます。',
+    period: 'ARCHAIVE-CRM / 連携拡張（2〜4週間）',
     icon: PlugZap,
   },
   {
     number: '03',
-    title: 'ARCHAIVE+（カスタム開発）',
-    body: '蓄積されたデータをベースに、自社専用のAIエージェントを開発。見積自動化・品質検査支援など、個社の課題に特化したAIを構築します。',
-    period: '1〜3ヶ月',
+    title: '自社専用のAIを「育てる」',
+    body: '蓄積されたデータをもとに、AI開発チームが自社専用のAIを構築します。見積自動化、外観検査、需要予測まで、業務課題に合わせて開発できます。',
+    period: 'ARCHAIVE+ / カスタム開発（2〜3ヶ月）',
     icon: Sparkles,
   },
 ] as const;
@@ -70,19 +70,23 @@ const CTA_IMAGES = [
 
 export function GettingStartedSection() {
   return (
-    <section className='relative overflow-hidden bg-white px-6 py-16 sm:px-10 lg:px-16 lg:py-20'>
+    <section
+      id='steps'
+      className='relative scroll-mt-24 overflow-hidden bg-[#F4FAFD] px-6 py-16 sm:px-10 lg:px-16 lg:py-20'
+    >
       <div className='relative z-10 mx-auto max-w-[1320px]'>
         <div className='text-center'>
-          <p className='text-lp-primary text-sm font-black tracking-[0.24em] sm:text-base'>
+          <p className='text-lp-primary text-sm font-bold sm:text-[0.95rem]'>
             GETTING STARTED
           </p>
-          <h2 className='text-lp-text mx-auto mt-5 max-w-none text-[clamp(1.95rem,8.2vw,3.65rem)] leading-[1.12] font-black tracking-[-0.06em] lg:leading-[1.07]'>
-            <span className='block'>利用開始から自社専用AI構築までの、</span>
-            <span className='block'>3つのステップ</span>
+          <h2 className='text-lp-text mx-auto mt-5 max-w-none text-[clamp(1.625rem,2.6vw,2rem)] leading-[1.35] font-bold'>
+            使い始めて自社のAIを育てるまでの3ステップ
           </h2>
           <div className='border-lp-text/52 mx-auto mt-6 h-px w-full max-w-[20rem] border-t-2 border-solid sm:max-w-[23rem]' />
-          <p className='text-lp-text-subtle mx-auto mt-4 max-w-[44rem] text-base leading-7 font-semibold sm:text-lg'>
-            ARCHAIVEは利用開始、既存システムとの連携、自社専用AIの構築の3段階で段階的に導入いただけます。
+          <p className='text-lp-text-subtle mx-auto mt-4 max-w-[44rem] text-base leading-7 font-normal sm:text-lg'>
+            ARCHAIVEは最短1週間で使い始められます。
+            <br />
+            自社専用AIの開発までを、3段階で段階的に進められます。
           </p>
         </div>
 
@@ -107,25 +111,23 @@ export function GettingStartedSection() {
                     <span className='flex h-12 w-12 items-center justify-center rounded-2xl bg-[color-mix(in_srgb,var(--lp-primary)_14%,white)] text-[var(--lp-primary)]'>
                       <Icon className='h-6 w-6' strokeWidth={2.2} />
                     </span>
-                    <span className='text-lp-text-subtle/55 text-[2rem] leading-none font-black tracking-[-0.06em]'>
+                    <span className='text-lp-text-subtle/55 text-[2rem] leading-none font-bold'>
                       {step.number}
                     </span>
                   </div>
 
-                  <h3 className='text-lp-text mt-5 text-[1.22rem] leading-tight font-black tracking-[-0.04em]'>
+                  <h3 className='text-lp-text mt-5 text-[1.22rem] leading-tight font-bold'>
                     {step.title}
                   </h3>
-                  <div className='mt-2 w-20 text-[var(--lp-primary)]'>
-                    ~~~~~~~
-                  </div>
+                  <div className='mt-3 h-0.5 w-20 rounded-full bg-[var(--lp-primary)]' />
 
-                  <p className='text-lp-text-muted mt-4 text-[0.92rem] leading-7 font-medium'>
+                  <p className='text-lp-text-muted mt-4 text-[0.92rem] leading-7 font-normal'>
                     {step.body}
                   </p>
 
                   <div className='border-lp-text/55 mt-5 border-t-2 border-solid pt-4'>
-                    <p className='text-sm font-bold text-[var(--lp-primary)]'>
-                      ・ {step.period}
+                    <p className='text-center text-[1.2rem] leading-tight font-bold text-[var(--lp-primary)]'>
+                      {step.period}
                     </p>
                   </div>
                 </article>
@@ -153,25 +155,23 @@ export function GettingStartedSection() {
                     <span className='flex h-12 w-12 items-center justify-center rounded-2xl bg-[color-mix(in_srgb,var(--lp-primary)_14%,white)] text-[var(--lp-primary)]'>
                       <Icon className='h-6 w-6' strokeWidth={2.2} />
                     </span>
-                    <span className='text-lp-text-subtle/55 text-[2.2rem] leading-none font-black tracking-[-0.06em]'>
+                    <span className='text-lp-text-subtle/55 text-[2.2rem] leading-none font-bold'>
                       {step.number}
                     </span>
                   </div>
 
-                  <h3 className='text-lp-text mt-5 text-[1.25rem] leading-tight font-black tracking-[-0.04em]'>
+                  <h3 className='text-lp-text mt-5 text-[1.25rem] leading-tight font-bold'>
                     {step.title}
                   </h3>
-                  <div className='mt-3 w-20 text-[var(--lp-primary)]'>
-                    ~~~~~~~
-                  </div>
+                  <div className='mt-3 h-0.5 w-20 rounded-full bg-[var(--lp-primary)]' />
 
-                  <p className='text-lp-text-muted mt-5 text-[0.98rem] leading-8 font-medium'>
+                  <p className='text-lp-text-muted mt-5 text-[0.98rem] leading-8 font-normal'>
                     {step.body}
                   </p>
 
                   <div className='border-lp-text/55 mt-6 border-t-2 border-solid pt-5'>
-                    <p className='text-sm font-bold text-[var(--lp-primary)]'>
-                      ・ {step.period}
+                    <p className='text-center text-[1.25rem] leading-tight font-bold text-[var(--lp-primary)]'>
+                      {step.period}
                     </p>
                   </div>
                 </article>
@@ -213,15 +213,15 @@ export function GettingStartedSection() {
             </div>
 
             <div className='text-center transition-transform duration-300 group-hover:translate-x-1 lg:translate-x-6 lg:text-left lg:group-hover:translate-x-8'>
-              <p className='text-[clamp(1.1rem,1.95vw,1.75rem)] leading-[1.35] font-black tracking-[-0.03em] text-white'>
-                導入の流れを、
+              <p className='text-[clamp(1.1rem,1.95vw,1.75rem)] leading-[1.35] font-bold text-white'>
+                導入の流れを
                 <br />
                 資料で確認。
               </p>
-              <p className='mx-auto mt-3 max-w-[30rem] text-[0.8rem] leading-6 font-bold text-white/86 transition-colors duration-300 group-hover:text-white lg:mx-0'>
-                機能・料金・導入事例までまとめて確認できます。
+              <p className='mx-auto mt-3 max-w-[30rem] text-[0.8rem] leading-6 font-normal text-white/86 transition-colors duration-300 group-hover:text-white lg:mx-0'>
+                機能・プラン・導入事例までまとめて確認できます。
               </p>
-              <span className='text-lp-text mt-4 inline-flex min-h-11 w-full max-w-[17rem] items-center justify-center gap-3 bg-white px-5 text-[0.82rem] font-black shadow-[0_10px_20px_rgba(0,26,71,0.16)] transition-all duration-300 group-hover:scale-[1.03] group-hover:bg-[var(--lp-surface-soft)] group-hover:shadow-[0_14px_28px_rgba(0,26,71,0.22)] sm:w-auto sm:min-w-[15.5rem]'>
+              <span className='text-lp-text mt-4 inline-flex min-h-11 w-full max-w-[17rem] items-center justify-center gap-3 bg-white px-5 text-[0.82rem] font-bold shadow-[0_10px_20px_rgba(0,26,71,0.16)] transition-all duration-300 group-hover:scale-[1.03] group-hover:bg-[var(--lp-surface-soft)] group-hover:shadow-[0_14px_28px_rgba(0,26,71,0.22)] sm:w-auto sm:min-w-[15.5rem]'>
                 導入の流れを資料で確認
                 <ArrowRight
                   className='h-4 w-4 transition-transform duration-300 group-hover:translate-x-1'

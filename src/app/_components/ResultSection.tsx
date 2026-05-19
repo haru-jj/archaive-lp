@@ -12,30 +12,8 @@ import Image from 'next/image';
 
 import { Calculator, Database, FileText, Search, Users } from 'lucide-react';
 
+import { useIndustryTheme } from './IndustryTheme';
 import { useRevealInView } from './useRevealInView';
-
-type ResultSectionProps = {
-  theme?: 'manufacturing' | 'construction';
-};
-
-const THEME_MAP = {
-  manufacturing: {
-    primary: 'var(--lp-primary)',
-    primaryStrong: 'var(--lp-primary-strong)',
-    primarySoft: 'var(--lp-primary-soft)',
-    primarySurface: 'var(--lp-primary-surface)',
-    primaryBorder: 'var(--lp-primary-border)',
-    cardShadow: 'color-mix(in srgb, var(--lp-primary) 18%, transparent)',
-  },
-  construction: {
-    primary: 'var(--lp-primary)',
-    primaryStrong: 'var(--lp-primary-strong)',
-    primarySoft: 'var(--lp-primary-soft)',
-    primarySurface: 'var(--lp-primary-surface)',
-    primaryBorder: 'var(--lp-primary-border)',
-    cardShadow: 'color-mix(in srgb, var(--lp-primary) 18%, transparent)',
-  },
-} as const;
 
 const RESULT_CARDS = [
   {
@@ -152,9 +130,9 @@ function AnimatedMetric({
   }, [isInView, value]);
 
   const counterColor = useMemo(() => {
-    const hue = 8 + progress * 122;
-    const saturation = 82 - progress * 18;
-    const lightness = 56 - progress * 14;
+    const hue = 40 + progress * 148;
+    const saturation = 72 - progress * 18;
+    const lightness = 52 - progress * 8;
 
     return `hsl(${hue} ${saturation}% ${lightness}%)`;
   }, [progress]);
@@ -165,10 +143,16 @@ function AnimatedMetric({
       className={`flex items-end justify-center gap-1 whitespace-nowrap ${className}`}
       style={{ color: counterColor }}
     >
-      <span className='text-[clamp(2.35rem,4vw,3.65rem)] leading-none font-black tracking-[-0.06em]'>
+      <span
+        className='text-[clamp(2.35rem,4vw,3.65rem)] leading-none font-normal'
+        style={{ fontFamily: 'Michroma, sans-serif' }}
+      >
         {displayValue}
       </span>
-      <span className='pb-1 text-[clamp(1.18rem,1.7vw,1.65rem)] leading-none font-black tracking-[-0.03em]'>
+      <span
+        className='pb-1 text-[clamp(1.18rem,1.7vw,1.65rem)] leading-none font-normal'
+        style={{ fontFamily: 'Michroma, sans-serif' }}
+      >
         {suffix}
       </span>
     </div>
@@ -196,20 +180,26 @@ function RevealBlock({
   );
 }
 
-export function ResultSection({ theme = 'manufacturing' }: ResultSectionProps) {
-  const palette = THEME_MAP[theme];
+export function ResultSection() {
+  const { palette } = useIndustryTheme();
 
   return (
     <section
       className='relative overflow-hidden bg-[linear-gradient(90deg,color-mix(in_srgb,var(--lp-primary-deep)_88%,var(--lp-primary))_0%,color-mix(in_srgb,var(--lp-primary)_92%,white)_50%,color-mix(in_srgb,var(--lp-primary-deep)_88%,var(--lp-primary))_100%)] px-6 pt-16 pb-20 sm:px-10 lg:px-16 lg:pt-20 lg:pb-24'
       style={
         {
+          '--lp-primary': palette.primary,
+          '--lp-primary-strong': palette.primaryStrong,
+          '--lp-primary-deep': palette.primaryDeep,
+          '--lp-primary-soft': palette.primarySoft,
+          '--lp-primary-surface': palette.primarySurface,
+          '--lp-primary-border': palette.primaryBorder,
           '--reason-primary': palette.primary,
           '--reason-primary-strong': palette.primaryStrong,
           '--reason-primary-soft': palette.primarySoft,
           '--reason-primary-surface': palette.primarySurface,
           '--reason-primary-border': palette.primaryBorder,
-          '--reason-card-shadow': palette.cardShadow,
+          '--reason-card-shadow': `color-mix(in srgb, ${palette.primary} 18%, transparent)`,
         } as CSSProperties
       }
     >
@@ -235,11 +225,11 @@ export function ResultSection({ theme = 'manufacturing' }: ResultSectionProps) {
       </div>
       <div className='relative z-10 mx-auto max-w-[1480px]'>
         <div className='pt-10 text-center sm:pt-12 lg:pt-14'>
-          <p className='text-sm font-black tracking-[0.24em] text-white/95 sm:text-base'>
+          <p className='text-sm font-bold text-white/95 sm:text-[0.95rem]'>
             RESULT
           </p>
-          <h2 className='mt-5 text-[clamp(2.2rem,4.6vw,4.3rem)] leading-[1.02] font-black tracking-[-0.06em] text-white'>
-            導入効果
+          <h2 className='mt-5 text-[clamp(1.625rem,2.6vw,2rem)] leading-[1.35] font-bold text-white'>
+            導入したお客様で実際に起きていること
           </h2>
         </div>
 
@@ -261,10 +251,10 @@ export function ResultSection({ theme = 'manufacturing' }: ResultSectionProps) {
                   suffix={card.suffix}
                   className='mt-5'
                 />
-                <p className='text-lp-text mt-4 text-[1.05rem] leading-tight font-black tracking-[-0.03em] sm:text-[1.15rem]'>
+                <p className='text-lp-text mt-4 text-[1.05rem] leading-tight font-bold sm:text-[1.15rem]'>
                   {card.label}
                 </p>
-                <p className='text-lp-text-subtle mt-2 text-sm font-semibold'>
+                <p className='text-lp-text-subtle mt-2 text-sm font-normal'>
                   {card.note}
                 </p>
               </RevealBlock>
@@ -273,7 +263,7 @@ export function ResultSection({ theme = 'manufacturing' }: ResultSectionProps) {
         </div>
 
         <RevealBlock className='mt-18'>
-          <h3 className='text-center text-[clamp(1.9rem,3.7vw,3.45rem)] font-black tracking-[-0.06em] text-white'>
+          <h3 className='text-center text-[clamp(1.5rem,2.4vw,1.875rem)] leading-[1.35] font-bold text-white'>
             ビフォー・アフター
           </h3>
           <div className='mx-auto mt-6 h-px w-full max-w-[18rem] border-t-2 border-solid border-white/70 sm:max-w-[20rem]' />
@@ -282,14 +272,14 @@ export function ResultSection({ theme = 'manufacturing' }: ResultSectionProps) {
             <div className='relative z-10 rounded-[0.95rem] border border-white/70 bg-white/72 p-3 shadow-[0_24px_60px_rgba(15,23,42,0.08)] backdrop-blur-[16px] sm:p-5.5 lg:absolute lg:bottom-[-1.5rem] lg:left-0 lg:w-[58%] lg:p-5.5 xl:w-[56%]'>
               <div className='border-lp-border hidden border-b pb-4 md:block'>
                 <div className='grid gap-4 md:grid-cols-[minmax(0,0.66fr)_minmax(0,1fr)_minmax(0,1fr)]'>
-                  <div className='text-lp-text-subtle text-center text-[0.86rem] font-black sm:text-[0.95rem]'>
+                  <div className='text-lp-text-subtle text-center text-[0.86rem] font-bold sm:text-[0.95rem]'>
                     業務
                   </div>
-                  <div className='text-lp-text-subtle text-center text-[0.86rem] font-black sm:text-[0.95rem]'>
+                  <div className='text-lp-text-subtle text-center text-[0.86rem] font-bold sm:text-[0.95rem]'>
                     導入前
                   </div>
-                  <div className='text-lp-text-subtle text-center text-[0.86rem] font-black sm:text-[0.95rem]'>
-                    ARCHAIVE導入後
+                  <div className='text-lp-text-subtle text-center text-[0.86rem] font-bold sm:text-[0.95rem]'>
+                    <span style={{ color: '#37B7C4' }}>ARCHAIVE</span>導入後
                   </div>
                 </div>
               </div>
@@ -303,7 +293,7 @@ export function ResultSection({ theme = 'manufacturing' }: ResultSectionProps) {
                       key={row.task}
                       className='grid gap-2.5 rounded-[0.9rem] bg-white/42 p-2.5 md:grid-cols-[minmax(0,0.66fr)_minmax(0,1fr)_minmax(0,1fr)] md:items-stretch md:gap-3 md:bg-transparent md:p-0'
                     >
-                      <div className='bg-lp-text-subtle flex min-w-0 items-center justify-center rounded-[0.7rem] px-3 py-3 text-center text-[0.88rem] font-black text-white sm:text-[1.02rem] md:rounded-[0.75rem] md:px-4 md:py-4.5'>
+                      <div className='bg-lp-text-subtle flex min-w-0 items-center justify-center rounded-[0.7rem] px-3 py-3 text-center text-[0.88rem] font-bold text-white sm:text-[1.02rem] md:rounded-[0.75rem] md:px-4 md:py-4.5'>
                         <div className='flex items-center gap-2'>
                           <Icon className='h-5 w-5 shrink-0 stroke-[2.2]' />
                           <span>
@@ -322,31 +312,31 @@ export function ResultSection({ theme = 'manufacturing' }: ResultSectionProps) {
 
                       <div className='grid grid-cols-2 gap-2.5 md:contents'>
                         <div className='border-lp-border bg-lp-surface-soft min-w-0 rounded-[0.7rem] border px-3 py-3 sm:px-5 md:rounded-[0.75rem] md:px-4.5 md:py-4'>
-                          <p className='text-lp-text-muted mb-1.5 text-[0.68rem] font-black tracking-[0.08em] md:hidden'>
+                          <p className='text-lp-text-muted mb-1.5 text-[0.68rem] font-bold md:hidden'>
                             導入前
                           </p>
                           <p
-                            className={`text-lp-text-subtle text-[0.78rem] leading-5 font-bold sm:text-[0.94rem] md:text-[0.91rem] md:leading-6 ${
+                            className={`text-lp-text-subtle text-[0.78rem] leading-5 font-normal sm:text-[0.94rem] md:text-[0.91rem] md:leading-6 ${
                               row.beforeNoWrap
-                                ? 'tracking-[-0.02em] sm:text-[0.87rem] md:whitespace-nowrap'
+                                ? 'sm:text-[0.87rem] md:whitespace-nowrap'
                                 : ''
                             }`}
                           >
                             {row.beforeMain}
                           </p>
-                          <p className='text-lp-danger mt-2 text-[1.05rem] font-black tracking-[-0.04em] sm:text-[1.4rem] md:mt-2.5 md:text-[1.26rem]'>
+                          <p className='mt-2 text-[1.05rem] font-bold text-[#B5651D] sm:text-[1.4rem] md:mt-2.5 md:text-[1.26rem]'>
                             {row.beforeAccent}
                           </p>
                         </div>
 
                         <div className='min-w-0 rounded-[0.7rem] border border-[var(--reason-primary-border)] bg-[var(--reason-primary-soft)] px-3 py-3 sm:px-5 md:rounded-[0.75rem] md:px-4.5 md:py-4'>
-                          <p className='text-lp-text-muted mb-1.5 text-[0.68rem] font-black tracking-[0.08em] md:hidden'>
+                          <p className='text-lp-text-muted mb-1.5 text-[0.68rem] font-bold md:hidden'>
                             導入後
                           </p>
-                          <p className='text-lp-text-subtle text-[0.78rem] leading-5 font-bold sm:text-[0.94rem] md:text-[0.91rem] md:leading-6'>
+                          <p className='text-lp-text-subtle text-[0.78rem] leading-5 font-normal sm:text-[0.94rem] md:text-[0.91rem] md:leading-6'>
                             {row.afterMain}
                           </p>
-                          <p className='mt-2 text-[1.05rem] font-black tracking-[-0.04em] text-[var(--reason-primary-strong)] sm:text-[1.4rem] md:mt-2.5 md:text-[1.26rem]'>
+                          <p className='mt-2 text-[1.05rem] font-bold text-[var(--reason-primary-strong)] sm:text-[1.4rem] md:mt-2.5 md:text-[1.26rem]'>
                             {row.afterAccent}
                           </p>
                         </div>

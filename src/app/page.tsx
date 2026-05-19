@@ -7,6 +7,7 @@ import { GetStartedSection } from './_components/GetStartedSection';
 import { GettingStartedSection } from './_components/GettingStartedSection';
 import { Header } from './_components/Header';
 import { HeroSection } from './_components/HeroSection';
+import { IndustryThemeProvider } from './_components/IndustryTheme';
 import { LogoMarquee } from './_components/LogoMarquee';
 import { ProblemSolutionSection } from './_components/ProblemSolutionSection';
 import { ResultSection } from './_components/ResultSection';
@@ -116,13 +117,15 @@ export default function Home() {
       <Header />
       <HeroSection />
       <LogoMarquee />
-      <GetStartedSection />
       <ProblemSolutionSection />
-      <FeaturesSection />
-      <ResultSection />
+      <IndustryThemeProvider>
+        <FeaturesSection />
+        <ResultSection />
+      </IndustryThemeProvider>
       <CaseStudySection />
       <GettingStartedSection />
       <SecurityFaqSection />
+      <GetStartedSection />
       <Footer />
     </div>
   );
