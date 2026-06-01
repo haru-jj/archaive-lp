@@ -91,33 +91,6 @@ const featureDetails = {
   },
 } as const;
 
-const featurePreviewImages = {
-  search: {
-    src: '/lp-v2/main_function_1.jpg',
-    alt: 'AI図面検索の画面イメージ',
-    label: 'AI Drawing Search',
-    objectPosition: 'left center',
-  },
-  bom: {
-    src: '/lp-v2/main_function_2.jpg',
-    alt: '部品構成管理の画面イメージ',
-    label: 'BOM Management',
-    objectPosition: 'left center',
-  },
-  docs: {
-    src: '/lp-v2/main_function_3.jpg',
-    alt: '書類・案件管理の画面イメージ',
-    label: 'Document Workflow',
-    objectPosition: 'left center',
-  },
-  agent: {
-    src: '/lp-v2/main_function_1.jpg',
-    alt: 'AIエージェントの画面イメージ',
-    label: 'AI Agent Workspace',
-    objectPosition: 'left center',
-  },
-} as const;
-
 export function FeaturesSection() {
   const {
     selectedIndustry,
@@ -144,7 +117,6 @@ export function FeaturesSection() {
   const [featureIndicatorStyle, setFeatureIndicatorStyle] =
     useState<CSSProperties>({});
   const selectedFeatureDetail = featureDetails[displayedFeature];
-  const selectedFeatureImage = featurePreviewImages[displayedFeature];
   const SelectedFeatureIcon = selectedFeatureDetail.icon;
   const selectedFeatureIndex = featureTabs.findIndex(
     (tab) => tab.id === selectedFeature,
@@ -414,25 +386,17 @@ export function FeaturesSection() {
           </RippleLink>
         </div>
 
-        <div className='border-lp-border bg-lp-surface-soft border-t p-4 sm:p-6 lg:border-t-0 lg:border-l lg:py-7 lg:pr-0 lg:pl-7'>
-          <div className='relative h-full min-h-[18rem] rounded-[1.5rem] bg-[linear-gradient(180deg,var(--lp-surface-soft)_0%,var(--lp-primary-surface)_100%)] shadow-[0_22px_40px_rgba(15,23,42,0.12)] sm:min-h-[25.5rem]'>
-            <div className='relative h-full min-h-[18rem] overflow-hidden rounded-[1.5rem] sm:min-h-[25.5rem] lg:rounded-l-[1.5rem] lg:rounded-r-none'>
-              <div className='pointer-events-none absolute inset-0 z-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.1)_0%,rgba(255,255,255,0)_22%,rgba(15,23,42,0.08)_100%)]' />
-              <div className='absolute inset-y-0 left-0 w-[195%] sm:w-[185%] lg:w-[210%]'>
-                <Image
-                  src={selectedFeatureImage.src}
-                  alt={selectedFeatureImage.alt}
-                  fill
-                  sizes='(min-width: 1024px) 42vw, 100vw'
-                  className='object-cover'
-                  style={{
-                    objectPosition: selectedFeatureImage.objectPosition,
-                  }}
-                />
-              </div>
-              <div className='pointer-events-none absolute inset-y-0 left-0 w-[18%] bg-[linear-gradient(90deg,rgba(248,251,252,0.22)_0%,rgba(248,251,252,0)_100%)]' />
-              <div className='pointer-events-none absolute inset-y-0 right-0 w-[24%] bg-[linear-gradient(90deg,rgba(248,251,252,0)_0%,rgba(248,251,252,0.56)_58%,rgba(248,251,252,0.9)_100%)]' />
-            </div>
+        <div className='border-lp-border bg-lp-surface-soft flex items-center justify-center border-t lg:border-t-0 lg:border-l'>
+          <div className='relative aspect-[10/9] w-full overflow-hidden'>
+            <video
+              src='/feature-01.mp4'
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload='metadata'
+              className='absolute inset-0 h-full w-full object-cover object-center'
+            />
           </div>
         </div>
       </div>

@@ -16,21 +16,24 @@ const STEPS = [
     number: '01',
     title: '最短1週間で「使い始める」',
     body: '今ある図面をアップロードするだけ。AIが読み取って、情報を整理します。データの事前整備は不要です。',
-    period: 'ARCHAIVE-CORE / 契約後〜1ヶ月',
+    productName: 'ARCHAIVE-CORE',
+    duration: '契約後〜1ヶ月',
     icon: DatabaseZap,
   },
   {
     number: '02',
     title: '既存のシステムと「つなぐ」',
     body: 'ERP・CAD・ファイルサーバーとAPI連携。データを引っ越すのではなく、つなげる。業務フローを変えずに導入できます。',
-    period: 'ARCHAIVE-CRM / 連携拡張（2〜4週間）',
+    productName: 'ARCHAIVE-CRM',
+    duration: '連携拡張（2〜4週間）',
     icon: PlugZap,
   },
   {
     number: '03',
     title: '自社専用のAIを「育てる」',
     body: '蓄積されたデータをもとに、AI開発チームが自社専用のAIを構築します。見積自動化、外観検査、需要予測まで、業務課題に合わせて開発できます。',
-    period: 'ARCHAIVE+ / カスタム開発（2〜3ヶ月）',
+    productName: 'ARCHAIVE+',
+    duration: 'カスタム開発（2〜3ヶ月）',
     icon: Sparkles,
   },
 ] as const;
@@ -99,7 +102,7 @@ export function GettingStartedSection() {
               return (
                 <article
                   key={step.number}
-                  className='relative rounded-[1.65rem] border border-white/80 bg-white px-6 pt-11 pb-6 shadow-[0_18px_40px_rgba(15,23,42,0.06)]'
+                  className='relative flex flex-col rounded-[1.65rem] border border-white/80 bg-white px-6 pt-11 pb-6 shadow-[0_18px_40px_rgba(15,23,42,0.06)]'
                 >
                   <div className='absolute top-0 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2'>
                     <div className='bg-lp-primary text-lp-text flex h-14 w-14 items-center justify-center rounded-full border-[5px] border-white shadow-[0_12px_28px_rgba(85,189,207,0.22)]'>
@@ -125,9 +128,10 @@ export function GettingStartedSection() {
                     {step.body}
                   </p>
 
-                  <div className='border-lp-text/55 mt-5 border-t-2 border-solid pt-4'>
-                    <p className='text-center text-[1.2rem] leading-tight font-bold text-[var(--lp-primary)]'>
-                      {step.period}
+                  <div className='border-lp-text/55 mt-auto border-t-2 border-solid pt-4'>
+                    <p className='text-center text-[1.2rem] leading-tight font-bold'>
+                      <span className='text-[var(--lp-primary)]'>{step.productName}</span>
+                      <span className='text-lp-text'> / {step.duration}</span>
                     </p>
                   </div>
                 </article>
@@ -170,8 +174,9 @@ export function GettingStartedSection() {
                   </p>
 
                   <div className='border-lp-text/55 mt-6 border-t-2 border-solid pt-5'>
-                    <p className='text-center text-[1.25rem] leading-tight font-bold text-[var(--lp-primary)]'>
-                      {step.period}
+                    <p className='text-center text-[1.25rem] leading-tight font-bold'>
+                      <span className='text-[var(--lp-primary)]'>{step.productName}</span>
+                      <span className='text-lp-text'> / {step.duration}</span>
                     </p>
                   </div>
                 </article>
@@ -190,7 +195,7 @@ export function GettingStartedSection() {
                 {CTA_IMAGES.slice(0, 3).map((image, imageIndex) => (
                   <div
                     key={image.src}
-                    className={`absolute w-[min(8.6rem,44vw)] overflow-hidden border-[4px] border-white bg-white shadow-[0_10px_20px_rgba(0,26,71,0.16)] ${
+                    className={`absolute w-[min(8.6rem,44vw)] overflow-hidden border-2 border-white bg-white shadow-[0_10px_20px_rgba(0,26,71,0.16)] ${
                       imageIndex === 0
                         ? 'top-5 left-1 -rotate-6'
                         : imageIndex === 1
@@ -235,7 +240,7 @@ export function GettingStartedSection() {
                 <div className='grid grid-cols-2 gap-x-4 gap-y-4'>
                   {CTA_IMAGES.map((image) => (
                     <div key={image.src} className={image.className}>
-                      <div className='overflow-hidden border-[5px] border-white bg-white shadow-[0_10px_20px_rgba(0,26,71,0.12)]'>
+                      <div className='overflow-hidden border-2 border-white bg-white shadow-[0_10px_20px_rgba(0,26,71,0.12)]'>
                         <div className='relative aspect-[16/10]'>
                           <Image
                             src={image.src}

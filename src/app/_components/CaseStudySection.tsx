@@ -75,7 +75,6 @@ export function CaseStudySection() {
     activeStudy,
     CASE_STUDIES[normalizeStudyIndex(activeIndex + 1)],
     CASE_STUDIES[normalizeStudyIndex(activeIndex + 2)],
-    CASE_STUDIES[normalizeStudyIndex(activeIndex + 3)],
   ];
 
   const desktopTranslate =
@@ -227,14 +226,10 @@ export function CaseStudySection() {
 
         <div className='relative mt-10 hidden py-10 sm:mt-12 sm:block'>
           <div
-            className='relative mx-auto overflow-x-hidden overflow-y-visible [--case-study-card-width:16rem] [--case-study-gap:1rem] [--case-study-step:calc(var(--case-study-card-width)+var(--case-study-gap))] md:[--case-study-card-width:18rem] md:[--case-study-gap:1rem] lg:[--case-study-card-width:20rem] lg:[--case-study-gap:1.25rem] xl:[--case-study-card-width:22rem]'
+            className='relative mx-auto overflow-x-hidden overflow-y-visible [--case-study-card-width:20rem] [--case-study-gap:1rem] [--case-study-step:calc(var(--case-study-card-width)+var(--case-study-gap))] md:[--case-study-card-width:24rem] md:[--case-study-gap:1.25rem] lg:[--case-study-card-width:26rem] lg:[--case-study-gap:1.5rem] xl:[--case-study-card-width:28rem]'
             style={{
               width:
-                'calc((var(--case-study-card-width) * 4) + (var(--case-study-gap) * 3))',
-              maskImage:
-                'linear-gradient(to right, transparent 0%, black 22%, black 78%, transparent 100%)',
-              WebkitMaskImage:
-                'linear-gradient(to right, transparent 0%, black 22%, black 78%, transparent 100%)',
+                'calc((var(--case-study-card-width) * 3) + (var(--case-study-gap) * 2))',
             }}
           >
             <div
@@ -247,29 +242,12 @@ export function CaseStudySection() {
               style={{ transform: desktopTranslate }}
             >
               {desktopStudies.map((study, itemIndex) => {
-                const isPoppedCenter = itemIndex === 2 || itemIndex === 3;
-
-                const wrapperClass = isPoppedCenter
-                  ? 'opacity-100'
-                  : 'opacity-55';
-
-                const popClass = 'translate-y-0 scale-100';
-
-                const cardShadow = 'shadow-[0_14px_44px_rgba(15,23,42,0.08)]';
-
-                const cardTransitionClass =
-                  'transition-[opacity,transform] duration-700 [transition-timing-function:cubic-bezier(0.65,0,0.35,1)]';
-                const shadowTransitionClass =
-                  'transition-shadow duration-700 [transition-timing-function:cubic-bezier(0.65,0,0.35,1)]';
-
                 return (
                   <div
                     key={itemIndex}
-                    className={`w-[var(--case-study-card-width)] flex-shrink-0 text-center ${cardTransitionClass} ${wrapperClass} ${popClass}`}
+                    className='w-[var(--case-study-card-width)] flex-shrink-0 text-center'
                   >
-                    <div
-                      className={`overflow-hidden rounded-[1.75rem] border border-[color-mix(in_srgb,var(--lp-primary)_18%,white)] bg-white ${shadowTransitionClass} ${cardShadow}`}
-                    >
+                    <div className='overflow-hidden rounded-[1.75rem] border border-[color-mix(in_srgb,var(--lp-primary)_18%,white)] bg-white shadow-[0_14px_44px_rgba(15,23,42,0.08)]'>
                       <div className='relative h-56 max-h-56 w-full overflow-hidden md:h-60 md:max-h-60 lg:h-64 lg:max-h-64'>
                         {study.imageSrc ? (
                           <Image
