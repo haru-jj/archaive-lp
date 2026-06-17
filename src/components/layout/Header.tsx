@@ -1,186 +1,159 @@
 'use client';
-import { useState } from 'react';
-import Link from 'next/link';
+
+import { useEffect, useState } from 'react';
+
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
+import Link from 'next/link';
+
+import { Download, LogIn, Phone, Rocket } from 'lucide-react';
+
+// TODO: 本番ログインURLに差し替え
+const LOGIN_URL = 'https://app.archaive.jp/login';
 
 export default function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const pathname = usePathname();
-  const isHomePage = pathname === '/';
+  const [scrollProgress, setScrollProgress] = useState(0);
 
-  const navigationItems = [
-    { href: "/about", label: "ARCHAIVEについて", anchor: "#demo" },
-    { href: "/problem", label: "課題と解決", anchor: "#before-after" },
-    { href: "/features", label: "主要機能", anchor: "#features" },
-    { href: "/case", label: "導入事例", anchor: "#case" },
-    { href: "/process", label: "導入ステップ", anchor: "#process" },
-    { href: "/news", label: "お知らせ", anchor: "#news" },
-    { href: "/faq", label: "よくある質問", anchor: "#faq" },
-  ];
+  useEffect(() => {
+    let rafId: number | null = null;
 
-  const handleNavClick = (
-    e: React.MouseEvent<HTMLAnchorElement>,
-    href: string,
-    anchor?: string
-  ) => {
-    // ホームページ以外からの場合はトップページに遷移
-    if (anchor) {
-      if (isHomePage) {
-        e.preventDefault();
-        const element = document.querySelector(anchor);
-        if (element) {
-          const offset = 80;
-          const elementPosition = element.getBoundingClientRect().top + window.scrollY;
-          window.scrollTo({
-            top: elementPosition - offset,
-            behavior: 'smooth'
-          });
-          setIsMenuOpen(false);
-        }
-      } else {
-        e.preventDefault();
-        window.location.href = '/' + anchor;
-      }
-      return;
-    }
-    if (href.startsWith('#')) {
-      if (!isHomePage) {
-        window.location.href = '/' + href;
-        return;
-      }
-      e.preventDefault();
-      setIsMenuOpen(false);
-      const offset = 80; // ヘッダーの高さ分のオフセット
-      const element = document.querySelector(href);
-      if (element) {
-        const elementPosition = element.getBoundingClientRect().top + window.scrollY;
-        window.scrollTo({
-          top: elementPosition - offset,
-          behavior: 'smooth'
-        });
-      } else {
-        console.warn(`Element with ID ${href} not found`);
-      }
-      return;
-    }
-    setIsMenuOpen(false);
-  };
+    const updateProgress = () => {
+      if (rafId !== null) return;
+      rafId = window.requestAnimationFrame(() => {
+        rafId = null;
+        const scrollTop = window.scrollY;
+        const docHeight =
+          document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? scrollTop / docHeight : 0;
+        setScrollProgress(Math.max(0, Math.min(1, progress)));
+      });
+    };
+
+    updateProgress();
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener('resize', updateProgress);
+
+    return () => {
+      window.removeEventListener('scroll', updateProgress);
+      window.removeEventListener('resize', updateProgress);
+      if (rafId !== null) window.cancelAnimationFrame(rafId);
+    };
+  }, []);
 
   return (
-    <header className="bg-white shadow-md fixed w-full top-0 z-50">
-      <div className="w-full px-2 md:px-8 py-4">
-        <div className="flex items-center justify-between">
-          {/* ロゴ */}
-          <div className="flex items-center flex-shrink-0 ml-4">
-            <Link 
-              href="/" 
-              className="flex items-center gap-2"
+    <header className='fixed top-0 right-0 left-0 z-50 border-b border-gray-100 bg-white'>
+      <div className='mx-auto flex h-24 max-w-[1520px] items-center gap-2 px-5 sm:gap-4 sm:px-10 lg:px-14 xl:px-18'>
+        {/* ロゴ */}
+        <Link
+          href='/'
+          className='flex shrink-0 translate-y-1.5 flex-col items-center gap-2 leading-none'
+        >
+          <span className='text-lp-text -translate-y-1.5 text-[0.72rem] font-bold tracking-[-0.04em] whitespace-nowrap sm:text-[0.85rem]'>
+            製造業向けAIデータハブ
+          </span>
+          <div className='flex items-center gap-2'>
+            <Image
+              src='/svg/logo.svg'
+              alt='ARCHAIVE'
+              width={32}
+              height={32}
+            />
+            <span
+              className='hidden text-[1.6rem] leading-none font-bold sm:inline'
+              style={{ color: '#37B7C4' }}
             >
-              <Image
-                src="/svg/logo.svg"
-                alt="ARCHAIVE Logo"
-                width={40}
-                height={40}
-                priority
+              ARCH
+              <span style={{ color: '#F64848' }}>AI</span>
+              VE
+            </span>
+          </div>
+        </Link>
+
+        {/* ナビゲーション */}
+        <nav className='hidden flex-1 items-center justify-center gap-8 pl-16 lg:flex lg:translate-y-[16px] xl:pl-24'>
+          <a
+            href='#features'
+            className='text-lp-text hover:text-lp-primary-deep inline-flex h-[1.6rem] items-center text-[1.05rem] leading-none font-normal transition-colors'
+          >
+            機能
+          </a>
+          <a
+            href='#process'
+            className='text-lp-text hover:text-lp-primary-deep inline-flex h-[1.6rem] items-center text-[1.05rem] leading-none font-normal transition-colors'
+          >
+            導入の流れ
+          </a>
+          <a
+            href='#case'
+            className='text-lp-text hover:text-lp-primary-deep inline-flex h-[1.6rem] items-center text-[1.05rem] leading-none font-normal transition-colors'
+          >
+            導入事例
+          </a>
+          <a
+            href='#faq'
+            className='text-lp-text hover:text-lp-primary-deep inline-flex h-[1.6rem] items-center text-[1.05rem] leading-none font-normal transition-colors'
+          >
+            よくある質問
+          </a>
+        </nav>
+
+        {/* 右側 CTA（2段） */}
+        <div className='ml-auto flex shrink-0 flex-col items-end gap-2 lg:ml-0'>
+          {/* 上段: ログイン + 縦線 + 電話番号 + 受付時間 */}
+          <div className='flex items-center gap-3 sm:gap-4'>
+            <a
+              href={LOGIN_URL}
+              className='text-lp-text-subtle hover:text-lp-text inline-flex items-center gap-1.5 text-xs font-bold whitespace-nowrap transition-colors sm:text-[0.85rem]'
+            >
+              <LogIn className='h-3.5 w-3.5' strokeWidth={2.2} />
+              ログイン
+            </a>
+            <span
+              aria-hidden='true'
+              className='hidden h-4 w-px bg-slate-300 sm:block'
+            />
+            <a
+              href='tel:05057837954'
+              className='text-lp-text inline-flex items-center gap-1.5 text-sm font-bold whitespace-nowrap sm:text-[1rem]'
+              aria-label='電話番号 050-5783-7954'
+            >
+              <Phone
+                className='h-4 w-4 text-[var(--lp-primary-strong)]'
+                strokeWidth={2.4}
               />
-              <Image
-                src="/svg/logo-text.svg"
-                alt="ARCHAIVE"
-                width={120}
-                height={32}
-                priority
-                className="h-8"
-              />
-            </Link>
+              <span className='hidden sm:inline'>050-5783-7954</span>
+            </a>
+            <span className='hidden text-[0.7rem] font-normal whitespace-nowrap text-slate-400 sm:inline sm:text-[0.75rem]'>
+              受付:平日9時-18時
+            </span>
           </div>
 
-          {/* デスクトップナビゲーション */}
-          <nav className="hidden lg:flex items-center justify-center">
-            <div className="flex items-center space-x-6">
-              {navigationItems.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  onClick={(e) => handleNavClick(e, item.href, item.anchor)}
-                  className="text-black hover:text-[#37B7C4] transition-colors duration-200 font-bold text-sm whitespace-nowrap"
-                >
-                  {item.label}
-                </a>
-              ))}
-            </div>
-          </nav>
-
-          {/* CTA ボタン */}
-          <div className="hidden lg:flex items-center space-x-4 flex-shrink-0">
-            <Link 
-              href="/download"
-              className="bg-[#f54848] border-2 border-[#f54848] rounded-full text-white px-6 py-3 text-sm font-bold cursor-pointer flex items-center justify-center hover:opacity-90 btn-hover"
+          {/* 下段: ボタン 2 つ */}
+          <div className='flex items-center gap-2 sm:gap-2.5'>
+            <Link
+              href='/download'
+              className='text-lp-text inline-flex items-center gap-1.5 rounded-lg border border-slate-400 bg-white px-4 py-2.5 text-sm font-bold whitespace-nowrap transition-colors hover:border-[var(--lp-primary-strong)] hover:bg-[var(--lp-primary-surface)] sm:gap-2 sm:px-6 sm:py-3 sm:text-base'
             >
+              <Download className='h-[1.1rem] w-[1.1rem] sm:h-[1.3rem] sm:w-[1.3rem]' strokeWidth={2.4} />
               資料ダウンロード
             </Link>
-            <Link 
-              href="/apply"
-              className="bg-white border-2 border-gray-300 text-black rounded-full px-6 py-3 text-sm font-bold cursor-pointer flex items-center justify-center hover:bg-gray-50 btn-hover"
+            <Link
+              href='/apply'
+              className='inline-flex items-center gap-1.5 rounded-lg bg-[linear-gradient(135deg,#1E3A6F_0%,#0A1B40_100%)] px-4 py-2.5 text-sm font-bold whitespace-nowrap text-white shadow-[0_8px_18px_rgba(10,27,64,0.28)] transition-all duration-300 hover:bg-[linear-gradient(135deg,#274C8C_0%,#0F2453_100%)] hover:shadow-[0_12px_24px_rgba(10,27,64,0.36)] sm:gap-2 sm:px-6 sm:py-3 sm:text-base'
             >
-              無料デモ体験
+              <Rocket className='h-[1.1rem] w-[1.1rem] -rotate-45 sm:h-[1.3rem] sm:w-[1.3rem]' strokeWidth={2.4} />
+              お問い合わせ
             </Link>
           </div>
-
-          {/* モバイルメニューボタン */}
-          <button
-            className="lg:hidden p-2"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            <svg
-              className="w-6 h-6 text-gray-600"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              {isMenuOpen ? (
-                <path d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
-          </button>
         </div>
-
-        {/* モバイルメニュー */}
-        {isMenuOpen && (
-          <div className="lg:hidden mt-4 pb-4 border-t border-gray-200">
-            <nav className="flex flex-col items-center text-center space-y-4 mt-4">
-              {navigationItems.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className="text-black hover:text-[#37B7C4] transition-colors duration-200 font-bold py-2 text-sm"
-                  onClick={(e) => handleNavClick(e, item.href, item.anchor)}
-                >
-                  {item.label}
-                </a>
-              ))}
-            </nav>
-            <div className="flex flex-col space-y-3 mt-6">
-              <Link 
-                href="/download"
-                className="bg-[#f54848] border-2 border-[#f54848] rounded-full text-white px-6 py-3 text-base font-bold cursor-pointer flex items-center justify-center hover:opacity-90 btn-hover"
-              >
-                資料ダウンロード
-              </Link>
-              <Link 
-                href="/apply"
-                className="bg-white border-2 border-gray-300 text-black rounded-full px-6 py-3 text-base font-bold cursor-pointer flex items-center justify-center hover:bg-gray-50 btn-hover"
-              >
-                無料デモ体験
-              </Link>
-            </div>
-          </div>
-        )}
+      </div>
+      <div
+        aria-hidden='true'
+        className='pointer-events-none absolute right-0 bottom-0 left-0 h-[3px] overflow-hidden bg-transparent'
+      >
+        <div
+          className='h-full origin-left bg-[linear-gradient(90deg,var(--lp-primary)_0%,var(--lp-primary-strong)_60%,var(--lp-primary-deep)_100%)] shadow-[0_0_12px_rgba(85,189,207,0.45)] transition-transform duration-150 ease-out will-change-transform'
+          style={{ transform: `scaleX(${scrollProgress})` }}
+        />
       </div>
     </header>
   );

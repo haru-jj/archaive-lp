@@ -25,10 +25,10 @@ export default function CaseSection() {
     return formatted;
   };
 
-  // カード幅 + ギャップ
-  const cardWidth = 600; // px
+  // カード幅 + ギャップ（デスクトップで3枚表示）
+  const cardWidth = 352; // px
   const gap = 32; // 8rem = 32px (デスクトップ)
-  const slideDistance = cardWidth + gap; // 632px
+  const slideDistance = cardWidth + gap; // 384px
 
   const caseStudies = [
     {
@@ -253,9 +253,9 @@ export default function CaseSection() {
             >
               {/* 第1セット */}
               {caseStudies.map((caseItem, index) => (
-                <div key={`first-${caseItem.id}`} className="w-96 md:w-[600px] flex-shrink-0 flex flex-col items-center text-center">
+                <div key={`first-${caseItem.id}`} className="w-80 md:w-[352px] flex-shrink-0 flex flex-col items-center text-center">
                   {/* 画像と会社名・名前 */}
-                  <Link href={caseItem.link} className="relative w-full h-72 md:h-80 mb-6 overflow-hidden rounded-lg cursor-pointer hover:opacity-90 transition-opacity">
+                  <Link href={caseItem.link} className="relative w-full h-48 md:h-52 mb-5 overflow-hidden rounded-lg cursor-pointer hover:opacity-90 transition-opacity">
                   {caseItem.image === "/api/placeholder/300/180" ? (
                     <div className="w-full h-full bg-gradient-to-br from-[#37B7C4]/20 to-[#37B7C4]/10 flex items-center justify-center">
                       <svg className="w-20 h-20 text-[#37B7C4]/50" fill="currentColor" viewBox="0 0 24 24">
@@ -283,7 +283,7 @@ export default function CaseSection() {
                 
                   {/* コンテンツ */}
                   <div className="px-4">
-                    <p className="text-lg font-bold text-[#333333] leading-relaxed min-h-[3.5rem] flex items-center">
+                    <p className="text-sm md:text-base font-bold text-[#333333] leading-relaxed min-h-[4.5rem] flex items-center">
                       {caseItem.title}
                     </p>
                   </div>
@@ -292,9 +292,9 @@ export default function CaseSection() {
               
               {/* 第2セット（メイン） */}
               {caseStudies.map((caseItem, index) => (
-                <div key={`second-${caseItem.id}`} className="w-96 md:w-[600px] flex-shrink-0 flex flex-col items-center text-center">
+                <div key={`second-${caseItem.id}`} className="w-80 md:w-[352px] flex-shrink-0 flex flex-col items-center text-center">
                   {/* 画像と会社名・名前 */}
-                  <Link href={caseItem.link} className="relative w-full h-72 md:h-80 mb-6 overflow-hidden rounded-lg cursor-pointer hover:opacity-90 transition-opacity">
+                  <Link href={caseItem.link} className="relative w-full h-48 md:h-52 mb-5 overflow-hidden rounded-lg cursor-pointer hover:opacity-90 transition-opacity">
                   {caseItem.image === "/api/placeholder/300/180" ? (
                     <div className="w-full h-full bg-gradient-to-br from-[#37B7C4]/20 to-[#37B7C4]/10 flex items-center justify-center">
                       <svg className="w-20 h-20 text-[#37B7C4]/50" fill="currentColor" viewBox="0 0 24 24">
@@ -322,7 +322,7 @@ export default function CaseSection() {
                 
                   {/* コンテンツ */}
                   <div className="px-4">
-                    <p className="text-lg font-bold text-[#333333] leading-relaxed min-h-[3.5rem] flex items-center">
+                    <p className="text-sm md:text-base font-bold text-[#333333] leading-relaxed min-h-[4.5rem] flex items-center">
                       {caseItem.title}
                     </p>
                   </div>
@@ -331,9 +331,9 @@ export default function CaseSection() {
               
               {/* 第3セット */}
               {caseStudies.map((caseItem, index) => (
-                <div key={`third-${caseItem.id}`} className="w-96 md:w-[600px] flex-shrink-0 flex flex-col items-center text-center">
+                <div key={`third-${caseItem.id}`} className="w-80 md:w-[352px] flex-shrink-0 flex flex-col items-center text-center">
                   {/* 画像と会社名・名前 */}
-                  <Link href={caseItem.link} className="relative w-full h-72 md:h-80 mb-6 overflow-hidden rounded-lg cursor-pointer hover:opacity-90 transition-opacity">
+                  <Link href={caseItem.link} className="relative w-full h-48 md:h-52 mb-5 overflow-hidden rounded-lg cursor-pointer hover:opacity-90 transition-opacity">
                   {caseItem.image === "/api/placeholder/300/180" ? (
                     <div className="w-full h-full bg-gradient-to-br from-[#37B7C4]/20 to-[#37B7C4]/10 flex items-center justify-center">
                       <svg className="w-20 h-20 text-[#37B7C4]/50" fill="currentColor" viewBox="0 0 24 24">
@@ -361,7 +361,7 @@ export default function CaseSection() {
                 
                   {/* コンテンツ */}
                   <div className="px-4">
-                    <p className="text-lg font-bold text-[#333333] leading-relaxed min-h-[3.5rem] flex items-center">
+                    <p className="text-sm md:text-base font-bold text-[#333333] leading-relaxed min-h-[4.5rem] flex items-center">
                       {caseItem.title}
                     </p>
                   </div>
