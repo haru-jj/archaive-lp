@@ -1,8 +1,11 @@
 import { MetadataRoute } from 'next';
 import { statSync } from 'fs';
 import { join } from 'path';
+import { getArticleSlugs } from '@/lib/guide';
+import { DIAGNOSIS_CONFIGS } from '@/components/guide/diagnosisConfigs';
 
 const pages = [
+  { path: '/guide', source: 'src/app/guide/page.tsx', changeFrequency: 'weekly', priority: 0.8 },
   { path: '/', source: 'src/app/page.tsx', changeFrequency: 'weekly', priority: 1 },
   { path: '/about', source: 'src/app/about/page.tsx', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/problem', source: 'src/app/problem/page.tsx', changeFrequency: 'monthly', priority: 0.8 },
@@ -37,10 +40,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
   };
   const baseUrl = 'https://archaive.net';
 
-  return pages.map((page) => ({
+  const staticEntries = pages.map((page) => ({
     url: `${baseUrl}${page.path}`,
     lastModified: getLastModified(page.source),
     changeFrequency: page.changeFrequency as MetadataRoute.Sitemap[number]['changeFrequency'],
     priority: page.priority,
   }));
+
+  // ガイド記事は src/content/guide の .md から自動列挙（量産しても sitemap 手編集が不要）
+  const guideEntries: MetadataRoute.Sitemap = getArticleSlugs().map((slug) => ({
+    url: `${baseUrl}/guide/${slug}`,
+    lastModified: getLastModified(`src/content/guide/${slug}.md`),
+    changeFrequency: 'monthly',
+    priority: 0.7,
+  }));
+
+  // 単独設置の診断ツール
+  const toolEntries: MetadataRoute.Sitemap = Object.keys(DIAGNOSIS_CONFIGS).map((slug) => ({
+    url: `${baseUrl}/tools/${slug}`,
+    lastModified: new Date().toISOString(),
+    changeFrequency: 'yearly',
+    priority: 0.5,
+  }));
+
+  return [...staticEntries, ...guideEntries, ...toolEntries];
 }

@@ -1,0 +1,655 @@
+/* ガイド記事の配色・体裁。参照実装(plm_guide_mock_v2.html / archaive_article_plan.html)の
+   editorial トークンをCSS変数化。全セレクタを .guide-root 配下にスコープし、LP本体(teal)へ影響させない。 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+.guide-root {
+  --g-bg: #fbfbf9;
+  --g-paper: #ffffff;
+  --g-ink: #161c26;
+  --g-sub: #5c6672;
+  --g-faint: #8a929e;
+  --g-line: #e4e6ea;
+  --g-line2: #eef0f3;
+  --g-accent: #1c4e84;
+  --g-accent-soft: #eaf0f7;
+  --g-warn: #a8472e;
+  --g-warn-bg: #f6ebe7;
+  --g-ok-bg: #eaf0f7;
+  --g-mid-bg: #f1f2f4;
+  --g-radius: 3px;
+
+  background: var(--g-bg);
+  color: var(--g-ink);
+  font-size: 16px;
+  line-height: 1.85;
+  letter-spacing: 0.01em;
+}
+.guide-mono {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+/* レイアウト */
+.guide-wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 48px 28px 90px;
+}
+
+/* パンくず */
+.guide-crumb {
+  font-size: 12px;
+  color: var(--g-faint);
+  font-family: 'IBM Plex Mono', monospace;
+  letter-spacing: 0.04em;
+  margin-bottom: 20px;
+}
+.guide-crumb a {
+  color: var(--g-faint);
+  text-decoration: none;
+}
+.guide-crumb a:hover {
+  color: var(--g-accent);
+}
+.guide-crumb b {
+  color: var(--g-accent);
+  font-weight: 500;
+}
+
+.guide-eyebrow {
+  display: inline-block;
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  font-weight: 500;
+  color: var(--g-accent);
+  background: var(--g-accent-soft);
+  padding: 5px 11px;
+  border-radius: var(--g-radius);
+  font-family: 'IBM Plex Mono', monospace;
+  margin-bottom: 18px;
+}
+
+.guide-title {
+  font-family: 'Noto Serif JP', serif;
+  font-weight: 700;
+  font-size: 38px;
+  line-height: 1.32;
+  margin: 0 0 18px;
+}
+.guide-lead {
+  font-size: 17.5px;
+  line-height: 1.95;
+  color: #2c3540;
+  margin: 0 0 8px;
+}
+.guide-meta {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  font-size: 12.5px;
+  color: var(--g-faint);
+  margin-top: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--g-line);
+  font-family: 'IBM Plex Mono', monospace;
+  flex-wrap: wrap;
+}
+.guide-meta .dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--g-line);
+}
+.guide-ruler {
+  height: 14px;
+  margin: 0 0 30px;
+  position: relative;
+}
+.guide-ruler::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 7px;
+  height: 1px;
+  background: var(--g-line);
+}
+.guide-ruler::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: 1px;
+  height: 11px;
+  background: var(--g-accent);
+}
+
+.guide-root h2.guide-h2 {
+  font-family: 'Noto Serif JP', serif;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.45;
+  margin: 0 0 16px;
+}
+.guide-h2 .h-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 14px;
+  color: var(--g-accent);
+  font-weight: 500;
+  margin-right: 12px;
+}
+.guide-block {
+  margin: 0 0 34px;
+}
+
+/* prose（markdown本文） */
+.guide-prose p {
+  margin: 0 0 18px;
+}
+.guide-prose strong {
+  font-weight: 700;
+}
+.guide-prose a {
+  color: var(--g-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.guide-prose ul,
+.guide-prose ol {
+  margin: 0 0 18px;
+  padding-left: 22px;
+}
+.guide-prose li {
+  margin-bottom: 8px;
+}
+.guide-prose h3 {
+  font-family: 'Noto Serif JP', serif;
+  font-weight: 600;
+  font-size: 18px;
+  margin: 24px 0 12px;
+}
+
+/* 定義ブロック */
+.guide-defbox {
+  border: 1px solid var(--g-accent);
+  border-left-width: 4px;
+  background: var(--g-paper);
+  border-radius: var(--g-radius);
+  padding: 22px 24px;
+  margin: 8px 0 0;
+}
+.guide-defbox .dlabel {
+  font-size: 12px;
+  font-family: 'IBM Plex Mono', monospace;
+  letter-spacing: 0.08em;
+  color: var(--g-accent);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+.guide-defbox .term {
+  font-family: 'Noto Serif JP', serif;
+  font-weight: 600;
+  font-size: 19px;
+  margin-bottom: 8px;
+}
+.guide-defbox p {
+  margin: 0 0 10px;
+  font-size: 15px;
+  line-height: 1.85;
+  color: #2c3540;
+}
+.guide-defbox .datapoint {
+  font-size: 13px;
+  color: var(--g-accent);
+  background: var(--g-accent-soft);
+  padding: 8px 12px;
+  border-radius: var(--g-radius);
+  margin: 0;
+}
+.guide-defbox .datapoint b {
+  font-weight: 700;
+}
+
+/* クラスター内リンク（ピラー冒頭の spoke 群） */
+.guide-cluster {
+  border: 1px solid var(--g-line);
+  border-radius: var(--g-radius);
+  background: var(--g-paper);
+  padding: 18px 20px;
+  margin: 8px 0 0;
+}
+.guide-cluster .cl-sub {
+  font-size: 12px;
+  color: var(--g-faint);
+  margin-bottom: 12px;
+  font-family: 'IBM Plex Mono', monospace;
+}
+.guide-cluster .spokes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.guide-cluster .spoke {
+  font-size: 13px;
+  color: var(--g-accent);
+  border: 1px solid #cfe0f2;
+  background: var(--g-accent-soft);
+  padding: 5px 12px;
+  border-radius: 20px;
+  text-decoration: none;
+}
+.guide-cluster .spoke:hover {
+  background: #e6f0fb;
+}
+
+/* 判断表 */
+.guide-tablewrap {
+  margin: 10px 0 0;
+  overflow-x: auto;
+  border: 1px solid var(--g-line);
+  border-radius: var(--g-radius);
+}
+table.guide-judge {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 13.5px;
+  min-width: 560px;
+}
+table.guide-judge th,
+table.guide-judge td {
+  text-align: left;
+  padding: 13px 15px;
+  vertical-align: top;
+  border-bottom: 1px solid var(--g-line2);
+}
+table.guide-judge thead th {
+  font-size: 13px;
+  font-weight: 700;
+  border-bottom: 1px solid var(--g-line);
+}
+table.guide-judge thead th.c-ok {
+  background: var(--g-ok-bg);
+  color: var(--g-accent);
+}
+table.guide-judge thead th.c-mid {
+  background: var(--g-mid-bg);
+  color: var(--g-ink);
+}
+table.guide-judge thead th.c-warn {
+  background: var(--g-warn-bg);
+  color: var(--g-warn);
+}
+table.guide-judge tbody th {
+  font-weight: 500;
+  color: var(--g-sub);
+  width: 108px;
+  background: #fafafa;
+}
+table.guide-judge td.c-ok {
+  background: rgba(28, 78, 132, 0.035);
+}
+table.guide-judge td.c-warn {
+  background: rgba(168, 71, 46, 0.04);
+}
+table.guide-judge tr:last-child td,
+table.guide-judge tr:last-child th {
+  border-bottom: none;
+}
+
+/* callout */
+.guide-callout {
+  border-left: 3px solid var(--g-warn);
+  background: var(--g-warn-bg);
+  padding: 16px 20px;
+  border-radius: 0 var(--g-radius) var(--g-radius) 0;
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.8;
+}
+.guide-callout b {
+  color: var(--g-warn);
+}
+
+/* FAQ */
+.guide-faq {
+  border-top: 1px solid var(--g-line);
+  margin-top: 6px;
+}
+.guide-faq .qa {
+  border-bottom: 1px solid var(--g-line);
+  padding: 18px 0;
+}
+.guide-faq .q {
+  font-weight: 700;
+  font-size: 15.5px;
+  margin-bottom: 8px;
+  display: flex;
+  gap: 10px;
+}
+.guide-faq .q .qm {
+  color: var(--g-accent);
+  font-family: 'Noto Serif JP', serif;
+}
+.guide-faq .a {
+  font-size: 14.5px;
+  color: #2c3540;
+  line-height: 1.8;
+  padding-left: 24px;
+}
+
+/* 事例 */
+.guide-cases {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 8px 0 0;
+}
+.guide-case {
+  flex: 1;
+  min-width: 200px;
+  border: 1px solid var(--g-line);
+  border-radius: var(--g-radius);
+  background: var(--g-paper);
+  padding: 16px 18px;
+  text-decoration: none;
+}
+.guide-case .cn {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--g-ink);
+  margin-bottom: 4px;
+}
+.guide-case .cr {
+  font-size: 12.5px;
+  color: var(--g-accent);
+  font-family: 'IBM Plex Mono', monospace;
+}
+.guide-case .cd {
+  font-size: 12.5px;
+  color: var(--g-sub);
+  margin-top: 6px;
+  line-height: 1.6;
+}
+
+/* 出典 */
+.guide-sources {
+  margin: 8px 0 0;
+  padding: 16px 20px;
+  background: #f7f7f5;
+  border: 1px solid var(--g-line);
+  border-radius: var(--g-radius);
+  font-size: 12.5px;
+  color: var(--g-sub);
+  line-height: 1.8;
+}
+.guide-sources .stitle {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--g-faint);
+  margin-bottom: 6px;
+}
+.guide-sources ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+/* CTA */
+.guide-cta {
+  margin-top: 40px;
+  padding: 28px;
+  border: 1px solid var(--g-accent);
+  border-radius: var(--g-radius);
+  background: var(--g-accent-soft);
+}
+.guide-cta .ch {
+  font-family: 'Noto Serif JP', serif;
+  font-weight: 600;
+  font-size: 19px;
+  margin-bottom: 6px;
+}
+.guide-cta p {
+  font-size: 14px;
+  color: #33485f;
+  margin: 0 0 16px;
+}
+.guide-cta-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.guide-btn {
+  padding: 11px 22px;
+  border-radius: var(--g-radius);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-block;
+}
+.guide-btn.fill {
+  background: var(--g-accent);
+  color: #fff;
+}
+.guide-btn.line {
+  border: 1px solid var(--g-accent);
+  color: var(--g-accent);
+  background: #fff;
+}
+
+/* 関連用語（内部リンク） */
+.guide-xlink {
+  margin-top: 24px;
+  padding: 18px 20px;
+  border: 1px dashed var(--g-line);
+  border-radius: var(--g-radius);
+  font-size: 14px;
+}
+.guide-xlink a {
+  color: var(--g-accent);
+  font-weight: 500;
+  text-decoration: none;
+}
+.guide-xlink a:hover {
+  text-decoration: underline;
+}
+.guide-xlink .lab {
+  font-size: 11px;
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--g-faint);
+  letter-spacing: 0.06em;
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* 診断ツール */
+.guide-diag {
+  border: 1px solid var(--g-accent);
+  border-radius: var(--g-radius);
+  background: var(--g-paper);
+  padding: 22px 24px;
+  margin: 8px 0 0;
+}
+.guide-diag .dh {
+  font-family: 'Noto Serif JP', serif;
+  font-weight: 600;
+  font-size: 17px;
+  margin-bottom: 4px;
+}
+.guide-diag .dsub {
+  font-size: 13px;
+  color: var(--g-sub);
+  margin-bottom: 16px;
+}
+.guide-diag .dq {
+  margin-bottom: 13px;
+}
+.guide-diag .dq label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: var(--g-ink);
+}
+.guide-diag select {
+  width: 100%;
+  padding: 9px 11px;
+  font-size: 13.5px;
+  font-family: inherit;
+  color: var(--g-ink);
+  border: 1px solid var(--g-line);
+  border-radius: var(--g-radius);
+  background: #fff;
+}
+.guide-diag .drun {
+  margin-top: 6px;
+  padding: 11px 22px;
+  background: var(--g-accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--g-radius);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+}
+.guide-diag .drun:focus-visible,
+.guide-diag select:focus-visible {
+  outline: 2px solid var(--g-accent);
+  outline-offset: 2px;
+}
+.guide-diag .dresult {
+  margin-top: 16px;
+  padding: 16px 18px;
+  border-radius: var(--g-radius);
+  font-size: 14px;
+  line-height: 1.8;
+}
+.guide-diag .dresult .rtag {
+  font-weight: 700;
+  font-size: 16px;
+  display: block;
+  margin-bottom: 5px;
+}
+.guide-diag .dresult.r-ok {
+  background: var(--g-ok-bg);
+  border: 1px solid #cfe0f2;
+}
+.guide-diag .dresult.r-ok .rtag {
+  color: var(--g-accent);
+}
+.guide-diag .dresult.r-mid {
+  background: var(--g-mid-bg);
+  border: 1px solid var(--g-line);
+}
+.guide-diag .dresult.r-warn {
+  background: var(--g-warn-bg);
+  border: 1px solid #e4c4b9;
+}
+.guide-diag .dresult.r-warn .rtag {
+  color: var(--g-warn);
+}
+
+/* 一覧ページ */
+.guide-list-hero {
+  border-bottom: 1px solid var(--g-line);
+  padding-bottom: 24px;
+  margin-bottom: 32px;
+}
+.guide-cluster-card {
+  border: 1px solid var(--g-line);
+  border-radius: var(--g-radius);
+  background: var(--g-paper);
+  padding: 24px;
+  margin-bottom: 24px;
+}
+.guide-cluster-card .cc-name {
+  font-family: 'Noto Serif JP', serif;
+  font-weight: 600;
+  font-size: 20px;
+  margin: 0 0 16px;
+}
+.guide-pillar-link {
+  display: block;
+  border: 1px solid var(--g-accent);
+  border-left-width: 4px;
+  background: var(--g-accent-soft);
+  border-radius: var(--g-radius);
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  text-decoration: none;
+  color: var(--g-ink);
+}
+.guide-pillar-link:hover {
+  background: #e0ebf6;
+}
+.guide-pillar-link .pl-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  color: var(--g-accent);
+  display: block;
+  margin-bottom: 3px;
+}
+.guide-pillar-link .pl-title {
+  font-weight: 700;
+  font-size: 15px;
+}
+.guide-pillar-link .pl-desc {
+  font-size: 12.5px;
+  color: var(--g-sub);
+  margin-top: 4px;
+}
+.guide-spoke-group {
+  margin-top: 14px;
+}
+.guide-spoke-group .sg-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11.5px;
+  color: var(--g-faint);
+  margin-bottom: 8px;
+}
+.guide-spoke-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.guide-spoke-chips a {
+  font-size: 13px;
+  color: var(--g-accent);
+  border: 1px solid #cfe0f2;
+  background: var(--g-accent-soft);
+  padding: 6px 12px;
+  border-radius: 20px;
+  text-decoration: none;
+}
+.guide-spoke-chips a:hover {
+  background: #e6f0fb;
+}
+.guide-spoke-chips span.coming {
+  font-size: 13px;
+  color: var(--g-faint);
+  border: 1px dashed var(--g-line);
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+
+@media (max-width: 720px) {
+  .guide-title {
+    font-size: 28px;
+  }
+  .guide-wrap {
+    padding: 32px 18px 70px;
+  }
+  .guide-root h2.guide-h2 {
+    font-size: 21px;
+  }
+  .guide-lead {
+    font-size: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .guide-root * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
