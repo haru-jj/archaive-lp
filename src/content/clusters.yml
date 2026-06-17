@@ -1,0 +1,56 @@
+# クラスター定義 — 一覧ページ・内部リンク・パンくずの生成元。
+# 施策意図(archaive_article_plan.html): 中心(pillar)に用語(spoke)を内部リンクで束ね、
+# ドメインの専門性評価を底上げする。spoke は基礎/コア機能/現場概念/課題文脈でグループ化。
+# duplicates: 他クラスター(次のPLM/BOM)と定義が重なる spoke。定義文を複製しない運用(6.4)。
+#
+# spokes はグループ(spokeGroups)から自動で平坦化される（lib/guide.ts）。重複定義を避けるため
+# フラットな spokes はここに書かない。
+clusters:
+  drawing-management:
+    name: 図面管理クラスター
+    pillars:
+      - drawing-management-howto
+      - why-not-adopted
+    spokeGroups:
+      - label: 基礎・定義語
+        slugs:
+          - drawing-management
+          - drawing-management-system
+          - ai-drawing-management
+          - drawing-search
+          - cloud-drawing-management
+      - label: コア機能語
+        slugs:
+          - similar-search
+          - ai-ocr
+          - diff-detection
+          - voucher-generation
+          - revision-management
+      - label: 現場概念語
+        slugs:
+          - drawing-number
+          - block-count
+          - bom
+          - inventory-management
+          - cad-data-management
+          - drawing-numbering-rule
+      - label: 課題・文脈語
+        slugs:
+          - drawing-attribution
+          - file-server-limit
+          - excel-drawing-limit
+          - paper-drawing-digitization
+          - design-reuse
+          - tech-succession-2025
+          - plm-pdm-difference
+    # 着手順（最初に書く5本）
+    startOrder:
+      - drawing-management
+      - drawing-management-system
+      - drawing-management-howto
+      - similar-search
+      - ai-ocr
+    # 重複注意（次のPLM/BOMクラスターと内容が重なる。定義文を複製しない）
+    duplicates:
+      - bom
+      - plm-pdm-difference
