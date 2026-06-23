@@ -6,11 +6,11 @@ import Image from 'next/image';
 export default function CTASection() {
   return (
     <section
-      className="py-10 sm:py-12 md:py-14 px-4 bg-gradient-to-r from-[#37B7C4] to-[#2A8B96] relative overflow-hidden scroll-mt-24"
+      className="py-12 sm:py-12 md:py-14 px-4 bg-gradient-to-r from-[#37B7C4] to-[#2A8B96] relative overflow-hidden scroll-mt-24"
       id="cta"
     >
       <div className="mx-auto w-full max-w-6xl relative z-10">
-        <h2 className="text-center text-white text-2xl sm:text-3xl font-bold mb-10">
+        <h2 className="text-center text-white text-2xl sm:text-3xl font-bold leading-snug mb-8 sm:mb-10">
           今すぐARCHAIVEを始めませんか？
         </h2>
 
@@ -36,7 +36,7 @@ export default function CTASection() {
                   </h3>
                   <Link
                     href="/download"
-                    className="inline-flex items-center justify-center bg-[#37B7C4] text-white font-bold px-6 sm:px-7 py-3 rounded-full shadow hover:opacity-90 transition self-center w-full sm:w-auto min-w-[190px] mt-4"
+                    className="inline-flex items-center justify-center text-base bg-[#37B7C4] text-white font-bold px-6 sm:px-7 py-3.5 sm:py-3 rounded-full shadow hover:opacity-90 transition self-center w-full sm:w-auto sm:min-w-[190px] mt-4"
                   >
                     資料ダウンロード
                   </Link>
@@ -66,7 +66,7 @@ export default function CTASection() {
                   </h3>
                   <Link
                     href="/apply"
-                    className="inline-flex items-center justify-center bg-white border-2 border-gray-300 text-black font-bold px-6 sm:px-7 py-3 rounded-full hover:bg-gray-50 transition self-center w-full sm:w-auto min-w-[190px] mt-4"
+                    className="inline-flex items-center justify-center text-base bg-white border-2 border-gray-300 text-black font-bold px-6 sm:px-7 py-3.5 sm:py-3 rounded-full hover:bg-gray-50 transition self-center w-full sm:w-auto sm:min-w-[190px] mt-4"
                   >
                     無料デモ体験
                   </Link>

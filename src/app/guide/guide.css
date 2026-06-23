@@ -1,8 +1,8 @@
-/* ガイド記事の配色・体裁。参照実装(plm_guide_mock_v2.html / archaive_article_plan.html)の
-   editorial トークンをCSS変数化。全セレクタを .guide-root 配下にスコープし、LP本体(teal)へ影響させない。 */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+/* ガイド記事の配色・体裁。LP本体と同じ Noto Sans JP を使い、直感的に読めるUIにする。
+   配色は editorial トークンを踏襲しつつ、全セレクタを .guide-root 配下にスコープ（LP本体 teal へ影響させない）。 */
 
 .guide-root {
+  font-family: inherit;
   --g-bg: #fbfbf9;
   --g-paper: #ffffff;
   --g-ink: #161c26;
@@ -25,7 +25,7 @@
   letter-spacing: 0.01em;
 }
 .guide-mono {
-  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-family: inherit;
 }
 
 /* レイアウト */
@@ -39,7 +39,7 @@
 .guide-crumb {
   font-size: 12px;
   color: var(--g-faint);
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: inherit;
   letter-spacing: 0.04em;
   margin-bottom: 20px;
 }
@@ -57,19 +57,19 @@
 
 .guide-eyebrow {
   display: inline-block;
-  font-size: 11.5px;
-  letter-spacing: 0.14em;
-  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  font-weight: 700;
   color: var(--g-accent);
   background: var(--g-accent-soft);
-  padding: 5px 11px;
-  border-radius: var(--g-radius);
-  font-family: 'IBM Plex Mono', monospace;
-  margin-bottom: 18px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-family: inherit;
+  margin-bottom: 16px;
 }
 
 .guide-title {
-  font-family: 'Noto Serif JP', serif;
+  font-family: inherit;
   font-weight: 700;
   font-size: 38px;
   line-height: 1.32;
@@ -90,7 +90,7 @@
   margin-top: 24px;
   padding-bottom: 24px;
   border-bottom: 1px solid var(--g-line);
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: inherit;
   flex-wrap: wrap;
 }
 .guide-meta .dot {
@@ -124,14 +124,14 @@
 }
 
 .guide-root h2.guide-h2 {
-  font-family: 'Noto Serif JP', serif;
+  font-family: inherit;
   font-weight: 600;
   font-size: 24px;
   line-height: 1.45;
   margin: 0 0 16px;
 }
 .guide-h2 .h-num {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: inherit;
   font-size: 14px;
   color: var(--g-accent);
   font-weight: 500;
@@ -161,11 +161,39 @@
 .guide-prose li {
   margin-bottom: 8px;
 }
+.guide-prose h2 {
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 20px;
+  margin: 32px 0 14px;
+}
 .guide-prose h3 {
-  font-family: 'Noto Serif JP', serif;
+  font-family: inherit;
   font-weight: 600;
   font-size: 18px;
   margin: 24px 0 12px;
+}
+/* 本文中の比較表（remark-gfm で描画される markdown テーブル） */
+.guide-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 22px;
+  font-size: 14px;
+  display: block;
+  overflow-x: auto;
+}
+.guide-prose th,
+.guide-prose td {
+  border: 1px solid var(--g-line, #e2e8f0);
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+  word-break: break-word;
+}
+.guide-prose thead th {
+  background: var(--g-soft, #f1f5f9);
+  font-weight: 700;
+  white-space: nowrap;
 }
 
 /* 定義ブロック */
@@ -179,14 +207,14 @@
 }
 .guide-defbox .dlabel {
   font-size: 12px;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: inherit;
   letter-spacing: 0.08em;
   color: var(--g-accent);
   font-weight: 500;
   margin-bottom: 8px;
 }
 .guide-defbox .term {
-  font-family: 'Noto Serif JP', serif;
+  font-family: inherit;
   font-weight: 600;
   font-size: 19px;
   margin-bottom: 8px;
@@ -221,7 +249,7 @@
   font-size: 12px;
   color: var(--g-faint);
   margin-bottom: 12px;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: inherit;
 }
 .guide-cluster .spokes {
   display: flex;
@@ -327,7 +355,7 @@ table.guide-judge tr:last-child th {
 }
 .guide-faq .q .qm {
   color: var(--g-accent);
-  font-family: 'Noto Serif JP', serif;
+  font-family: inherit;
 }
 .guide-faq .a {
   font-size: 14.5px;
@@ -361,7 +389,7 @@ table.guide-judge tr:last-child th {
 .guide-case .cr {
   font-size: 12.5px;
   color: var(--g-accent);
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: inherit;
 }
 .guide-case .cd {
   font-size: 12.5px;
@@ -382,7 +410,7 @@ table.guide-judge tr:last-child th {
   line-height: 1.8;
 }
 .guide-sources .stitle {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: inherit;
   font-size: 11px;
   letter-spacing: 0.08em;
   color: var(--g-faint);
@@ -402,7 +430,7 @@ table.guide-judge tr:last-child th {
   background: var(--g-accent-soft);
 }
 .guide-cta .ch {
-  font-family: 'Noto Serif JP', serif;
+  font-family: inherit;
   font-weight: 600;
   font-size: 19px;
   margin-bottom: 6px;
@@ -453,81 +481,241 @@ table.guide-judge tr:last-child th {
 }
 .guide-xlink .lab {
   font-size: 11px;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: inherit;
   color: var(--g-faint);
   letter-spacing: 0.06em;
   display: block;
   margin-bottom: 8px;
 }
 
-/* 診断ツール */
+/* 診断ツール（カード＋チップUI＋スキャン進捗アニメ） */
 .guide-diag {
-  border: 1px solid var(--g-accent);
-  border-radius: var(--g-radius);
-  background: var(--g-paper);
-  padding: 22px 24px;
+  position: relative;
+  border: 1px solid color-mix(in srgb, var(--g-accent) 32%, var(--g-line));
+  border-radius: 16px;
+  background: radial-gradient(
+    130% 120% at 0% 0%,
+    color-mix(in srgb, var(--g-accent) 9%, #fff) 0%,
+    #fff 52%
+  );
+  padding: 24px 26px 26px;
   margin: 8px 0 0;
+  box-shadow: 0 12px 32px rgba(15, 50, 79, 0.07);
+  overflow: hidden;
+}
+.guide-diag::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--g-accent),
+    color-mix(in srgb, var(--g-accent) 50%, #7fd6e2)
+  );
+}
+.guide-diag .diag-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 .guide-diag .dh {
-  font-family: 'Noto Serif JP', serif;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 18px;
+  margin: 0;
+}
+.guide-diag .diag-badge {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10px;
   font-weight: 600;
-  font-size: 17px;
-  margin-bottom: 4px;
+  letter-spacing: 0.08em;
+  color: #fff;
+  background: var(--g-accent);
+  padding: 3px 8px;
+  border-radius: 999px;
 }
 .guide-diag .dsub {
   font-size: 13px;
   color: var(--g-sub);
+  margin: 7px 0 18px;
+}
+
+.guide-diag .dq {
   margin-bottom: 16px;
 }
-.guide-diag .dq {
-  margin-bottom: 13px;
-}
-.guide-diag .dq label {
-  display: block;
-  font-size: 13px;
-  font-weight: 500;
-  margin-bottom: 6px;
-  color: var(--g-ink);
-}
-.guide-diag select {
-  width: 100%;
-  padding: 9px 11px;
+.guide-diag .dq-label {
+  display: flex;
+  align-items: center;
+  gap: 9px;
   font-size: 13.5px;
-  font-family: inherit;
+  font-weight: 600;
+  margin-bottom: 10px;
   color: var(--g-ink);
-  border: 1px solid var(--g-line);
-  border-radius: var(--g-radius);
-  background: #fff;
 }
-.guide-diag .drun {
-  margin-top: 6px;
-  padding: 11px 22px;
+.guide-diag .dq-num {
+  width: 21px;
+  height: 21px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--g-accent) 15%, #fff);
+  color: var(--g-accent);
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 700;
+}
+.guide-diag .dopts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.guide-diag .dopt {
+  padding: 9px 16px;
+  border: 1.5px solid var(--g-line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--g-sub);
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: 0.16s ease;
+}
+.guide-diag .dopt:hover {
+  border-color: var(--g-accent);
+  color: var(--g-accent);
+  transform: translateY(-1px);
+}
+.guide-diag .dopt.active {
   background: var(--g-accent);
+  border-color: var(--g-accent);
+  color: #fff;
+  box-shadow: 0 5px 14px rgba(55, 183, 196, 0.32);
+}
+
+.guide-diag .drun {
+  margin-top: 10px;
+  padding: 12px 26px;
+  background: linear-gradient(
+    135deg,
+    var(--g-accent),
+    color-mix(in srgb, var(--g-accent) 64%, #1b3f63)
+  );
   color: #fff;
   border: none;
-  border-radius: var(--g-radius);
-  font-size: 14px;
-  font-weight: 500;
+  border-radius: 11px;
+  font-size: 14.5px;
+  font-weight: 700;
   cursor: pointer;
   font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  box-shadow: 0 7px 18px rgba(55, 183, 196, 0.3);
+  transition: 0.18s ease;
+}
+.guide-diag .drun:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 11px 24px rgba(55, 183, 196, 0.4);
+}
+.guide-diag .drun:disabled {
+  opacity: 0.85;
+  cursor: default;
+  transform: none;
 }
 .guide-diag .drun:focus-visible,
-.guide-diag select:focus-visible {
+.guide-diag .dopt:focus-visible {
   outline: 2px solid var(--g-accent);
   outline-offset: 2px;
 }
-.guide-diag .dresult {
-  margin-top: 16px;
-  padding: 16px 18px;
-  border-radius: var(--g-radius);
+
+/* スキャン進捗 */
+.guide-diag .dprogress {
+  margin-top: 18px;
+}
+.guide-diag .dbar {
+  height: 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--g-accent) 12%, #eef3f6);
+  overflow: hidden;
+}
+.guide-diag .dbar span {
+  position: relative;
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--g-accent), #7fd6e2);
+  transition: width 0.08s linear;
+}
+.guide-diag .dbar span::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  transform: translateX(-100%);
+  animation: diag-shimmer 1s infinite;
+}
+@keyframes diag-shimmer {
+  to {
+    transform: translateX(100%);
+  }
+}
+.guide-diag .dpct {
+  margin-top: 9px;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
   font-size: 14px;
-  line-height: 1.8;
+  font-weight: 700;
+  color: var(--g-accent);
+  letter-spacing: 0.04em;
+}
+.guide-diag .dpct small {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--g-sub);
+  letter-spacing: 0.14em;
+  margin-right: 8px;
+}
+.guide-diag .dpct small:last-child {
+  margin: 0 0 0 2px;
+  color: var(--g-accent);
+}
+
+/* 判定 */
+.guide-diag .dresult {
+  margin-top: 18px;
+  padding: 18px 20px;
+  border-radius: 12px;
+  font-size: 14px;
+  line-height: 1.9;
+}
+.guide-diag .diag-in {
+  animation: diag-in 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+@keyframes diag-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
 }
 .guide-diag .dresult .rtag {
-  font-weight: 700;
+  font-weight: 800;
   font-size: 16px;
-  display: block;
-  margin-bottom: 5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+.guide-diag .dresult .rtag::before {
+  content: '';
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: currentColor;
 }
 .guide-diag .dresult.r-ok {
   background: var(--g-ok-bg);
@@ -539,6 +727,9 @@ table.guide-judge tr:last-child th {
 .guide-diag .dresult.r-mid {
   background: var(--g-mid-bg);
   border: 1px solid var(--g-line);
+}
+.guide-diag .dresult.r-mid .rtag {
+  color: #5b7589;
 }
 .guide-diag .dresult.r-warn {
   background: var(--g-warn-bg);
@@ -562,7 +753,7 @@ table.guide-judge tr:last-child th {
   margin-bottom: 24px;
 }
 .guide-cluster-card .cc-name {
-  font-family: 'Noto Serif JP', serif;
+  font-family: inherit;
   font-weight: 600;
   font-size: 20px;
   margin: 0 0 16px;
@@ -582,7 +773,7 @@ table.guide-judge tr:last-child th {
   background: #e0ebf6;
 }
 .guide-pillar-link .pl-tag {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: inherit;
   font-size: 10.5px;
   letter-spacing: 0.06em;
   color: var(--g-accent);
@@ -602,7 +793,7 @@ table.guide-judge tr:last-child th {
   margin-top: 14px;
 }
 .guide-spoke-group .sg-label {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: inherit;
   font-size: 11.5px;
   color: var(--g-faint);
   margin-bottom: 8px;

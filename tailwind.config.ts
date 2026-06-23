@@ -31,8 +31,19 @@ const config: Config = {
         },
       },
       spacing: {
+        '4.5': '1.125rem',
+        '5.5': '1.375rem',
+        '15': '3.75rem',
+        '17': '4.25rem',
         '18': '4.5rem',
+        '22': '5.5rem',
+        '31': '7.75rem',
+        '38': '9.5rem',
       },
+      // 移植したCTA(LP/Kaihara/frustration由来)が任意opacity(/12, /86 等)を使うため 0-100 を補完
+      opacity: Object.fromEntries(
+        Array.from({ length: 101 }, (_, i) => [String(i), (i / 100).toString()]),
+      ),
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
         rounded: ['"M PLUS Rounded 1c"', 'sans-serif'],

@@ -127,7 +127,7 @@ export default function SubFeaturesSection() {
   }
 
   return (
-    <div className="relative pt-24 pb-32 sm:pb-36 -mx-[50vw] left-[50%] right-[50%] w-screen bg-gradient-to-br from-gray-700 via-gray-600 to-slate-700">
+    <div className="relative pt-16 pb-20 sm:pt-24 sm:pb-36 -mx-[50vw] left-[50%] right-[50%] w-screen max-w-[100vw] overflow-x-hidden bg-gradient-to-br from-gray-700 via-gray-600 to-slate-700">
       <div className="absolute inset-0 opacity-30">
         <svg className="h-full w-full" viewBox="0 0 400 300" preserveAspectRatio="none">
           <defs>
@@ -159,7 +159,7 @@ export default function SubFeaturesSection() {
             ARCHAIVEのその他の機能
           </h2>
           <div className="mx-auto max-w-4xl">
-            <p className="text-white/90 leading-relaxed">
+            <p className="text-sm sm:text-base text-white/90 leading-relaxed">
               図面起点の製造業DXを加速し、さまざまな業種のニーズに応える機能を実装。
               一人一人にあったカスタマイズが可能です。
             </p>

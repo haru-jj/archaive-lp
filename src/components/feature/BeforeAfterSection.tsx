@@ -1,71 +1,62 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
+import { DocDownloadCta } from './PortedCtaSection';
 
 export default function BeforeAfterSection() {
   const [activeTab, setActiveTab] = useState<'before' | 'after'>('before');
   const [scrollProgress, setScrollProgress] = useState(0);
   const [mounted, setMounted] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  // 固定ヘッダーの高さ（画面サイズに応じて実測）。これを除いた領域の中央にコンテンツを合わせる
+  const [headerOffset, setHeaderOffset] = useState(0);
   // マットな紙質感のノイズ背景（Before用）
   const paperTexture = `linear-gradient(180deg, rgba(255,255,255,0.82), rgba(247,248,250,0.9)), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E")`;
 
   useEffect(() => {
     setMounted(true);
-    const updateIsMobile = () => setIsMobile(window.innerWidth < 640);
-    updateIsMobile();
-    window.addEventListener('resize', updateIsMobile);
-    return () => window.removeEventListener('resize', updateIsMobile);
+    const updateMetrics = () => {
+      setIsMobile(window.innerWidth < 640);
+      // 固定ヘッダーの実高さを取得（存在しなければ0）
+      const header = document.querySelector('header');
+      setHeaderOffset(header ? Math.round(header.getBoundingClientRect().height) : 0);
+    };
+    updateMetrics();
+    window.addEventListener('resize', updateMetrics);
+    return () => window.removeEventListener('resize', updateMetrics);
   }, []);
 
   useEffect(() => {
     if (!mounted || isMobile) return;
 
     const handleScroll = () => {
-      const section = document.getElementById('before-after');
-      if (!section) return;
+      const track = document.getElementById('before-after-track');
+      if (!track) return;
 
-      const rect = section.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      const sectionHeight = rect.height;
+      const rect = track.getBoundingClientRect();
+      // sticky で固定されるコンテンツの高さ（= ヘッダーを除いた表示領域）に対する進捗
+      const pinnedHeight = window.innerHeight - headerOffset;
+      const pinDistance = rect.height - pinnedHeight;
 
-      // セクションがビューポートに入り始めてから出るまでの進捗を計算
-      const sectionTop = rect.top;
-      const sectionBottom = rect.bottom;
-      
-      // セクションの上端がビューポートの80%の位置に来た時を開始点とする
-      const triggerStart = windowHeight * 0.8;
-      // セクションの下端がビューポートの20%の位置に来た時を終了点とする
-      const triggerEnd = windowHeight * 0.2;
-      
       let progress = 0;
-      
-      if (sectionTop <= triggerStart && sectionBottom >= triggerEnd) {
-        // セクションがトリガー範囲内にある場合の進捗計算
-        const totalScrollDistance = sectionHeight + (triggerStart - triggerEnd);
-        const currentScrolled = triggerStart - sectionTop;
-        progress = Math.max(0, Math.min(1, currentScrolled / totalScrollDistance));
+      if (pinDistance > 0) {
+        progress = Math.max(0, Math.min(1, -rect.top / pinDistance));
       }
 
       setScrollProgress(progress);
 
-      // タブ切り替えのロジックをシンプルに
-      if (progress > 0.5) {
-        setActiveTab('after');
-      } else {
-        setActiveTab('before');
-      }
+      // 進捗が中央（0.5）を超えたら導入後へ切り替え
+      setActiveTab(progress > 0.5 ? 'after' : 'before');
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll(); // Initial check
 
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [mounted, isMobile]);
+  }, [mounted, isMobile, headerOffset]);
 
   return (
-    <section id="before-after" className="pt-20 pb-28 sm:pb-32 relative overflow-hidden">
+    <section id="before-after" className="pt-24 sm:pt-32 pb-32 sm:pb-40 relative sm:overflow-visible overflow-hidden">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-gray-50 to-white"></div>
 
@@ -79,10 +70,10 @@ export default function BeforeAfterSection() {
           </h2>
 
           {/* Tab buttons (mobile only) */}
-          <div className="flex justify-center gap-3 mt-4">
+          <div className="flex justify-center gap-2 mt-4">
             <button
               onClick={() => setActiveTab('before')}
-              className={`min-w-[160px] px-4 py-2 rounded-full text-sm font-bold text-center transition-all duration-300 ${
+              className={`flex-1 min-h-[44px] px-3 py-2 rounded-full text-sm font-bold text-center transition-all duration-300 ${
                 activeTab === 'before' ? 'bg-[#f54848] text-white' : 'bg-gray-200 text-gray-500'
               }`}
             >
@@ -90,7 +81,7 @@ export default function BeforeAfterSection() {
             </button>
             <button
               onClick={() => setActiveTab('after')}
-              className={`min-w-[160px] px-4 py-2 rounded-full text-sm font-bold text-center transition-all duration-300 ${
+              className={`flex-1 min-h-[44px] px-3 py-2 rounded-full text-sm font-bold text-center transition-all duration-300 ${
                 activeTab === 'after' ? 'bg-[#37B7C4] text-white' : 'bg-gray-200 text-gray-500'
               } ${activeTab === 'after' ? '' : 'animate-soft-pulse'}`}
             >
@@ -112,7 +103,7 @@ export default function BeforeAfterSection() {
                 <img
                   src="/images/illustration/undraw_file-search_cbur.svg"
                   alt="図面検索の課題イラスト"
-                  className="w-56 h-36 object-contain mb-6 mx-auto mt-2"
+                  className="w-full max-w-[14rem] h-36 object-contain mb-6 mx-auto mt-2"
                 />
                 <h3 className="text-xl font-extrabold text-gray-900 mb-2">
                   検索に膨大な時間がかかる
@@ -138,7 +129,7 @@ export default function BeforeAfterSection() {
                 <img
                   src="/images/illustration/undraw_data-at-work_3tbf (1).svg"
                   alt="データ活用の課題イラスト"
-                  className="w-56 h-36 object-contain mb-6 mx-auto mt-2"
+                  className="w-full max-w-[14rem] h-36 object-contain mb-6 mx-auto mt-2"
                 />
                 <h3 className="text-xl font-extrabold text-gray-900 mb-2">
                   業務やデータが属人化
@@ -161,7 +152,7 @@ export default function BeforeAfterSection() {
                 <img
                   src="/images/illustration/undraw_my-answer_au1h.svg"
                   alt="部門間連携の課題イラスト"
-                  className="w-56 h-36 object-contain mb-6 mx-auto mt-2"
+                  className="w-full max-w-[14rem] h-36 object-contain mb-6 mx-auto mt-2"
                 />
                 <h3 className="text-xl font-extrabold text-gray-900 mb-2">
                   部門間の確認作業と手戻り
@@ -195,7 +186,7 @@ export default function BeforeAfterSection() {
                 <img
                   src="/images/illustration/undraw_document-search_2o7x.svg"
                   alt="検索ソリューションイラスト"
-                  className="w-56 h-36 object-contain mb-7 mx-auto mt-4"
+                  className="w-full max-w-[14rem] h-36 object-contain mb-7 mx-auto mt-4"
                 />
                   <h3 className="text-xl font-extrabold text-gray-900 mb-2">
                     欲しいデータが<span className="text-[#0ea5e9]">5秒</span>で見つかる
@@ -224,7 +215,7 @@ export default function BeforeAfterSection() {
                 <img
                   src="/images/illustration/undraw_website-visitors_qy9c.svg"
                   alt="情報共有のソリューションイラスト"
-                  className="w-56 h-36 object-contain mb-7 mx-auto mt-4"
+                  className="w-full max-w-[14rem] h-36 object-contain mb-7 mx-auto mt-4"
                 />
                   <h3 className="text-xl font-extrabold text-gray-900 mb-2">
                     全員が同じ情報にアクセス可能
@@ -253,7 +244,7 @@ export default function BeforeAfterSection() {
                 <img
                   src="/images/illustration/undraw_group-project_kow1.svg"
                   alt="部門連携のソリューションイラスト"
-                  className="w-56 h-36 object-contain mb-7 mx-auto mt-4"
+                  className="w-full max-w-[14rem] h-36 object-contain mb-7 mx-auto mt-4"
                 />
                   <h3 className="text-xl font-extrabold text-gray-900 mb-2">
                     部門間の壁を超える連携
@@ -278,19 +269,7 @@ export default function BeforeAfterSection() {
         <div className="text-center mt-6">
           {activeTab === 'after' && (
             <div className="animate-fade-in">
-              <div className="flex justify-center">
-                <Link
-                  href="/download"
-                  className="group relative inline-flex items-center gap-3 bg-gradient-to-r from-[#37B7C4] to-[#2A8B96] text-white px-7 py-3 rounded-full font-bold text-base shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-                >
-                  <span className="flex items-center gap-2">
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                    資料を受け取る（無料）
-                  </span>
-                </Link>
-              </div>
+              <DocDownloadCta />
             </div>
           )}
         </div>
@@ -298,10 +277,16 @@ export default function BeforeAfterSection() {
 
       {/* Desktop Layout */}
       <div className="hidden sm:block">
-      <div className="container mx-auto px-4 relative z-10">
+      {/* スクロール用の縦長トラック。この中で sticky によりコンテンツが画面中央に固定される */}
+      <div id="before-after-track" className="relative" style={{ height: '360vh' }}>
+      <div
+        className="sticky flex items-center"
+        style={{ top: headerOffset, height: `calc(100vh - ${headerOffset}px)` }}
+      >
+      <div className="container mx-auto px-4 relative z-10 w-full">
         {/* Header */}
-        <div className="text-center mb-8">
-          <p className="text-sm text-[#37B7C4] font-semibold mb-6">Problem</p>
+        <div className="text-center mb-10">
+          <p className="text-sm text-[#37B7C4] font-semibold mb-8 tracking-wider">Problem</p>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
             図面や書類の管理において、こんな課題はありませんか？
           </h2>
@@ -350,8 +335,10 @@ export default function BeforeAfterSection() {
           </div>
 
           {/* Before content */}
-          <div className={`grid md:grid-cols-3 gap-8 transition-opacity duration-1000 ${
-            activeTab === 'before' ? 'opacity-100' : 'opacity-0 pointer-events-none absolute inset-0'
+          <div className={`grid md:grid-cols-3 gap-8 transition-all duration-700 ease-out ${
+            activeTab === 'before'
+              ? 'opacity-100 scale-100 translate-y-0'
+              : 'opacity-0 scale-95 translate-y-4 pointer-events-none absolute inset-0'
           }`}>
             {/* Problem 1 */}
               <div className="relative h-full">
@@ -438,8 +425,10 @@ export default function BeforeAfterSection() {
           </div>
 
           {/* After content */}
-          <div className={`grid md:grid-cols-3 gap-8 transition-opacity duration-1000 ${
-            activeTab === 'after' ? 'opacity-100' : 'opacity-0 pointer-events-none absolute inset-0'
+          <div className={`grid md:grid-cols-3 gap-8 transition-all duration-700 ease-out ${
+            activeTab === 'after'
+              ? 'opacity-100 scale-100 translate-y-0'
+              : 'opacity-0 scale-95 translate-y-4 pointer-events-none absolute inset-0'
           }`}>
             {/* Solution 1 */}
               <div className="relative h-full">
@@ -537,45 +526,21 @@ export default function BeforeAfterSection() {
           </div>
         </div>
 
-        {/* Bottom message */}
-        <div className="text-center mt-8">
-          <div className="inline-block">
-            <p className={`text-2xl font-bold mb-4 transition-all duration-700 ${
-              activeTab === 'before' ? 'text-gray-700' : 'text-[#37B7C4]'
-            }`}>
-              {activeTab === 'before'
-                ? '⬇ スクロールして解決策を見る'
-                : 'ARCHAIVEが全てを解決'
-              }
+        {/* Bottom message: スクロール誘導のみ。CTA はピン留め領域の外（下）に置く。
+            before のヒント有無で中央寄せが動かないよう min-h で高さを確保。 */}
+        <div className="text-center mt-8 min-h-[2.5rem]">
+          {activeTab === 'before' && (
+            <p className="text-2xl font-bold text-gray-700">
+              <span className="inline-block animate-bounce">⬇</span> スクロールして解決策を見る
             </p>
-              {activeTab === 'after' && (
-              <div className="animate-fade-in">
-                <div className="flex justify-center">
-                  <Link
-                    href="/download"
-                    className="group relative inline-flex items-center justify-center bg-gradient-to-r from-[#1ca4b2] to-[#37B7C4] text-white px-10 py-3 text-lg font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
-                  >
-                    <span className="relative flex items-center justify-center w-full min-h-[52px]">
-                      <span className="absolute left-[-56px] hidden sm:block w-16 h-12">
-                        <img
-                          src="/images/paper1215-0-2.webp"
-                          alt="ARCHAIVE資料プレビュー"
-                          className="w-full h-full object-cover rounded-md"
-                          style={{ transform: 'translate(-12px, 4px)' }}
-                          loading="lazy"
-                        />
-                      </span>
-                      <span className="flex-1 flex flex-col items-center text-center leading-tight gap-1">
-                        <span className="text-xs font-semibold text-white/80">詳細がすぐわかる</span>
-                        <span className="group-text-wide">3分でわかるARCHAIVE資料</span>
-                      </span>
-                    </span>
-                  </Link>
-                </div>
-              </div>
-            )}
-          </div>
+          )}
         </div>
+      </div>
+      </div>
+      </div>
+      {/* 導入後CTA: ピン留め領域の外（下）に配置。スクロール中は見えず、通過後に現れる */}
+      <div className="container mx-auto px-4 pb-8">
+        <DocDownloadCta />
       </div>
       </div>
     </section>

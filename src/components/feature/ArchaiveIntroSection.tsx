@@ -7,13 +7,13 @@ import { CircleDiagram, BubbleAnimation } from '@/components/animation-component
 export default function ArchaiveIntroSection() {
   return (
     <div
-      className="bg-[#37B7C4] px-4 relative overflow-hidden -mt-px"
+      className="bg-[#37B7C4] px-4 relative overflow-hidden -mt-px py-12 sm:py-[38.4px] sm:min-h-[80vh]"
       id="demo"
-      style={{ paddingTop: '38.4px', paddingBottom: '38.4px', minHeight: '80vh', marginTop: '-1px' }}
+      style={{ marginTop: '-1px' }}
     >
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header with Logo */}
-        <div className="text-center animate-fade-in-down">
+        <div className="text-center animate-fade-in-down mb-8 sm:mb-0">
           <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-lg rounded-full px-8 sm:px-6 py-3 mb-6 w-full max-w-[360px] sm:w-auto sm:max-w-none justify-center">
             <span className="text-white text-lg font-semibold" style={{lineHeight: '1.5'}}>
               製造業AI<br className="sm:hidden" />データハブ

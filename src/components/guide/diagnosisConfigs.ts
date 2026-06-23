@@ -83,10 +83,16 @@ const plmAlternative: DiagConfig = {
       text: '図面は動いているが属人化している、という最多パターンです。PLMの前に、図面の構造化（検索・流用・差分管理）から着手するのが現実的です。',
     },
   ],
-  // 7章: if (d1==='lo' || d2==='paper' || d3==='no') → warn / else if (d2==='done') → ok / else → mid
+  // 判定（バランス調整版）: AI代替(mid)を既定＝最多に。
+  // 「未整備シグナル」= 流通量少ない(d1=lo) / 紙のみ(d2=paper) / 推進者なし(d3=no)。
+  //  2つ以上 → 見送り(warn) ／ 高流通×整備済み×推進者あり → PLM導入(ok) ／ それ以外 → AI代替(mid)。
   evaluate: (a) => {
-    if (a.d1 === 'lo' || a.d2 === 'paper' || a.d3 === 'no') return 'warn';
-    if (a.d2 === 'done') return 'ok';
+    const unready =
+      (a.d1 === 'lo' ? 1 : 0) +
+      (a.d2 === 'paper' ? 1 : 0) +
+      (a.d3 === 'no' ? 1 : 0);
+    if (unready >= 2) return 'warn';
+    if (a.d1 === 'hi' && a.d2 === 'done' && a.d3 === 'yes') return 'ok';
     return 'mid';
   },
 };

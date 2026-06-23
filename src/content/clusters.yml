@@ -7,34 +7,34 @@
 # フラットな spokes はここに書かない。
 clusters:
   drawing-management:
-    name: 図面管理クラスター
+    name: 図面管理ガイド
     pillars:
       - drawing-management-howto
       - why-not-adopted
     spokeGroups:
-      - label: 基礎・定義語
+      - label: 基本を知る
         slugs:
           - drawing-management
           - drawing-management-system
           - ai-drawing-management
           - drawing-search
           - cloud-drawing-management
-      - label: コア機能語
+      - label: 主な機能
         slugs:
           - similar-search
           - ai-ocr
           - diff-detection
           - voucher-generation
           - revision-management
-      - label: 現場概念語
+      - label: 現場でよく使う用語
         slugs:
           - drawing-number
           - block-count
           - bom
-          - inventory-management
+          - project-management
           - cad-data-management
           - drawing-numbering-rule
-      - label: 課題・文脈語
+      - label: 課題から探す
         slugs:
           - drawing-attribution
           - file-server-limit
@@ -54,3 +54,50 @@ clusters:
     duplicates:
       - bom
       - plm-pdm-difference
+
+  # クラスター② PLM・BOM。ピラー=中小製造業のPLM代替（診断ツール付き）。
+  # bom は図面管理クラスター既出。ここでは内部リンクで受け、定義を二重化しない(6.4)。
+  plm:
+    name: PLM・BOM
+    pillars:
+      - plm-alternative-sme
+    spokeGroups:
+      - label: PLM・PDM・基幹システム
+        slugs:
+          - plm
+          - pdm
+          - erp
+          - production-management-system
+          - product-lifecycle-management
+      - label: BOM・変更・構成
+        slugs:
+          - bom
+          - ebom-mbom
+          - design-change-management
+          - configuration-management
+          - traceability
+    duplicates:
+      - bom
+      - plm-pdm-difference
+
+  # クラスター③ 類似検索・AI。ピラー=暗黙知を形式知化するAI。
+  # similar-search は図面管理クラスター既出。内部リンクで受ける。
+  ai-search:
+    name: 類似検索・AI
+    pillars:
+      - tacit-knowledge-ai
+    spokeGroups:
+      - label: 似た図面を探す
+        slugs:
+          - shape-search
+          - vector-search
+          - semantic-search
+          - nl-search
+          - similar-search
+      - label: 生成AI・エージェント
+        slugs:
+          - rag
+          - generative-ai-manufacturing
+          - ai-agent
+          - ai-estimation
+          - knowledge-management

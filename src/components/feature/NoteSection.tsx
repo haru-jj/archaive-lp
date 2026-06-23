@@ -23,7 +23,7 @@ const noteCards = [
 
 export default function NoteSection() {
   return (
-    <section className="pt-24 pb-12 bg-white" aria-label="ARCHAIVE note">
+    <section className="pt-16 sm:pt-20 md:pt-24 pb-12 bg-white" aria-label="ARCHAIVE note">
       <div className="mx-auto max-w-7xl px-4">
         <div className="mb-8 text-center">
           <p className="text-sm font-semibold text-[#37B7C4] mb-3">ARCHAIVE note</p>

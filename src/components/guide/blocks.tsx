@@ -40,7 +40,7 @@ export function ClusterLinks({ spokes }: { spokes: Article[] }) {
   if (!spokes.length) return null;
   return (
     <div className="guide-cluster">
-      <div className="cl-sub">関連する用語ページ</div>
+      <div className="cl-sub">この記事に出てくる用語</div>
       <div className="spokes">
         {spokes.map((s) => (
           <Link key={s.slug} className="spoke" href={`/guide/${s.slug}`}>
@@ -57,7 +57,7 @@ export function ClusterLinks({ spokes }: { spokes: Article[] }) {
 export function DefinitionBlock({ def }: { def: DefinitionData }) {
   return (
     <div className="guide-defbox">
-      <div className="dlabel">DEFINITION</div>
+      <div className="dlabel">ことばの意味</div>
       <div className="term">{def.term}</div>
       <p>{def.body}</p>
       {def.datapoint && (
@@ -164,7 +164,7 @@ export function SourcesBlock({ sources }: { sources: string[] }) {
   if (!sources?.length) return null;
   return (
     <div className="guide-sources">
-      <div className="stitle">SOURCES / 根拠</div>
+      <div className="stitle">出典</div>
       <ul>
         {sources.map((s, i) => (
           <li key={i}>{s}</li>
@@ -201,7 +201,7 @@ export function RelatedLinks({ related }: { related: Article[] }) {
   if (!related.length) return null;
   return (
     <div className="guide-xlink">
-      <span className="lab">RELATED — クラスター内リンク</span>
+      <span className="lab">あわせて読みたい</span>
       {related.map((a, i) => (
         <span key={a.slug}>
           {i > 0 && ' ・ '}

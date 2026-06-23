@@ -97,7 +97,7 @@ export default function ProcessSection() {
               {/* ステップコンテンツ */}
               <div
                 data-process-step={index}
-                className={`flex flex-col items-start transform transition-all duration-700 ${
+                className={`flex w-full max-w-sm md:max-w-none md:w-auto flex-col items-start transform transition-all duration-700 ${
                   visibleSteps[index] ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'
                 } motion-reduce:opacity-100 motion-reduce:translate-x-0`}
                 style={{ transitionDelay: visibleSteps[index] ? `${index * 200}ms` : '0ms' }}
@@ -110,7 +110,7 @@ export default function ProcessSection() {
                 </div>
 
                 {/* プロセスカード */}
-                <div className="bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 w-80">
+                <div className="bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 w-full md:w-80">
                   {/* ヘッダー */}
                   <div className={`bg-gradient-to-r ${step.bgGradient} p-4 text-white text-center`}>
                     <h3 className="text-lg font-bold mb-2">

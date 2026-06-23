@@ -1,0 +1,381 @@
+/* 用語集（ガイド一覧）デザイン。ARCHAIVE-用語集-案B.html を移植。
+   既存 .guide-* と衝突しないよう全クラスを .gloss- で名前空間化し、.gloss 配下にスコープ。 */
+.gloss {
+  --gl-ink: #15324f;
+  --gl-muted: #5b6b7d;
+  --gl-faint: #9aa7b4;
+  --gl-cyan: #13a7c8;
+  --gl-navy: #1b3f63;
+  --gl-btn: #1f4f86;
+  --gl-line: #e7edf3;
+  --gl-line2: #e3ebf1;
+  --gl-tint: #eef6fa;
+  color: var(--gl-ink);
+  background: #fff;
+}
+.gloss .mono,
+.gloss-mono {
+  font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+.gloss-wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+/* hero band */
+.gloss-hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #eef7fb 0%, #fff 100%);
+  border-bottom: 1px solid var(--gl-line);
+}
+/* ヒーロー右上の透過ARCHAIVEアイコン（大きめのウォーターマーク） */
+.gloss-hero-logo {
+  position: absolute;
+  top: -40px;
+  right: -28px;
+  width: 360px;
+  height: 360px;
+  object-fit: contain;
+  opacity: 0.08;
+  pointer-events: none;
+}
+@media (max-width: 860px) {
+  .gloss-hero-logo {
+    width: 220px;
+    height: 220px;
+    top: -20px;
+    right: -40px;
+  }
+}
+.gloss-hero-inner {
+  padding-top: 40px;
+  padding-bottom: 36px;
+  position: relative;
+}
+.gloss-crumb {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: #8aa5b6;
+}
+.gloss-crumb b {
+  color: var(--gl-navy);
+  font-weight: 500;
+}
+.gloss-pill {
+  margin-top: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 13px;
+  border-radius: 999px;
+  background: var(--gl-navy);
+}
+.gloss-pill .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #37d0ee;
+}
+.gloss-pill span {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #fff;
+}
+.gloss-h1 {
+  font-size: clamp(28px, 5vw, 42px);
+  font-weight: 900;
+  letter-spacing: -0.015em;
+  margin: 16px 0 0;
+  line-height: 1.18;
+}
+.gloss-lead {
+  font-size: 15px;
+  line-height: 2.05;
+  color: #52677c;
+  max-width: 660px;
+  margin: 16px 0 0;
+}
+.gloss-meta {
+  margin-top: 18px;
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 12px;
+  color: #8aa5b6;
+}
+.gloss-meta b {
+  color: var(--gl-navy);
+}
+.gloss-meta .sep {
+  color: #cfe0ea;
+}
+
+/* sticky filter tabs */
+.gloss-tabbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--gl-line);
+}
+.gloss-tabbar-inner {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.gloss-tabbar .label {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--gl-faint);
+}
+.gloss-tabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.gloss-tab {
+  padding: 9px 18px;
+  border: 1px solid var(--gl-line2);
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 13.5px;
+  font-weight: 700;
+  white-space: nowrap;
+  background: #fff;
+  color: var(--gl-muted);
+  transition: 0.15s;
+}
+.gloss-tab.active {
+  background: var(--gl-navy);
+  color: #fff;
+  border-color: var(--gl-navy);
+  box-shadow: 0 3px 10px rgba(27, 63, 99, 0.22);
+}
+
+/* body / category */
+.gloss-body {
+  padding-top: 40px;
+  padding-bottom: 80px;
+}
+.gloss-cat {
+  margin-bottom: 56px;
+}
+/* エディトリアルな見出し: 大きな透過ナンバー＋シアンのアイブロウ＋下罫線 */
+.gloss-cat-head {
+  display: flex;
+  align-items: flex-end;
+  gap: 18px;
+  margin-bottom: 24px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--gl-line);
+}
+.gloss-cat-num {
+  flex: none;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 52px;
+  font-weight: 700;
+  line-height: 0.8;
+  letter-spacing: -0.03em;
+  color: transparent;
+  background: linear-gradient(160deg, var(--gl-navy) 0%, var(--gl-cyan) 120%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  opacity: 0.18;
+}
+.gloss-cat-title {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.gloss-cat-head h2 {
+  font-size: 23px;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+.gloss-cat-en {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  color: var(--gl-cyan);
+  font-weight: 600;
+}
+.gloss-cat-count {
+  margin-left: auto;
+  font-size: 12px;
+  color: var(--gl-faint);
+  background: #f1f5f8;
+  padding: 4px 11px;
+  border-radius: 999px;
+}
+
+/* 総合ガイド card */
+.gloss-guide {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #d7e7f0;
+  border-radius: 16px;
+  padding: 24px 28px;
+  background: linear-gradient(135deg, #f3fafc 0%, #eaf4f9 100%);
+  margin-bottom: 22px;
+}
+.gloss-guide .gloss-node {
+  position: absolute;
+  top: -10px;
+  right: -6px;
+  opacity: 0.55;
+  pointer-events: none;
+}
+.gloss-guide-inner {
+  position: relative;
+}
+.gloss-ey {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.gloss-badge {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #fff;
+  background: var(--gl-cyan);
+  padding: 3px 9px;
+  border-radius: 4px;
+}
+.gloss-first {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #1f6f8c;
+}
+.gloss-guide h3 {
+  font-size: 21px;
+  font-weight: 800;
+  color: var(--gl-navy);
+  margin: 13px 0 0;
+}
+.gloss-def {
+  font-size: 14.5px;
+  line-height: 2.05;
+  color: #3a536c;
+  margin: 12px 0 0;
+  max-width: 760px;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.25s ease, margin 0.25s ease;
+}
+.gloss-guide.collapsed .gloss-def {
+  max-height: 0;
+  opacity: 0;
+  margin: 0;
+}
+.gloss-cta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 18px;
+}
+.gloss-read {
+  padding: 10px 18px;
+  border-radius: 8px;
+  background: var(--gl-btn);
+  color: #fff;
+  font-size: 13.5px;
+  font-weight: 700;
+  display: inline-flex;
+  gap: 7px;
+  box-shadow: 0 4px 12px rgba(31, 79, 134, 0.2);
+}
+.gloss-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+  color: #5b7589;
+}
+
+/* term groups */
+.gloss-group {
+  margin-top: 24px;
+}
+.gloss-group-head {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 13px;
+}
+.gloss-group-head .bar {
+  width: 5px;
+  height: 14px;
+  border-radius: 2px;
+  background: var(--gl-cyan);
+}
+.gloss-gn {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #33506e;
+}
+.gloss-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.gloss-term {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 15px 18px;
+  border: 1px solid var(--gl-line2);
+  border-radius: 12px;
+  background: #fff;
+  transition: 0.16s;
+}
+.gloss-term:hover {
+  border-color: var(--gl-cyan);
+  box-shadow: 0 8px 20px rgba(19, 167, 200, 0.12);
+  transform: translateY(-2px);
+}
+.gloss-term.coming {
+  opacity: 0.6;
+  cursor: default;
+}
+.gloss-term.coming:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--gl-line2);
+}
+.gloss-tn {
+  font-size: 14.5px;
+  font-weight: 500;
+  color: #2c4763;
+}
+.gloss-arrow {
+  width: 22px;
+  height: 22px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--gl-tint);
+  color: #1f6f8c;
+  font-size: 12px;
+}
+
+@media (max-width: 860px) {
+  .gloss-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,18 +1,16 @@
 import {
   HeroSection,
-  // ArchaiveIntroSection,
-  ArchaiveIntroSection,
-  BeforeAfterSection,
-  MainFeaturesSection,
-  SubFeaturesSection,
-  ProcessSection,
-  CaseSection,
-  NewsSection,
   NoteSection,
-  SecuritySection,
-  FAQSection,
-  CTASection,
+  SubFeaturesSection,
 } from '@/components/feature';
+import { CaseStudySection } from '@/components/feature/CaseStudySection';
+// LP/Kaihara/frustration から移植したセクション
+import { ProblemSolutionSection } from '@/components/feature/ProblemSolutionSection';
+import { FeaturesSection } from '@/components/feature/FeaturesSection';
+import { GettingStartedSection } from '@/components/feature/GettingStartedSection';
+import { SecurityFaqSection } from '@/components/feature/SecurityFaqSection';
+import { GetStartedSection } from '@/components/feature/GetStartedSection';
+import { IndustryThemeProvider } from '@/components/feature/IndustryTheme';
 
 import {
   Header,
@@ -208,17 +206,15 @@ export default function Home() {
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteJsonLd) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }} />
         <HeroSection />
-        {/* <ArchaiveIntroSection /> */}
-        <ArchaiveIntroSection />
-        <BeforeAfterSection />
-        <MainFeaturesSection />
+        <ProblemSolutionSection />
+        <IndustryThemeProvider>
+          <FeaturesSection />
+        </IndustryThemeProvider>
         <SubFeaturesSection />
-        <CaseSection />
-        <ProcessSection />
-        <NewsSection />
-        <SecuritySection />
-        <FAQSection />
-        <CTASection />
+        <CaseStudySection />
+        <GettingStartedSection />
+        <SecurityFaqSection />
+        <GetStartedSection />
         <NoteSection />
       </main>
       <Footer />

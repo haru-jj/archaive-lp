@@ -1,5 +1,8 @@
 import './globals.css';
 import type { Metadata } from 'next';
+import GuideTermHinter from '@/components/feature/GuideTermHinter';
+import GuideChat from '@/components/guide/GuideChat';
+import { getAllArticles } from '@/lib/guide';
 
 export const metadata: Metadata = {
   title: 'ARCHAIVE - 製造業DXを実現するAI見積・ナレッジ検索システム',
@@ -145,7 +148,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
         />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <GuideTermHinter />
+        <GuideChat
+          terms={getAllArticles().map((a) => ({
+            slug: a.slug,
+            title: a.title,
+            description: a.description ?? '',
+          }))}
+        />
+      </body>
     </html>
   );
 }

@@ -15,36 +15,35 @@ export default function HeroSection() {
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-60" style={{ backgroundImage: "url('/images/background_geometric.webp')" }} />
         <div className="absolute inset-0 bg-gradient-to-r from-[#005381]/40 via-[#2A8B96]/40 to-[#37B7C4]/40 z-[1]" />
 
-        <div className="w-full px-4 py-12 relative z-10">
-          <div className="space-y-6 text-center">
-            <h1 className="font-bold text-white tracking-tight text-[30px] leading-[1.3]">
+        <div className="w-full px-5 py-12 relative z-10">
+          <div className="space-y-7 text-center">
+            <h1 className="font-bold text-white tracking-tight text-[26px] leading-[1.35]">
               <div>1枚の図面・帳票から</div>
               <div>
                 社内の全ナレッジを<br className="sm:hidden" />AI活用
               </div>
             </h1>
             <div className="space-y-3">
-              <p className="text-white font-semibold leading-relaxed text-[18px]" style={{ lineHeight: 1.82 }}>
+              <p className="text-white font-semibold text-[15px] leading-relaxed">
                 あらゆるデータを構造化し、<br />
                 会社の「資産」に。
               </p>
-              <p className="text-white font-semibold leading-relaxed text-[18px]" style={{ lineHeight: 1.82 }}>
+              <p className="text-white font-semibold text-[15px] leading-relaxed">
                 独自のAIエージェントが<br />
                 設計・調達・見積業務をラクに。
               </p>
             </div>
-            <div className="flex flex-row flex-wrap gap-3 w-full max-w-[360px] mx-auto justify-center">
-              <Link href="/download" className="bg-white border-2 border-white rounded-full text-black px-9 py-3 text-sm font-bold flex items-center justify-center w-full sm:w-auto flex-none shrink-0 min-w-[190px] max-w-[260px] hover:bg-gray-50 btn-hover group">
+            <div className="flex flex-col gap-3 w-full max-w-xs mx-auto">
+              <Link href="/download" className="bg-white border-2 border-white rounded-full text-black px-6 py-3.5 text-base font-bold flex items-center justify-center w-full hover:bg-gray-50 btn-hover group">
                 <span className="relative flex items-center justify-center w-full min-h-[48px]">
-                  <span className="absolute left-[-52px] sm:left-[-60px] w-18 h-14">
+                  <span className="absolute left-0 w-14 h-12">
                     <Image
                       src="/images/paper1215-0-2.webp"
                       alt="カタログプレビュー"
                       width={3469}
                       height={2650}
                       className="w-full h-full object-cover rounded-md"
-                      style={{ transform: 'translate(-12px, 4px)' }}
-                      sizes="64px"
+                      sizes="56px"
                       priority={false}
                     />
                   </span>
@@ -54,7 +53,7 @@ export default function HeroSection() {
                   </span>
                 </span>
               </Link>
-              <Link href="/apply" className="bg-white border-2 border-white text-black rounded-full px-7 py-3 text-sm font-bold flex items-center justify-center w-full sm:w-auto flex-none shrink-0 min-w-[190px] max-w-[260px] hover:bg-gray-50 btn-hover group relative overflow-hidden">
+              <Link href="/apply" className="bg-white border-2 border-white text-black rounded-full px-6 py-3.5 text-base font-bold flex items-center justify-center w-full hover:bg-gray-50 btn-hover group relative overflow-hidden">
                 <span className="flex flex-col items-center leading-tight text-center w-full gap-1">
                   <span className="text-xs font-semibold text-[#f54848]">\ 実際に使ってみる /</span>
                   <span className="group-text-wide">デモを無料体験</span>
@@ -65,7 +64,7 @@ export default function HeroSection() {
                 <Image
                   src="/images/hero_canva-1600.webp"
                   alt="ARCHAIVEのAI見積システムを工場で操作する様子。図面検索と見積作成画面を表示"
-                  className="w-full max-w-[820px] rounded-xl shadow-2xl"
+                  className="w-full max-w-full h-auto rounded-xl shadow-2xl"
                   width={1600}
                   height={882}
                   sizes="(max-width: 640px) 100vw, 820px"
@@ -74,6 +73,11 @@ export default function HeroSection() {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Hero Quick Navigation - Mobile */}
+      <div className="flex sm:hidden">
+        <HeroQuickNav />
       </div>
 
       {/* Hero Main Content - Desktop */}

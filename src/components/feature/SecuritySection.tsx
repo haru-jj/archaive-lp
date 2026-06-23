@@ -60,7 +60,7 @@ export default function SecuritySection() {
 
   return (
     <section
-      className="pt-16 sm:pt-20 md:pt-24 pb-24 sm:pb-28 md:pb-32 px-4 bg-gradient-to-br from-gray-950 via-slate-950 to-gray-900 relative overflow-hidden"
+      className="pt-12 sm:pt-20 md:pt-24 pb-16 sm:pb-28 md:pb-32 px-4 sm:px-4 bg-gradient-to-br from-gray-950 via-slate-950 to-gray-900 relative overflow-hidden"
       id="security"
     >
       {/* 背景の装飾要素 */}
@@ -97,12 +97,12 @@ export default function SecuritySection() {
 
       {/* モバイル専用レイアウト */}
       <div className="md:hidden relative z-10">
-        <div className="text-center mb-8">
-          <p className="text-sm font-semibold text-[#37B7C4] mb-3 -mt-4">Security</p>
-          <h2 className="text-2xl font-bold text-white mb-3 tracking-tight">
+        <div className="text-center mb-8 px-1">
+          <p className="text-xs font-semibold text-[#37B7C4] mb-2 -mt-2">Security</p>
+          <h2 className="text-2xl font-bold text-white mb-3 leading-snug tracking-tight">
             エンタープライズ水準の<br className="md:hidden" />セキュリティ
           </h2>
-          <p className="text-gray-300 text-base leading-relaxed">
+          <p className="text-gray-300 text-sm leading-relaxed">
             高水準のセキュリティ/コンプライアンスに<br className="md:hidden" />よって、お客様の重要な資産を守ります
           </p>
         </div>
@@ -110,23 +110,23 @@ export default function SecuritySection() {
           {securityMeasures.map((measure, index) => (
             <div
               key={index}
-              className="bg-gradient-to-b from-gray-800/85 via-gray-800/80 to-gray-900/90 backdrop-blur-md rounded-xl p-6 shadow-2xl border border-gray-700/50 ring-1 ring-[#37B7C4]/10"
+              className="bg-gradient-to-b from-gray-800/85 via-gray-800/80 to-gray-900/90 backdrop-blur-md rounded-xl p-5 shadow-2xl border border-gray-700/50 ring-1 ring-[#37B7C4]/10"
             >
               <div className="flex flex-col items-center text-center mb-4">
                 <img
                   src={measure.image}
                   alt={measure.imageAlt}
-                  className="w-40 h-28 object-contain mb-4"
+                  className="w-36 h-24 max-w-full object-contain mb-3"
                 />
-                <h3 className="text-xl font-extrabold text-white tracking-wide">
+                <h3 className="text-lg font-bold text-white tracking-wide">
                   {measure.title}
                 </h3>
               </div>
               <ul className="space-y-3">
                 {measure.items.map((item, itemIndex) => (
                   <li key={itemIndex} className="flex items-start">
-                    <div className="w-2 h-2 bg-[#37B7C4] rounded-full mt-2 mr-3 flex-shrink-0" />
-                    <span className="text-base text-gray-300/90 leading-relaxed">{item}</span>
+                    <div className="w-2 h-2 bg-[#37B7C4] rounded-full mt-1.5 mr-3 flex-shrink-0" />
+                    <span className="text-sm text-gray-300/90 leading-relaxed break-words">{item}</span>
                   </li>
                 ))}
               </ul>
