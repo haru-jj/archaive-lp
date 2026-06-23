@@ -130,7 +130,7 @@ export function GettingStartedSection() {
 
                   <div className='border-lp-text/55 mt-auto border-t-2 border-solid pt-4'>
                     <p className='text-center text-[1.2rem] leading-tight font-bold'>
-                      <span className='text-[var(--lp-primary)]'>{step.productName}</span>
+                      <span className='text-lp-text'>{step.productName}</span>
                       <span className='text-lp-text'> / {step.duration}</span>
                     </p>
                   </div>
@@ -175,7 +175,7 @@ export function GettingStartedSection() {
 
                   <div className='border-lp-text/55 mt-6 border-t-2 border-solid pt-5'>
                     <p className='text-center text-[1.25rem] leading-tight font-bold'>
-                      <span className='text-[var(--lp-primary)]'>{step.productName}</span>
+                      <span className='text-lp-text'>{step.productName}</span>
                       <span className='text-lp-text'> / {step.duration}</span>
                     </p>
                   </div>

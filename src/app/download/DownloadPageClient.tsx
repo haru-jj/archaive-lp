@@ -3,13 +3,41 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { ChevronDown, Check } from 'lucide-react';
 import { Header, Footer } from '@/components/layout';
 import TurnstileWidget from '@/components/forms/TurnstileWidget';
+
+const SLIDES = [
+  '/images/slides/1.png',
+  '/images/slides/2.png',
+  '/images/slides/3.png',
+  '/images/slides/4.png',
+];
+
+const DOC_INTRO =
+  '製品にまつわる情報がバラバラな会社が、ARCHAIVEで何を変えられるのか。概要から導入事例まで、数分で掴めます。';
+
+const DOC_FOR = [
+  '「あの図面、どこにあったか」を、いまも人に聞いて探している',
+  '図面・見積・検査記録・過去のやり取りが、別々の場所に散らばっている',
+  'Excelとファイルサーバーでの管理が、扱う情報量に追いつかなくなってきた',
+  'ベテランが退職するたびに、単価の根拠や判断の理由が一緒に失われていく',
+  '情報基盤やPLMは大企業のもので、自社には縁がないと思っている',
+];
+
+const DOC_LEARN = [
+  'ARCHAIVEが「図面検索ツール」ではなく、図面を起点にしたデータプラットフォームである理由',
+  '図面を開くと、その製品の見積・仕様・検査記録・判断の経緯までたどれる仕組み',
+  '図面を探す時間や見積作成の工数を、導入企業が実際にどれだけ減らせたか',
+  'AI開発を本業とするSTAR UPだから描ける、データを溜めた先のAI活用（見積自動化・外観検査など）',
+  'BOMや部品マスタの整備から始めなくても、図面1枚から導入できる進め方',
+];
 
 export default function DownloadPageClient() {
   const [formData, setFormData] = useState({
     companyName: '',
-    name: '',
+    lastName: '',
+    firstName: '',
     department: '',
     position: '',
     email: '',
@@ -59,10 +87,16 @@ export default function DownloadPageClient() {
       }
 
       const submissionData = {
-        ...formData,
+        companyName: formData.companyName,
+        name: `${formData.lastName} ${formData.firstName}`.trim(),
+        department: formData.department,
+        position: formData.position,
+        email: formData.email,
+        phone: formData.phone,
         inquiryContent: Array.isArray(formData.inquiryContent)
           ? formData.inquiryContent.join(', ')
           : formData.inquiryContent,
+        inquiryDetails: formData.inquiryDetails,
       };
       const response = await fetch('/api/submit-form', {
         method: 'POST',
@@ -81,7 +115,8 @@ export default function DownloadPageClient() {
       if (result.success) {
         setFormData({
           companyName: '',
-          name: '',
+          lastName: '',
+          firstName: '',
           department: '',
           position: '',
           email: '',
@@ -114,6 +149,10 @@ export default function DownloadPageClient() {
     }
   };
 
+  const inputClass =
+    'w-full px-3 py-2 sm:px-4 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#37B7C4] focus:border-transparent text-sm sm:text-base';
+  const labelClass = 'block text-gray-700 font-semibold mb-2 text-sm sm:text-base';
+
   return (
     <div className="min-h-screen flex flex-col bg-[#f7f9fc]">
       <Header />
@@ -137,22 +176,24 @@ export default function DownloadPageClient() {
                 」の概要・ビジョン・主要機能・事例を簡単に把握できるコンパクト版です。
               </p>
 
-              <div className="relative w-full max-w-2xl mx-auto mb-8">
-                <div className="relative overflow-visible rounded-2xl shadow-lg">
-                  <Image
-                    src={['/images/paper1215.webp', '/images/paper1215-1.webp', '/images/paper1215-2.webp'][currentImage]}
-                    alt="ARCHAIVE製品紹介カタログの表紙。"
-                    width={2474}
-                    height={1392}
-                    className="w-full h-auto"
-                    sizes="(min-width: 1024px) 520px, 100vw"
-                    priority
-                  />
+              {/* スライドプレビュー（番号順 1〜4） */}
+              <div className="relative w-full max-w-2xl mx-auto mb-6">
+                <div className="relative overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-lg">
+                  <div className="relative aspect-[16/9]">
+                    <Image
+                      src={SLIDES[currentImage]}
+                      alt={`ARCHAIVE製品紹介カタログ スライド${currentImage + 1}`}
+                      fill
+                      className="object-contain"
+                      sizes="(min-width: 1024px) 640px, 100vw"
+                      priority
+                    />
+                  </div>
                   <button
                     type="button"
                     aria-label="前の画像へ"
-                    onClick={() => setCurrentImage((prev) => (prev + 2) % 3)}
-                    className="absolute -left-5 sm:-left-6 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 rounded-full p-2 shadow-md transition z-10"
+                    onClick={() => setCurrentImage((prev) => (prev + SLIDES.length - 1) % SLIDES.length)}
+                    className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/85 hover:bg-white text-gray-800 rounded-full p-2 shadow-md transition z-10"
                   >
                     <span className="sr-only">前へ</span>
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -162,8 +203,8 @@ export default function DownloadPageClient() {
                   <button
                     type="button"
                     aria-label="次の画像へ"
-                    onClick={() => setCurrentImage((prev) => (prev + 1) % 3)}
-                    className="absolute -right-5 sm:-right-6 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-gray-800 rounded-full p-2 shadow-md transition z-10"
+                    onClick={() => setCurrentImage((prev) => (prev + 1) % SLIDES.length)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 bg-white/85 hover:bg-white text-gray-800 rounded-full p-2 shadow-md transition z-10"
                   >
                     <span className="sr-only">次へ</span>
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -171,30 +212,70 @@ export default function DownloadPageClient() {
                     </svg>
                   </button>
                 </div>
-              </div>
-
-              <div className="bg-white border border-gray-200 rounded-2xl shadow-lg p-6 sm:p-8 space-y-6 mb-8">
-                <h2 className="text-left text-2xl sm:text-3xl font-bold text-[#37B7C4]">資料内容</h2>
-                <div className="space-y-3">
-                  {[
-                    '製造業向けAIデータプラットフォーム「ARCHAIVE」の製品概要／主な機能紹介',
-                    '図面を起点とした業務フローの刷新と、間接業務の大幅な削減事例',
-                    'SIerとSaaSの強みを統合した、現場主導のDX推進体制とシステム構築マップ',
-                  ].map((text) => (
-                    <div
-                      key={text}
-                      className="text-sm sm:text-base text-gray-800 font-bold"
+                {/* サムネ（番号順） */}
+                <div className="mt-3 grid grid-cols-4 gap-2">
+                  {SLIDES.map((src, idx) => (
+                    <button
+                      key={src}
+                      type="button"
+                      onClick={() => setCurrentImage(idx)}
+                      aria-label={`スライド${idx + 1}を表示`}
+                      aria-pressed={currentImage === idx}
+                      className={`relative aspect-[16/9] overflow-hidden rounded-lg border transition ${
+                        currentImage === idx
+                          ? 'border-[#37B7C4] ring-2 ring-[#37B7C4]/30'
+                          : 'border-gray-200 opacity-70 hover:opacity-100'
+                      }`}
                     >
-                      ・{text}
-                    </div>
+                      <Image src={src} alt="" fill sizes="160px" className="object-cover" />
+                    </button>
                   ))}
                 </div>
               </div>
+
+              {/* 資料の内容（折りたたみ式） */}
+              <details className="group bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden mb-8 [&_summary::-webkit-details-marker]:hidden" open>
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-3 p-6 sm:px-8">
+                  <span className="text-left text-xl sm:text-2xl font-bold text-[#37B7C4]">
+                    資料の内容
+                  </span>
+                  <ChevronDown className="h-5 w-5 text-[#37B7C4] transition-transform duration-300 group-open:rotate-180" />
+                </summary>
+                <div className="px-6 pb-6 sm:px-8 sm:pb-8 space-y-6">
+                  <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                    {DOC_INTRO}
+                  </p>
+
+                  <div>
+                    <p className="text-sm font-bold text-gray-900 mb-3">こんな方におすすめ</p>
+                    <ul className="space-y-2.5">
+                      {DOC_FOR.map((item) => (
+                        <li key={item} className="flex gap-2.5 text-sm sm:text-base text-gray-700 leading-relaxed">
+                          <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#37B7C4]" strokeWidth={2.6} />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div>
+                    <p className="text-sm font-bold text-gray-900 mb-3">この資料でわかること</p>
+                    <ul className="space-y-2.5">
+                      {DOC_LEARN.map((item) => (
+                        <li key={item} className="flex gap-2.5 text-sm sm:text-base text-gray-700 leading-relaxed">
+                          <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#37B7C4]" strokeWidth={2.6} />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </details>
             </section>
 
             <form
               onSubmit={handleSubmit}
-              className="w-full lg:w-[460px] xl:w-[520px] bg-white rounded-3xl shadow-2xl border border-gray-100 p-6 sm:p-8 space-y-6"
+              className="w-full lg:w-[460px] xl:w-[520px] bg-white rounded-3xl shadow-2xl border border-gray-100 p-6 sm:p-8 space-y-5"
             >
               <div className="text-center">
                 <p className="text-lg font-bold text-[#37B7C4]">30秒で資料を受け取る</p>
@@ -214,199 +295,219 @@ export default function DownloadPageClient() {
                   </div>
                 )}
               </div>
-            <div className="mb-4 sm:mb-6">
-              <label className="block text-gray-700 font-semibold mb-2 text-sm sm:text-base">
-                会社名
-                <span className="text-red-500 ml-1">*</span>
-              </label>
-              <input
-                type="text"
-                name="companyName"
-                value={formData.companyName}
-                onChange={handleInputChange}
-                placeholder="例 | 株式会社〇〇"
-                className="w-full px-3 py-2 sm:px-4 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#37B7C4] focus:border-transparent text-sm sm:text-base"
-                required
-              />
-            </div>
 
-            <div className="mb-4 sm:mb-6">
-              <label className="block text-gray-700 font-semibold mb-2 text-sm sm:text-base">
-                氏名
-                <span className="text-red-500 ml-1">*</span>
-              </label>
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                placeholder="例 | 山田 太郎"
-                className="w-full px-3 py-2 sm:px-4 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#37B7C4] focus:border-transparent text-sm sm:text-base"
-                required
-              />
-            </div>
-
-            <div className="mb-4 sm:mb-6">
-              <label className="block text-gray-700 font-semibold mb-2 text-sm sm:text-base">
-                部署
-                <span className="text-red-500 ml-1">*</span>
-              </label>
-              <input
-                type="text"
-                name="department"
-                value={formData.department}
-                onChange={handleInputChange}
-                placeholder="例 | 図面管理部"
-                className="w-full px-3 py-2 sm:px-4 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#37B7C4] focus:border-transparent text-sm sm:text-base"
-                required
-              />
-            </div>
-
-            <div className="mb-4 sm:mb-6">
-              <label className="block text-gray-700 font-semibold mb-2 text-sm sm:text-base">
-                役職
-                <span className="text-red-500 ml-1">*</span>
-              </label>
-              <div className="relative">
-                <select
-                  name="position"
-                  value={formData.position}
+              <div>
+                <label className={labelClass}>
+                  会社名
+                  <span className="text-red-500 ml-1">*</span>
+                </label>
+                <input
+                  type="text"
+                  name="companyName"
+                  value={formData.companyName}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 sm:px-4 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#37B7C4] focus:border-transparent appearance-none bg-white text-sm sm:text-base"
+                  placeholder="例 | 株式会社〇〇"
+                  className={inputClass}
                   required
-                >
-                  <option value="">選択してください</option>
-                  <option value="取締役">取締役</option>
-                  <option value="執行役員">執行役員</option>
-                  <option value="部門長">部門長</option>
-                  <option value="課長">課長</option>
-                  <option value="リーダー/主任">リーダー/主任</option>
-                  <option value="一般社員">一般社員</option>
-                  <option value="その他">その他</option>
-                </select>
-                <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-                  <svg className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path
-                      fillRule="evenodd"
-                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className={labelClass}>
+                    姓
+                    <span className="text-red-500 ml-1">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleInputChange}
+                    placeholder="例 | 山田"
+                    className={inputClass}
+                    required
+                  />
+                </div>
+                <div>
+                  <label className={labelClass}>
+                    名
+                    <span className="text-red-500 ml-1">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleInputChange}
+                    placeholder="例 | 太郎"
+                    className={inputClass}
+                    required
+                  />
                 </div>
               </div>
-            </div>
 
-            <div className="mb-4 sm:mb-6 flex flex-col gap-4">
-              <div className="w-full">
-                <label className="block text-gray-700 font-semibold mb-2 text-sm sm:text-base">
-                  Eメール
-                  <span className="text-red-500 ml-1">*</span>
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  placeholder="例 | example@starup01.jp"
-                  className="w-full px-3 py-2 sm:px-4 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#37B7C4] focus:border-transparent text-sm sm:text-base"
-                  required
-                />
-              </div>
-
-              <div className="w-full">
-                <label className="block text-gray-700 font-semibold mb-2 text-sm sm:text-base">
-                  電話番号
-                  <span className="text-red-500 ml-1">*</span>
-                </label>
-                <input
-                  type="tel"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleInputChange}
-                  placeholder="例 | 090-1234-5678"
-                  className="w-full px-3 py-2 sm:px-4 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#37B7C4] focus:border-transparent text-sm sm:text-base"
-                  required
-                />
-              </div>
-            </div>
-
-            <div className="mb-4 sm:mb-6">
-              <label className="block text-gray-700 font-semibold mb-2 text-sm sm:text-base">
-                現在抱えている課題
-                <span className="text-red-500 ml-1">*</span>
-              </label>
-              <div className="flex flex-col gap-2">
-                {[
-                  '図面検索業務の効率化',
-                  '見積作成業務の効率化',
-                  'ナレッジ共有の仕組み化',
-                  '過去トラブル・不良の活用',
-                  'その他',
-                ].map((option) => (
-                  <label key={option} className="flex items-center gap-3 text-sm sm:text-base text-gray-700">
-                    <input
-                      type="checkbox"
-                      checked={Array.isArray(formData.inquiryContent) && formData.inquiryContent.includes(option)}
-                      onChange={() => toggleCheckboxValue('inquiryContent', option)}
-                      className="h-4 w-4 rounded border-gray-300 text-[#37B7C4] focus:ring-[#37B7C4]"
-                    />
-                    <span>{option}</span>
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className={labelClass}>
+                    部署
+                    <span className="text-red-500 ml-1">*</span>
                   </label>
-                ))}
+                  <input
+                    type="text"
+                    name="department"
+                    value={formData.department}
+                    onChange={handleInputChange}
+                    placeholder="例 | 図面管理部"
+                    className={inputClass}
+                    required
+                  />
+                </div>
+                <div>
+                  <label className={labelClass}>
+                    役職
+                    <span className="text-red-500 ml-1">*</span>
+                  </label>
+                  <div className="relative">
+                    <select
+                      name="position"
+                      value={formData.position}
+                      onChange={handleInputChange}
+                      className={`${inputClass} appearance-none bg-white pr-9`}
+                      required
+                    >
+                      <option value="">選択してください</option>
+                      <option value="取締役">取締役</option>
+                      <option value="執行役員">執行役員</option>
+                      <option value="部門長">部門長</option>
+                      <option value="課長">課長</option>
+                      <option value="リーダー/主任">リーダー/主任</option>
+                      <option value="一般社員">一般社員</option>
+                      <option value="その他">その他</option>
+                    </select>
+                    <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                      <svg className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                          fillRule="evenodd"
+                          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <input
-                type="text"
-                name="inquiryContent"
-                value={Array.isArray(formData.inquiryContent) ? formData.inquiryContent.join(', ') : formData.inquiryContent}
-                onChange={() => {}}
-                className="sr-only"
-                required
-                aria-hidden="true"
-                tabIndex={-1}
-              />
-            </div>
 
-            <div className="mb-4 sm:mb-6">
-              <label className="block text-gray-700 font-semibold mb-2 text-sm sm:text-base">
-                詳細（任意）
-              </label>
-              <textarea
-                name="inquiryDetails"
-                value={formData.inquiryDetails}
-                onChange={handleInputChange}
-                placeholder="具体的な課題や現状の取り組み状況などがあればご記入ください"
-                className="w-full px-3 py-2 sm:px-4 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#37B7C4] focus:border-transparent text-sm sm:text-base h-32"
-              />
-            </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label className={labelClass}>
+                    Eメール
+                    <span className="text-red-500 ml-1">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    placeholder="例 | example@starup01.jp"
+                    className={inputClass}
+                    required
+                  />
+                </div>
+                <div>
+                  <label className={labelClass}>
+                    電話番号
+                    <span className="text-red-500 ml-1">*</span>
+                  </label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    placeholder="例 | 090-1234-5678"
+                    className={inputClass}
+                    required
+                  />
+                </div>
+              </div>
 
-            <div className="flex flex-col gap-4">
-              {turnstileSiteKey ? (
-                <TurnstileWidget
-                  siteKey={turnstileSiteKey}
-                  onVerify={setTurnstileToken}
-                  onExpire={() => setTurnstileToken('')}
-                  onError={() => setTurnstileToken('')}
-                  onWidgetLoad={setTurnstileWidgetId}
+              <div>
+                <label className={labelClass}>
+                  現在抱えている課題
+                  <span className="text-gray-400 ml-2 text-xs font-normal">任意</span>
+                </label>
+                <div className="grid grid-cols-2 gap-2">
+                  {[
+                    '図面検索業務の効率化',
+                    '見積作成業務の効率化',
+                    'ナレッジ共有の仕組み化',
+                    '過去トラブル・不良の活用',
+                  ].map((option) => {
+                    const checked =
+                      Array.isArray(formData.inquiryContent) &&
+                      formData.inquiryContent.includes(option);
+                    return (
+                      <label
+                        key={option}
+                        className={`flex cursor-pointer items-center gap-2.5 rounded-lg border px-3 py-2.5 text-sm text-gray-700 transition ${
+                          checked
+                            ? 'border-[#37B7C4] bg-[#37B7C4]/5'
+                            : 'border-gray-300 hover:border-[#37B7C4]/60'
+                        }`}
+                      >
+                        <input
+                          type="checkbox"
+                          checked={checked}
+                          onChange={() => toggleCheckboxValue('inquiryContent', option)}
+                          className="h-4 w-4 shrink-0 rounded border-gray-300 text-[#37B7C4] focus:ring-[#37B7C4]"
+                        />
+                        <span>{option}</span>
+                      </label>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div>
+                <label className={labelClass}>
+                  詳細
+                  <span className="text-gray-400 ml-2 text-xs font-normal">任意</span>
+                </label>
+                <textarea
+                  name="inquiryDetails"
+                  value={formData.inquiryDetails}
+                  onChange={handleInputChange}
+                  placeholder="具体的な課題や現状の取り組み状況などがあればご記入ください"
+                  className={`${inputClass} h-24`}
                 />
-              ) : (
-                <p className="text-xs text-red-500">
-                  Turnstileのサイトキーが設定されていません。
+              </div>
+
+              <div className="flex flex-col gap-4">
+                {turnstileSiteKey ? (
+                  <TurnstileWidget
+                    siteKey={turnstileSiteKey}
+                    onVerify={setTurnstileToken}
+                    onExpire={() => setTurnstileToken('')}
+                    onError={() => setTurnstileToken('')}
+                    onWidgetLoad={setTurnstileWidgetId}
+                  />
+                ) : (
+                  <p className="text-xs text-red-500">
+                    Turnstileのサイトキーが設定されていません。
+                  </p>
+                )}
+                <p className="text-xs sm:text-sm text-gray-500 leading-relaxed">
+                  送信いただいた情報は、お問い合わせへの対応のみに利用し、プライバシーポリシーに基づき適切に取り扱います。
                 </p>
-              )}
-              <p className="text-xs sm:text-sm text-gray-500 leading-relaxed">
-                送信いただいた情報は、お問い合わせへの対応のみに利用し、プライバシーポリシーに基づき適切に取り扱います。
-              </p>
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-[#37B7C4] text-white px-6 py-3 rounded-lg font-bold hover:bg-[#2a9aa5] transition-all duration-300 disabled:opacity-60"
-              >
-                {isSubmitting ? '送信中…' : '資料をダウンロードする'}
-              </button>
-            </div>
-          </form>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full bg-[#37B7C4] text-white px-6 py-3 rounded-lg font-bold hover:bg-[#2a9aa5] transition-all duration-300 disabled:opacity-60"
+                >
+                  {isSubmitting ? '送信中…' : '資料をダウンロードする'}
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
       </main>
 
       <Footer />

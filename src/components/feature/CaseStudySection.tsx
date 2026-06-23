@@ -179,7 +179,7 @@ export function CaseStudySection() {
           </h2>
           <div className='border-lp-text/55 mx-auto mt-6 h-px w-full max-w-[18rem] border-t-2 border-solid sm:max-w-[20rem]' />
           <p className='text-lp-text-subtle mx-auto mt-4 max-w-[44rem] text-base leading-7 font-normal sm:text-lg'>
-            <span style={{ color: '#37B7C4' }}>ARCHAIVE</span>を導入した企業の現場で発生した変化を
+            ARCHAIVEを導入した企業の現場で発生した変化を
             <br className='hidden sm:inline' />
             担当者の声とともにご紹介します。
           </p>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import Image from 'next/image';
 import Link from 'next/link';
@@ -18,7 +18,7 @@ const NAV_LINKS = [
 ];
 
 export default function Header() {
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const progressBarRef = useRef<HTMLDivElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
 
   // ドロワー表示中は背面スクロールを止める。640px 以上になったら自動で閉じる
@@ -48,8 +48,11 @@ export default function Header() {
         const scrollTop = window.scrollY;
         const docHeight =
           document.documentElement.scrollHeight - window.innerHeight;
-        const progress = docHeight > 0 ? scrollTop / docHeight : 0;
-        setScrollProgress(Math.max(0, Math.min(1, progress)));
+        const progress =
+          docHeight > 0 ? Math.max(0, Math.min(1, scrollTop / docHeight)) : 0;
+        // ref で DOM を直接更新（毎フレームの React 再描画を避けてカクつきを防ぐ）
+        const bar = progressBarRef.current;
+        if (bar) bar.style.clipPath = `inset(0 ${(1 - progress) * 100}% 0 0)`;
       });
     };
 
@@ -244,8 +247,9 @@ export default function Header() {
         className='pointer-events-none absolute right-0 bottom-0 left-0 h-[3px] overflow-hidden bg-transparent'
       >
         <div
-          className='h-full origin-left bg-[linear-gradient(90deg,var(--lp-primary)_0%,var(--lp-primary-strong)_60%,var(--lp-primary-deep)_100%)] shadow-[0_0_12px_rgba(85,189,207,0.45)] transition-transform duration-150 ease-out will-change-transform'
-          style={{ transform: `scaleX(${scrollProgress})` }}
+          ref={progressBarRef}
+          className='h-full w-full bg-[linear-gradient(90deg,var(--lp-primary)_0%,var(--lp-primary-strong)_60%,var(--lp-primary-deep)_100%)] shadow-[0_0_12px_rgba(85,189,207,0.45)] transition-[clip-path] duration-100 ease-out will-change-[clip-path]'
+          style={{ clipPath: 'inset(0 100% 0 0)' }}
         />
       </div>
     </header>

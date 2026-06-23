@@ -91,6 +91,73 @@ const featureDetails = {
   },
 } as const;
 
+// 建設業タブ用の文章（製造業と同じ id・構成。bullets は本文から要約）
+const featureTabsConstruction = [
+  { id: 'search', label: '01 図面をAIが読み解く' },
+  { id: 'bom', label: '02 物件情報を一画面で' },
+  { id: 'docs', label: '03 書類と工事を集約' },
+  { id: 'agent', label: '04 AIで業務に効かせる' },
+] as const;
+
+const featureDetailsConstruction = {
+  search: {
+    number: '01',
+    icon: Search,
+    heading: '膨大な図面の最新版を、\nAIが見分ける',
+    body: [
+      '意匠図・構造図・設備図をアップロードすると、AIが図面の中身を読み取り、検索できる状態で登録します。手書きのスキャンPDFにも対応。',
+      '過去の類似物件から図面を探す類似図面検索、改訂前後の変更箇所を色分けで表示する差分検索も標準で使えます。',
+    ],
+    bullets: [
+      '類似図面検索: 過去の類似物件から図面を抽出。',
+      '差分検索: 改訂前後の変更箇所を色分けで表示。',
+      'AI読み取り: 図面の中身を読み取り検索可能に。',
+    ],
+  },
+  bom: {
+    number: '02',
+    icon: Boxes,
+    heading: '図面も書類も原価も、\n物件ごとにまとまる',
+    body: [
+      '物件の構成を階層で表示し、図面・書類・原価・取引先を紐付けます。仕様変更がどの図面や工区に影響するか、ひと目で確認できます。',
+      '表示する項目は、自社の業務に合わせて変えられます。',
+    ],
+    bullets: [
+      '物件ツリー表示: 物件の構成を階層で可視化。',
+      '情報の紐付け: 図面・書類・原価・取引先を紐付け。',
+      'カスタム項目: 自社業務に合わせて表示を調整。',
+    ],
+  },
+  docs: {
+    number: '03',
+    icon: FileStack,
+    heading: '施工計画書、検査記録、判断の経緯まで\n物件ページに集まる',
+    body: [
+      '書類を図面に紐付けて管理し、工事の進み具合もステータスで追えます。',
+      '担当者が変わっても、過去の判断理由や協力会社とのやり取りが物件ページに残り、引き継ぎのために資料を集め直す必要はありません。',
+    ],
+    bullets: [
+      '書類の紐付け: 書類を図面に紐付けて即アクセス。',
+      '工事ステータス管理: 進み具合をステータスで把握。',
+      '経緯の蓄積: 判断理由・協力会社との経緯を残せる。',
+    ],
+  },
+  agent: {
+    number: '04',
+    icon: Bot,
+    heading: '蓄積された情報を、\nAIが業務で使える形に',
+    body: [
+      'チャットで質問するだけで、社内の図面・書類・過去物件を横断検索。図面をアップロードすると、過去の類似工事をもとに概算見積を自動で算出します。',
+      'さらに自社専用のAI構築まで、ARCHAIVE+でご対応します。',
+    ],
+    bullets: [
+      'AIチャット: 社内の図面・書類・過去物件を横断検索。',
+      'AI見積エージェント: 過去の類似工事から概算見積を自動算出。',
+      'ARCHAIVE+: 自社専用AIの構築まで対応。',
+    ],
+  },
+} as const;
+
 export function FeaturesSection() {
   const {
     selectedIndustry,
@@ -116,7 +183,10 @@ export function FeaturesSection() {
     useState<CSSProperties>({});
   const [featureIndicatorStyle, setFeatureIndicatorStyle] =
     useState<CSSProperties>({});
-  const selectedFeatureDetail = featureDetails[displayedFeature];
+  const isConstruction = selectedIndustry === '建設業の方へ';
+  const activeTabs = isConstruction ? featureTabsConstruction : featureTabs;
+  const activeDetails = isConstruction ? featureDetailsConstruction : featureDetails;
+  const selectedFeatureDetail = activeDetails[displayedFeature];
   const SelectedFeatureIcon = selectedFeatureDetail.icon;
   const selectedFeatureIndex = featureTabs.findIndex(
     (tab) => tab.id === selectedFeature,
@@ -386,18 +456,18 @@ export function FeaturesSection() {
           </RippleLink>
         </div>
 
-        <div className='border-lp-border bg-lp-surface-soft flex items-center justify-center border-t lg:border-t-0 lg:border-l'>
-          <div className='relative aspect-[10/9] w-full overflow-hidden'>
-            <video
-              src='/feature-01.mp4'
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload='metadata'
-              className='absolute inset-0 h-full w-full object-cover object-center'
-            />
-          </div>
+        <div className='border-lp-border bg-lp-surface-soft relative min-h-[280px] overflow-hidden border-t lg:border-t-0 lg:border-l'>
+          <video
+            key={selectedFeatureDetail.number}
+            src={`/Video/ARCHIAVE${selectedFeatureDetail.number}.mp4`}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload='metadata'
+            style={{ transform: 'scale(1.25)' }}
+            className='absolute inset-0 h-full w-full object-cover object-center'
+          />
         </div>
       </div>
     </div>
@@ -431,13 +501,13 @@ export function FeaturesSection() {
             Features
           </p>
           <h2 className='text-lp-text mt-5 text-center text-[clamp(1.625rem,2.6vw,2rem)] leading-[1.3] font-bold'>
-            <span style={{ color: '#37B7C4' }}>ARCHAIVE</span>の4つの機能
+            ARCHAIVEの4つの機能
           </h2>
           <div className='border-lp-text/55 mx-auto mt-6 h-px w-full max-w-[18rem] border-t-2 border-solid sm:max-w-[20rem]' />
           <p className='text-lp-text-subtle mx-auto mt-4 max-w-[44rem] text-base leading-7 font-normal sm:text-lg'>
             図面のアップロードから、AIによる業務活用まで。
             <br />
-            製造業のデータ基盤を構成する4つの機能をご紹介します。
+            {isConstruction ? '建設業' : '製造業'}のデータ基盤を構成する4つの機能をご紹介します。
           </p>
 
           <div
@@ -490,7 +560,7 @@ export function FeaturesSection() {
                   transform: `translate3d(calc(-${selectedFeatureIndex * 100}% - ${selectedFeatureIndex * 0.75}rem), 0, 0)`,
                 }}
               >
-                {featureTabs.map((tab) => {
+                {activeTabs.map((tab) => {
                   const isActive = selectedFeature === tab.id;
                   const [number, ...labelParts] = tab.label.split(' ');
 
@@ -527,7 +597,7 @@ export function FeaturesSection() {
               </button>
 
               <div className='flex items-center justify-center gap-2'>
-                {featureTabs.map((tab, index) => (
+                {activeTabs.map((tab, index) => (
                   <button
                     key={tab.id}
                     type='button'
@@ -558,7 +628,7 @@ export function FeaturesSection() {
 
         <div
           ref={pinContainerRef}
-          className='mt-[50px] hidden lg:block lg:h-[660vh]'
+          className='mt-[50px] hidden lg:block lg:h-[420vh]'
         >
           <div
             ref={stickyRef}

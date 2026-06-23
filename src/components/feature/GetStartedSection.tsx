@@ -1,18 +1,15 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-
 import Image from 'next/image';
 
-import { ArrowRight, Mail, MessageSquareText, Play, X } from 'lucide-react';
+import { ArrowRight, MessageSquareText, Play } from 'lucide-react';
 
-import { RippleButton } from './CtaRipple';
-
-type ContactMode = 'download' | 'contact' | 'demo';
+import { RippleLink } from './CtaRipple';
 
 const FEATURED_CARDS = [
   {
     key: 'download',
+    href: '/download',
     badge: '詳しく知りたい!',
     eyebrow: 'DOCUMENT',
     title: '資料を無料ダウンロード',
@@ -23,6 +20,7 @@ const FEATURED_CARDS = [
   },
   {
     key: 'demo',
+    href: '/apply',
     badge: 'まずは試してみたい!',
     eyebrow: 'DEMO',
     title: 'デモを\n予約する',
@@ -32,7 +30,8 @@ const FEATURED_CARDS = [
     preview: 'demo',
   },
 ] as const satisfies ReadonlyArray<{
-  key: Exclude<ContactMode, 'contact'>;
+  key: string;
+  href: string;
   badge: string;
   eyebrow: string;
   title: string;
@@ -41,45 +40,6 @@ const FEATURED_CARDS = [
   icon: typeof ArrowRight;
   preview: 'document' | 'demo';
 }>;
-
-const FORM_COPY: Record<
-  ContactMode,
-  {
-    eyebrow: string;
-    title: string;
-    body: string;
-    submit: string;
-    consultationPlaceholder: string;
-    consultationOptional?: boolean;
-    scheduleLabel?: string;
-  }
-> = {
-  download: {
-    eyebrow: 'DOCUMENT',
-    title: '資料ダウンロード',
-    body: '入力いただいたメールアドレス宛に資料をご案内します。',
-    submit: '資料を受け取る',
-    consultationPlaceholder: '知りたい機能や導入背景があればご記入ください。',
-    consultationOptional: true,
-  },
-  contact: {
-    eyebrow: 'CONTACT',
-    title: 'お問い合わせ',
-    body: 'ご相談内容を確認のうえ、担当よりご連絡します。',
-    submit: '問い合わせる',
-    consultationPlaceholder:
-      '課題に感じていることや、確認したい内容をご記入ください。',
-  },
-  demo: {
-    eyebrow: 'DEMO',
-    title: 'デモ予約',
-    body: 'ご希望内容をもとに、日程調整のご連絡を差し上げます。',
-    submit: 'デモを予約する',
-    consultationPlaceholder:
-      '見たい機能や、解決したい業務課題をご記入ください。',
-    scheduleLabel: 'ご希望の日程',
-  },
-};
 
 function DocumentPreview() {
   return (
@@ -170,89 +130,7 @@ function DemoPreview() {
   );
 }
 
-function getNextMode(currentMode: ContactMode | null, targetMode: ContactMode) {
-  if (targetMode === 'contact' && currentMode === 'contact') {
-    return null;
-  }
-
-  return targetMode;
-}
-
 export function GetStartedSection() {
-  const [activeMode, setActiveMode] = useState<ContactMode | null>(null);
-  const [displayedMode, setDisplayedMode] = useState<ContactMode | null>(null);
-  const [isFormVisible, setIsFormVisible] = useState(false);
-  const transitionTimeoutRef = useRef<number | null>(null);
-
-  const activeContent = displayedMode ? FORM_COPY[displayedMode] : null;
-
-  useEffect(() => {
-    if (transitionTimeoutRef.current !== null) {
-      window.clearTimeout(transitionTimeoutRef.current);
-      transitionTimeoutRef.current = null;
-    }
-
-    if (activeMode === null) {
-      setIsFormVisible(false);
-
-      transitionTimeoutRef.current = window.setTimeout(() => {
-        setDisplayedMode(null);
-      }, 240);
-
-      return () => {
-        if (transitionTimeoutRef.current !== null) {
-          window.clearTimeout(transitionTimeoutRef.current);
-        }
-      };
-    }
-
-    if (displayedMode === null) {
-      setDisplayedMode(activeMode);
-
-      window.requestAnimationFrame(() => {
-        window.requestAnimationFrame(() => {
-          setIsFormVisible(true);
-        });
-      });
-
-      return;
-    }
-
-    if (activeMode !== displayedMode) {
-      setIsFormVisible(false);
-
-      transitionTimeoutRef.current = window.setTimeout(() => {
-        setDisplayedMode(activeMode);
-
-        window.requestAnimationFrame(() => {
-          window.requestAnimationFrame(() => {
-            setIsFormVisible(true);
-          });
-        });
-      }, 220);
-    } else {
-      setIsFormVisible(true);
-    }
-
-    return () => {
-      if (transitionTimeoutRef.current !== null) {
-        window.clearTimeout(transitionTimeoutRef.current);
-      }
-    };
-  }, [activeMode, displayedMode]);
-
-  useEffect(() => {
-    if (!activeMode || !displayedMode || !isFormVisible) return;
-
-    const scrollTimeout = window.setTimeout(() => {
-      document
-        .getElementById('contact-start-form-panel')
-        ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 80);
-
-    return () => window.clearTimeout(scrollTimeout);
-  }, [activeMode, displayedMode, isFormVisible]);
-
   return (
     <section
       id='contact'
@@ -275,17 +153,12 @@ export function GetStartedSection() {
 
         <div className='mt-10 grid gap-5 xl:grid-cols-2 xl:gap-6'>
           {FEATURED_CARDS.map((card) => {
-            const isActive = activeMode === card.key;
             const Icon = card.icon;
 
             return (
               <article
                 key={card.key}
-                className={`relative rounded-[1.55rem] border bg-white p-2.5 shadow-[0_18px_38px_rgba(15,23,42,0.12)] transition-transform duration-300 ${
-                  isActive
-                    ? 'border-white shadow-[0_22px_44px_rgba(15,23,42,0.16)]'
-                    : 'border-white/76'
-                }`}
+                className='relative rounded-[1.55rem] border border-white/76 bg-white p-2.5 shadow-[0_18px_38px_rgba(15,23,42,0.12)] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_22px_44px_rgba(15,23,42,0.16)]'
               >
                 <div className='bg-lp-text absolute top-0 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2 rounded-full border-[3px] border-white px-4 py-1.5 text-xs font-bold whitespace-nowrap text-white shadow-[0_10px_24px_rgba(15,23,42,0.16)]'>
                   {card.badge}
@@ -311,20 +184,11 @@ export function GetStartedSection() {
                       {card.body}
                     </p>
 
-                    <RippleButton
-                      type='button'
-                      onClick={() => setActiveMode(card.key)}
-                      className={`mt-5 inline-flex min-h-12 items-center justify-center self-start rounded-full border px-6 text-sm font-bold shadow-[0_12px_24px_rgba(15,23,42,0.08)] transition-transform duration-300 hover:-translate-y-0.5 ${
-                        isActive
-                          ? 'border-lp-primary-deep bg-[linear-gradient(90deg,var(--lp-primary-strong)_0%,var(--lp-primary-deep)_100%)] text-white'
-                          : 'border-lp-border text-lp-text bg-white'
-                      }`}
+                    <RippleLink
+                      href={card.href}
+                      className='border-lp-border text-lp-text mt-5 inline-flex min-h-12 items-center justify-center self-start rounded-full border bg-white px-6 text-sm font-bold shadow-[0_12px_24px_rgba(15,23,42,0.08)] transition-transform duration-300 hover:-translate-y-0.5'
                       bgClassName='bg-[linear-gradient(90deg,var(--lp-primary-strong)_0%,var(--lp-primary-deep)_100%)]'
-                      contentClassName={
-                        isActive
-                          ? 'text-white'
-                          : 'text-inherit group-hover:text-white'
-                      }
+                      contentClassName='text-inherit group-hover:text-white'
                     >
                       {card.buttonLabel}
                       {card.key === 'download' ? (
@@ -332,7 +196,7 @@ export function GetStartedSection() {
                       ) : (
                         <Icon className='ml-0.5 h-4.5 w-4.5 fill-current text-inherit' />
                       )}
-                    </RippleButton>
+                    </RippleLink>
                   </div>
                 </div>
               </article>
@@ -360,235 +224,15 @@ export function GetStartedSection() {
                 </div>
               </div>
 
-              <RippleButton
-                type='button'
-                aria-pressed={activeMode === 'contact'}
-                onClick={() =>
-                  setActiveMode(getNextMode(activeMode, 'contact'))
-                }
-                className={`inline-flex min-h-12 items-center justify-center rounded-full border px-6 text-sm font-bold shadow-[0_12px_24px_rgba(15,23,42,0.08)] transition-transform duration-300 hover:-translate-y-0.5 ${
-                  activeMode === 'contact'
-                    ? 'border-lp-primary-deep bg-[linear-gradient(90deg,var(--lp-primary-strong)_0%,var(--lp-primary-deep)_100%)] text-white'
-                    : 'border-lp-border text-lp-text bg-white'
-                }`}
+              <RippleLink
+                href='/apply'
+                className='border-lp-border text-lp-text inline-flex min-h-12 items-center justify-center rounded-full border bg-white px-6 text-sm font-bold shadow-[0_12px_24px_rgba(15,23,42,0.08)] transition-transform duration-300 hover:-translate-y-0.5'
                 bgClassName='bg-[linear-gradient(90deg,var(--lp-primary-strong)_0%,var(--lp-primary-deep)_100%)]'
-                contentClassName={
-                  activeMode === 'contact'
-                    ? 'text-white'
-                    : 'text-inherit group-hover:text-white'
-                }
+                contentClassName='text-inherit group-hover:text-white'
               >
-                フォームを開く
+                お問い合わせフォームへ
                 <ArrowRight className='h-5 w-5 text-inherit' />
-              </RippleButton>
-            </div>
-          </div>
-        </div>
-
-        <div className='mx-auto mt-12 max-w-[960px]'>
-          <div
-            id='contact-start-form-panel'
-            className={`grid scroll-mt-24 transition-[grid-template-rows,opacity] duration-500 ease-out ${
-              displayedMode
-                ? 'grid-rows-[1fr] opacity-100'
-                : 'grid-rows-[0fr] opacity-0'
-            }`}
-          >
-            <div className='overflow-hidden'>
-              {activeContent ? (
-                <div
-                  id={`contact-start-panel-${displayedMode}`}
-                  className={`relative rounded-[2rem] border border-white/80 bg-white/96 p-6 shadow-[0_26px_60px_rgba(15,23,42,0.14)] backdrop-blur-sm transition-all duration-300 ease-out sm:p-8 lg:p-10 ${
-                    isFormVisible
-                      ? 'translate-y-0 scale-100 opacity-100'
-                      : 'translate-y-3 scale-[0.985] opacity-0'
-                  }`}
-                >
-                  <button
-                    type='button'
-                    onClick={() => setActiveMode(null)}
-                    className='border-lp-border text-lp-text-subtle hover:border-lp-primary-border hover:text-lp-text absolute top-5 right-5 inline-flex h-11 w-11 items-center justify-center rounded-full border bg-white shadow-[0_10px_24px_rgba(15,23,42,0.08)] transition'
-                    aria-label='フォームを閉じる'
-                  >
-                    <X className='h-5 w-5' strokeWidth={2.4} />
-                  </button>
-
-                  <div className='text-center'>
-                    <p className='text-lp-primary text-sm font-bold'>
-                      {activeContent.eyebrow}
-                    </p>
-                    <h3 className='text-lp-text mt-4 text-[clamp(1.5rem,2.4vw,2rem)] leading-[1.25] font-bold'>
-                      {activeContent.title}
-                    </h3>
-                    <p className='text-lp-text-muted mx-auto mt-4 max-w-[38rem] text-[1rem] leading-8 font-normal'>
-                      {activeContent.body}
-                    </p>
-                  </div>
-
-                  <form className='mt-10 space-y-6'>
-                    <div className='grid gap-5 md:grid-cols-2'>
-                      <div className='space-y-2'>
-                        <label
-                          htmlFor={`contact-name-${displayedMode}`}
-                          className='text-lp-text text-sm font-bold'
-                        >
-                          お名前
-                        </label>
-                        <input
-                          id={`contact-name-${displayedMode}`}
-                          name='name'
-                          type='text'
-                          placeholder='山田 太郎'
-                          className='border-lp-border text-lp-text h-14 w-full rounded-2xl border bg-[var(--lp-surface-soft)] px-4 text-base transition outline-none focus:border-[var(--lp-primary-border)] focus:bg-white focus:ring-4 focus:ring-[var(--lp-primary-soft)]'
-                        />
-                      </div>
-                      <div className='space-y-2'>
-                        <label
-                          htmlFor={`contact-company-${displayedMode}`}
-                          className='text-lp-text text-sm font-bold'
-                        >
-                          会社名
-                        </label>
-                        <input
-                          id={`contact-company-${displayedMode}`}
-                          name='company'
-                          type='text'
-                          placeholder='株式会社サンプル'
-                          className='border-lp-border text-lp-text h-14 w-full rounded-2xl border bg-[var(--lp-surface-soft)] px-4 text-base transition outline-none focus:border-[var(--lp-primary-border)] focus:bg-white focus:ring-4 focus:ring-[var(--lp-primary-soft)]'
-                        />
-                      </div>
-                    </div>
-
-                    <div className='grid gap-5 md:grid-cols-2'>
-                      <div className='space-y-2'>
-                        <label
-                          htmlFor={`contact-email-${displayedMode}`}
-                          className='text-lp-text text-sm font-bold'
-                        >
-                          メールアドレス
-                        </label>
-                        <div className='relative'>
-                          <Mail className='text-lp-text-subtle pointer-events-none absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2' />
-                          <input
-                            id={`contact-email-${displayedMode}`}
-                            name='email'
-                            type='email'
-                            placeholder='example@company.co.jp'
-                            className='border-lp-border text-lp-text h-14 w-full rounded-2xl border bg-[var(--lp-surface-soft)] pr-4 pl-12 text-base transition outline-none focus:border-[var(--lp-primary-border)] focus:bg-white focus:ring-4 focus:ring-[var(--lp-primary-soft)]'
-                          />
-                        </div>
-                      </div>
-                      <div className='space-y-2'>
-                        <label
-                          htmlFor={`contact-phone-${displayedMode}`}
-                          className='text-lp-text text-sm font-bold'
-                        >
-                          電話番号
-                        </label>
-                        <input
-                          id={`contact-phone-${displayedMode}`}
-                          name='phone'
-                          type='tel'
-                          placeholder='03-1234-5678'
-                          className='border-lp-border text-lp-text h-14 w-full rounded-2xl border bg-[var(--lp-surface-soft)] px-4 text-base transition outline-none focus:border-[var(--lp-primary-border)] focus:bg-white focus:ring-4 focus:ring-[var(--lp-primary-soft)]'
-                        />
-                      </div>
-                    </div>
-
-                    <div className='grid gap-5 md:grid-cols-2'>
-                      <div className='space-y-2'>
-                        <label
-                          htmlFor={`contact-type-${displayedMode}`}
-                          className='text-lp-text text-sm font-bold'
-                        >
-                          問い合わせ種別
-                        </label>
-                        <select
-                          id={`contact-type-${displayedMode}`}
-                          name='inquiryType'
-                          value={displayedMode ?? ''}
-                          onChange={(event) =>
-                            setActiveMode(event.target.value as ContactMode)
-                          }
-                          className='border-lp-border text-lp-text h-14 w-full rounded-2xl border bg-[var(--lp-surface-soft)] px-4 text-base transition outline-none focus:border-[var(--lp-primary-border)] focus:bg-white focus:ring-4 focus:ring-[var(--lp-primary-soft)]'
-                        >
-                          <option value='download'>資料ダウンロード</option>
-                          <option value='contact'>お問い合わせ</option>
-                          <option value='demo'>デモ予約</option>
-                        </select>
-                      </div>
-                      {displayedMode === 'demo' ? (
-                        <div className='space-y-2'>
-                          <label
-                            htmlFor='contact-schedule-demo'
-                            className='text-lp-text text-sm font-bold'
-                          >
-                            {activeContent.scheduleLabel}
-                          </label>
-                          <select
-                            id='contact-schedule-demo'
-                            name='preferredSchedule'
-                            defaultValue=''
-                            className='border-lp-border text-lp-text h-14 w-full rounded-2xl border bg-[var(--lp-surface-soft)] px-4 text-base transition outline-none focus:border-[var(--lp-primary-border)] focus:bg-white focus:ring-4 focus:ring-[var(--lp-primary-soft)]'
-                          >
-                            <option value='' disabled>
-                              ご希望の時間帯を選択
-                            </option>
-                            <option value='weekday-am'>平日 午前</option>
-                            <option value='weekday-pm'>平日 午後</option>
-                            <option value='late-afternoon'>平日 夕方</option>
-                            <option value='flexible'>柔軟に調整可能</option>
-                          </select>
-                        </div>
-                      ) : (
-                        <div className='border-lp-border rounded-[1.5rem] border border-dashed bg-[linear-gradient(180deg,var(--lp-surface-soft)_0%,var(--lp-primary-surface)_100%)] px-5 py-4'>
-                          <p className='text-lp-primary text-sm font-bold'>
-                            SUPPORT
-                          </p>
-                          <p className='text-lp-text-muted mt-2 text-sm leading-7 font-normal'>
-                            いただいた内容に応じて、担当から最適なご案内を差し上げます。
-                          </p>
-                        </div>
-                      )}
-                    </div>
-
-                    <div className='space-y-2'>
-                      <label
-                        htmlFor={`contact-message-${displayedMode}`}
-                        className='text-lp-text text-sm font-bold'
-                      >
-                        ご相談内容
-                        {activeContent.consultationOptional ? (
-                          <span className='text-lp-text-subtle ml-2 text-xs font-normal'>
-                            任意
-                          </span>
-                        ) : null}
-                      </label>
-                      <textarea
-                        id={`contact-message-${displayedMode}`}
-                        name='message'
-                        rows={6}
-                        placeholder={activeContent.consultationPlaceholder}
-                        className='border-lp-border text-lp-text w-full rounded-[1.6rem] border bg-[var(--lp-surface-soft)] px-4 py-4 text-base leading-8 transition outline-none focus:border-[var(--lp-primary-border)] focus:bg-white focus:ring-4 focus:ring-[var(--lp-primary-soft)]'
-                      />
-                    </div>
-
-                    <div className='flex flex-col items-center gap-4 pt-2'>
-                      <RippleButton
-                        type='submit'
-                        className='inline-flex min-h-14 items-center justify-center rounded-2xl bg-[linear-gradient(180deg,var(--lp-primary)_0%,var(--lp-primary-strong)_100%)] px-10 text-base font-bold text-white shadow-[0_18px_38px_rgba(85,189,207,0.28)] transition-transform duration-300 hover:-translate-y-0.5 hover:shadow-[0_22px_42px_rgba(85,189,207,0.32)]'
-                        bgClassName='bg-[linear-gradient(180deg,var(--lp-primary-strong)_0%,var(--lp-primary-deep)_100%)]'
-                        contentClassName='text-white'
-                      >
-                        {activeContent.submit}
-                      </RippleButton>
-                      <p className='text-sm leading-7 font-normal text-white/95'>
-                        送信後、担当より順次ご連絡いたします。
-                      </p>
-                    </div>
-                  </form>
-                </div>
-              ) : null}
+              </RippleLink>
             </div>
           </div>
         </div>
