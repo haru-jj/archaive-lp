@@ -36,8 +36,7 @@ const DOC_LEARN = [
 export default function DownloadPageClient() {
   const [formData, setFormData] = useState({
     companyName: '',
-    lastName: '',
-    firstName: '',
+    name: '',
     department: '',
     position: '',
     email: '',
@@ -88,7 +87,7 @@ export default function DownloadPageClient() {
 
       const submissionData = {
         companyName: formData.companyName,
-        name: `${formData.lastName} ${formData.firstName}`.trim(),
+        name: formData.name,
         department: formData.department,
         position: formData.position,
         email: formData.email,
@@ -115,8 +114,7 @@ export default function DownloadPageClient() {
       if (result.success) {
         setFormData({
           companyName: '',
-          lastName: '',
-          firstName: '',
+          name: '',
           department: '',
           position: '',
           email: '',
@@ -275,7 +273,7 @@ export default function DownloadPageClient() {
 
             <form
               onSubmit={handleSubmit}
-              className="w-full lg:w-[460px] xl:w-[520px] bg-white rounded-3xl shadow-2xl border border-gray-100 p-6 sm:p-8 space-y-5"
+              className="w-full lg:w-[460px] xl:w-[520px] lg:self-start bg-white rounded-3xl shadow-2xl border border-gray-100 p-6 sm:p-8 space-y-5"
             >
               <div className="text-center">
                 <p className="text-lg font-bold text-[#37B7C4]">30秒で資料を受け取る</p>
@@ -312,37 +310,20 @@ export default function DownloadPageClient() {
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className={labelClass}>
-                    姓
-                    <span className="text-red-500 ml-1">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    name="lastName"
-                    value={formData.lastName}
-                    onChange={handleInputChange}
-                    placeholder="例 | 山田"
-                    className={inputClass}
-                    required
-                  />
-                </div>
-                <div>
-                  <label className={labelClass}>
-                    名
-                    <span className="text-red-500 ml-1">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    name="firstName"
-                    value={formData.firstName}
-                    onChange={handleInputChange}
-                    placeholder="例 | 太郎"
-                    className={inputClass}
-                    required
-                  />
-                </div>
+              <div>
+                <label className={labelClass}>
+                  氏名
+                  <span className="text-red-500 ml-1">*</span>
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  placeholder="例 | 山田 太郎"
+                  className={inputClass}
+                  required
+                />
               </div>
 
               <div className="grid grid-cols-2 gap-3">

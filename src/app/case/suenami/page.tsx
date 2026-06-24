@@ -223,7 +223,7 @@ export default function SuenamiCase() {
                 <li className="text-gray-900">{caseData.title}</li>
               </ol>
             </nav>
-            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-center">スエナミ工業株式会社/営業 兼 開発 横山智一様 ✖️ STAR UP/稲元 海翔</h1>
+            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-center text-[#333]">スエナミ工業株式会社/営業 兼 開発 横山智一様 ✖️ STAR UP/稲元 海翔</h1>
             <hr />
             <div className="relative w-full h-64 md:h-[420px] lg:h-[520px] mb-6 mx-auto">
               <Image

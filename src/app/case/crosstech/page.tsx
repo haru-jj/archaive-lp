@@ -223,7 +223,7 @@ export default function CrosstechCase() {
                 <li className="text-gray-900">{caseData.title}</li>
               </ol>
             </nav>
-            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-center">株式会社クロステック/松田忠明様 ✖️ STAR UP/吉川岳宏</h1>
+            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-center text-[#333]">株式会社クロステック/松田忠明様 ✖️ STAR UP/吉川岳宏</h1>
             <hr />
             <div className="relative w-full h-64 md:h-[420px] lg:h-[520px] mb-6 mx-auto">
               <Image

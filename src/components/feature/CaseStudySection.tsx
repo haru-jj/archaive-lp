@@ -1,11 +1,37 @@
 'use client';
 
-import { useEffect, useRef, useState, type CSSProperties } from 'react';
+import {
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type ReactNode,
+} from 'react';
 
 import Image from 'next/image';
 import Link from 'next/link';
 
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+
+// href があれば Link、なければ通常の div として描画するカードのラッパー
+function CardLink({
+  href,
+  className,
+  children,
+}: {
+  href: string | null;
+  className: string;
+  children: ReactNode;
+}) {
+  if (href) {
+    return (
+      <Link href={href} className={className}>
+        {children}
+      </Link>
+    );
+  }
+  return <div className={className}>{children}</div>;
+}
 
 const CASE_STUDIES = [
   {
@@ -17,6 +43,7 @@ const CASE_STUDIES = [
     imageSrc: '/lp-v2/people_2.png',
     imageAlt: '株式会社エイ・エム・シィの事例写真',
     mobileObjectPosition: 'center center',
+    href: '/case/amc',
   },
   {
     company: '株式会社クロステック',
@@ -27,34 +54,18 @@ const CASE_STUDIES = [
     imageSrc: '/lp-v2/people_3.png',
     imageAlt: '株式会社クロステックの事例写真',
     mobileObjectPosition: 'center center',
+    href: '/case/crosstech',
   },
   {
     company: 'スエナミ工業株式会社',
     comment:
-      '大量図面のAI見積とコパイロット機能で属人化を解消し、見積業務を高速化',
+      '大量図面のAI見積とAIエージェントで属人化を解消し、見積業務を高速化',
     industry: '業種：製造業・精密板金加工',
     companySize: '従業員数：1〜100名',
     imageSrc: '/lp-v2/people_1.png',
     imageAlt: 'スエナミ工業株式会社の事例写真',
     mobileObjectPosition: 'center center',
-  },
-  {
-    company: '生田産機工業株式会社',
-    comment: '[効果サマリ：要記入]',
-    industry: '業種：製造業・産業機械（金属生産設備）',
-    companySize: '従業員数：1〜100名',
-    imageSrc: null,
-    imageAlt: '生田産機工業株式会社の画像（未設定）',
-    mobileObjectPosition: 'center center',
-  },
-  {
-    company: '東京都',
-    comment: '要記入',
-    industry: '業種：要記入',
-    companySize: '従業員数または規模感：要記入',
-    imageSrc: null,
-    imageAlt: '東京都の画像（未設定）',
-    mobileObjectPosition: 'center center',
+    href: '/case/suenami',
   },
 ] as const;
 
@@ -188,7 +199,10 @@ export function CaseStudySection() {
         <div className='relative mt-14 block px-0 sm:mt-16 sm:hidden'>
           <div className='pointer-events-none absolute inset-y-0 left-0 z-10 w-[14%] bg-gradient-to-r from-white to-transparent' />
           <div className='pointer-events-none absolute inset-y-0 right-0 z-10 w-[14%] bg-gradient-to-l from-white to-transparent' />
-          <div className='mx-auto w-[90%] overflow-hidden rounded-[1.5rem] border border-[color-mix(in_srgb,var(--lp-primary)_18%,white)] bg-white text-center shadow-[0_16px_50px_rgba(15,23,42,0.08)]'>
+          <CardLink
+            href={activeStudy.href}
+            className='mx-auto block w-[90%] overflow-hidden rounded-[1.5rem] border border-[color-mix(in_srgb,var(--lp-primary)_18%,white)] bg-white text-center shadow-[0_16px_50px_rgba(15,23,42,0.08)] transition-shadow duration-300 hover:shadow-[0_20px_56px_rgba(15,23,42,0.14)]'
+          >
             <div className='relative block h-52 w-full overflow-hidden'>
               {activeStudy.imageSrc ? (
                 <Image
@@ -222,7 +236,7 @@ export function CaseStudySection() {
                 {activeStudy.companySize}
               </p>
             </div>
-          </div>
+          </CardLink>
         </div>
 
         <div className='relative mt-10 hidden py-10 sm:mt-12 sm:block'>
@@ -248,7 +262,10 @@ export function CaseStudySection() {
                     key={itemIndex}
                     className='w-[var(--case-study-card-width)] flex-shrink-0 text-center'
                   >
-                    <div className='overflow-hidden rounded-[1.75rem] border border-[color-mix(in_srgb,var(--lp-primary)_18%,white)] bg-white shadow-[0_14px_44px_rgba(15,23,42,0.08)]'>
+                    <CardLink
+                      href={study.href}
+                      className='block overflow-hidden rounded-[1.75rem] border border-[color-mix(in_srgb,var(--lp-primary)_18%,white)] bg-white shadow-[0_14px_44px_rgba(15,23,42,0.08)] transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_20px_52px_rgba(15,23,42,0.14)]'
+                    >
                       <div className='relative h-56 max-h-56 w-full overflow-hidden md:h-60 md:max-h-60 lg:h-64 lg:max-h-64'>
                         {study.imageSrc ? (
                           <Image
@@ -282,7 +299,7 @@ export function CaseStudySection() {
                           {study.companySize}
                         </p>
                       </div>
-                    </div>
+                    </CardLink>
                   </div>
                 );
               })}
