@@ -16,6 +16,9 @@ const EN: Record<string, string> = {
   'drawing-management': 'DRAWING',
   plm: 'PLM / BOM',
   'ai-search': 'SEARCH / AI',
+  construction: 'CONSTRUCTION',
+  security: 'SECURITY',
+  integration: 'INTEGRATION',
 };
 
 export const metadata: Metadata = {

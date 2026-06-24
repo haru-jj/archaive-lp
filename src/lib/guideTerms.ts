@@ -59,6 +59,34 @@ export const GUIDE_TERMS: GuideTerm[] = [
   { slug: 'ai-agent', label: 'AIエージェント', aliases: ['AIエージェント'] },
   { slug: 'ai-estimation', label: 'AI見積・自動見積', aliases: ['AI見積', '自動見積'] },
   { slug: 'knowledge-management', label: 'ナレッジマネジメント', aliases: ['ナレッジマネジメント'] },
+
+  // クラスター⑥ 建設業
+  { slug: 'construction-drawing-management', label: '建設業の図面管理', aliases: ['建設業の図面管理', '建設の図面管理'] },
+  { slug: 'architectural-structural-mep-drawings', label: '意匠図・構造図・設備図', aliases: ['意匠図', '構造図', '設備図', '意匠図・構造図・設備図'] },
+  { slug: 'property-management', label: '物件管理・物件ツリー', aliases: ['物件管理', '物件ツリー'] },
+  { slug: 'construction-zone', label: '工区', aliases: ['工区'] },
+  { slug: 'construction-plan', label: '施工計画書', aliases: ['施工計画書', '施工計画'] },
+  { slug: 'subcontractor-management', label: '協力会社管理', aliases: ['協力会社管理', '協力会社'] },
+  { slug: 'similar-construction-search', label: '類似物件・類似工事検索', aliases: ['類似物件検索', '類似工事検索', '類似物件', '類似工事'] },
+  { slug: 'drawing-revision-management', label: '図面改訂管理', aliases: ['図面改訂管理', '図面改訂'] },
+
+  // クラスター⑦ セキュリティ規格
+  { slug: 'information-leak-prevention', label: '情報漏洩対策', aliases: ['情報漏洩対策', '情報漏洩', '漏洩対策'] },
+  { slug: 'iso27001-isms', label: 'ISO 27001・ISMS', aliases: ['ISO 27001', 'ISO27001', 'ISMS'] },
+  { slug: 'aes-256', label: 'AES-256暗号化', aliases: ['AES-256', 'AES256', 'AES-256暗号化'] },
+  { slug: 'tls-13', label: 'TLS 1.3', aliases: ['TLS 1.3', 'TLS1.3', 'TLS'] },
+  { slug: 'rbac', label: 'RBAC（ロールベースアクセス制御）', aliases: ['RBAC', 'ロールベースアクセス制御', 'アクセス制御'] },
+  { slug: 'redundancy-high-availability', label: '冗長化・高可用性', aliases: ['冗長化', '高可用性'] },
+  { slug: 'backup-data-protection', label: '自動バックアップ・データ保護', aliases: ['自動バックアップ', 'バックアップ', 'データ保護'] },
+  { slug: 'secure-cloud-aws', label: 'セキュアクラウド・AWS', aliases: ['セキュアクラウド', 'AWS'] },
+
+  // クラスター⑧ 連携・データ基盤
+  { slug: 'api-integration', label: 'API連携', aliases: ['API連携', 'API'] },
+  { slug: 'cad-integration', label: 'CAD連携', aliases: ['CAD連携'] },
+  { slug: 'erp-integration', label: 'ERP連携', aliases: ['ERP連携', 'ERP'] },
+  { slug: 'data-migration', label: 'データ移行', aliases: ['データ移行'] },
+  { slug: 'ai-ocr-datafication', label: 'AI-OCRによるデータ化', aliases: ['AI-OCRによるデータ化', 'データ化'] },
+  { slug: 'supported-file-formats', label: '対応ファイル形式', aliases: ['対応ファイル形式', 'ファイル形式', 'DXF', 'STEP'] },
 ];
 
 // 末尾に付きやすい助詞（選択ゆれ吸収）

@@ -1,0 +1,146 @@
+#!/usr/bin/env python3
+# クラスター⑥(建設業, 全8本) の記事を確定原稿から .md 生成。
+# 本文・数値・出典は逐語コピー（言い換え・捏造しない）。型は gen_guide_articles_2.py と同じ。
+import json, re, os, sys
+
+HOME = os.path.expanduser('~')
+SRC6 = os.path.join(HOME, 'Downloads', 'ARCHAIVE_クラスター⑥_建設業.md')
+OUT = os.path.join(os.path.dirname(__file__), '..', 'src', 'content', 'guide')
+UPDATED = "2026-06-24"
+
+# クリーンタイトル(｜より前) → (slug, type, cluster)
+T6S = {
+    "建設業の図面管理とは": ("construction-drawing-management", "pillar", "construction"),
+    "意匠図・構造図・設備図とは": ("architectural-structural-mep-drawings", "spoke", "construction"),
+    "物件管理・物件ツリーとは": ("property-management", "spoke", "construction"),
+    "工区とは": ("construction-zone", "spoke", "construction"),
+    "施工計画書とは": ("construction-plan", "spoke", "construction"),
+    "協力会社管理とは": ("subcontractor-management", "spoke", "construction"),
+    "類似物件・類似工事検索とは": ("similar-construction-search", "spoke", "construction"),
+    "図面改訂管理とは": ("drawing-revision-management", "spoke", "construction"),
+}
+
+# 関連用語/中核記事の表記 → slug（本クラスターは参照が内部完結）
+NAME2SLUG = {k: v[0] for k, v in T6S.items()}
+
+EYEBROW = {"construction-drawing-management": "建設業ガイド"}
+
+def q(s):
+    return json.dumps(s, ensure_ascii=False)
+
+def parse_chunks(text):
+    text = re.sub(r'^<!--.*?-->\s*', '', text, flags=re.S)
+    parts = re.split(r'(?m)^---\s*$', text)
+    return [p.strip('\n') for p in parts if p.strip()]
+
+def parse_article(chunk):
+    lines = chunk.split('\n')
+    while lines and not lines[0].strip():
+        lines.pop(0)
+    while lines and not lines[-1].strip():
+        lines.pop()
+    title_full = lines[0].lstrip('#').strip()
+    clean = title_full.split('｜')[0].strip()
+    def_idx = next(i for i, l in enumerate(lines) if l.startswith('> **定義**'))
+    faq_idx = next(i for i, l in enumerate(lines) if l.strip().startswith('## よくある質問'))
+    foot_idx = next(i for i, l in enumerate(lines) if l.startswith('**関連用語**'))
+    def_text = lines[def_idx].split('：', 1)[1].strip()
+    intro = '\n'.join(lines[1:def_idx]).strip()
+    body_sections = '\n'.join(lines[def_idx + 1:faq_idx]).strip()
+
+    faq = []
+    region = lines[faq_idx + 1:foot_idx]
+    j = 0
+    while j < len(region):
+        l = region[j]
+        if l.startswith('**Q.'):
+            ql = re.sub(r'^Q\.\s*', '', re.sub(r'\*', '', l).strip())
+            a = ''
+            j += 1
+            while j < len(region):
+                if region[j].strip().startswith('A.'):
+                    a = region[j].strip()[2:].strip()
+                    j += 1
+                    break
+                j += 1
+            faq.append((ql, a))
+        else:
+            j += 1
+
+    related, sources, datapoint, core = [], [], None, None
+    for l in lines[foot_idx:]:
+        if l.startswith('**関連用語**'):
+            for n in re.split(r'[／/]', l.split('：', 1)[1]):
+                n = n.strip()
+                if n in NAME2SLUG:
+                    related.append(NAME2SLUG[n])
+                elif n:
+                    print(f"  [WARN] 未マップ関連用語: {n!r}", file=sys.stderr)
+        elif l.startswith('**中核記事**'):
+            m = re.search(r'「(.+?)」', l)
+            if m and m.group(1) in NAME2SLUG:
+                core = NAME2SLUG[m.group(1)]
+            elif m:
+                print(f"  [WARN] 未マップ中核記事: {m.group(1)!r}", file=sys.stderr)
+        elif l.startswith('**データ**'):
+            for seg in re.split(r'[／/]', l.split('：', 1)[1]):
+                seg = seg.strip()
+                if '株式会社STAR UP調べ' in seg:
+                    sources.append(seg)
+                    if datapoint is None:
+                        datapoint = "関連データ：" + seg
+    return dict(clean=clean, def_text=def_text, intro=intro, body=body_sections,
+                faq=faq, related=related, sources=sources, datapoint=datapoint, core=core)
+
+def build_md(a, order):
+    slug, typ, cluster = T6S[a['clean']]
+    title = a['clean']
+    desc = a['def_text'].split('。')[0] + '。'
+    related = []
+    for s in a['related'] + ([a['core']] if a['core'] else []):
+        if s and s != slug and s not in related:
+            related.append(s)
+    fm = [f'slug: {q(slug)}', f'title: {q(title)}', f'description: {q(desc)}',
+          f'type: {q(typ)}', f'cluster: {q(cluster)}', f'order: {order}']
+    if typ == 'pillar':
+        fm.append(f'eyebrow: {q(EYEBROW.get(slug, "ガイド"))}')
+        fm.append(f'lead: {q(a["intro"])}')
+        body = a['body']
+    else:
+        body = (a['intro'] + '\n\n' + a['body']).strip()
+    fm.append('related: ' + json.dumps(related, ensure_ascii=False))
+    fm.append('definition:')
+    fm.append(f'  term: {q(title)}')
+    fm.append(f'  body: {q(a["def_text"])}')
+    if a['datapoint']:
+        fm.append(f'  datapoint: {q(a["datapoint"])}')
+    if a['faq']:
+        fm.append('faq:')
+        for qq, aa in a['faq']:
+            fm.append(f'  - q: {q(qq)}')
+            fm.append(f'    a: {q(aa)}')
+    if a['sources']:
+        fm.append('sources:')
+        for s in a['sources']:
+            fm.append(f'  - {q(s)}')
+    fm.append(f'updated: {q(UPDATED)}')
+    return slug, '---\n' + '\n'.join(fm) + '\n---\n\n' + body + '\n'
+
+def main():
+    order = 1
+    written = []
+    for ch in parse_chunks(open(SRC6, encoding='utf-8').read()):
+        a = parse_article(ch)
+        if a['clean'] not in T6S:
+            print(f"  [WARN] 未定義タイトル: {a['clean']!r}", file=sys.stderr)
+            continue
+        slug, md = build_md(a, order)
+        open(os.path.join(OUT, slug + '.md'), 'w', encoding='utf-8').write(md)
+        written.append(slug)
+        order += 1
+    print(f"written={len(written)}")
+    for w in written:
+        print("  +", w)
+
+if __name__ == '__main__':
+    main()

@@ -101,3 +101,60 @@ clusters:
           - ai-agent
           - ai-estimation
           - knowledge-management
+
+  # クラスター⑥ 建設業（新規）。新LP「建設業の方へ」由来。用語集(製造業オンリー)の最大の空白を埋める。
+  # 製造業クラスターの核ナラ(図面起点・属人化解消)を建設の「物件起点」に翻訳。参照は内部完結。
+  construction:
+    name: 建設業
+    pillars:
+      - construction-drawing-management
+    spokeGroups:
+      - label: 建物と図面の基本
+        slugs:
+          - architectural-structural-mep-drawings
+          - property-management
+          - construction-zone
+      - label: 現場の書類・管理
+        slugs:
+          - construction-plan
+          - subcontractor-management
+          - drawing-revision-management
+      - label: 過去を活かす
+        slugs:
+          - similar-construction-search
+
+  # クラスター⑦ セキュリティ規格（新規）。新LP「SECURITY」由来。一般論(SSL/TLS等)を具体規格に置換。
+  # ピラー=情報漏洩対策（多層防御のハブ）。参照は内部＋既出語で完結。
+  security:
+    name: セキュリティ
+    pillars:
+      - information-leak-prevention
+    spokeGroups:
+      - label: 認証・暗号化
+        slugs:
+          - iso27001-isms
+          - aes-256
+          - tls-13
+          - rbac
+      - label: 可用性・データ保護
+        slugs:
+          - redundancy-high-availability
+          - backup-data-protection
+          - secure-cloud-aws
+
+  # クラスター⑧ 連携・データ基盤（新規）。新LP「既存システムとつなぐ」由来。引っ越しでなく"つなぐ"。
+  # ピラー=API連携（連携のハブ）。BOM/AI-OCR/ファイルサーバー等は既出を内部リンクで受ける。
+  integration:
+    name: 連携・データ基盤
+    pillars:
+      - api-integration
+    spokeGroups:
+      - label: システム連携
+        slugs:
+          - cad-integration
+          - erp-integration
+          - data-migration
+      - label: データ化・形式
+        slugs:
+          - ai-ocr-datafication
+          - supported-file-formats
