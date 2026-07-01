@@ -15,22 +15,22 @@ import { RippleLink } from './CtaRipple';
 
 const CTA_IMAGES = [
   {
-    src: '/images/slides/1.webp',
+    src: '/images/CTA2.png',
     alt: 'ARCHAIVE 資料プレビュー 1',
     className: 'col-start-1 row-start-1',
   },
   {
-    src: '/images/slides/2.webp',
+    src: '/images/CTA2-2.png',
     alt: 'ARCHAIVE 資料プレビュー 2',
     className: 'col-start-2 row-start-1 translate-y-8',
   },
   {
-    src: '/images/slides/3.webp',
+    src: '/images/CTA2-3.png',
     alt: 'ARCHAIVE 資料プレビュー 3',
     className: 'col-start-1 row-start-2',
   },
   {
-    src: '/images/slides/4.webp',
+    src: '/images/CTA2-4.png',
     alt: 'ARCHAIVE 資料プレビュー 4',
     className: 'col-start-2 row-start-2 translate-y-8',
   },
@@ -61,7 +61,7 @@ export function DocDownloadCta({ className = '' }: { className?: string }) {
           <div className="absolute top-3 left-[4%] w-[58%] rotate-[-1deg] overflow-hidden rounded-xl border border-white/80 bg-white shadow-[0_14px_28px_rgba(0,26,71,0.16)] sm:left-[10%] sm:w-[48%] lg:top-2 lg:left-[5.5rem] lg:w-[17.5rem]">
             <div className="relative aspect-[16/10]">
               <Image
-                src="/images/v.png"
+                src="/images/CTA1Big.png"
                 alt="ARCHAIVEの資料プレビュー"
                 fill
                 sizes="(min-width: 1024px) 280px, 58vw"
@@ -72,7 +72,7 @@ export function DocDownloadCta({ className = '' }: { className?: string }) {
           <div className="absolute top-0 right-[3%] w-[43%] rotate-[1deg] overflow-hidden rounded-xl border border-white/80 bg-white shadow-[0_14px_28px_rgba(0,26,71,0.16)] sm:right-[9%] sm:w-[34%] lg:right-auto lg:left-[17rem] lg:w-[13rem]">
             <div className="relative aspect-[16/10]">
               <Image
-                src="/images/tablet.png"
+                src="/images/CTA1-Small.png"
                 alt="ARCHAIVEの資料プレビュー"
                 fill
                 sizes="(min-width: 1024px) 210px, 43vw"

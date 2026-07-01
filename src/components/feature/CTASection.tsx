@@ -23,7 +23,7 @@ export default function CTASection() {
               <div className="flex flex-col items-center sm:flex-row sm:items-center gap-4">
                 <div className="w-34 h-38 flex items-center justify-center overflow-hidden mr-1">
                   <Image
-                    src="/images/slides/1.webp"
+                    src="/images/slides-flat.webp"
                     alt="資料イラスト"
                     width={240}
                     height={260}
@@ -51,14 +51,23 @@ export default function CTASection() {
             </div>
             <div className="border border-[#37B7C4]/30 rounded-xl p-5 h-full flex items-center justify-center">
               <div className="flex flex-col items-center sm:flex-row sm:items-center gap-4">
-                <div className="w-34 h-38 flex items-center justify-center overflow-hidden mr-1">
-                  <Image
-                    src="/images/v.png"
-                    alt="UI画面イラスト"
-                    width={210}
-                    height={230}
-                    className="object-contain ml-1 self-center mt-2"
-                  />
+                <div className="relative mr-1 flex h-40 w-56 shrink-0 items-center sm:h-44 sm:w-64">
+                  <div className="relative w-full">
+                    <Image
+                      src="/images/v.png"
+                      alt="ARCHAIVEデモ画面"
+                      width={2052}
+                      height={1244}
+                      className="h-auto w-full"
+                    />
+                    <Image
+                      src="/images/tablet.png"
+                      alt="ARCHAIVEのタブレット表示"
+                      width={3156}
+                      height={2612}
+                      className="pointer-events-none absolute bottom-0 -right-[3%] z-10 h-auto w-[56%] drop-shadow-2xl"
+                    />
+                  </div>
                 </div>
                 <div className="flex-1 flex flex-col items-center text-center ml-0 sm:ml-0">
                   <h3 className="text-lg sm:text-xl font-bold text-[#1F2B36] mb-3 leading-snug">

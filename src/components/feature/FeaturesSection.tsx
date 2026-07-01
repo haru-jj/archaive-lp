@@ -747,7 +747,7 @@ export function FeaturesSection() {
               <div className='absolute top-3 left-[4%] w-[58%] rotate-[-1deg] overflow-hidden rounded-xl border border-white/80 bg-white shadow-[0_14px_28px_rgba(0,26,71,0.16)] sm:left-[10%] sm:w-[48%] lg:top-2 lg:left-[5.5rem] lg:w-[17.5rem]'>
                 <div className='relative aspect-[16/10]'>
                   <Image
-                    src='/images/v.png'
+                    src='/images/CTA1Big.png'
                     alt='ARCHAIVEの資料プレビュー'
                     fill
                     sizes='(min-width: 1024px) 280px, 58vw'
@@ -758,7 +758,7 @@ export function FeaturesSection() {
               <div className='absolute top-0 right-[3%] w-[43%] rotate-[1deg] overflow-hidden rounded-xl border border-white/80 bg-white shadow-[0_14px_28px_rgba(0,26,71,0.16)] sm:right-[9%] sm:w-[34%] lg:right-auto lg:left-[17rem] lg:w-[13rem]'>
                 <div className='relative aspect-[16/10]'>
                   <Image
-                    src='/images/tablet.png'
+                    src='/images/CTA1-Small.png'
                     alt='ARCHAIVEの資料プレビュー'
                     fill
                     sizes='(min-width: 1024px) 210px, 43vw'

@@ -39,7 +39,7 @@ export default function HeroSection() {
                 <span className="relative flex items-center justify-center w-full min-h-[48px]">
                   <span className="absolute left-0 w-14 h-12">
                     <Image
-                      src="/images/slides/1.webp"
+                      src="/images/slides-fan.webp"
                       alt="カタログプレビュー"
                       width={3469}
                       height={2650}
@@ -123,7 +123,7 @@ export default function HeroSection() {
                   <span className="relative flex items-center justify-center w-full min-h-[48px]">
                     <span className="absolute left-[-56px] lg:left-[-64px] w-18 h-14">
                       <Image
-                        src="/images/slides/1.webp"
+                        src="/images/slides-fan.webp"
                         alt="カタログプレビュー"
                         width={3469}
                         height={2650}

@@ -40,22 +40,22 @@ const STEPS = [
 
 const CTA_IMAGES = [
   {
-    src: '/images/slides/1.webp',
+    src: '/images/CTA2.png',
     alt: 'ARCHAIVE 資料プレビュー 1',
     className: 'col-start-1 row-start-1',
   },
   {
-    src: '/images/slides/2.webp',
+    src: '/images/CTA2-2.png',
     alt: 'ARCHAIVE 資料プレビュー 2',
     className: 'col-start-2 row-start-1 translate-y-8',
   },
   {
-    src: '/images/slides/3.webp',
+    src: '/images/CTA2-3.png',
     alt: 'ARCHAIVE 資料プレビュー 3',
     className: 'col-start-1 row-start-2',
   },
   {
-    src: '/images/slides/4.webp',
+    src: '/images/CTA2-4.png',
     alt: 'ARCHAIVE 資料プレビュー 4',
     className: 'col-start-2 row-start-2 translate-y-8',
   },
