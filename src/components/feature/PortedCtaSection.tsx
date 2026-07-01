@@ -15,34 +15,24 @@ import { RippleLink } from './CtaRipple';
 
 const CTA_IMAGES = [
   {
-    src: '/lp-v2/page_1.png',
+    src: '/images/slides/1.webp',
     alt: 'ARCHAIVE 資料プレビュー 1',
     className: 'col-start-1 row-start-1',
   },
   {
-    src: '/lp-v2/page_2.png',
+    src: '/images/slides/2.webp',
     alt: 'ARCHAIVE 資料プレビュー 2',
     className: 'col-start-2 row-start-1 translate-y-8',
   },
   {
-    src: '/lp-v2/page_3.png',
+    src: '/images/slides/3.webp',
     alt: 'ARCHAIVE 資料プレビュー 3',
     className: 'col-start-1 row-start-2',
   },
   {
-    src: '/lp-v2/page_4.png',
+    src: '/images/slides/4.webp',
     alt: 'ARCHAIVE 資料プレビュー 4',
     className: 'col-start-2 row-start-2 translate-y-8',
-  },
-  {
-    src: '/lp-v2/page_5.png',
-    alt: 'ARCHAIVE 資料プレビュー 5',
-    className: 'col-start-1 row-start-3',
-  },
-  {
-    src: '/lp-v2/page_6.png',
-    alt: 'ARCHAIVE 資料プレビュー 6',
-    className: 'col-start-2 row-start-3 translate-y-8',
   },
 ];
 
@@ -71,8 +61,8 @@ export function DocDownloadCta({ className = '' }: { className?: string }) {
           <div className="absolute top-3 left-[4%] w-[58%] rotate-[-1deg] overflow-hidden rounded-xl border border-white/80 bg-white shadow-[0_14px_28px_rgba(0,26,71,0.16)] sm:left-[10%] sm:w-[48%] lg:top-2 lg:left-[5.5rem] lg:w-[17.5rem]">
             <div className="relative aspect-[16/10]">
               <Image
-                src="/lp-v2/drawing-screen.png"
-                alt="ARCHAIVEの図面データ活用画面"
+                src="/images/v.png"
+                alt="ARCHAIVEの資料プレビュー"
                 fill
                 sizes="(min-width: 1024px) 280px, 58vw"
                 className="object-cover object-left"
@@ -82,7 +72,7 @@ export function DocDownloadCta({ className = '' }: { className?: string }) {
           <div className="absolute top-0 right-[3%] w-[43%] rotate-[1deg] overflow-hidden rounded-xl border border-white/80 bg-white shadow-[0_14px_28px_rgba(0,26,71,0.16)] sm:right-[9%] sm:w-[34%] lg:right-auto lg:left-[17rem] lg:w-[13rem]">
             <div className="relative aspect-[16/10]">
               <Image
-                src="/lp-v2/page_1.png"
+                src="/images/tablet.png"
                 alt="ARCHAIVEの資料プレビュー"
                 fill
                 sizes="(min-width: 1024px) 210px, 43vw"

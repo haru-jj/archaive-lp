@@ -1,5 +1,6 @@
 import { Header, Footer } from '@/components/layout';
 import { CTASection } from '@/components/feature';
+import { NEWS_ITEMS } from '@/lib/news';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 
@@ -25,60 +26,7 @@ export const metadata: Metadata = {
 };
 
 export default function NewsListPage() {
-  const allNewsItems = [
-    {
-      date: '2025年10月30日',
-      tags: [
-        { label: 'プレスリリース', type: 'press' }
-      ],
-      content: 'ARCHAIVEが東京都スタートアップ協働プロジェクトに採択 〜公共事業DXと建築土木業・製造業のデータ活用を推進〜',
-      link: '/news/tokyo-project-adoption'
-    },
-    {
-      date: '2025年09月08日',
-      tags: [
-        { label: 'プレスリリース', type: 'press' }
-      ],
-      content: '製造業のDXを加速するAIプラットフォーム「ARCHAIVE 2.1」を2025年10月1日より提供開始',
-      link: '/news/archaive-2-1-release'
-    },
-    {
-      date: '2025年07月28日',
-      tags: [
-        { label: 'プレスリリース', type: 'press' }
-      ],
-      content: '業界初、「探す」から「話す」へ。ARCHAIVE、製造業AIエージェント「チャット型データ検索機能」をリリース',
-      link: '/news/ai-agent-release'
-    },
-    {
-      date: '2025年03月05日',
-      tags: [
-        { label: '新聞', type: 'newspaper' }
-      ],
-      content: '日本物流新聞で取り上げられました',
-      link: '/news/logistics-newspaper'
-    },
-    {
-      date: '2025年03月01日',
-      tags: [
-        { label: '新聞', type: 'newspaper' }
-      ],
-      content: '日刊工業新聞で取り上げられました',
-      link: '/news/industrial-newspaper'
-    },
-    {
-      date: '2024年12月21日',
-      tags: [
-        { label: 'プレスリリース', type: 'press' }
-      ],
-      content: '登壇実績',
-      link: '/news/presentation-achievement'
-    }
-  ];
-
-  const getTagColor = (type: string) => {
-    return 'bg-[#37B7C4]';
-  };
+  const allNewsItems = NEWS_ITEMS;
 
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',
@@ -100,7 +48,7 @@ export default function NewsListPage() {
   };
 
   return (
-    <div className="font-noto-sans-jp">
+    <div className="font-noto-sans-jp bg-white min-h-screen">
       <Header />
       <main className="pt-20">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
@@ -143,7 +91,7 @@ export default function NewsListPage() {
                       {item.tags.map((tag, tagIndex) => (
                         <span
                           key={tagIndex}
-                          className={`inline-block px-2 py-1 sm:px-3 sm:py-1 rounded-full text-white text-xs ${getTagColor(tag.type)} whitespace-nowrap`}
+                          className="inline-block px-2 py-1 sm:px-3 sm:py-1 rounded-full text-white text-xs bg-[#37B7C4] whitespace-nowrap"
                         >
                           {tag.label}
                         </span>

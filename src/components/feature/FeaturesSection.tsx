@@ -11,7 +11,6 @@ import {
 import Image from 'next/image';
 
 import {
-  ArrowRight,
   Bot,
   Boxes,
   Check,
@@ -52,8 +51,8 @@ const featureDetails = {
     icon: Boxes,
     heading: '部品の構成も、原価も、\nひとつの画面で管理',
     body: [
-      '部品の親子関係をツリーで表示し、工程・原価・取引先を部品単位で紐付けます。\n設計変更が他の部品に与える影響範囲もひと目で確認できます。',
-      '表示項目は、自社の業務に合わせてカスタマイズできます。',
+      '部品の親子関係をツリーで表示し、工程・原価・取引先を部品単位で紐付けます。\n設計変更が他の部品に与える影響範囲もひと目で確認できます。実績価格をもとにした原価の積算や、REACH・RoHSなどの環境物質情報の集計も、部品構造から行えます。',
+      'PLMより軽く導入でき、図面管理ツールよりも製品の構造に忠実な、製造業のためのデータ基盤です。',
     ],
     bullets: [
       '部品ツリー表示: 親子関係をツリーで可視化。',
@@ -169,6 +168,8 @@ export function FeaturesSection() {
   const [displayedFeature, setDisplayedFeature] =
     useState<(typeof featureTabs)[number]['id']>('search');
   const [isFeaturePanelVisible, setIsFeaturePanelVisible] = useState(true);
+  // 値が変わるたびに自動スライドのタイマーを張り直す（手動操作でリセットするため）
+  const [autoSlideResetKey, setAutoSlideResetKey] = useState(0);
   const featureSwitchTimeoutRef = useRef<number | null>(null);
   const industryTabsRef = useRef<HTMLDivElement | null>(null);
   const featureTabsRef = useRef<HTMLDivElement | null>(null);
@@ -322,6 +323,13 @@ export function FeaturesSection() {
       featureTabs.length;
 
     setSelectedFeature(featureTabs[nextIndex].id);
+    setAutoSlideResetKey((key) => key + 1);
+  };
+
+  // モバイル/タブレットのカルーセルで手動選択。自動スライドのタイマーをリセットする
+  const selectFeatureManually = (id: (typeof featureTabs)[number]['id']) => {
+    setSelectedFeature(id);
+    setAutoSlideResetKey((key) => key + 1);
   };
 
   const scrollToFeatureIndex = (index: number) => {
@@ -395,17 +403,52 @@ export function FeaturesSection() {
     };
   }, []);
 
+  // モバイル/タブレットでは、移動ボタンが押されない限り10秒ごとに次の機能へ自動スライド。
+  // デスクトップ(lg+)はスクロール連動のため対象外。手動操作で autoSlideRefetKey が変わり、タイマーを張り直す。
+  useEffect(() => {
+    const desktopQuery = window.matchMedia('(min-width: 1024px)');
+    let intervalId: number | null = null;
+
+    const stop = () => {
+      if (intervalId !== null) {
+        window.clearInterval(intervalId);
+        intervalId = null;
+      }
+    };
+
+    const start = () => {
+      stop();
+      if (desktopQuery.matches) return;
+      intervalId = window.setInterval(() => {
+        setSelectedFeature((current) => {
+          const currentIndex = featureTabs.findIndex(
+            (tab) => tab.id === current,
+          );
+          return featureTabs[(currentIndex + 1) % featureTabs.length].id;
+        });
+      }, 10000);
+    };
+
+    start();
+    desktopQuery.addEventListener('change', start);
+
+    return () => {
+      stop();
+      desktopQuery.removeEventListener('change', start);
+    };
+  }, [autoSlideResetKey]);
+
   const featurePanel = (
     <div className='border-lp-border overflow-hidden rounded-[2rem] border bg-white shadow-[0_18px_45px_rgba(15,23,42,0.06)]'>
       <div
         key={displayedFeature}
-        className={`feature-panel-enter grid lg:grid-cols-[1.05fr_0.95fr] ${
+        className={`feature-panel-enter grid lg:min-h-[34rem] lg:grid-cols-[1.05fr_0.95fr] ${
           isFeaturePanelVisible ? 'feature-panel-visible' : ''
         }`}
       >
-        <div className='relative px-5 py-7 sm:px-10 sm:py-9 lg:px-12 lg:py-10'>
+        <div className='relative px-5 py-5 sm:px-10 sm:py-9 lg:px-12 lg:py-10'>
           <div className='relative'>
-            <span className='text-lp-border pointer-events-none absolute top-0 right-0 z-0 flex items-center gap-1 text-[4.5rem] leading-none font-bold sm:right-2 sm:gap-2 sm:text-[7rem]'>
+            <span className='text-lp-border pointer-events-none absolute -top-3 right-0 z-0 flex items-center -space-x-0.5 text-[5rem] leading-none font-bold sm:-top-6 sm:right-2 sm:-space-x-1 sm:text-[8rem]'>
               {selectedFeatureDetail.number.split('').map((digit, index) => (
                 <span key={`${selectedFeatureDetail.number}-${index}`}>
                   {digit}
@@ -413,10 +456,10 @@ export function FeaturesSection() {
               ))}
             </span>
           </div>
-          <h3 className='text-lp-text relative z-10 mt-6 text-[clamp(1.125rem,1.7vw,1.5rem)] leading-[1.35] font-bold whitespace-pre-line'>
+          <h3 className='text-lp-text relative z-10 mt-4 text-[clamp(1.125rem,1.7vw,1.5rem)] leading-[1.35] font-bold whitespace-pre-line sm:mt-6'>
             {selectedFeatureDetail.heading}
           </h3>
-          <div className='text-lp-text-muted relative z-10 mt-5 space-y-4 text-[1rem] leading-8 font-normal sm:text-[1.0625rem]'>
+          <div className='text-lp-text-muted relative z-10 mt-3 space-y-3 text-[1rem] leading-7 font-normal sm:mt-5 sm:space-y-4 sm:leading-8 sm:text-[1.0625rem]'>
             {selectedFeatureDetail.body.map((paragraph) => (
               <p key={paragraph} className='whitespace-pre-line'>
                 {paragraph}
@@ -424,7 +467,7 @@ export function FeaturesSection() {
             ))}
           </div>
 
-          <ul className='relative z-10 mt-7 space-y-3'>
+          <ul className='relative z-10 mt-5 space-y-2 sm:mt-7 sm:space-y-3'>
             {selectedFeatureDetail.bullets.map((benefit) => {
               const [label, text] = benefit.split(': ');
 
@@ -444,19 +487,9 @@ export function FeaturesSection() {
               );
             })}
           </ul>
-
-          <RippleLink
-            href='#contact'
-            className='relative z-10 mt-7 inline-flex items-center justify-center gap-2 rounded-2xl bg-[var(--feature-primary-strong)] px-6 py-4 text-sm font-bold text-white shadow-[0_14px_28px_var(--feature-primary-shadow)] transition hover:-translate-y-0.5'
-            bgClassName='bg-[color-mix(in_srgb,var(--feature-primary-strong)_82%,black_10%)]'
-            contentClassName='text-white'
-          >
-            詳細を見る
-            <ArrowRight className='h-4 w-4' />
-          </RippleLink>
         </div>
 
-        <div className='border-lp-border bg-lp-surface-soft relative min-h-[280px] overflow-hidden border-t lg:border-t-0 lg:border-l'>
+        <div className='border-lp-border bg-lp-surface-soft relative aspect-square overflow-hidden border-t lg:aspect-auto lg:min-h-[280px] lg:border-t-0 lg:border-l'>
           <video
             key={selectedFeatureDetail.number}
             src={`/Video/ARCHIAVE${selectedFeatureDetail.number}.mp4`}
@@ -464,7 +497,7 @@ export function FeaturesSection() {
             muted
             loop
             playsInline
-            preload='metadata'
+            preload='none'
             style={{ transform: 'scale(1.25)' }}
             className='absolute inset-0 h-full w-full object-cover object-center'
           />
@@ -476,7 +509,7 @@ export function FeaturesSection() {
   return (
     <section
       id='features'
-      className='scroll-mt-24 bg-white px-6 py-16 sm:px-10 lg:px-16 lg:py-20'
+      className='scroll-mt-24 bg-white px-6 py-10 sm:px-10 sm:py-16 lg:px-16 lg:py-20'
       style={
         {
           '--lp-primary': activePalette.primary,
@@ -500,10 +533,10 @@ export function FeaturesSection() {
           <p className='text-sm font-bold text-[var(--feature-primary)]'>
             Features
           </p>
-          <h2 className='text-lp-text mt-5 text-center text-[clamp(1.625rem,2.6vw,2rem)] leading-[1.3] font-bold'>
+          <h2 className='text-lp-text mt-4 text-center text-[1.5rem] leading-[1.3] font-bold sm:mt-5 sm:text-[clamp(1.625rem,2.6vw,2rem)]'>
             ARCHAIVEの4つの機能
           </h2>
-          <div className='border-lp-text/55 mx-auto mt-6 h-px w-full max-w-[18rem] border-t-2 border-solid sm:max-w-[20rem]' />
+          <div className='border-lp-text/55 mx-auto mt-4 h-px w-full max-w-[18rem] border-t-2 border-solid sm:mt-6 sm:max-w-[20rem]' />
           <p className='text-lp-text-subtle mx-auto mt-4 max-w-[44rem] text-base leading-7 font-normal sm:text-lg'>
             図面のアップロードから、AIによる業務活用まで。
             <br />
@@ -512,7 +545,7 @@ export function FeaturesSection() {
 
           <div
             ref={industryTabsRef}
-            className='relative mt-10 inline-grid w-full max-w-[24rem] grid-cols-2 rounded-2xl border border-[var(--feature-primary-border)] bg-[var(--feature-primary-surface)] p-1.5 shadow-[0_10px_30px_rgba(15,23,42,0.05)] sm:mt-12 sm:inline-flex sm:w-auto sm:max-w-none'
+            className='relative mt-6 inline-grid w-full max-w-[24rem] grid-cols-2 rounded-2xl border border-[var(--feature-primary-border)] bg-[var(--feature-primary-surface)] p-1.5 shadow-[0_10px_30px_rgba(15,23,42,0.05)] sm:mt-12 sm:inline-flex sm:w-auto sm:max-w-none'
           >
             <span
               aria-hidden='true'
@@ -552,7 +585,7 @@ export function FeaturesSection() {
         </div>
 
         <div className='lg:hidden'>
-          <div className='mt-[50px]'>
+          <div className='mt-6 sm:mt-[50px]'>
             <div className='bg-lp-surface-soft relative overflow-hidden rounded-[1.4rem] p-2'>
               <div
                 className='flex gap-3 transition-transform duration-500 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)]'
@@ -568,7 +601,7 @@ export function FeaturesSection() {
                     <button
                       key={tab.id}
                       type='button'
-                      onClick={() => setSelectedFeature(tab.id)}
+                      onClick={() => selectFeatureManually(tab.id)}
                       className='min-w-full rounded-2xl border border-[var(--feature-primary-border)] bg-white px-5 py-4 text-left shadow-[0_10px_22px_var(--feature-primary-shadow-soft)]'
                       aria-pressed={isActive}
                     >
@@ -590,7 +623,7 @@ export function FeaturesSection() {
               <button
                 type='button'
                 onClick={() => moveFeatureCarousel(-1)}
-                className='border-lp-border text-lp-text inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border bg-white shadow-[0_10px_22px_rgba(15,23,42,0.06)] transition hover:border-[var(--feature-primary-border)] hover:text-[var(--feature-primary)]'
+                className='border-lp-border text-lp-text inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border bg-white shadow-[0_10px_22px_rgba(15,23,42,0.06)] transition hover:border-[var(--feature-primary-border)] hover:text-[var(--feature-primary)] lg:h-9 lg:w-9'
                 aria-label='前の機能を見る'
               >
                 <ChevronLeft className='h-4 w-4' strokeWidth={2.4} />
@@ -601,7 +634,7 @@ export function FeaturesSection() {
                   <button
                     key={tab.id}
                     type='button'
-                    onClick={() => setSelectedFeature(tab.id)}
+                    onClick={() => selectFeatureManually(tab.id)}
                     className={`h-2.5 rounded-full transition-all ${
                       index === selectedFeatureIndex
                         ? 'w-8 bg-[var(--feature-primary)]'
@@ -615,7 +648,7 @@ export function FeaturesSection() {
               <button
                 type='button'
                 onClick={() => moveFeatureCarousel(1)}
-                className='border-lp-border text-lp-text inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border bg-white shadow-[0_10px_22px_rgba(15,23,42,0.06)] transition hover:border-[var(--feature-primary-border)] hover:text-[var(--feature-primary)]'
+                className='border-lp-border text-lp-text inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border bg-white shadow-[0_10px_22px_rgba(15,23,42,0.06)] transition hover:border-[var(--feature-primary-border)] hover:text-[var(--feature-primary)] lg:h-9 lg:w-9'
                 aria-label='次の機能を見る'
               >
                 <ChevronRight className='h-4 w-4' strokeWidth={2.4} />
@@ -714,8 +747,8 @@ export function FeaturesSection() {
               <div className='absolute top-3 left-[4%] w-[58%] rotate-[-1deg] overflow-hidden rounded-xl border border-white/80 bg-white shadow-[0_14px_28px_rgba(0,26,71,0.16)] sm:left-[10%] sm:w-[48%] lg:top-2 lg:left-[5.5rem] lg:w-[17.5rem]'>
                 <div className='relative aspect-[16/10]'>
                   <Image
-                    src='/lp-v2/drawing-screen.png'
-                    alt='ARCHAIVEの図面データ活用画面'
+                    src='/images/v.png'
+                    alt='ARCHAIVEの資料プレビュー'
                     fill
                     sizes='(min-width: 1024px) 280px, 58vw'
                     className='object-cover object-left'
@@ -725,7 +758,7 @@ export function FeaturesSection() {
               <div className='absolute top-0 right-[3%] w-[43%] rotate-[1deg] overflow-hidden rounded-xl border border-white/80 bg-white shadow-[0_14px_28px_rgba(0,26,71,0.16)] sm:right-[9%] sm:w-[34%] lg:right-auto lg:left-[17rem] lg:w-[13rem]'>
                 <div className='relative aspect-[16/10]'>
                   <Image
-                    src='/lp-v2/page_1.png'
+                    src='/images/tablet.png'
                     alt='ARCHAIVEの資料プレビュー'
                     fill
                     sizes='(min-width: 1024px) 210px, 43vw'

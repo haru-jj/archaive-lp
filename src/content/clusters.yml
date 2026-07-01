@@ -122,6 +122,13 @@ clusters:
       - label: 過去を活かす
         slugs:
           - similar-construction-search
+      - label: 建設DX
+        slugs:
+          - bim
+          - cim
+          - i-construction
+          - construction-management
+          - estimation
 
   # クラスター⑦ セキュリティ規格（新規）。新LP「SECURITY」由来。一般論(SSL/TLS等)を具体規格に置換。
   # ピラー=情報漏洩対策（多層防御のハブ）。参照は内部＋既出語で完結。
@@ -158,3 +165,77 @@ clusters:
         slugs:
           - ai-ocr-datafication
           - supported-file-formats
+
+  # クラスター⑨ ARCHAIVE機能（用語定義）。4モジュール(Core/Option/Data Pipeline/Customize)由来。
+  features:
+    name: ARCHAIVE機能
+    pillars: []
+    spokeGroups:
+      - label: Core（基盤）
+        slugs:
+          - spec-management
+          - parts-information-management
+          - enterprise-search
+          - manufacturing-project-management
+      - label: Option（拡張）
+        slugs:
+          - 3d-cad
+          - document-generation-ai
+      - label: Data Pipeline（連携基盤）
+        slugs:
+          - sales-management-system
+          - crm
+          - rpa
+          - etl
+      - label: Customize（個別対応）
+        slugs:
+          - production-scheduler
+          - modular-system
+          - custom-app-development
+
+  # DX・AI・データ基盤の土台用語（A〜C）。指名前の広い接点となる上位概念。
+  dx-ai-data:
+    name: DX・AI・データ基盤
+    pillars: []
+    spokeGroups:
+      - label: DX・経営の上位概念
+        slugs:
+          - dx
+          - manufacturing-dx
+          - smart-factory
+          - industry-4-0
+          - paperless
+      - label: AIの土台語
+        slugs:
+          - machine-learning
+          - deep-learning
+          - llm
+          - hallucination
+          - computer-vision
+          - multimodal-ai
+      - label: データ・情報基盤
+        slugs:
+          - unstructured-data
+          - data-silo
+          - metadata
+          - mdm
+          - saas
+
+  # 製造・生産システムと現場概念（D〜E）。
+  manufacturing-systems:
+    name: 製造・生産システム
+    pillars: []
+    spokeGroups:
+      - label: 製造・生産システム
+        slugs:
+          - scm
+          - workflow
+          - cae
+          - cam
+      - label: 製造・設計の現場概念
+        slugs:
+          - iot
+          - digital-twin
+          - predictive-maintenance
+          - quality-control
+          - front-loading

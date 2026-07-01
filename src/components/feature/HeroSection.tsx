@@ -15,9 +15,10 @@ export default function HeroSection() {
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-60" style={{ backgroundImage: "url('/images/background_geometric.webp')" }} />
         <div className="absolute inset-0 bg-gradient-to-r from-[#005381]/40 via-[#2A8B96]/40 to-[#37B7C4]/40 z-[1]" />
 
-        <div className="w-full px-5 py-12 relative z-10">
-          <div className="space-y-7 text-center">
-            <h1 className="font-bold text-white tracking-tight text-[26px] leading-[1.35]">
+        <div className="w-full px-5 py-8 relative z-10">
+          <div className="space-y-5 text-center">
+            <p className="text-[11px] font-bold tracking-[0.2em] text-white/85">製造業AIデータハブ</p>
+            <h1 className="font-bold text-white tracking-tight text-[23px] leading-[1.35]">
               <div>1枚の図面・帳票から</div>
               <div>
                 社内の全ナレッジを<br className="sm:hidden" />AI活用
@@ -38,7 +39,7 @@ export default function HeroSection() {
                 <span className="relative flex items-center justify-center w-full min-h-[48px]">
                   <span className="absolute left-0 w-14 h-12">
                     <Image
-                      src="/images/paper1215-0-2.webp"
+                      src="/images/slides/1.webp"
                       alt="カタログプレビュー"
                       width={3469}
                       height={2650}
@@ -100,6 +101,7 @@ export default function HeroSection() {
         <div className="container mx-auto max-w-[1400px] px-4 py-12 sm:py-16 lg:py-20 relative z-10 h-full sm:-translate-y-3 lg:-translate-y-6">
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16 items-center min-h-[520px]">
             <div className="text-center lg:text-left mx-auto lg:ml-[1.5vw] w-full max-w-[clamp(480px,70vw,1040px)]">
+            <p className="mb-3 text-[13px] font-bold tracking-[0.2em] text-white/85 lg:mb-4">製造業AIデータハブ</p>
             <h1 className="font-bold text-white mb-6 tracking-tight text-[clamp(28px,3.8vw,52px)] leading-[clamp(44px,5.2vw,70px)]">
                 <div>1枚の図面・帳票から</div>
                 <div>
@@ -116,12 +118,12 @@ export default function HeroSection() {
                 </p>
               </div>
               
-              <div className="flex flex-row flex-wrap gap-4 w-full max-w-[clamp(440px,50vw,620px)] mx-auto lg:mx-0">
-                <Link href="/download" className="bg-white border-2 border-white rounded-full text-black px-12 py-3.5 text-[clamp(15px,1.4vw,18px)] font-bold flex items-center justify-center w-full sm:w-auto flex-none shrink-0 min-w-[230px] max-w-[320px] hover:bg-gray-50 btn-hover group">
+              <div className="flex flex-row flex-wrap justify-center lg:justify-start gap-4 w-full max-w-[clamp(440px,50vw,620px)] mx-auto lg:mx-0">
+                <Link href="/download" className="bg-white border-2 border-white rounded-full text-black px-12 py-3.5 text-[clamp(15px,1.4vw,18px)] font-bold flex items-center justify-center w-full lg:w-auto flex-none shrink-0 min-w-[230px] lg:max-w-[320px] hover:bg-gray-50 btn-hover group">
                   <span className="relative flex items-center justify-center w-full min-h-[48px]">
                     <span className="absolute left-[-56px] lg:left-[-64px] w-18 h-14">
                       <Image
-                        src="/images/paper1215-0-2.webp"
+                        src="/images/slides/1.webp"
                         alt="カタログプレビュー"
                         width={3469}
                         height={2650}
@@ -137,7 +139,7 @@ export default function HeroSection() {
                     </span>
                   </span>
                 </Link>
-                <Link href="/apply" className="bg-white border-2 border-white text-black rounded-full px-11 py-3.5 text-[clamp(15px,1.4vw,18px)] font-bold flex items-center justify-center w-full sm:w-auto flex-none shrink-0 min-w-[230px] max-w-[320px] hover:bg-gray-50 btn-hover group relative overflow-hidden">
+                <Link href="/apply" className="bg-white border-2 border-white text-black rounded-full px-11 py-3.5 text-[clamp(15px,1.4vw,18px)] font-bold flex items-center justify-center w-full lg:w-auto flex-none shrink-0 min-w-[230px] lg:max-w-[320px] hover:bg-gray-50 btn-hover group relative overflow-hidden">
                   <span className="flex flex-col items-center leading-tight text-center w-full gap-1">
                     <span className="text-xs font-semibold text-[#f54848]">\ 実際に使ってみる /</span>
                     <span className="group-text-wide">デモを無料体験</span>

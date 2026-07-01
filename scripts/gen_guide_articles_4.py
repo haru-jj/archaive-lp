@@ -4,8 +4,8 @@
 import json, re, os, sys
 
 HOME = os.path.expanduser('~')
-SRC7 = os.path.join(HOME, 'Downloads', 'ARCHAIVE_クラスター⑦_セキュリティ規格.md')
-SRC8 = os.path.join(HOME, 'Downloads', 'ARCHAIVE_クラスター⑧_連携データ基盤.md')
+SRC7 = os.path.join(HOME, 'Downloads', 'files', 'ARCHAIVE_クラスター⑦_セキュリティ規格.md')
+SRC8 = os.path.join(HOME, 'Downloads', 'files', 'ARCHAIVE_クラスター⑧_連携テ_ータ基盤.md')
 OUT = os.path.join(os.path.dirname(__file__), '..', 'src', 'content', 'guide')
 UPDATED = "2026-06-24"
 
@@ -68,8 +68,16 @@ def parse_article(chunk):
     intro = '\n'.join(lines[1:def_idx]).strip()
     body_sections = '\n'.join(lines[def_idx + 1:faq_idx]).strip()
 
+    # FAQの後ろ・関連用語の前にある締めセクション（## 見出し）を本文へ取り込む
+    close_idx = next((k for k in range(faq_idx + 1, foot_idx) if lines[k].startswith('## ')), None)
+    faq_end = close_idx if close_idx is not None else foot_idx
+    if close_idx is not None:
+        closing = '\n'.join(lines[close_idx:foot_idx]).strip()
+        if closing:
+            body_sections = (body_sections + '\n\n' + closing).strip()
+
     faq = []
-    region = lines[faq_idx + 1:foot_idx]
+    region = lines[faq_idx + 1:faq_end]
     j = 0
     while j < len(region):
         l = region[j]
@@ -106,6 +114,7 @@ def parse_article(chunk):
             for seg in re.split(r'[／/]', l.split('：', 1)[1]):
                 seg = seg.strip()
                 if '株式会社STAR UP調べ' in seg:
+                    seg = seg.replace('株式会社STAR UP調べ', '当社調べ')
                     sources.append(seg)
                     if datapoint is None:
                         datapoint = "関連データ：" + seg

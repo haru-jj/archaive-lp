@@ -14,18 +14,18 @@ import {
 const STEPS = [
   {
     number: '01',
-    title: '最短1週間で「使い始める」',
+    title: '手厚い伴走で「使い始める」',
     body: '今ある図面をアップロードするだけ。AIが読み取って、情報を整理します。データの事前整備は不要です。',
     productName: 'ARCHAIVE-CORE',
-    duration: '契約後〜1ヶ月',
+    duration: '導入〜3ヶ月',
     icon: DatabaseZap,
   },
   {
     number: '02',
-    title: '既存のシステムと「つなぐ」',
+    title: 'データ連携を「拡張する」',
     body: 'ERP・CAD・ファイルサーバーとAPI連携。データを引っ越すのではなく、つなげる。業務フローを変えずに導入できます。',
-    productName: 'ARCHAIVE-CRM',
-    duration: '連携拡張（2〜4週間）',
+    productName: 'データ拡張連携',
+    duration: '〜半年',
     icon: PlugZap,
   },
   {
@@ -33,56 +33,50 @@ const STEPS = [
     title: '自社専用のAIを「育てる」',
     body: '蓄積されたデータをもとに、AI開発チームが自社専用のAIを構築します。見積自動化、外観検査、需要予測まで、業務課題に合わせて開発できます。',
     productName: 'ARCHAIVE+',
-    duration: 'カスタム開発（2〜3ヶ月）',
+    duration: '〜1年',
     icon: Sparkles,
   },
 ] as const;
 
 const CTA_IMAGES = [
   {
-    src: '/lp-v2/page_1.png',
+    src: '/images/slides/1.webp',
     alt: 'ARCHAIVE 資料プレビュー 1',
     className: 'col-start-1 row-start-1',
   },
   {
-    src: '/lp-v2/page_2.png',
+    src: '/images/slides/2.webp',
     alt: 'ARCHAIVE 資料プレビュー 2',
     className: 'col-start-2 row-start-1 translate-y-8',
   },
   {
-    src: '/lp-v2/page_3.png',
+    src: '/images/slides/3.webp',
     alt: 'ARCHAIVE 資料プレビュー 3',
     className: 'col-start-1 row-start-2',
   },
   {
-    src: '/lp-v2/page_4.png',
+    src: '/images/slides/4.webp',
     alt: 'ARCHAIVE 資料プレビュー 4',
     className: 'col-start-2 row-start-2 translate-y-8',
   },
-  {
-    src: '/lp-v2/page_5.png',
-    alt: 'ARCHAIVE 資料プレビュー 5',
-    className: 'col-start-1 row-start-3',
-  },
-  {
-    src: '/lp-v2/page_6.png',
-    alt: 'ARCHAIVE 資料プレビュー 6',
-    className: 'col-start-2 row-start-3 translate-y-8',
-  },
 ] as const;
 
-export function GettingStartedSection() {
+export function GettingStartedSection({
+  animated = false,
+}: {
+  animated?: boolean;
+} = {}) {
   return (
     <section
       id='steps'
-      className='relative scroll-mt-24 overflow-hidden bg-[#F4FAFD] px-6 py-16 sm:px-10 lg:px-16 lg:py-20'
+      className='relative scroll-mt-24 overflow-hidden bg-[#F4FAFD] px-6 py-10 sm:px-10 sm:py-16 lg:px-16 lg:py-20'
     >
       <div className='relative z-10 mx-auto max-w-[1320px]'>
         <div className='text-center'>
           <p className='text-lp-primary text-sm font-bold sm:text-[0.95rem]'>
             GETTING STARTED
           </p>
-          <h2 className='text-lp-text mx-auto mt-5 max-w-none text-[clamp(1.625rem,2.6vw,2rem)] leading-[1.35] font-bold'>
+          <h2 className='text-lp-text mx-auto mt-5 max-w-none text-[1.5rem] leading-[1.35] font-bold sm:text-[clamp(1.625rem,2.6vw,2rem)]'>
             使い始めて自社のAIを育てるまでの3ステップ
           </h2>
           <div className='border-lp-text/52 mx-auto mt-6 h-px w-full max-w-[20rem] border-t-2 border-solid sm:max-w-[23rem]' />
@@ -96,13 +90,18 @@ export function GettingStartedSection() {
         <div className='relative mt-12 hidden lg:block'>
           <div className='pointer-events-none absolute top-6 right-[16.66%] left-[16.66%] h-1 rounded-full bg-[linear-gradient(90deg,rgba(85,189,207,0.42),rgba(85,189,207,0.18))]' />
           <div className='grid gap-6 lg:grid-cols-3 xl:gap-8'>
-            {STEPS.map((step) => {
+            {STEPS.map((step, index) => {
               const Icon = step.icon;
 
               return (
                 <article
                   key={step.number}
-                  className='relative flex flex-col rounded-[1.65rem] border border-white/80 bg-white px-6 pt-11 pb-6 shadow-[0_18px_40px_rgba(15,23,42,0.06)]'
+                  className={`relative flex flex-col rounded-[1.65rem] border border-white/80 bg-white px-7 pt-12 pb-8 shadow-[0_18px_40px_rgba(15,23,42,0.06)] min-h-[20rem]${
+                    animated ? ' gs-step' : ''
+                  }`}
+                  style={
+                    animated ? { animationDelay: `${index * 0.18}s` } : undefined
+                  }
                 >
                   <div className='absolute top-0 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2'>
                     <div className='bg-lp-primary text-lp-text flex h-14 w-14 items-center justify-center rounded-full border-[5px] border-white shadow-[0_12px_28px_rgba(85,189,207,0.22)]'>
@@ -124,12 +123,12 @@ export function GettingStartedSection() {
                   </h3>
                   <div className='mt-3 h-0.5 w-20 rounded-full bg-[var(--lp-primary)]' />
 
-                  <p className='text-lp-text-muted mt-4 text-[0.92rem] leading-7 font-normal'>
+                  <p className='text-lp-text-muted mt-4 mb-8 text-[0.92rem] leading-7 font-normal'>
                     {step.body}
                   </p>
 
-                  <div className='border-lp-text/55 mt-auto border-t-2 border-solid pt-4'>
-                    <p className='text-center text-[1.2rem] leading-tight font-bold'>
+                  <div className='border-lp-text/55 mt-auto border-t-2 border-solid pt-5'>
+                    <p className='text-center text-[1.05rem] leading-tight font-bold whitespace-nowrap xl:text-[1.2rem]'>
                       <span className='text-lp-text'>{step.productName}</span>
                       <span className='text-lp-text'> / {step.duration}</span>
                     </p>
@@ -145,7 +144,13 @@ export function GettingStartedSection() {
             const Icon = step.icon;
 
             return (
-              <div key={step.number} className='relative pl-16'>
+              <div
+                key={step.number}
+                className={`relative pl-16${animated ? ' gs-step' : ''}`}
+                style={
+                  animated ? { animationDelay: `${index * 0.18}s` } : undefined
+                }
+              >
                 {index !== STEPS.length - 1 ? (
                   <div className='pointer-events-none absolute top-16 left-7 h-[calc(100%+1.5rem)] w-1 rounded-full bg-[linear-gradient(180deg,rgba(85,189,207,0.42),rgba(85,189,207,0.18))]' />
                 ) : null}
@@ -154,7 +159,7 @@ export function GettingStartedSection() {
                   <Check className='h-7 w-7 stroke-[2.5]' />
                 </div>
 
-                <article className='rounded-[1.6rem] border border-white/80 bg-white px-6 pt-6 pb-7 shadow-[0_16px_34px_rgba(15,23,42,0.06)]'>
+                <article className='rounded-[1.6rem] border border-white/80 bg-white px-7 pt-7 pb-8 shadow-[0_16px_34px_rgba(15,23,42,0.06)]'>
                   <div className='flex items-center gap-4'>
                     <span className='flex h-12 w-12 items-center justify-center rounded-2xl bg-[color-mix(in_srgb,var(--lp-primary)_14%,white)] text-[var(--lp-primary)]'>
                       <Icon className='h-6 w-6' strokeWidth={2.2} />
@@ -173,8 +178,8 @@ export function GettingStartedSection() {
                     {step.body}
                   </p>
 
-                  <div className='border-lp-text/55 mt-6 border-t-2 border-solid pt-5'>
-                    <p className='text-center text-[1.25rem] leading-tight font-bold'>
+                  <div className='border-lp-text/55 mt-9 border-t-2 border-solid pt-5'>
+                    <p className='text-center text-[1.05rem] leading-tight font-bold whitespace-nowrap'>
                       <span className='text-lp-text'>{step.productName}</span>
                       <span className='text-lp-text'> / {step.duration}</span>
                     </p>

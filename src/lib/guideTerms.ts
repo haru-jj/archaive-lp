@@ -87,6 +87,63 @@ export const GUIDE_TERMS: GuideTerm[] = [
   { slug: 'data-migration', label: 'データ移行', aliases: ['データ移行'] },
   { slug: 'ai-ocr-datafication', label: 'AI-OCRによるデータ化', aliases: ['AI-OCRによるデータ化', 'データ化'] },
   { slug: 'supported-file-formats', label: '対応ファイル形式', aliases: ['対応ファイル形式', 'ファイル形式', 'DXF', 'STEP'] },
+
+  // クラスター⑨ ARCHAIVE機能
+  { slug: 'spec-management', label: '仕様書管理', aliases: ['仕様書管理', '仕様書'] },
+  { slug: 'parts-information-management', label: '部品情報管理', aliases: ['部品情報管理', '部品情報'] },
+  { slug: 'enterprise-search', label: '社内ドキュメント検索', aliases: ['エンタープライズサーチ', '社内ドキュメント検索', '社内検索'] },
+  { slug: 'manufacturing-project-management', label: '製造業の案件管理', aliases: ['製造業の案件管理'] },
+  { slug: '3d-cad', label: '3D CAD', aliases: ['3D CAD', '3DCAD'] },
+  { slug: 'document-generation-ai', label: 'ドキュメント生成AI', aliases: ['ドキュメント生成AI', '文書生成AI'] },
+  { slug: 'sales-management-system', label: '販売管理システム', aliases: ['販売管理システム', '販売管理'] },
+  { slug: 'crm', label: 'CRM（顧客関係管理）', aliases: ['CRM', '顧客関係管理'] },
+  { slug: 'rpa', label: 'RPA', aliases: ['RPA'] },
+  { slug: 'etl', label: 'ETL', aliases: ['ETL', 'データ連携・変換'] },
+  { slug: 'production-scheduler', label: '生産スケジューラ', aliases: ['生産スケジューラ'] },
+  { slug: 'modular-system', label: 'モジュール型システム', aliases: ['モジュール型システム', 'コンポーザブル'] },
+  { slug: 'custom-app-development', label: '業務アプリ開発（内製化）', aliases: ['業務アプリ開発', '内製化'] },
+
+  // A. DX・経営の上位概念
+  { slug: 'dx', label: 'DX', aliases: ['DX', 'デジタルトランスフォーメーション'] },
+  { slug: 'manufacturing-dx', label: '製造業DX', aliases: ['製造業DX'] },
+  { slug: 'smart-factory', label: 'スマートファクトリー', aliases: ['スマートファクトリー'] },
+  { slug: 'industry-4-0', label: 'インダストリー4.0', aliases: ['インダストリー4.0', '第4次産業革命'] },
+  { slug: 'paperless', label: 'ペーパーレス', aliases: ['ペーパーレス'] },
+
+  // B. AIの土台語
+  { slug: 'machine-learning', label: '機械学習', aliases: ['機械学習', 'マシンラーニング'] },
+  { slug: 'deep-learning', label: 'ディープラーニング', aliases: ['ディープラーニング', '深層学習'] },
+  { slug: 'llm', label: 'LLM（大規模言語モデル）', aliases: ['LLM', '大規模言語モデル'] },
+  { slug: 'hallucination', label: 'ハルシネーション', aliases: ['ハルシネーション'] },
+  { slug: 'computer-vision', label: 'コンピュータビジョン', aliases: ['コンピュータビジョン', '画像認識'] },
+  { slug: 'multimodal-ai', label: 'マルチモーダルAI', aliases: ['マルチモーダルAI'] },
+
+  // C. データ・情報基盤
+  { slug: 'unstructured-data', label: '非構造化データ', aliases: ['非構造化データ'] },
+  { slug: 'data-silo', label: 'データサイロ', aliases: ['データサイロ'] },
+  { slug: 'metadata', label: 'メタデータ', aliases: ['メタデータ'] },
+  { slug: 'mdm', label: 'マスタデータ管理（MDM）', aliases: ['マスタデータ管理', 'MDM'] },
+  { slug: 'saas', label: 'SaaS', aliases: ['SaaS', 'サース'] },
+
+  // D. 製造・生産システム
+  { slug: 'scm', label: 'SCM（サプライチェーンマネジメント）', aliases: ['SCM', 'サプライチェーンマネジメント'] },
+  { slug: 'workflow', label: 'ワークフロー（電子承認）', aliases: ['ワークフロー', '電子承認'] },
+  { slug: 'cae', label: 'CAE（解析）', aliases: ['CAE'] },
+  { slug: 'cam', label: 'CAM（製造）', aliases: ['CAM'] },
+
+  // E. 製造・設計の現場概念
+  { slug: 'iot', label: 'IoT', aliases: ['IoT', 'モノのインターネット'] },
+  { slug: 'digital-twin', label: 'デジタルツイン', aliases: ['デジタルツイン'] },
+  { slug: 'predictive-maintenance', label: '予知保全', aliases: ['予知保全', '予兆保全'] },
+  { slug: 'quality-control', label: '品質管理（QC）', aliases: ['品質管理', 'QC'] },
+  { slug: 'front-loading', label: 'フロントローディング', aliases: ['フロントローディング'] },
+
+  // F. 建設DX
+  { slug: 'bim', label: 'BIM', aliases: ['BIM'] },
+  { slug: 'cim', label: 'CIM', aliases: ['CIM'] },
+  { slug: 'i-construction', label: 'i-Construction', aliases: ['i-Construction', 'アイコンストラクション'] },
+  { slug: 'construction-management', label: '施工管理', aliases: ['施工管理'] },
+  { slug: 'estimation', label: '積算', aliases: ['積算'] },
 ];
 
 // 末尾に付きやすい助詞（選択ゆれ吸収）

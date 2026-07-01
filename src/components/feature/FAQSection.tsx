@@ -2,13 +2,16 @@
 
 import { useState } from 'react';
 
+import { FAQ_ITEMS } from './SecurityFaqSection';
+
 type FAQItem = {
   question: string;
   answerBold: string;
   answerRest?: string;
 };
 
-const faqs: FAQItem[] = [
+// このページ独自のFAQ（元々の質問）
+const ownFaqs: FAQItem[] = [
   {
     question: 'Q1. 無料デモやトライアルで、実際の使い勝手を確認できますか？',
     answerBold: 'A. はい、可能です。',
@@ -39,6 +42,16 @@ const faqs: FAQItem[] = [
     answerRest:
       ' AI-OCRが図面内の「図番」「品名」「材質」「顧客名」などを自動でテキスト化するため、記載情報さえ分かれば瞬時に検索・発見できます。',
   },
+];
+
+// ホームの「よくいただくご質問」を引き継ぎ、元々の質問と統合して表示する。
+const faqs: FAQItem[] = [
+  ...ownFaqs,
+  ...FAQ_ITEMS.map((item) => ({
+    question: item.question,
+    answerBold: 'A.',
+    answerRest: ` ${item.answer}`,
+  })),
 ];
 
 export default function FAQSection() {

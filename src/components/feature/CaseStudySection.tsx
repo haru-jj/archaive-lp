@@ -178,14 +178,14 @@ export function CaseStudySection() {
       </svg>
     <section
       id='cases'
-      className='scroll-mt-24 overflow-hidden bg-white px-6 py-28 sm:px-10 sm:py-32 lg:px-16 lg:py-40'
+      className='scroll-mt-24 overflow-hidden bg-white px-6 py-12 sm:px-10 sm:py-32 lg:px-16 lg:py-40'
     >
       <div className='relative mx-auto w-full max-w-[1800px] overflow-x-hidden overflow-y-visible'>
         <div className='mx-auto max-w-[920px] text-center'>
           <p className='text-sm font-bold text-[var(--lp-primary)]'>
             CASE STUDY
           </p>
-          <h2 className='text-lp-text mt-5 text-[clamp(1.625rem,2.6vw,2rem)] leading-[1.35] font-bold'>
+          <h2 className='text-lp-text mt-5 text-[1.5rem] leading-[1.35] font-bold sm:text-[clamp(1.625rem,2.6vw,2rem)]'>
             導入企業の声
           </h2>
           <div className='border-lp-text/55 mx-auto mt-6 h-px w-full max-w-[18rem] border-t-2 border-solid sm:max-w-[20rem]' />
@@ -352,7 +352,7 @@ export function CaseStudySection() {
                       moveSlide(-1);
                     }
                   }}
-                  className='relative z-10 h-3 w-3 rounded-full bg-slate-300 transition-colors duration-500'
+                  className="relative z-10 h-3 w-3 rounded-full bg-slate-300 transition-colors duration-500 before:absolute before:top-1/2 before:left-1/2 before:h-11 before:w-6 before:-translate-x-1/2 before:-translate-y-1/2 before:content-['']"
                   aria-label={`${study.company} を表示`}
                 />
               ))}

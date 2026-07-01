@@ -9,7 +9,7 @@ const caseData = {
   summary:
     '図面管理の属人化を解消した株式会社エイ・エム・シィ様に、ARCHAIVE導入の決め手と効果を伺いました。',
   url: 'https://archaive.net/case/amc',
-  image: 'https://archaive.net/images/nakanishi.jpg',
+  image: 'https://archaive.net/images/nakanishi.webp',
 };
 
 const reviewData = {
@@ -48,7 +48,7 @@ const relatedCases = [
   {
     slug: 'suenami',
     name: 'スエナミ工業株式会社',
-    summary: '大量図面のAI見積とコパイロット機能で業務を高速化した事例。',
+    summary: '大量図面のAI見積とAIエージェント機能で業務を高速化した事例。',
   },
 ];
 

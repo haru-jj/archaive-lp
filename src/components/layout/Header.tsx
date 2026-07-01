@@ -5,15 +5,15 @@ import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { Download, LogIn, Menu, Phone, Rocket, X } from 'lucide-react';
+import { Download, LogIn, Mail, Menu, Phone, X } from 'lucide-react';
 
 const LOGIN_URL = 'https://archaive.jp/auth/login';
 
 // アンカーは "/#..." 形式。ガイド等のサブページからでもホームの該当セクションへ戻ってジャンプする。
 const NAV_LINKS = [
   { href: '/#features', label: '機能' },
-  { href: '/#process', label: '導入の流れ' },
-  { href: '/#case', label: '導入事例' },
+  { href: '/#steps', label: '導入の流れ' },
+  { href: '/#cases', label: '導入事例' },
   { href: '/#faq', label: 'よくある質問' },
 ];
 
@@ -29,7 +29,8 @@ export default function Header() {
       document.body.style.overflow = '';
     }
     const onResize = () => {
-      if (window.innerWidth >= 640) setMenuOpen(false);
+      // lg(1024px) 以上＝デスクトップの完全ナビが出るので、その時だけドロワーを閉じる
+      if (window.innerWidth >= 1024) setMenuOpen(false);
     };
     window.addEventListener('resize', onResize);
     return () => {
@@ -116,13 +117,13 @@ export default function Header() {
           onClick={() => setMenuOpen((v) => !v)}
           aria-label={menuOpen ? 'メニューを閉じる' : 'メニューを開く'}
           aria-expanded={menuOpen}
-          className='text-lp-text ml-auto inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-slate-300 transition-colors hover:bg-[var(--lp-primary-surface)] sm:hidden'
+          className='text-lp-text ml-auto inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-slate-300 transition-colors hover:bg-[var(--lp-primary-surface)] lg:hidden'
         >
           {menuOpen ? <X className='h-6 w-6' strokeWidth={2.2} /> : <Menu className='h-6 w-6' strokeWidth={2.2} />}
         </button>
 
-        {/* 右側 CTA（2段・デスクトップのみ） */}
-        <div className='ml-auto hidden shrink-0 flex-col items-end gap-2 sm:flex lg:ml-0'>
+        {/* 右側 CTA（2段・デスクトップのみ。タブレット以下はハンバーガー内に集約） */}
+        <div className='ml-auto hidden shrink-0 flex-col items-end gap-2 lg:flex lg:ml-0'>
           {/* 上段: ログイン + 縦線 + 電話番号 + 受付時間 */}
           <div className='flex items-center gap-3 sm:gap-4'>
             <a
@@ -165,23 +166,23 @@ export default function Header() {
               href='/apply'
               className='inline-flex h-11 items-center gap-1 rounded-lg bg-[linear-gradient(135deg,#1E3A6F_0%,#0A1B40_100%)] px-2 text-[0.7rem] font-bold whitespace-nowrap text-white shadow-[0_8px_18px_rgba(10,27,64,0.28)] transition-all duration-300 hover:bg-[linear-gradient(135deg,#274C8C_0%,#0F2453_100%)] hover:shadow-[0_12px_24px_rgba(10,27,64,0.36)] sm:h-auto sm:gap-2 sm:px-6 sm:py-3 sm:text-base'
             >
-              <Rocket className='h-4 w-4 -rotate-45 sm:h-[1.3rem] sm:w-[1.3rem]' strokeWidth={2.4} />
+              <Mail className='h-4 w-4 sm:h-[1.3rem] sm:w-[1.3rem]' strokeWidth={2.4} />
               お問い合わせ
             </Link>
           </div>
         </div>
       </div>
-      {/* モバイルドロワー */}
+      {/* モバイル・タブレットドロワー */}
       {menuOpen && (
-        <div className='sm:hidden'>
+        <div className='lg:hidden'>
           {/* 背景オーバーレイ */}
           <div
-            className='fixed inset-0 top-16 z-40 bg-black/40'
+            className='fixed inset-0 top-16 z-40 bg-black/40 sm:top-24'
             onClick={() => setMenuOpen(false)}
             aria-hidden='true'
           />
-          {/* パネル */}
-          <div className='absolute top-16 right-0 left-0 z-50 max-h-[calc(100vh-4rem)] overflow-y-auto border-t border-gray-100 bg-white shadow-xl'>
+          {/* パネル（ヘッダー高さ h-16/sm:h-24 に合わせて開始位置を切替） */}
+          <div className='absolute top-16 right-0 left-0 z-50 max-h-[calc(100vh-4rem)] overflow-y-auto border-t border-gray-100 bg-white shadow-xl sm:top-24 sm:max-h-[calc(100vh-6rem)]'>
             <nav className='flex flex-col px-5 pt-2'>
               {NAV_LINKS.map((link) => (
                 <Link
@@ -204,7 +205,7 @@ export default function Header() {
                 onClick={() => setMenuOpen(false)}
                 className='inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-[linear-gradient(135deg,#1E3A6F_0%,#0A1B40_100%)] text-base font-bold whitespace-nowrap text-white shadow-[0_8px_18px_rgba(10,27,64,0.28)]'
               >
-                <Rocket className='h-5 w-5 -rotate-45' strokeWidth={2.4} />
+                <Mail className='h-5 w-5' strokeWidth={2.4} />
                 お問い合わせ
               </Link>
               <Link

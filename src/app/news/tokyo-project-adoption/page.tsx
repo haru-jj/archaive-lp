@@ -125,7 +125,7 @@ export default function TokyoProjectAdoptionNews() {
           <div className="w-full sm:w-[70%] max-w-none mx-auto px-4 sm:px-0">
             <p className="text-[#888] text-sm mb-6">2025/10/30</p>
             <div className="mt-6 mb-12">
-              <h1 className="text-2xl md:text-3xl font-bold leading-relaxed">{article.title}</h1>
+              <h1 className="text-2xl md:text-3xl font-bold leading-relaxed text-gray-900">{article.title}</h1>
               <p className="mt-3 text-base md:text-lg text-[#37B7C4] font-semibold">{article.subtitle}</p>
             </div>
             <div className="bg-white p-8 sm:p-12 shadow-lg rounded-lg h-fit space-y-10">

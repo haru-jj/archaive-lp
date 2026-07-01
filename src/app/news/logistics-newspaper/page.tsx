@@ -10,7 +10,7 @@ const article = {
     '製造業向け図面管理プロダクト「ARCHAIVE」が日本物流新聞に掲載され、京都ビジネス交流フェアでの注目企業として紹介されました。',
   url: 'https://archaive.net/news/logistics-newspaper',
   publishDate: '2025-03-05',
-  image: 'https://archaive.net/images/nihon_butsuryu_shinbun_1.png',
+  image: 'https://archaive.net/images/nihon_butsuryu_shinbun_1.webp',
 };
 
 export const metadata: Metadata = {

@@ -1,7 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import GuideTermHinter from '@/components/feature/GuideTermHinter';
-import GuideChat from '@/components/guide/GuideChat';
+import { GoogleAnalytics } from '@next/third-parties/google';
+import DeferredGuideWidgets from '@/components/guide/DeferredGuideWidgets';
 import { getAllArticles } from '@/lib/guide';
 
 export const metadata: Metadata = {
@@ -150,8 +150,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         {children}
-        <GuideTermHinter />
-        <GuideChat
+        <DeferredGuideWidgets
           terms={getAllArticles().map((a) => ({
             slug: a.slug,
             title: a.title,
@@ -159,6 +158,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }))}
         />
       </body>
+      {/* GA4: 本番ビルド時のみ読み込む。`npm run dev`(development) では発火しない。
+          `next build`(本番デプロイ) では NODE_ENV=production になり自動的に有効化される。 */}
+      {process.env.NODE_ENV === 'production' && (
+        <GoogleAnalytics gaId="G-0FZZ3RVR1P" />
+      )}
     </html>
   );
 }

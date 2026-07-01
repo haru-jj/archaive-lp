@@ -113,6 +113,10 @@ export default function ApplyPageClient() {
     }
   };
 
+  const inputClass =
+    'w-full px-3 py-2 sm:px-4 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#37B7C4] focus:border-transparent text-sm sm:text-base';
+  const labelClass = 'block text-gray-700 font-semibold mb-2 text-sm sm:text-base';
+
   return (
     <div className="min-h-screen flex flex-col bg-[#f7f9fc]">
       <Header />
@@ -137,24 +141,31 @@ export default function ApplyPageClient() {
                 必要に応じて御社データも組み込んだシナリオをご用意させていただくこともあります。
               </p>
 
-              <div className="relative w-full max-w-2xl mx-auto mb-8">
+              <div className="relative w-full mt-8 mb-8 sm:mt-12">
                 <Image
-                  src="/images/UI_PC.webp"
+                  src="/images/v.png"
                   alt="ARCHAIVEデモ画面の実際のUI。"
-                  width={7888}
-                  height={5128}
+                  width={2052}
+                  height={1244}
                   className="w-full h-auto"
-                  sizes="(min-width: 1024px) 520px, 100vw"
+                  sizes="(min-width: 1024px) 840px, 100vw"
                   priority
                 />
+                {/* PCに少し重ねてタブレットを配置（右下・少し大きめ） */}
+                <Image
+                  src="/images/tablet.png"
+                  alt="ARCHAIVEのタブレット表示"
+                  width={3156}
+                  height={2612}
+                  className="pointer-events-none absolute bottom-0 -right-[3%] z-10 h-auto w-[56%] drop-shadow-2xl"
+                  sizes="(min-width: 1024px) 470px, 56vw"
+                />
               </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8" />
             </section>
 
             <form
               onSubmit={handleSubmit}
-              className="w-full lg:w-[460px] xl:w-[520px] bg-white rounded-3xl shadow-2xl border border-gray-100 p-6 sm:p-8 space-y-6"
+              className="w-full lg:w-[460px] xl:w-[520px] lg:self-start bg-white rounded-3xl shadow-2xl border border-gray-100 p-6 sm:p-8 space-y-5"
             >
               <div className="text-center">
                 <p className="text-lg font-bold text-[#37B7C4]">30秒で無料デモを予約</p>
@@ -174,197 +185,214 @@ export default function ApplyPageClient() {
                   </div>
                 )}
               </div>
-            <div className="mb-4 sm:mb-6">
-              <label className="block text-gray-700 font-semibold mb-2 text-sm sm:text-base">
-                会社名
-                <span className="text-red-500 ml-1">*</span>
-              </label>
-              <input
-                type="text"
-                name="companyName"
-                value={formData.companyName}
-                onChange={handleInputChange}
-                placeholder="例 | 株式会社〇〇"
-                className="w-full px-3 py-2 sm:px-4 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#37B7C4] focus:border-transparent text-sm sm:text-base"
-                required
-              />
-            </div>
-
-            <div className="mb-4 sm:mb-6">
-              <label className="block text-gray-700 font-semibold mb-2 text-sm sm:text-base">
-                氏名
-                <span className="text-red-500 ml-1">*</span>
-              </label>
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                placeholder="例 | 山田太郎"
-                className="w-full px-3 py-2 sm:px-4 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#37B7C4] focus:border-transparent text-sm sm:text-base"
-                required
-              />
-            </div>
-
-            <div className="mb-4 sm:mb-6">
-              <label className="block text-gray-700 font-semibold mb-2 text-sm sm:text-base">
-                部署
-                <span className="text-red-500 ml-1">*</span>
-              </label>
-              <input
-                type="text"
-                name="department"
-                value={formData.department}
-                onChange={handleInputChange}
-                placeholder="例 | 図面管理部"
-                className="w-full px-3 py-2 sm:px-4 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#37B7C4] focus:border-transparent text-sm sm:text-base"
-                required
-              />
-            </div>
-
-            <div className="mb-4 sm:mb-6">
-              <label className="block text-gray-700 font-semibold mb-2 text-sm sm:text-base">
-                役職
-                <span className="text-red-500 ml-1">*</span>
-              </label>
-              <div className="relative">
-                <select
-                  name="position"
-                  value={formData.position}
+              <div>
+                <label className={labelClass}>
+                  会社名
+                  <span className="text-red-500 ml-1">*</span>
+                </label>
+                <input
+                  type="text"
+                  name="companyName"
+                  value={formData.companyName}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 sm:px-4 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#37B7C4] focus:border-transparent appearance-none bg-white text-sm sm:text-base"
+                  placeholder="例 | 株式会社〇〇"
+                  className={inputClass}
                   required
-                >
-                  <option value="">選択してください</option>
-                  <option value="取締役">取締役</option>
-                  <option value="執行役員">執行役員</option>
-                  <option value="部門長">部門長</option>
-                  <option value="課長">課長</option>
-                  <option value="リーダー/主任">リーダー/主任</option>
-                  <option value="一般社員">一般社員</option>
-                  <option value="その他">その他</option>
-                </select>
-                <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-                  <svg className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path
-                      fillRule="evenodd"
-                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </div>
+                />
               </div>
-            </div>
 
-            <div className="mb-4 sm:mb-6">
-              <label className="block text-gray-700 font-semibold mb-2 text-sm sm:text-base">
-                Eメール
-                <span className="text-red-500 ml-1">*</span>
-              </label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                placeholder="例 | example@starup01.jp"
-                className="w-full px-3 py-2 sm:px-4 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#37B7C4] focus:border-transparent text-sm sm:text-base"
-                required
-              />
-            </div>
-
-            <div className="mb-4 sm:mb-6">
-              <label className="block text-gray-700 font-semibold mb-2 text-sm sm:text-base">
-                電話番号
-                <span className="text-red-500 ml-1">*</span>
-              </label>
-              <input
-                type="tel"
-                name="phone"
-                value={formData.phone}
-                onChange={handleInputChange}
-                placeholder="例 | 090-1234-5678"
-                className="w-full px-3 py-2 sm:px-4 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#37B7C4] focus:border-transparent text-sm sm:text-base"
-                required
-              />
-            </div>
-
-            <div className="mb-4 sm:mb-6">
-              <label className="block text-gray-700 font-semibold mb-2 text-sm sm:text-base">
-                従業員数
-                <span className="text-red-500 ml-1">*</span>
-              </label>
-              <div className="relative">
-                <select
-                  name="employeeCount"
-                  value={formData.employeeCount}
+              <div>
+                <label className={labelClass}>
+                  氏名
+                  <span className="text-red-500 ml-1">*</span>
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 sm:px-4 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#37B7C4] focus:border-transparent appearance-none bg-white text-sm sm:text-base"
+                  placeholder="例 | 山田太郎"
+                  className={inputClass}
                   required
-                >
-                  <option value="">選択してください</option>
-                  <option value="1-49名">1-49名</option>
-                  <option value="50-199名">50-199名</option>
-                  <option value="200-499名">200-499名</option>
-                  <option value="500名以上">500名以上</option>
-                </select>
-                <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-                  <svg className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path
-                      fillRule="evenodd"
-                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </div>
+                />
               </div>
-            </div>
 
-            <div className="mb-4 sm:mb-6">
-              <label className="block text-gray-700 font-semibold mb-2 text-sm sm:text-base">
-                ご検討の目的
-                <span className="text-red-500 ml-1">*</span>
-              </label>
-              <div className="flex flex-col gap-2">
-                {[
-                  '図面検索業務の効率化',
-                  '見積作成業務の効率化',
-                  'ナレッジ共有の仕組み化',
-                  'データ連携・AI活用',
-                  'その他',
-                ].map((option) => (
-                  <label key={option} className="flex items-center gap-3 text-sm sm:text-base text-gray-700">
-                    <input
-                      type="checkbox"
-                      checked={Array.isArray(formData.purpose) && formData.purpose.includes(option)}
-                      onChange={() => toggleCheckboxValue('purpose', option)}
-                      className="h-4 w-4 rounded border-gray-300 text-[#37B7C4] focus:ring-[#37B7C4]"
-                    />
-                    <span>{option}</span>
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className={labelClass}>
+                    部署
+                    <span className="text-red-500 ml-1">*</span>
                   </label>
-                ))}
+                  <input
+                    type="text"
+                    name="department"
+                    value={formData.department}
+                    onChange={handleInputChange}
+                    placeholder="例 | 図面管理部"
+                    className={inputClass}
+                    required
+                  />
+                </div>
+                <div>
+                  <label className={labelClass}>
+                    役職
+                    <span className="text-red-500 ml-1">*</span>
+                  </label>
+                  <div className="relative">
+                    <select
+                      name="position"
+                      value={formData.position}
+                      onChange={handleInputChange}
+                      className={`${inputClass} appearance-none bg-white pr-9`}
+                      required
+                    >
+                      <option value="">選択してください</option>
+                      <option value="取締役">取締役</option>
+                      <option value="執行役員">執行役員</option>
+                      <option value="部門長">部門長</option>
+                      <option value="課長">課長</option>
+                      <option value="リーダー/主任">リーダー/主任</option>
+                      <option value="一般社員">一般社員</option>
+                      <option value="その他">その他</option>
+                    </select>
+                    <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                      <svg className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                          fillRule="evenodd"
+                          d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <input
-                type="text"
-                name="purpose"
-                value={Array.isArray(formData.purpose) ? formData.purpose.join(', ') : formData.purpose}
-                onChange={() => {}}
-                className="sr-only"
-                required
-                aria-hidden="true"
-                tabIndex={-1}
-              />
-            </div>
 
-            <div className="mb-4 sm:mb-6">
-              <label className="block text-gray-700 font-semibold mb-2 text-sm sm:text-base">お問い合わせ内容（任意）</label>
-              <textarea
-                name="message"
-                value={formData.message}
-                onChange={handleInputChange}
-                placeholder="具体的な導入時期や課題感などがあればご入力ください"
-                className="w-full px-3 py-2 sm:px-4 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#37B7C4] focus:border-transparent text-sm sm:text-base h-32"
-              />
-            </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label className={labelClass}>
+                    Eメール
+                    <span className="text-red-500 ml-1">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    placeholder="例 | example@starup01.jp"
+                    className={inputClass}
+                    required
+                  />
+                </div>
+                <div>
+                  <label className={labelClass}>
+                    電話番号
+                    <span className="text-red-500 ml-1">*</span>
+                  </label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    placeholder="例 | 090-1234-5678"
+                    className={inputClass}
+                    required
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className={labelClass}>
+                  従業員数
+                  <span className="text-red-500 ml-1">*</span>
+                </label>
+                <div className="relative">
+                  <select
+                    name="employeeCount"
+                    value={formData.employeeCount}
+                    onChange={handleInputChange}
+                    className={`${inputClass} appearance-none bg-white pr-9`}
+                    required
+                  >
+                    <option value="">選択してください</option>
+                    <option value="1-49名">1-49名</option>
+                    <option value="50-199名">50-199名</option>
+                    <option value="200-499名">200-499名</option>
+                    <option value="500名以上">500名以上</option>
+                  </select>
+                  <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                    <svg className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path
+                        fillRule="evenodd"
+                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <label className={labelClass}>
+                  ご検討の目的
+                  <span className="text-red-500 ml-1">*</span>
+                </label>
+                <div className="grid grid-cols-2 gap-2">
+                  {[
+                    '図面検索業務の効率化',
+                    '見積作成業務の効率化',
+                    'ナレッジ共有の仕組み化',
+                    'データ連携・AI活用',
+                    'その他',
+                  ].map((option) => {
+                    const checked =
+                      Array.isArray(formData.purpose) &&
+                      formData.purpose.includes(option);
+                    return (
+                      <label
+                        key={option}
+                        className={`flex cursor-pointer items-center gap-2.5 rounded-lg border px-3 py-2.5 text-sm text-gray-700 transition ${
+                          checked
+                            ? 'border-[#37B7C4] bg-[#37B7C4]/5'
+                            : 'border-gray-300 hover:border-[#37B7C4]/60'
+                        }`}
+                      >
+                        <input
+                          type="checkbox"
+                          checked={checked}
+                          onChange={() => toggleCheckboxValue('purpose', option)}
+                          className="h-4 w-4 shrink-0 rounded border-gray-300 text-[#37B7C4] focus:ring-[#37B7C4]"
+                        />
+                        <span>{option}</span>
+                      </label>
+                    );
+                  })}
+                </div>
+                <input
+                  type="text"
+                  name="purpose"
+                  value={Array.isArray(formData.purpose) ? formData.purpose.join(', ') : formData.purpose}
+                  onChange={() => {}}
+                  className="sr-only"
+                  required
+                  aria-hidden="true"
+                  tabIndex={-1}
+                />
+              </div>
+
+              <div>
+                <label className={labelClass}>
+                  お問い合わせ内容
+                  <span className="text-gray-400 ml-2 text-xs font-normal">任意</span>
+                </label>
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  placeholder="具体的な導入時期や課題感などがあればご入力ください"
+                  className={`${inputClass} h-24`}
+                />
+              </div>
 
             <div className="flex flex-col gap-4">
               {turnstileSiteKey ? (

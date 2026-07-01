@@ -8,10 +8,10 @@ import { Header, Footer } from '@/components/layout';
 import TurnstileWidget from '@/components/forms/TurnstileWidget';
 
 const SLIDES = [
-  '/images/slides/1.png',
-  '/images/slides/2.png',
-  '/images/slides/3.png',
-  '/images/slides/4.png',
+  '/images/slides/1.webp',
+  '/images/slides/2.webp',
+  '/images/slides/3.webp',
+  '/images/slides/4.webp',
 ];
 
 const DOC_INTRO =

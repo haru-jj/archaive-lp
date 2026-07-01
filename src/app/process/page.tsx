@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Header, Footer } from '@/components/layout';
-import ProcessSection from '@/components/feature/ProcessSection';
+import { GettingStartedSection } from '@/components/feature/GettingStartedSection';
 
 export const metadata: Metadata = {
   title: '導入ステップ｜ARCHAIVE',
@@ -35,7 +35,7 @@ export default function ProcessPage() {
       <Header />
       <main className="pt-20">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
-        <ProcessSection />
+        <GettingStartedSection animated />
       </main>
       <Footer />
     </div>

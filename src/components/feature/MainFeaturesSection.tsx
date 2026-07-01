@@ -31,7 +31,7 @@ export default function MainFeaturesSection() {
       subtitle: '社内データが3秒で見つかる。',
       description:
         'AIに自然な言葉で聞くだけで、見積・過去トラ・仕様書等を瞬時に要約・検索。新人もベテランも同じ情報を活用できます。',
-      image: '/images/Screne/AI-4(○).jpeg',
+      image: '/images/CTA2-3.png',
       imageAlt: 'AIチャット型データ検索の操作画面',
       tooltips: ['過去トラ\n検索', '上司AI', 'ドキュメント\n要約'],
       imagePosition: 'right',
@@ -44,7 +44,7 @@ export default function MainFeaturesSection() {
       subtitle: '更に形状が似た図面が2秒で見つかる。',
       description:
         'アップロードするだけで、AIが図面・書類を自動データ化。独自のアルゴリズムが形状や文字から類似図面を瞬時に検索し、登録・探索時間を大幅に削減します。',
-      image: '/images/Screne/OCR-1.jpeg',
+      image: '/images/OCR.png',
       imageAlt: '類似検索・自動解析機能の画面',
       tooltips: ['図面自動\n解析', '類似図面\n検索', '部分図面\n検索'],
       imagePosition: 'left',
@@ -58,7 +58,7 @@ export default function MainFeaturesSection() {
       subtitle: 'オーダーメイドAIの開発。',
       description:
         '便利AIツールから、PLM／ERPの構築、コンサルティングまで幅広いサービスを提供。\n全顧客の理想である「アイデア」をカタチに。',
-      image: '/images/Screne/BOM-2.jpeg',
+      image: '/images/BOMT.png',
       imageAlt: 'カスタムAIソリューションの管理画面',
       tooltips: ['シンボル抽出\nAI', '検図AI', 'BOM管理'],
       imagePosition: 'right',

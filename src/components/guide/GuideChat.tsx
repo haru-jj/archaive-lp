@@ -29,6 +29,9 @@ export default function GuideChat({ terms }: { terms: ChatTerm[] }) {
   const [open, setOpen] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const [input, setInput] = useState('');
+  // 吹き出し: 起動直後に表示→10秒 or 初回ホバーで消す。以降はホバーで拡大表示。
+  const [introActive, setIntroActive] = useState(true);
+  const [tipHovered, setTipHovered] = useState(false);
   const close = () => {
     setOpen(false);
     setExpanded(false);
@@ -48,6 +51,12 @@ export default function GuideChat({ terms }: { terms: ChatTerm[] }) {
   useEffect(() => {
     if (bodyRef.current) bodyRef.current.scrollTop = bodyRef.current.scrollHeight;
   }, [msgs, typing, open]);
+
+  // 起動から10秒で初回吹き出しを自動的に消す。
+  useEffect(() => {
+    const t = window.setTimeout(() => setIntroActive(false), 10000);
+    return () => window.clearTimeout(t);
+  }, []);
 
   // ページ遷移時、会話が未開始（挨拶のみ）なら現在ページ用の挨拶に差し替える。
   useEffect(() => {
@@ -120,10 +129,28 @@ export default function GuideChat({ terms }: { terms: ChatTerm[] }) {
           type="button"
           className="gchat-fab"
           aria-label={open ? '用語アシスタントを閉じる' : '用語アシスタントを開く'}
-          onClick={() => (open ? close() : setOpen(true))}
+          onClick={() => {
+            setIntroActive(false);
+            open ? close() : setOpen(true);
+          }}
+          onMouseEnter={() => {
+            // 初回ホバーは案内を消すだけ。以降のホバーで拡大表示。
+            if (introActive) setIntroActive(false);
+            else setTipHovered(true);
+          }}
+          onMouseLeave={() => setTipHovered(false)}
         >
           {open ? <X size={22} strokeWidth={2.2} /> : <MessageSquare size={22} strokeWidth={2.2} />}
         </button>
+      )}
+
+      {!open && (introActive || tipHovered) && (
+        <div
+          className={`gchat-tip${tipHovered ? ' gchat-tip-big' : ''}`}
+          aria-hidden="true"
+        >
+          わからない用語は<b>選択でページへ</b>・<b>入力でその場で要約</b>
+        </div>
       )}
 
       {open && (
@@ -232,6 +259,45 @@ export default function GuideChat({ terms }: { terms: ChatTerm[] }) {
         .gchat-fab:hover {
           transform: translateY(-2px) scale(1.04);
           box-shadow: 0 14px 32px rgba(19, 167, 200, 0.5);
+        }
+        .gchat-tip {
+          position: fixed;
+          right: 20px;
+          bottom: 86px;
+          z-index: 69;
+          max-width: 232px;
+          background: #0f324f;
+          color: #fff;
+          font-size: 12px;
+          line-height: 1.65;
+          font-weight: 600;
+          padding: 8px 12px;
+          border-radius: 12px;
+          box-shadow: 0 10px 24px rgba(15, 50, 79, 0.28);
+          animation: gchat-in 0.22s ease both;
+          pointer-events: none;
+        }
+        .gchat-tip b {
+          color: #7fe1f0;
+          font-weight: 700;
+        }
+        .gchat-tip.gchat-tip-big {
+          max-width: 268px;
+          font-size: 13.5px;
+          padding: 11px 15px;
+          bottom: 90px;
+          box-shadow: 0 14px 30px rgba(15, 50, 79, 0.34);
+        }
+        .gchat-tip::after {
+          content: '';
+          position: absolute;
+          right: 42px;
+          bottom: -5px;
+          width: 11px;
+          height: 11px;
+          background: #0f324f;
+          transform: rotate(45deg);
+          border-radius: 2px;
         }
         .gchat-panel {
           position: fixed;

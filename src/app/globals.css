@@ -93,3 +93,25 @@ html {
   animation: softPulse 2.2s ease-in-out infinite;
   box-shadow: 0 0 0 0 rgba(55, 183, 196, 0.35);
 }
+
+/* GETTING STARTED の3ステップを順番にフェードイン（/process で animated 指定時） */
+@keyframes gs-step-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.gs-step {
+  opacity: 0;
+  animation: gs-step-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .gs-step {
+    opacity: 1;
+    animation: none;
+  }
+}

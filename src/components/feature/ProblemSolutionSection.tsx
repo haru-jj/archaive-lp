@@ -198,14 +198,14 @@ const problemCards: ProblemCard[] = [
 
 export function ProblemSolutionSection() {
   return (
-    <section className='relative overflow-hidden bg-[linear-gradient(180deg,#0A1B40_0%,#0D2453_32%,#27437A_58%,#8AA0C2_82%,#FFFFFF_100%)] px-6 py-16 sm:px-10 lg:px-16 lg:py-20'>
+    <section className='relative overflow-hidden bg-[linear-gradient(180deg,#0A1B40_0%,#0D2453_32%,#27437A_58%,#8AA0C2_82%,#FFFFFF_100%)] px-6 py-10 sm:px-10 sm:py-16 lg:px-16 lg:py-20'>
       <div className='pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_10%,rgba(85,189,207,0.16),transparent_42%),radial-gradient(circle_at_88%_18%,rgba(85,189,207,0.10),transparent_38%)]' />
       <div className='relative z-10 mx-auto max-w-[1320px]'>
         <div className='mx-auto max-w-[840px] text-center'>
           <p className='text-lp-primary text-sm font-bold'>
             THE PROBLEM
           </p>
-          <h2 className='mt-4 text-[clamp(1.625rem,2.6vw,2rem)] leading-[1.35] font-bold text-white'>
+          <h2 className='mt-4 text-[1.5rem] leading-[1.35] font-bold text-white sm:text-[clamp(1.625rem,2.6vw,2rem)]'>
             「辿り着けない」がなくなる会社へ
           </h2>
           <div className='mx-auto mt-6 max-w-[640px] space-y-3'>
@@ -233,7 +233,7 @@ export function ProblemSolutionSection() {
             }) => (
               <article
                 key={number}
-                className='relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-white/70 bg-white px-6 pt-9 pb-8 shadow-[0_18px_44px_rgba(0,10,40,0.28)] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_28px_60px_rgba(0,10,40,0.36)]'
+                className='relative mx-auto flex h-full w-full max-w-[34rem] flex-col overflow-hidden rounded-[1.75rem] border border-white/70 bg-white px-6 pt-9 pb-8 shadow-[0_18px_44px_rgba(0,10,40,0.28)] transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_28px_60px_rgba(0,10,40,0.36)] lg:max-w-none'
               >
                 <div className='pointer-events-none absolute inset-x-0 top-0 h-1.5 bg-[linear-gradient(90deg,var(--lp-primary-strong)_0%,color-mix(in_srgb,var(--lp-primary)_30%,transparent)_100%)]' />
 
@@ -274,7 +274,7 @@ export function ProblemSolutionSection() {
           )}
         </div>
 
-        <section className='relative mt-22 overflow-hidden rounded-[2rem] bg-[linear-gradient(180deg,var(--lp-primary-deep)_0%,var(--lp-primary-strong)_54%,var(--lp-primary)_100%)] px-6 py-14 sm:px-10 sm:py-16 lg:bg-[linear-gradient(90deg,var(--lp-primary-deep)_0%,var(--lp-primary-strong)_52%,var(--lp-primary)_100%)] lg:px-14 lg:py-14'>
+        <section className='relative mt-12 sm:mt-22 overflow-hidden rounded-[2rem] bg-[linear-gradient(180deg,var(--lp-primary-deep)_0%,var(--lp-primary-strong)_54%,var(--lp-primary)_100%)] px-6 py-10 sm:px-10 sm:py-16 lg:bg-[linear-gradient(90deg,var(--lp-primary-deep)_0%,var(--lp-primary-strong)_52%,var(--lp-primary)_100%)] lg:px-14 lg:py-14'>
           <div className='pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_22%_18%,rgba(255,255,255,0.12),transparent_28%),radial-gradient(circle_at_82%_76%,rgba(255,255,255,0.16),transparent_30%),linear-gradient(180deg,rgba(0,26,71,0.38)_0%,rgba(0,26,71,0.18)_42%,rgba(0,26,71,0)_82%)] lg:bg-[radial-gradient(circle_at_22%_28%,rgba(255,255,255,0.12),transparent_28%),radial-gradient(circle_at_82%_24%,rgba(255,255,255,0.16),transparent_30%),linear-gradient(90deg,rgba(0,26,71,0.38)_0%,rgba(0,26,71,0.18)_46%,rgba(0,26,71,0)_82%)]' />
           <div className='pointer-events-none absolute inset-y-0 right-0 hidden w-1/2 bg-[linear-gradient(90deg,rgba(255,255,255,0)_0%,rgba(255,255,255,0.12)_100%)] lg:block' />
           {BUBBLES.map((bubbleClass) => (
@@ -286,23 +286,21 @@ export function ProblemSolutionSection() {
 
           <div className='relative z-10 grid items-center gap-7 lg:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.92fr)] lg:gap-6'>
             <div className='max-w-[44rem]'>
-              <p className='text-sm font-bold text-white/92 uppercase'>
+              <p className='text-[1.1rem] leading-[1.6] font-bold text-white sm:text-[1.2rem]'>
+                PLMは重すぎる。図面管理では足りない。製造現場に要るのは、その間にある「情報の基盤」です。
+              </p>
+              <p className='mt-6 text-sm font-bold text-white/92 uppercase'>
                 THE SOLUTION
               </p>
               <h3 className='mt-4 text-[clamp(1.375rem,2.2vw,1.75rem)] leading-[1.35] font-bold text-white'>
-                図面とそれを取り巻くすべての
-                <br />
-                情報を製品単位で。
+                図面に、書かれなかった全部を。
               </h3>
               <div className='mt-5 max-w-[40rem] space-y-5 text-base leading-8 font-normal text-white/94 sm:text-[1.05rem]'>
                 <p>
-                  貴社の製品が1つ完成するまでに設計者の判断、取引先との交渉、現場での試行錯誤が積み重なっています。そのほとんどは図面そのものには書かれず、担当者の経験として蓄積されてきました。
-                </p>
-                <p className='text-[1.1rem] font-bold sm:text-[1.2rem]'>
-                  ARCHAIVEはその経験を図面と一緒に残す仕組みです。
+                  図面に書いてあるのは、寸法と材質だけです。なぜその形にしたのか、いくらで決めたのか、どんなトラブルが出たのか——肝心の判断は、どこにも残っていません。担当者が辞めれば、一緒に消えます。
                 </p>
                 <p>
-                  仕様書、過去のトラブル、設計判断の経緯まで製品単位で蓄積されます。担当者が変わっても、過去の判断は会社に残ります。新しいメンバーがAIに問いかけるだけで、5年前の図面にも10年前の判断にも辿り着けます。
+                  ARCHAIVEは、その判断まで図面に紐付けて残します。担当者が辞めても、会社からは消えません。
                 </p>
               </div>
               <div className='mt-6 flex flex-col gap-3 sm:flex-row'>
@@ -400,13 +398,23 @@ export function ProblemSolutionSection() {
                   <div className='relative flex h-[7.5rem] w-[7.5rem] items-center justify-center rounded-full bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.20)_0%,color-mix(in_srgb,var(--lp-primary)_82%,black_10%)_58%,color-mix(in_srgb,var(--lp-primary)_72%,black_24%)_100%)] shadow-[0_26px_80px_rgba(8,31,36,0.34)] sm:h-48 sm:w-48 lg:h-56 lg:w-56'>
                     <div className='absolute inset-[10%] rounded-full border border-white/14' />
                     <div className='absolute inset-[-12%] rounded-full bg-[radial-gradient(circle,color-mix(in_srgb,white_18%,transparent),transparent_68%)] blur-xl' />
-                    <Image
-                      src='/svg/logo-text.svg'
-                      alt='ARCHAIVE'
-                      width={164}
-                      height={70}
-                      className='relative z-10 h-auto w-[6.3rem] brightness-[1.28] contrast-[1.1] drop-shadow-[0_8px_20px_rgba(0,0,0,0.18)] sm:w-[9.4rem] lg:w-[10.6rem]'
-                    />
+                    <div className='relative z-10 flex flex-col items-center gap-2 sm:gap-3'>
+                      <Image
+                        src='/images/Group (1).svg'
+                        alt=''
+                        aria-hidden='true'
+                        width={127}
+                        height={129}
+                        className='h-auto w-12 drop-shadow-[0_4px_12px_rgba(0,0,0,0.28)] sm:w-16 lg:w-20'
+                      />
+                      <Image
+                        src='/images/Group (2).svg'
+                        alt='ARCHAIVE'
+                        width={760}
+                        height={122}
+                        className='h-auto w-12 drop-shadow-[0_8px_20px_rgba(0,0,0,0.2)] sm:w-16 lg:w-20'
+                      />
+                    </div>
                   </div>
                 </div>
               </div>

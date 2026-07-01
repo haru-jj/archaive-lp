@@ -19,6 +19,9 @@ const EN: Record<string, string> = {
   construction: 'CONSTRUCTION',
   security: 'SECURITY',
   integration: 'INTEGRATION',
+  features: 'FEATURES',
+  'dx-ai-data': 'DX / AI / DATA',
+  'manufacturing-systems': 'MFG SYSTEMS',
 };
 
 export const metadata: Metadata = {

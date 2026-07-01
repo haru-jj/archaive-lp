@@ -34,13 +34,6 @@ const CONTACT_LINKS = [
   { label: 'お問い合わせ', href: '/apply' },
 ] as const;
 
-const FOOTER_LEGAL_LINKS = [
-  { label: '会社概要', href: 'https://starup01.jp/', external: true },
-  { label: '導入事例', href: '/case', external: false },
-  { label: 'セキュリティ', href: '/security', external: false },
-  { label: 'お問い合わせ', href: '/apply', external: false },
-] as const;
-
 function FooterLink({
   href,
   label,
@@ -51,7 +44,7 @@ function FooterLink({
   external?: boolean;
 }) {
   const baseClassName =
-    'inline-flex items-center gap-1.5 text-[1rem] leading-8 font-normal text-lp-text transition-colors duration-200 hover:text-lp-primary-strong';
+    'inline-flex items-center gap-1.5 whitespace-nowrap text-[0.9rem] leading-7 font-normal text-lp-text transition-colors duration-200 hover:text-lp-primary-strong';
 
   if (external) {
     return (
@@ -77,32 +70,40 @@ export default function Footer() {
       <div className='relative z-10 mx-auto max-w-[1400px]'>
         <div className='border-lp-border grid gap-12 border-b pb-12 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,2fr)] lg:gap-16 lg:pb-14'>
           <div className='max-w-[30rem]'>
-            <Link href='/' className='inline-flex items-center gap-2.5 sm:gap-3'>
-              <Image
-                src='/svg/logo.svg'
-                alt='ARCHAIVE'
-                width={48}
-                height={48}
-                className='h-10 w-10 sm:h-12 sm:w-12'
-              />
-              {/* ヘッダーと同じ ARCHAIVE ロゴ（ARCH + 赤AI + VE）をアイコンの横に配置 */}
-              <div>
-                <span
-                  className='block text-[1.7rem] leading-none font-bold sm:text-[2.1rem]'
-                  style={{ color: '#37B7C4' }}
-                >
-                  ARCH
-                  <span style={{ color: '#F64848' }}>AI</span>
-                  VE
-                </span>
-                <span className='text-lp-text mt-1 block text-[0.9rem] font-normal sm:text-[0.95rem]'>
-                  by STAR UP
-                </span>
+            <Link href='/' className='inline-flex flex-col gap-2'>
+              {/* アイコン＋ARCHAIVEワードマークを同じ行で中心を揃える */}
+              <div className='flex items-center gap-2.5 sm:gap-3'>
+                <Image
+                  src='/svg/logo.svg'
+                  alt='ARCHAIVE'
+                  width={48}
+                  height={48}
+                  className='h-10 w-10 sm:h-12 sm:w-12'
+                />
+                <Image
+                  src='/svg/logo-text.svg'
+                  alt='ARCHAIVE'
+                  width={557}
+                  height={101}
+                  className='h-8 w-auto sm:h-10'
+                />
               </div>
+              <span className='text-lp-text inline-flex items-center gap-1.5 text-[0.9rem] font-normal sm:text-[0.95rem]'>
+                by
+                <Image
+                  src='/images/group-30.svg'
+                  alt='STAR UP'
+                  width={599}
+                  height={78}
+                  className='h-[0.9rem] w-auto sm:h-[0.95rem]'
+                />
+              </span>
             </Link>
 
             <p className='text-lp-text-muted mt-7 max-w-[28rem] text-[1rem] leading-8 font-normal sm:text-[1.05rem] sm:leading-9'>
-              製造業のための、図面管理AI／情報基盤。図面・見積・仕様・検査記録・判断の経緯まで、製品ごとに紐づけて蓄積します。
+              製造業のための、図面管理AI／情報基盤。
+              <br />
+              図面・見積・仕様・検査記録・判断の経緯まで、製品ごとに紐づけて蓄積します。
             </p>
           </div>
 
@@ -162,30 +163,6 @@ export default function Footer() {
           <p className='text-lp-text text-[0.94rem] font-normal sm:text-[0.98rem]'>
             © 2026 STAR UP Inc. All rights reserved.
           </p>
-
-          <div className='flex flex-wrap gap-x-6 gap-y-2'>
-            {FOOTER_LEGAL_LINKS.map((link) =>
-              link.external ? (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  target='_blank'
-                  rel='noreferrer'
-                  className='text-lp-text hover:text-lp-primary-strong text-[0.94rem] font-normal transition-colors duration-200'
-                >
-                  {link.label}
-                </a>
-              ) : (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  className='text-lp-text hover:text-lp-primary-strong text-[0.94rem] font-normal transition-colors duration-200'
-                >
-                  {link.label}
-                </Link>
-              )
-            )}
-          </div>
         </div>
       </div>
     </footer>

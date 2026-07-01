@@ -134,14 +134,14 @@ export function GetStartedSection() {
   return (
     <section
       id='contact'
-      className='relative overflow-hidden bg-[linear-gradient(90deg,color-mix(in_srgb,var(--lp-primary-deep)_88%,var(--lp-primary))_0%,color-mix(in_srgb,var(--lp-primary)_92%,white)_50%,color-mix(in_srgb,var(--lp-primary-deep)_88%,var(--lp-primary))_100%)] px-6 py-16 sm:px-10 lg:px-16 lg:py-20'
+      className='relative overflow-hidden bg-[linear-gradient(90deg,color-mix(in_srgb,var(--lp-primary-deep)_88%,var(--lp-primary))_0%,color-mix(in_srgb,var(--lp-primary)_92%,white)_50%,color-mix(in_srgb,var(--lp-primary-deep)_88%,var(--lp-primary))_100%)] px-6 py-10 sm:px-10 sm:py-16 lg:px-16 lg:py-20'
     >
       <div className='relative z-10 mx-auto max-w-[1320px]'>
         <div className='text-center'>
           <p className='text-sm font-bold text-white/95 sm:text-[0.95rem]'>
             GET STARTED
           </p>
-          <h2 className='mx-auto mt-5 text-[clamp(1.625rem,2.6vw,2rem)] leading-[1.35] font-bold text-white'>
+          <h2 className='mx-auto mt-5 text-[1.5rem] leading-[1.35] font-bold text-white sm:text-[clamp(1.625rem,2.6vw,2rem)]'>
             「図面管理のその先」を
             <br />
             見にきてください。

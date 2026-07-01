@@ -4,7 +4,7 @@
 # 本文・数値・出典は原稿から「逐語」コピー（言い換え・捏造をしない）。
 import json, re, os, sys
 
-SRC = os.path.expanduser('~/Downloads/articles_drawing_cluster.md')
+SRC = os.path.expanduser('~/Downloads/files/articles_drawing_cluster.md')
 OUT = os.path.join(os.path.dirname(__file__), '..', 'src', 'content', 'guide')
 UPDATED = "2026-06-30"
 
@@ -68,10 +68,18 @@ def parse_article(chunk):
     intro = '\n'.join(lines[1:def_idx]).strip()
     body_sections = '\n'.join(lines[def_idx + 1:faq_idx]).strip()
 
+    # FAQの後ろ・関連用語の前にある締めセクション（## 見出し）を本文へ取り込む
+    close_idx = next((k for k in range(faq_idx + 1, foot_idx) if lines[k].startswith('## ')), None)
+    faq_end = close_idx if close_idx is not None else foot_idx
+    if close_idx is not None:
+        closing = '\n'.join(lines[close_idx:foot_idx]).strip()
+        if closing:
+            body_sections = (body_sections + '\n\n' + closing).strip()
+
     # FAQ
     faq = []
     i = faq_idx + 1
-    region = lines[faq_idx + 1:foot_idx]
+    region = lines[faq_idx + 1:faq_end]
     j = 0
     while j < len(region):
         l = region[j]
@@ -113,6 +121,7 @@ def parse_article(chunk):
             for seg in re.split(r'[／/]', data):
                 seg = seg.strip()
                 if '株式会社STAR UP調べ' in seg:
+                    seg = seg.replace('株式会社STAR UP調べ', '当社調べ')
                     sources.append(seg)
                     if datapoint is None:
                         datapoint = "関連データ：" + seg

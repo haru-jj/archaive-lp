@@ -10,7 +10,9 @@ import { FeaturesSection } from '@/components/feature/FeaturesSection';
 import { GettingStartedSection } from '@/components/feature/GettingStartedSection';
 import { SecurityFaqSection } from '@/components/feature/SecurityFaqSection';
 import { GetStartedSection } from '@/components/feature/GetStartedSection';
+import { PressReleaseSection } from '@/components/feature/PressReleaseSection';
 import { IndustryThemeProvider } from '@/components/feature/IndustryTheme';
+import HomeAnalytics from '@/components/analytics/HomeAnalytics';
 
 import {
   Header,
@@ -205,17 +207,39 @@ export default function Home() {
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteJsonLd) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }} />
-        <HeroSection />
-        <ProblemSolutionSection />
-        <IndustryThemeProvider>
-          <FeaturesSection />
-        </IndustryThemeProvider>
-        <SubFeaturesSection />
-        <CaseStudySection />
-        <GettingStartedSection />
-        <SecurityFaqSection />
-        <GetStartedSection />
-        <NoteSection />
+        <div data-ga-section="hero">
+          <HeroSection />
+        </div>
+        <div data-ga-section="problem_solution">
+          <ProblemSolutionSection />
+        </div>
+        <div data-ga-section="features">
+          <IndustryThemeProvider>
+            <FeaturesSection />
+          </IndustryThemeProvider>
+        </div>
+        <div data-ga-section="sub_features">
+          <SubFeaturesSection />
+        </div>
+        <div data-ga-section="case_study">
+          <CaseStudySection />
+        </div>
+        <div data-ga-section="getting_started">
+          <GettingStartedSection />
+        </div>
+        <div data-ga-section="security_faq">
+          <SecurityFaqSection />
+        </div>
+        <div data-ga-section="get_started">
+          <GetStartedSection />
+        </div>
+        <div data-ga-section="press_release">
+          <PressReleaseSection />
+        </div>
+        <div data-ga-section="note">
+          <NoteSection />
+        </div>
+        <HomeAnalytics />
       </main>
       <Footer />
     </div>

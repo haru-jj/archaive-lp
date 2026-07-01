@@ -9,7 +9,7 @@ const caseData = {
   summary:
     '図面検索と見積業務の効率化に取り組む株式会社クロステック様に、ARCHAIVE導入の背景と効果を伺いました。',
   url: 'https://archaive.net/case/crosstech',
-  image: 'https://archaive.net/images/matsuda.png',
+  image: 'https://archaive.net/images/matsuda.webp',
 };
 
 const reviewData = {
@@ -48,7 +48,7 @@ const relatedCases = [
   {
     slug: 'suenami',
     name: 'スエナミ工業株式会社',
-    summary: '大量図面のAI見積とコパイロット機能で業務を高速化した事例。',
+    summary: '大量図面のAI見積とAIエージェント機能で業務を高速化した事例。',
   },
 ];
 
