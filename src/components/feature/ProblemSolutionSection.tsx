@@ -297,10 +297,10 @@ export function ProblemSolutionSection() {
               </h3>
               <div className='mt-5 max-w-[40rem] space-y-5 text-base leading-8 font-normal text-white/94 sm:text-[1.05rem]'>
                 <p>
-                  図面に書いてあるのは、寸法と材質だけです。なぜその形にしたのか、いくらで決めたのか、どんなトラブルが出たのか——肝心の判断は、どこにも残っていません。担当者が辞めれば、一緒に消えます。
+                  図面には、寸法も公差も材質も、必要な仕様はすべて書いてあります。書かれていないのは、なぜその仕様にしたのか、いくらで請けたのか、前に何が起きたのか——判断の理由です。それは担当者の頭の中にあって、辞めれば一緒に消えます。
                 </p>
                 <p>
-                  ARCHAIVEは、その判断まで図面に紐付けて残します。担当者が辞めても、会社からは消えません。
+                  ARCHAIVEは、その判断を図面に紐付けて残します。担当者が辞めても、会社からは消えません。
                 </p>
               </div>
               <div className='mt-6 flex flex-col gap-3 sm:flex-row'>
