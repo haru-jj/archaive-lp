@@ -49,7 +49,7 @@ const CASE_STUDIES = [
     company: '株式会社クロステック',
     comment:
       '図面起点の案件管理で見積・納品・請求業務を大幅削減。1案件あたり40%の機会損失防止を実現',
-    industry: '業種：製造業・ワイヤー放電加工',
+    industry: '業種：製造業・精密板金加工',
     companySize: '従業員数：1〜100名',
     imageSrc: '/lp-v2/people_1.png',
     imageAlt: '株式会社クロステックの事例写真',
@@ -60,7 +60,7 @@ const CASE_STUDIES = [
     company: 'スエナミ工業株式会社',
     comment:
       '大量図面のAI見積とAIエージェントで属人化を解消し、見積業務を高速化',
-    industry: '業種：製造業・精密板金加工',
+    industry: '業種：製造業・ワイヤー放電加工',
     companySize: '従業員数：1〜100名',
     imageSrc: '/lp-v2/people_3.png',
     imageAlt: 'スエナミ工業株式会社の事例写真',
