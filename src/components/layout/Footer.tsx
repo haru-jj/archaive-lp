@@ -159,7 +159,15 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className='relative z-10 flex flex-col gap-6 pt-8 lg:flex-row lg:items-center lg:justify-between'>
+        <div className='relative z-10 flex flex-col gap-4 pt-8 lg:flex-row lg:items-center lg:justify-between'>
+          <nav className='flex flex-wrap items-center gap-x-6 gap-y-2 text-[0.9rem]'>
+            <Link
+              href='/privacy-policy'
+              className='text-lp-text-muted hover:text-lp-primary-strong transition-colors duration-200'
+            >
+              プライバシーポリシー
+            </Link>
+          </nav>
           <p className='text-lp-text text-[0.94rem] font-normal sm:text-[0.98rem]'>
             © 2026 STAR UP Inc. All rights reserved.
           </p>

@@ -409,7 +409,14 @@ export default function ApplyPageClient() {
                 </p>
               )}
               <p className="text-xs sm:text-sm text-gray-500 leading-relaxed">
-                送信いただいた情報は、デモ対応およびご案内のみに利用し、プライバシーポリシーに基づき適切に管理します。
+                送信いただいた情報は、デモ対応およびご案内のみに利用し、
+                <Link
+                  href="/privacy-policy"
+                  className="text-[#37B7C4] underline underline-offset-2 hover:text-[#2a9aa5]"
+                >
+                  プライバシーポリシー
+                </Link>
+                に基づき適切に管理します。
               </p>
               <button
                 type="submit"

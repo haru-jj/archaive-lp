@@ -476,7 +476,14 @@ export default function DownloadPageClient() {
                   </p>
                 )}
                 <p className="text-xs sm:text-sm text-gray-500 leading-relaxed">
-                  送信いただいた情報は、お問い合わせへの対応のみに利用し、プライバシーポリシーに基づき適切に取り扱います。
+                  送信いただいた情報は、お問い合わせへの対応のみに利用し、
+                  <Link
+                    href="/privacy-policy"
+                    className="text-[#37B7C4] underline underline-offset-2 hover:text-[#2a9aa5]"
+                  >
+                    プライバシーポリシー
+                  </Link>
+                  に基づき適切に取り扱います。
                 </p>
                 <button
                   type="submit"
